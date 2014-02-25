@@ -12,11 +12,11 @@ public class LPOOTP1 {
 	public static void main (String[] args) {
 
 		while(true) {
-			b.showBoard();
+			//b.showBoard();
 			//b.makePath(15);
 
 			//b.makePath(15);
-			System.out.println();
+			//System.out.println();
 			b.showBoard();
 
 			Scanner myScanner = new Scanner(System.in);

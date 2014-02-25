@@ -28,27 +28,34 @@ public class Board {
 
 			}
 		}
+		
+		makePath(n);
+		
+		//mudar S para nao ficar numa parede
 		int i,j;
+		int r1=2;
 
 		int r = (int) Math.round((Math.random()*4));
-		int r1 = (int) (2 + Math.round((Math.random()*(n-2))));
+		
+		
+		while(r1==2 || r1==(n-1))
+		r1 = (int) (2 + (Math.random()*(n-4)));
 
-		if(r==0) {i=n-2; j=r1; }
+		if(r==0){i=n-1; j=r1; }
 		else if(r==1) {i=2; j=r1;}
 		else if(r==2) {i=r1; j=2;}
-		else {i=r1; j=n-2;} 
+		else {i=r1; j=n-1;} 
 
 		maze[i][j]= "S";
 		Sx=i;
 		Sy=j;
 
-		makePath(n);
 	}
 
 
 	static void makePath(int n) {
-		int iX = 3 ;
-		int iY = 3 ;
+		int iX = (int) (3+(Math.random()*(n-5))) ;
+		int iY = (int) (3+(Math.random()*(n-5))) ;
 		int visited = 1 ;
 		int totalcells = Math.round(n/2) ; 
 		Stack<Integer> x = new Stack() ;
