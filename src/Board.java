@@ -5,34 +5,47 @@ public class Board {
 	private static String[][] maze;
 	public static int Sx ;
 	public static int Sy ;
-	
-	
+
+
 	public String[][] getMaze() { 
 		return maze ;
 	}
-	
-	
+
+
 	public Board(int n) {
 		maze = new String[n+2][n+2] ;
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
 				if((i % 2 != 0) && (k % 2 != 0))
 					maze[i][k] = "B" ;
-							
+
 				else maze[i][k] = "X" ;
-				
+
 				if(i == 0 || i==1 || k==1 || k ==0 || i==n+1|| i == n || k==n+1||  k==n ){
-					maze[i][k] = " " ;
+					maze[i][k] = " ";
 				}
-				
-				
+
+
 			}
 		}
-		
+		int i,j;
+
+		int r = (int) Math.round((Math.random()*4));
+		int r1 = (int) (2 + Math.round((Math.random()*(n-2))));
+
+		if(r==0) {i=n-2; j=r1; }
+		else if(r==1) {i=2; j=r1;}
+		else if(r==2) {i=r1; j=2;}
+		else {i=r1; j=n-2;} 
+
+		maze[i][j]= "S";
+		Sx=i;
+		Sy=j;
+
 		makePath(n);
 	}
-	
-	
+
+
 	static void makePath(int n) {
 		int iX = 3 ;
 		int iY = 3 ;
@@ -105,12 +118,12 @@ public class Board {
 
 					}
 				}
-				
+
 				if(flag) {break; }
 			}
 		}
 	}
-	
+
 	static void showBoard() {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
@@ -118,9 +131,8 @@ public class Board {
 				System.out.print(" ") ;
 			}
 			System.out.println();
-					
+
 		}
 	}
 
 }
-	
