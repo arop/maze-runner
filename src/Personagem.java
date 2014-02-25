@@ -1,18 +1,25 @@
 public abstract class Personagem {
-	private int X = 1;
-	private int Y = 1 ;
-	private String Hsymbol = "H" ;
+	protected int X = 1;
+	protected int Y = 1 ;
+	protected  String Hsymbol = "H" ;
 
 	public Personagem(int a, int b, String c) { X = a ; Y= b; Hsymbol = c; }
 	public int getX() { return X; } 
 	public int getY() { return Y;}
-	public String getSymb() { return Hsymbol;}
 	public void setX(int a) { X= a;} 
 	public void setY(int a) { Y= a ;}
 	public void setSymb(String a) { Hsymbol = a ;}
+	public String getSymb() { return Hsymbol;}
+
 	public abstract boolean isHero () ;
-	public void MoveUp () { X-- ; }
-	public void MoveDown() {X++ ; }
-	public void MoveLeft() {Y--; }
-	public void MoveRight() {Y++ ; }
+	public abstract boolean nextPosition(Board board, int x, int y); 
+	
+	public void MoveUp (Board board) {
+		if(nextPosition(board,X-1,Y))	X-- ;	}
+	public void MoveDown(Board board) {
+		if(nextPosition(board,X+1,Y)) X++ ; 	}
+	public void MoveLeft(Board board) {
+		if(nextPosition(board,X+1,Y)) Y--; }
+	public void MoveRight(Board board) {
+		if(nextPosition(board,X+1,Y)) Y++ ; }
 }
