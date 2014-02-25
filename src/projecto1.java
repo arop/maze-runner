@@ -23,7 +23,6 @@ public class projecto1 {
 	private static int h.getX() = 1 ;
  */
 	
-	@SuppressWarnings("null")
 	public static void main (String[] args) {
 		Heroi h = new Heroi(1,1,"H") ; 	
 		while(true) {
@@ -31,6 +30,7 @@ public class projecto1 {
 				
 				Scanner myScanner = new Scanner(System.in);
 				String input = myScanner.nextLine();
+				myScanner.close();
 				
 				if(input.equals("w")){
 					if (Board[h.getX()-1][h.getY()] == " "){

@@ -4,7 +4,7 @@ public class LPOOTP1 {
 
 	public static Personagem h = new Heroi(1,1,"H") ; 
 	public static Personagem d = new Dragao(7,1,"D") ;
-	public static Board b = new Board(6);
+	public static Board b = new Board(15);
 	
 	public static int swordX = 8 ;
 	public static int swordY = 1 ;
@@ -12,10 +12,16 @@ public class LPOOTP1 {
 	public static void main (String[] args) {
 
 		while(true) {
-			b.showBoard() ;
+			b.showBoard();
+			//b.makePath(15);
+
+			//b.makePath(15);
+			System.out.println();
+			b.showBoard();
 
 			Scanner myScanner = new Scanner(System.in);
 			String input = myScanner.nextLine();
+			myScanner.close();
 			
 			if(input == "w") h.MoveUp(b);
 			else if(input == "a") h.MoveLeft(b);
