@@ -1,10 +1,13 @@
 
 public class LPOOTP1 {
 	public static Board b = new Board(7);
-	public static Personagem h = new Heroi(b.getMaze()) ; 
-	public static Personagem d = new Dragao(b.getMaze()); 
+	public static Personagem h = new Heroi(b.getMaze());
+	public static Personagem d;
 
 	public static void main (String[] args) {
+		do {
+			d = new Dragao(b.getMaze());
+		} while(endGame());
 
 		while(true) {
 			b.showBoard(h,d);
@@ -22,8 +25,9 @@ public class LPOOTP1 {
 			else if(h.getSymb() == "A")
 				d.setSymb(" ");
 		}
-		else if(h.getSymb()=="S")
+		else if(b.getMaze()[h.getX()][h.getY()] =="S")
 			return true;
+
 		return false;
 	}
 
