@@ -16,7 +16,6 @@ public class Dragao extends Personagem {
 
 	public void move(Board b) {
 		double a = Math.round((Math.random()*4));
-		
 		if (a == 0) MoveUp(b);
 		else if (a == 1) MoveLeft(b);
 		else if (a == 2) MoveRight(b);

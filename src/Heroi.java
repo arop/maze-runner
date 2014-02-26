@@ -9,6 +9,8 @@ public class Heroi extends Personagem {
 		
 	}
 
+	
+	
 	public boolean isHero (){ return true; }
 			
 

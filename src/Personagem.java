@@ -18,12 +18,10 @@ public abstract class Personagem {
 
 	}
 	
-
 	public boolean validPos(int x, int y, String[][] labirinto) {
 		if(x <= 1 || x == labirinto.length-1 || x == labirinto.length-2 || y <=1 || y == labirinto.length-1 || y == labirinto.length-2) return false ;
 		if (labirinto[x][y] == " ") return true;
 		return false;
-		
 	}
 	
 	
