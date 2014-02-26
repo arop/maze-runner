@@ -1,8 +1,6 @@
 
 public class Dragao extends Personagem {
 
-
-	
 	public Dragao(String[][] lol) {
 		super(lol);
 		

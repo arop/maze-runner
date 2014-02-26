@@ -127,8 +127,7 @@ public class Board {
 				
 				else System.out.print(maze[i][k]);
 				
-				System.out.print(" ") ;
-				
+				System.out.print(" ") ;				
 			}
 			System.out.println();
 

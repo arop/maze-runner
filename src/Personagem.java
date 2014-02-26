@@ -20,8 +20,8 @@ public abstract class Personagem {
 	
 
 	public boolean validPos(int x, int y, String[][] labirinto) {
-		if(x == 0 || x == 1 || x == labirinto.length-1 || x == labirinto.length-2 || y == 0 || y == 1 || y == labirinto.length-1 || y== labirinto.length-2) return false ;
-		if (labirinto[x][y] == " ") return true ;
+		if(x <= 1 || x == labirinto.length-1 || x == labirinto.length-2 || y <=1 || y == labirinto.length-1 || y == labirinto.length-2) return false ;
+		if (labirinto[x][y] == " ") return true;
 		return false;
 		
 	}
@@ -37,9 +37,7 @@ public abstract class Personagem {
 	public abstract boolean isHero () ;
 
 	
-	public boolean nextPosition(Board board, int x, int y) {
-		return false;
-	} 
+	public abstract boolean nextPosition(Board board, int x, int y); 
 	
 	
 	public void MoveUp (Board board) {
@@ -47,7 +45,7 @@ public abstract class Personagem {
 	public void MoveDown(Board board) {
 		if(nextPosition(board,X+1,Y)) X++ ; 	}
 	public void MoveLeft(Board board) {
-		if(nextPosition(board,X+1,Y)) Y--; }
+		if(nextPosition(board,X,Y-1)) Y--; }
 	public void MoveRight(Board board) {
-		if(nextPosition(board,X+1,Y)) Y++ ; }
+		if(nextPosition(board,X,Y+1)) Y++ ; }
 }
