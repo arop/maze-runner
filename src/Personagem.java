@@ -3,7 +3,30 @@ public abstract class Personagem {
 	protected int Y = 1 ;
 	protected  String Hsymbol = "H" ;
 
-	public Personagem(int a, int b, String c) { X = a ; Y= b; Hsymbol = c; }
+	public Personagem(String[][] lol) {
+		int tempx;
+		int tempy;
+		do {
+			 tempx = (int) (3 + (Math.random()*(lol.length-6)));
+			 tempy =  (int) (3 + (Math.random()*(lol.length-6)));
+
+		}while(!validPos(tempx,tempy,lol));
+	
+		X = tempx ;
+		Y = tempy ;
+
+
+	}
+	
+
+	public boolean validPos(int x, int y, String[][] labirinto) {
+		if(x == 0 || x == 1 || x == labirinto.length-1 || x == labirinto.length-2 || y == 0 || y == 1 || y == labirinto.length-1 || y== labirinto.length-2) return false ;
+		if (labirinto[x][y] == " ") return true ;
+		return false;
+		
+	}
+	
+	
 	public int getX() { return X; } 
 	public int getY() { return Y;}
 	public void setX(int a) { X= a;} 
@@ -12,7 +35,12 @@ public abstract class Personagem {
 	public String getSymb() { return Hsymbol;}
 
 	public abstract boolean isHero () ;
-	public abstract boolean nextPosition(Board board, int x, int y); 
+
+	
+	public boolean nextPosition(Board board, int x, int y) {
+		return false;
+	} 
+	
 	
 	public void MoveUp (Board board) {
 		if(nextPosition(board,X-1,Y))	X-- ;	}
