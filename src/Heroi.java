@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 
 public class Heroi extends Personagem {
 
@@ -16,5 +18,14 @@ public class Heroi extends Personagem {
 		return false;
 	} 
 	
-	
+	public void move(Board b) {
+		Scanner myScanner = new Scanner(System.in);
+		String input = myScanner.nextLine();
+		
+		if(input.equals("w")) MoveUp(b);
+		else if(input.equals("a")) MoveLeft(b);
+		else if(input.equals("d")) MoveRight(b);
+		else if(input.equals("s")) MoveDown(b);
+	}
+
 }

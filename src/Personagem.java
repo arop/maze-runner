@@ -39,6 +39,7 @@ public abstract class Personagem {
 	
 	public abstract boolean nextPosition(Board board, int x, int y); 
 	
+	public abstract void move(Board b);
 	
 	public void MoveUp (Board board) {
 		if(nextPosition(board,X-1,Y))	X-- ;	}
