@@ -3,8 +3,11 @@ import java.util.Stack;
 
 public class Board {
 	private static String[][] maze;
-	public static int Sx ;
-	public static int Sy ;
+	private static int Sx ;
+	private static int Sy ;
+	
+	public int getSx() {return Sx;}
+	public int getSy() {return Sy;}
 	
 
 	public String[][] getMaze() { 

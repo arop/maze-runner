@@ -25,7 +25,7 @@ public class LPOOTP1 {
 			else if(h.getSymb() == "A")
 				d.setSymb(" ");
 		}
-		else if(b.getMaze()[h.getX()][h.getY()] =="S")
+		else if(b.getSx() == h.getX() && b.getSy() == h.getY())
 			return true;
 
 		return false;
