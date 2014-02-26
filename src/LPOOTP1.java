@@ -14,16 +14,18 @@ public class LPOOTP1 {
 			Scanner myScanner = new Scanner(System.in);
 			String input = myScanner.nextLine();
 			
-			if(input == "w") h.MoveUp(b);
-			else if(input == "a") h.MoveLeft(b);
-			else if(input == "d") h.MoveRight(b);
-			else if(input == "s") h.MoveDown(b);
-						
+			
+			if(input.equals("w")) h.MoveUp(b);
+			else if(input.equals("a")) h.MoveLeft(b);
+			else if(input.equals("d")) h.MoveRight(b);
+			else if(input.equals("s")) h.MoveDown(b);
+			else System.out.println("tintas!");
+			
 			double a = Math.round((Math.random()*4));
-			if (a == 0) d.MoveUp(b);;
-			if (a == 1) d.MoveLeft(b); ;
-			if (a == 2) d.MoveRight(b) ;
-			if (a == 3) d.MoveDown(b);;
+			if (a == 0) d.MoveUp(b);
+			if (a == 1) d.MoveLeft(b);
+			if (a == 2) d.MoveRight(b);
+			if (a == 3) d.MoveDown(b);
 
 		} 
 
