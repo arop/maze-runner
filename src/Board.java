@@ -5,7 +5,7 @@ public class Board {
 	private static String[][] maze;
 	public static int Sx ;
 	public static int Sy ;
-
+	
 
 	public String[][] getMaze() { 
 		return maze ;
@@ -56,59 +56,41 @@ public class Board {
 	static void makePath(int n) {
 		int iX = (int) (3+(Math.random()*(n-5))) ;
 		int iY = (int) (3+(Math.random()*(n-5))) ;
-		int visited = 1 ;
-		int totalcells = Math.round(n/2) ; 
 		Stack<Integer> x = new Stack() ;
 
 		while(true)  {
 			boolean flag = true ;
 			double a = Math.round((Math.random()*4));
 			if (maze[iX+2][iY] == "B" || maze[iX-2][iY] == "B" || maze[iX][iY+2] == "B" || maze[iX][iY-2] == "B") {
-
+				x.push(iX) ;
+				x.push(iY);
 				if (a == 0) {
 					if (maze[iX+2][iY] == "B"){
-						x.push(iX) ;
-						x.push(iY);
 						maze[iX+1][iY] = " ";
 						iX = iX+2 ;
-						maze[iX][iY] = " ";
-						visited ++;
-					}
+				}}
 
-				}
 				else if (a == 1){
 					if (maze[iX-2][iY] == "B"){
-						x.push(iX) ;
-						x.push(iY);
 						maze[iX-1][iY] = " ";
 						iX = iX-2 ;
-						maze[iX][iY] = " ";
-						visited ++;
-					}
-
-				}
+				}}
+				
 				else if (a == 2) {
 					if (maze[iX][iY+2] == "B"){
-						x.push(iX) ;
-						x.push(iY);
 						maze[iX][iY+1] = " ";
 						iY = iY+2 ;
-						maze[iX][iY] = " ";
-						visited ++;
-					}
-
-				}
+				}}
+				
 				else if (a == 3) {
 					if (maze[iX][iY-2] == "B"){
-						x.push(iX) ;
-						x.push(iY);
 						maze[iX][iY-1] = " ";
 						iY = iY-2 ;
-						maze[iX][iY] = " ";
-						visited ++;
-					}
-				}
+				}}
+				
+				maze[iX][iY] = " ";
 			}
+			
 			else if (!x.empty()) {
 				iY = x.pop() ;
 				iX = x.pop() ;
@@ -130,12 +112,23 @@ public class Board {
 			}
 		}
 	}
+	
+	
 
-	static void showBoard() {
+	static void showBoard(Personagem h, Personagem d) {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
-				System.out.print(maze[i][k]);
+				if(h.getX() == i && h.getY()== k) {
+					System.out.print("H");
+				}
+				else if (d.getX() == i && d.getY()== k){
+					System.out.print("D");
+				}
+				
+				else System.out.print(maze[i][k]);
+				
 				System.out.print(" ") ;
+				
 			}
 			System.out.println();
 
