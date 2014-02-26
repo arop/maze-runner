@@ -3,10 +3,8 @@ public class Dragao extends Personagem {
 
 	public Dragao(String[][] lol) {
 		super(lol);
-
+		setSymb("D");
 	}
-
-	public boolean isHero (){ return false; }
 
 	public boolean nextPosition(Board board, int x, int y) {
 		if(board.getMaze()[x][y] == " " || board.getMaze()[x][y] == "E") 
@@ -14,7 +12,7 @@ public class Dragao extends Personagem {
 		return false;
 	} 
 
-	public void move(Board b) {
+	public void move(Board b, String input) {
 		double a = Math.round((Math.random()*4));
 		if (a == 0) MoveUp(b);
 		else if (a == 1) MoveLeft(b);

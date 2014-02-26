@@ -1,12 +1,8 @@
 
-public class Sword {
-private int X;
-private int Y;
-
-public int getX() {return X;}
-public int getY() {return Y;}
-
-
-
+public class Sword extends GameObject{
+	public Sword(String[][] lol) {
+		super(lol);
+		setSymb("E");
+	}
 
 }
