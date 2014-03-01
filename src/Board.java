@@ -37,24 +37,26 @@ public class Board {
 		makePath(n);
 		
 		//mudar S para nao ficar numa parede
-		int i,j;
-		int r1=2;
-
+		int i,j, r1=2;
+		boolean a=false;
+		
 		int r = (int) Math.round((Math.random()*4));
 		
 		
+		while(!a) {
 		while(r1==2 || r1==(n-1))
 		r1 = (int) (2 + (Math.random()*(n-4)));
 
-		if(r==0){i=n-1; j=r1; }
-		else if(r==1) {i=2; j=r1;}
-		else if(r==2) {i=r1; j=2;}
-		else {i=r1; j=n-1;} 
-
-		maze[i][j]= "S";
+		if(r==0){i=n-1; j=r1; if(!maze[i-1][j].equals("X")) a=true;}
+		else if(r==1) {i=2; j=r1; if(!maze[i+1][j].equals("X")) a=true;}
+		else if(r==2) {i=r1; j=2; if(!maze[i][j+1].equals("X")) a=true;}
+		else {i=r1; j=n-1; if(!maze[i][j-1].equals("X")) a=true;}
+		
+		//maze[i][j]= "S";
 		Sx=i;
 		Sy=j;
-
+		}
+		maze[Sx][Sy]= "S";
 	}
 
 
