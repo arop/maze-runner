@@ -23,9 +23,10 @@ public class LPOOTP1 {
 			Scanner myScanner = new Scanner(System.in);
 			String input = myScanner.nextLine();
 				
-			if(endGame()) return;
-			h.move(b,input);
+			if(endGame()) {myScanner.close(); return; }
 			
+			h.move(b,input);
+		
 			int x= (int) Math.round(Math.random());
 			if(x==0) d.setSleeping();
 			if(!d.getSleeping())
@@ -36,7 +37,7 @@ public class LPOOTP1 {
 
 	private static boolean endGame() {
 		if(Math.sqrt(Math.pow(h.getY()-d.getY(),2) + Math.pow(h.getX()-d.getX(),2))<=Math.sqrt(2)) {
-			if(h.getSymb() == "H")
+			if(h.getSymb() == "H" && d.getSymb()=="D")
 				return true;
 			else if(h.getSymb() == "A")
 				d.setSymb(" ");

@@ -5,7 +5,7 @@ public class Dragao extends Personagem {
 	private static boolean isSleeping;
 	
 	public boolean getSleeping() {return isSleeping;}
-	public void setSleeping() {isSleeping=!isSleeping;}
+	public void setSleeping() {isSleeping=!isSleeping; if(isSleeping) symbol="d"; else symbol="D";}
 	
 	public Dragao(String[][] board) {
 		super(board);
