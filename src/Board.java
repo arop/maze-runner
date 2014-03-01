@@ -63,7 +63,7 @@ public class Board {
 	static void makePath(int n) {
 		int iX = (int) (3+(Math.random()*(n-5))) ;
 		int iY = (int) (3+(Math.random()*(n-5))) ;
-		Stack<Integer> x = new Stack() ;
+		Stack<Integer> x = new Stack<Integer>() ;
 
 		while(true)  {
 			boolean flag = true ;
