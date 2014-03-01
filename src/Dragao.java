@@ -2,11 +2,14 @@
 
 public class Dragao extends Personagem {
 
+	private static boolean isSleeping;
+	
+	public boolean getSleeping() {return isSleeping;}
+	public void setSleeping() {isSleeping=!isSleeping;}
+	
 	public Dragao(String[][] board) {
 		super(board);
-		Hsymbol = "D" ;
-
-
+		symbol = "D" ;
 	}
 
 	public boolean nextPosition(Board board, int x, int y) {

@@ -3,7 +3,7 @@ public class GameObject {
 
 	protected int X = 1;
 	protected int Y = 1 ;
-	protected  String Hsymbol ;
+	protected  String symbol ;
 	
 	public GameObject(String[][] board) {
 		int tempx;
@@ -31,7 +31,7 @@ public class GameObject {
 	public int getY() { return Y;}
 	public void setX(int a) { X= a;} 
 	public void setY(int a) { Y= a ;}
-	public void setSymb(String a) { Hsymbol = a ;}
-	public String getSymb() { return Hsymbol;}
+	public void setSymb(String a) { symbol = a ;}
+	public String getSymb() { return symbol;}
 
 }

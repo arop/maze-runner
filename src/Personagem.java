@@ -8,7 +8,6 @@ public abstract class Personagem extends GameObject {
 
 	public abstract boolean isHero () ;
 
-	
 	public abstract boolean nextPosition(Board board, int x, int y); 
 	
 	public void move(Board b, String input) {	}

@@ -3,15 +3,16 @@ public class Heroi extends Personagem {
 
 	public Heroi(String[][] board) {
 		super(board);
-		Hsymbol = "H" ;
-		
+		symbol = "H" ;
 	}
 
 	public boolean isHero (){ return true; }
 
 	public boolean nextPosition(Board board, int x, int y) {
-		if(board.getMaze()[x][y] == " " || board.getMaze()[x][y] == "E" || board.getMaze()[x][y] == "S") 
+		if(board.getMaze()[x][y] == " " || board.getMaze()[x][y] == "E") 
 			return true;
+		 if(board.getMaze()[x][y] == "S" && symbol.equals("A"))
+			 return true;
 		return false;
 	} 
 	

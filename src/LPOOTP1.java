@@ -6,13 +6,13 @@ public class LPOOTP1 {
 	public static Personagem h = new Heroi(b.getMaze());
 	public static Dragao d ;
 	public static Sword s = new Sword(b.getMaze());
-
+	
 	public static void main (String[] args) {
 		do {
 			d = new Dragao(b.getMaze());
 		} while(endGame());
 
-		while(true) {
+		do {
 			if(h.getX() == s.getX() && h.getY() == s.getY()) {
 				h.setSymb("A") ;
 				s.setSymb(" ") ;
@@ -23,11 +23,14 @@ public class LPOOTP1 {
 			Scanner myScanner = new Scanner(System.in);
 			String input = myScanner.nextLine();
 				
-			
 			if(endGame()) return;
 			h.move(b,input);
+			
+			int x= (int) Math.round(Math.random());
+			if(x==0) d.setSleeping();
+			if(!d.getSleeping())
 			d.move(b,input);
-		} 
+		} while(!won());
 
 	}
 
@@ -38,9 +41,13 @@ public class LPOOTP1 {
 			else if(h.getSymb() == "A")
 				d.setSymb(" ");
 		}
-		else if(b.getSx() == h.getX() && b.getSy() == h.getY())
-			return true;
+		return false;
+	}
 
+	
+	public static boolean won() {
+		if(h.getSymb()=="A" && h.getX()==b.getSx() && h.getY()==b.getSy())
+		return true;
 		return false;
 	}
 
