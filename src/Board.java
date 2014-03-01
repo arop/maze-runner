@@ -3,9 +3,6 @@ import java.util.Stack;
 
 
 public class Board {
-	public class mazeBuilder {
-		
-	}
 	
 	private static String[][] maze;
 	private static int Sx ;
