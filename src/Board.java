@@ -1,7 +1,12 @@
+
 import java.util.Stack;
 
 
 public class Board {
+	public class mazeBuilder {
+		
+	}
+	
 	private static String[][] maze;
 	private static int Sx ;
 	private static int Sy ;
@@ -118,14 +123,18 @@ public class Board {
 	
 	
 
-	static void showBoard(Personagem h, Personagem d) {
+	static void showBoard(GameObject h, GameObject d, GameObject s) {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
 				if(h.getX() == i && h.getY()== k) {
-					System.out.print("H");
+					System.out.print(h.getSymb());
 				}
 				else if (d.getX() == i && d.getY()== k){
-					System.out.print("D");
+					System.out.print(d.getSymb());
+				}
+				
+				else if (s.getX() == i && s.getY() == k  ) {
+					System.out.print(s.getSymb());
 				}
 				
 				else System.out.print(maze[i][k]);

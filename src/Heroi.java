@@ -4,8 +4,15 @@ public class Heroi extends Personagem {
 
 	public Heroi(String[][] lol) {
 		super(lol);
+		Hsymbol = "H" ;
 		
 	}
+<<<<<<< .mine
+
+		
+	public boolean isHero (){ return true; }
+=======
+>>>>>>> .r14
 			
 	public boolean nextPosition(Board board, int x, int y) {
 		if(board.getMaze()[x][y] == " " || board.getMaze()[x][y] == "E" || board.getMaze()[x][y] == "S") 
