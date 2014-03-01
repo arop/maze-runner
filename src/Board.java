@@ -121,7 +121,6 @@ public class Board {
 	}
 	
 	
-
 	static void showBoard(GameObject h, GameObject d, GameObject s) {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
