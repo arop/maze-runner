@@ -1,9 +1,15 @@
 
+
 public class Dragao extends Personagem {
 
 	public Dragao(String[][] lol) {
 		super(lol);
+<<<<<<< .mine
+		Hsymbol = "D" ;
+
+=======
 		setSymb("D");
+>>>>>>> .r14
 	}
 
 	public boolean nextPosition(Board board, int x, int y) {
