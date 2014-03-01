@@ -2,14 +2,11 @@
 
 public class Dragao extends Personagem {
 
-	public Dragao(String[][] lol) {
-		super(lol);
-<<<<<<< .mine
+	public Dragao(String[][] board) {
+		super(board);
 		Hsymbol = "D" ;
 
-=======
-		setSymb("D");
->>>>>>> .r14
+
 	}
 
 	public boolean nextPosition(Board board, int x, int y) {
@@ -24,6 +21,12 @@ public class Dragao extends Personagem {
 		else if (a == 1) MoveLeft(b);
 		else if (a == 2) MoveRight(b);
 		else if (a == 3) MoveDown(b);
+	}
+
+	@Override
+	public boolean isHero() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

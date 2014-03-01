@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Scanner;
 
-public class MazeGameCLI {
+public class MazeGameCLI { /*
 
 	public static void main (String[] args) {
 
@@ -17,6 +17,7 @@ public class MazeGameCLI {
 		} 
 
 	}
+	*/
 
 
 
