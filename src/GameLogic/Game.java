@@ -45,8 +45,8 @@ public class Game {
 		do {
 			if(h.getX() == s.getX() && h.getY() == s.getY() || h.getX() == eg.getX() && h.getY() == eg.getY() && EagleReleased ) {
 				h.setSymb("A") ;
-				s.disable() ;
-				eg.disable(); 
+				s.setSymb(" ") ;
+				eg.setSymb(" "); 
 			}
 
 			b.showBoard(h,d,s,eg);
@@ -70,7 +70,7 @@ public class Game {
 			}
 
 			if(eg.getX() == s.getX() && eg.getY() == s.getY()) {
-				s.disable() ;
+				s.setSymb(" ");
 				eg.setSymb("V") ;
 				eg.setdX(eg.getiX());
 				eg.setdY(eg.getiY());
@@ -84,11 +84,11 @@ public class Game {
 	}
 
 	private static boolean endGame() {
-		if(Math.sqrt(Math.pow(h.getY()-d.getY(),2) + Math.pow(h.getX()-d.getX(),2))<=Math.sqrt(2) && d.getStatus()) {
+		if(Math.sqrt(Math.pow(h.getY()-d.getY(),2) + Math.pow(h.getX()-d.getX(),2))<=Math.sqrt(2)) {
 			if(h.getSymb() == "H" && d.getSymb()=="D")
 				return true;
 			else if(h.getSymb() == "A")
-				d.disable();
+				d.setSymb(" ");
 		}
 		return false;
 	}

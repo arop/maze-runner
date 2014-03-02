@@ -140,18 +140,18 @@ public class mazeBuilder {
 	void showBoard(GameObject h, GameObject d, GameObject s, GameObject eg) {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
-				if(h.getX() == i && h.getY()== k && h.getStatus()) {
+				if(h.getX() == i && h.getY()== k) {
 					System.out.print(h.getSymb());
 				}
-				else if (d.getX() == i && d.getY()== k && d.getStatus()){
+				else if (d.getX() == i && d.getY()== k){
 					System.out.print(d.getSymb());
 				}
 
-				else if (eg.getX() == i && eg.getY()== k && eg.getStatus()){
+				else if (eg.getX() == i && eg.getY()== k){
 					System.out.print(eg.getSymb());
 				}			
 
-				else if (s.getX() == i && s.getY() == k && s.getStatus() ) {
+				else if (s.getX() == i && s.getY() == k  ) {
 					System.out.print(s.getSymb());
 				}
 
