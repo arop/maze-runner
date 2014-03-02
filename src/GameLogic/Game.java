@@ -44,7 +44,7 @@ public class Game {
 			}
 			
 			if(eg.getX() == s.getX() && eg.getY() == s.getY()) {
-				s.setSymb(" ");
+				s.disable() ;
 				eg.setSymb("V") ;
 				eg.setdX(eg.getiX());
 				eg.setdY(eg.getiY());
