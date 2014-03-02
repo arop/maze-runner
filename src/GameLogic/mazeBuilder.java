@@ -2,58 +2,77 @@ package GameLogic;
 
 import java.util.Stack;
 
-
 public class mazeBuilder {
-	
+
 	private static String[][] maze;
 	private static int Sx ;
 	private static int Sy ;
-	
+
 	public int getSx() {return Sx;}
 	public int getSy() {return Sy;}
 	public String[][] getMaze() {return maze ;}
 
+	public static String[][] defaultMaze=	
+		{{"X","X","X","X","X","X","X","X","X","X"},
+		{"X"," "," "," "," "," "," "," "," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," "," "," "," "," "," ","X"," ","S"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," "," "," "," "," ","X"},
+		{"X","X","X","X","X","X","X","X","X","X"}};
+
+
 
 	public mazeBuilder(int n) {
-		maze = new String[n+2][n+2] ;
-		for( int i = 0 ; i < maze.length ; i++){
-			for (int k = 0 ; k < maze[i].length; k++){
-				if((i % 2 != 0) && (k % 2 != 0))
-					maze[i][k] = "B" ;
+		if(n>1) {
+			maze = new String[n+2][n+2] ;
+			for( int i = 0 ; i < maze.length ; i++){
+				for (int k = 0 ; k < maze[i].length; k++){
+					if((i % 2 != 0) && (k % 2 != 0))
+						maze[i][k] = "B" ;
 
-				else maze[i][k] = "X" ;
+					else maze[i][k] = "X" ;
 
-				if(i == 0 || i==1 || k==1 || k ==0 || i==n+1|| i == n || k==n+1||  k==n ){
-					maze[i][k] = " ";
+					if(i == 0 || i==1 || k==1 || k ==0 || i==n+1|| i == n || k==n+1||  k==n ){
+						maze[i][k] = " ";
+					}
+
+
 				}
-
-
 			}
-		}
-		
-		makePath(n);
-		
-		//mudar S para nao ficar numa parede
-		int i,j, r1=2;
-		boolean a=false;
-		
-		int r = (int) Math.round((Math.random()*4));
-		
-		
-		while(!a) {
-		while(r1==2 || r1==(n-1))
-		r1 = (int) (2 + (Math.random()*(n-4)));
 
-		if(r==0){i=n-1; j=r1; if(!maze[i-1][j].equals("X")) a=true;}
-		else if(r==1) {i=2; j=r1; if(!maze[i+1][j].equals("X")) a=true;}
-		else if(r==2) {i=r1; j=2; if(!maze[i][j+1].equals("X")) a=true;}
-		else {i=r1; j=n-1; if(!maze[i][j-1].equals("X")) a=true;}
-		
-		//maze[i][j]= "S";
-		Sx=i;
-		Sy=j;
+			makePath(n);
+
+
+			//"contrutor" do S(saida)
+			int i,j, r1=2;
+			boolean a=false;
+
+			int r = (int) Math.round((Math.random()*4));
+
+
+			while(!a) {
+				while(r1==2 || r1==(n-1))
+					r1 = (int) (2 + (Math.random()*(n-4)));
+
+				if(r==0){i=n-1; j=r1; if(!maze[i-1][j].equals("X")) a=true;}
+				else if(r==1) {i=2; j=r1; if(!maze[i+1][j].equals("X")) a=true;}
+				else if(r==2) {i=r1; j=2; if(!maze[i][j+1].equals("X")) a=true;}
+				else {i=r1; j=n-1; if(!maze[i][j-1].equals("X")) a=true;}
+
+				Sx=i;
+				Sy=j;
+			}
+			maze[Sx][Sy]= "S";
 		}
-		maze[Sx][Sy]= "S";
+
+		else if(n==1) {
+			maze=defaultMaze; 
+			Sx=5;
+			Sy=9;}
 	}
 
 
@@ -72,29 +91,29 @@ public class mazeBuilder {
 					if (maze[iX+2][iY] == "B"){
 						maze[iX+1][iY] = " ";
 						iX = iX+2 ;
-				}}
+					}}
 
 				else if (a == 1){
 					if (maze[iX-2][iY] == "B"){
 						maze[iX-1][iY] = " ";
 						iX = iX-2 ;
-				}}
-				
+					}}
+
 				else if (a == 2) {
 					if (maze[iX][iY+2] == "B"){
 						maze[iX][iY+1] = " ";
 						iY = iY+2 ;
-				}}
-				
+					}}
+
 				else if (a == 3) {
 					if (maze[iX][iY-2] == "B"){
 						maze[iX][iY-1] = " ";
 						iY = iY-2 ;
-				}}
-				
+					}}
+
 				maze[iX][iY] = " ";
 			}
-			
+
 			else if (!x.empty()) {
 				iY = x.pop() ;
 				iX = x.pop() ;
@@ -116,8 +135,8 @@ public class mazeBuilder {
 			}
 		}
 	}
-	
-	
+
+
 	void showBoard(GameObject h, GameObject d, GameObject s, GameObject eg) {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
@@ -127,17 +146,17 @@ public class mazeBuilder {
 				else if (d.getX() == i && d.getY()== k && d.getStatus()){
 					System.out.print(d.getSymb());
 				}
-				
+
 				else if (eg.getX() == i && eg.getY()== k && eg.getStatus()){
 					System.out.print(eg.getSymb());
 				}			
-								
+
 				else if (s.getX() == i && s.getY() == k && s.getStatus() ) {
 					System.out.print(s.getSymb());
 				}
-				
+
 				else System.out.print(maze[i][k]);
-				
+
 				System.out.print(" ") ;				
 			}
 			System.out.println();

@@ -5,6 +5,10 @@ public class Sword extends GameObject{
 		super(board);
 		setSymb("E");
 	}
-	
+
+	public Sword(int X, int Y) {
+		super(X,Y);
+		setSymb("E");
+	}
 }
 
