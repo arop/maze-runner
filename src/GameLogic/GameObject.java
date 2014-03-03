@@ -5,6 +5,7 @@ public class GameObject {
 	protected int X = 1;
 	protected int Y = 1;
 	protected  String symbol ;
+	protected boolean active = true ;
 
 	public GameObject(String[][] board) {
 		int tempx;
@@ -36,5 +37,10 @@ public class GameObject {
 	public void setY(int a) { Y= a ;}
 	public void setSymb(String a) { symbol = a ;}
 	public String getSymb() { return symbol;}
+	public void disable()  { active = false ; }
+	public void reenable() { active = true ; }
+	public boolean getStatus() { return active ; }
+	
+	
 
 }
