@@ -39,6 +39,8 @@ public class Game {
 				b.getEg().setdX(b.getS().getX()) ;
 				b.getEg().setdY(b.getS().getY());
 			}
+			
+			else if (input.equals("q")) { return ; }
 
 			b.getH().move(b,input);
 
