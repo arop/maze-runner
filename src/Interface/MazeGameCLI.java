@@ -58,13 +58,13 @@ public class MazeGameCLI {
 			Scanner size = new Scanner(System.in);
 
 			while(!validN) {
-				System.out.println("Please insert size of maze (odd number, over 7) (1 for default maze): ");
+				System.out.println("Please insert size of maze (odd number, over 5): ");
 				String n= size.nextLine();
 				int n1=Integer.parseInt(n);
 
-				if( n1>=7 && n1%2!=0){
+				if( n1>=5 && n1%2!=0){
 					validN= true; 
-					g1 = new Game(n1);
+					g1 = new Game(n1+2);
 					break;
 				}
 
