@@ -27,11 +27,36 @@ public class Eagle extends Personagem {
 	}
 
 	public void move(mazeBuilder b, String input) {
-		if (Y < dY) MoveRight(b) ;
+	/*	if (Y < dY) MoveRight(b) ;
 		if (Y > dY) MoveLeft(b) ;
 		if (X < dX) MoveDown(b) ;
-		if (X > dX) MoveUp(b);		
+		if (X > dX) MoveUp(b);	*/
+		
+		float deltax=Math.abs(X-dX);
+		float deltay=Math.abs(Y-dY);
+		
+		float error=deltax-deltay;
+		int sx,sy;
+		
+		if(Y<dY) sy=1;
+		else sy=-1;
+
+	
+		if(X<dX) sx=1;
+		else sx=-1;
+			
+		if(error*2>-deltay){
+			error-=deltay;
+			X+=sx;
+		}
+		
+		if(error*2<deltax){
+			error+=deltax;
+			Y+=sy;
+		}
+	
 	}
-
-
 }
+
+
+
