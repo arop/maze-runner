@@ -20,9 +20,6 @@ public class mazeBuilder {
 		return Sy;
 	}
 
-
-
-
 	public  String[][] getMaze() {return maze ;}
 
 	public static String[][] defaultMaze=	
