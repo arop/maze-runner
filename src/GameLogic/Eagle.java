@@ -18,7 +18,6 @@ public class Eagle extends Personagem {
 	public int getdY() { return dY ; }
 	public int getiY() { return iY ; }
 	public int getiX() { return iX ; }
-
 	public void setdX(int x) { dX = x; }
 	public void setdY(int y) { dY = y; }
 

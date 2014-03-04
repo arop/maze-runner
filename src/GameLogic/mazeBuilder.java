@@ -4,19 +4,26 @@ import java.util.Stack;
 
 public class mazeBuilder {
 
-	private static String[][] maze;
-	private static Personagem h;
-	private static Dragao d;
-	private static Sword s;
-	private static Eagle eg;
-	private static int Sx ;
-	private static int Sy ;
+	private static  String[][] maze;
+	private  Personagem h;
+	private  Dragao d;
+	private  Sword s;
+	private  Eagle eg;
+	private  int Sx ;
+	private  int Sy ;
+
+	public int getSx() {
+		return Sx;
+	}
+
+	public int getSy() {
+		return Sy;
+	}
 
 
-	public static int getSx() {return Sx;}
-	public static int getSy() {return Sy;}
-	
-	public static String[][] getMaze() {return maze ;}
+
+
+	public  String[][] getMaze() {return maze ;}
 
 	public static String[][] defaultMaze=	
 		{{"X","X","X","X","X","X","X","X","X","X"},
@@ -95,30 +102,42 @@ public class mazeBuilder {
 	}
 
 
-	public static Personagem getH() {
+
+	
+	public Personagem getH() {
 		return h;
 	}
-	public static void setH(Personagem h) {
-		mazeBuilder.h = h;
+	public void setH(Personagem h) {
+		this.h = h;
 	}
-	public static Dragao getD() {
+	public Dragao getD() {
 		return d;
 	}
-	public static void setD(Dragao d) {
-		mazeBuilder.d = d;
+	public void setD(Dragao d) {
+		this.d = d;
 	}
-	public static Sword getS() {
+	public Sword getS() {
 		return s;
 	}
-	public static void setS(Sword s) {
-		mazeBuilder.s = s;
+	public void setS(Sword s) {
+		this.s = s;
 	}
-	public static Eagle getEg() {
+	public Eagle getEg() {
 		return eg;
 	}
-	public static void setEg(Eagle eg) {
-		mazeBuilder.eg = eg;
+	public void setEg(Eagle eg) {
+		this.eg = eg;
 	}
+	public void setMaze(String[][] maze) {
+		this.maze = maze;
+	}
+	public void setSx(int sx) {
+		Sx = sx;
+	}
+	public void setSy(int sy) {
+		Sy = sy;
+	}
+	
 	
 	static void makePath(int n) {
 		int iX = (int) (3+(Math.random()*(n-5))) ;
@@ -180,18 +199,18 @@ public class mazeBuilder {
 		}
 	}
 	
-	public static boolean endGame() {
-		if(Math.sqrt(Math.pow(mazeBuilder.getH().getY()-mazeBuilder.getD().getY(),2) + Math.pow(mazeBuilder.getH().getX()-mazeBuilder.getD().getX(),2))<=Math.sqrt(2)) {
-			if(mazeBuilder.getH().getSymb() == "H" && mazeBuilder.getD().getSymb()=="D")
+	public boolean endGame() {
+		if(Math.sqrt(Math.pow(h.getY()-d.getY(),2) + Math.pow(h.getX()-d.getX(),2))<=Math.sqrt(2)) {
+			if(h.getSymb() == "H" && d.getSymb()=="D")
 				return true;
-			else if(mazeBuilder.getH().getSymb() == "A")
-				mazeBuilder.getD().disable() ;
+			else if(h.getSymb() == "A")
+				d.disable() ;
 		}
 		return false;
 	}
 
 
-	public static void showBoard() {
+	public void showBoard() {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
 				if(h.getX() == i && h.getY()== k && h.getStatus()) {

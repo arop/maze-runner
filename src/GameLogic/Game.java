@@ -6,76 +6,66 @@ import java.util.Scanner;
 
 public class Game {
 
-	public static mazeBuilder b;
+	private mazeBuilder b;
+	private int size ;
+	
+	public Game() { size = 1; }
+	
+	public Game(int s) {
+		size = s ;
+	}
 	
 
-	public static void main (String[] args) {
-		boolean validN=false;
+	public void Play() {
+		b= new mazeBuilder(size); 
 
-		Scanner size = new Scanner(System.in);
-
-		while(!validN) {
-			System.out.println("Please insert size of maze (odd number, over 7) (1 for default maze): ");
-			String n= size.nextLine();
-			int n1=Integer.parseInt(n);
-
-			if(n1==1 ||( n1>=7 && n1%2!=0)) {
-				b= new mazeBuilder(n1); 
-				validN= true; 
-			}
-
-			else  System.out.println("Not valid! Insert new one: ");
-		}
-
-		mazeBuilder.setEg(new Eagle (mazeBuilder.getH().getX(),mazeBuilder.getH().getY())) ;
-
-	
+		b.setEg(new Eagle (b.getH().getX(),b.getH().getY())) ;
 
 		do {
-			if(mazeBuilder.getH().getX() == mazeBuilder.getS().getX() && mazeBuilder.getH().getY() == mazeBuilder.getS().getY() || mazeBuilder.getH().getX() == mazeBuilder.getEg().getX() && mazeBuilder.getH().getY() == mazeBuilder.getEg().getY() && mazeBuilder.getEg().getStatus() ) {
-				mazeBuilder.getH().setSymb("A") ;
-				mazeBuilder.getS().disable() ;
-				mazeBuilder.getEg().disable() ;
+			if(b.getH().getX() == b.getS().getX() && b.getH().getY() == b.getS().getY() || b.getH().getX() == b.getEg().getX() && b.getH().getY() == b.getEg().getY() && b.getEg().getStatus() ) {
+				b.getH().setSymb("A") ;
+				b.getS().disable() ;
+				b.getEg().disable() ;
 			}
 
-			mazeBuilder.showBoard();
+			b.showBoard();
 
 			Scanner myScanner = new Scanner(System.in);
 			String input = myScanner.nextLine();
-			if(mazeBuilder.endGame()) {myScanner.close(); return; }
+			if(b.endGame()) {myScanner.close(); return; }
 
 			if(input.equals("f")) {
-				mazeBuilder.getEg().reenable ();
-				mazeBuilder.getEg().setdX(mazeBuilder.getS().getX()) ;
-				mazeBuilder.getEg().setdY(mazeBuilder.getS().getY());
+				b.getEg().reenable ();
+				b.getEg().setdX(b.getS().getX()) ;
+				b.getEg().setdY(b.getS().getY());
 			}
 
-			mazeBuilder.getH().move(b,input);
+			b.getH().move(b,input);
 
-			if(mazeBuilder.getEg().getStatus() ) mazeBuilder.getEg().move(b, input);
+			if(b.getEg().getStatus() ) b.getEg().move(b, input);
 			else {
-				mazeBuilder.getEg().setX(mazeBuilder.getH().getX());
-				mazeBuilder.getEg().setY(mazeBuilder.getH().getY()) ;
+				b.getEg().setX(b.getH().getX());
+				b.getEg().setY(b.getH().getY()) ;
 			}
 
-			if(mazeBuilder.getEg().getX() == mazeBuilder.getS().getX() && mazeBuilder.getEg().getY() == mazeBuilder.getS().getY()) {
-				mazeBuilder.getS().disable() ;
-				mazeBuilder.getEg().setSymb("V") ;
-				mazeBuilder.getEg().setdX(mazeBuilder.getEg().getiX());
-				mazeBuilder.getEg().setdY(mazeBuilder.getEg().getiY());
+			if(b.getEg().getX() == b.getS().getX() && b.getEg().getY() == b.getS().getY()) {
+				b.getS().disable() ;
+				b.getEg().setSymb("V") ;
+				b.getEg().setdX(b.getEg().getiX());
+				b.getEg().setdY(b.getEg().getiY());
 			}
 
 			int x= (int) Math.round(Math.random());
-			if(x == 0) mazeBuilder.getD().setSleeping();
-			if(!mazeBuilder.getD().getSleeping()) mazeBuilder.getD().move(b,input);
+			if(x == 0) b.getD().setSleeping();
+			if(!b.getD().getSleeping()) b.getD().move(b,input);
 		} while(!won());
 
 	}
 
 
 
-	public static boolean won() {
-		if(mazeBuilder.getH().getSymb()=="A" && mazeBuilder.getH().getX()==mazeBuilder.getSx() && mazeBuilder.getH().getY()==mazeBuilder.getSy())
+	public boolean won() {
+		if(b.getH().getSymb()=="A" && b.getH().getX()==b.getSx() && b.getH().getY()==b.getSy())
 			return true;
 		return false;
 	}
