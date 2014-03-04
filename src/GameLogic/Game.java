@@ -1,14 +1,13 @@
 package GameLogic;
 import java.util.Scanner;
 
+
+
+
 public class Game {
 
 	public static mazeBuilder b;
-	public static Personagem h;
-	public static Dragao d;
-	public static Sword s;
-	public static Eagle eg;
-	public static boolean EagleReleased = false;
+	
 
 	public static void main (String[] args) {
 		boolean validN=false;
@@ -20,82 +19,63 @@ public class Game {
 			String n= size.nextLine();
 			int n1=Integer.parseInt(n);
 
-			if(n1==1) {
+			if(n1==1 ||( n1>=7 && n1%2!=0)) {
 				b= new mazeBuilder(n1); 
 				validN= true; 
-				h= new Heroi(1,1);
-				s= new Sword(8,1);
 			}
 
-			else if(n1>=7 && n1%2!=0) {
-				b=new mazeBuilder(n1); 
-				validN=true; 
-				h= new Heroi(b.getMaze());
-				s= new Sword(b.getMaze());
-			}
 			else  System.out.println("Not valid! Insert new one: ");
 		}
 
-		eg = new Eagle (h.getX(),h.getY());
+		mazeBuilder.setEg(new Eagle (mazeBuilder.getH().getX(),mazeBuilder.getH().getY())) ;
+
+	
 
 		do {
-			d = new Dragao(b.getMaze());
-		} while(endGame());
-
-		do {
-			if(h.getX() == s.getX() && h.getY() == s.getY() || h.getX() == eg.getX() && h.getY() == eg.getY() && EagleReleased ) {
-				h.setSymb("A") ;
-				s.disable() ;
-				eg.disable() ;
+			if(mazeBuilder.getH().getX() == mazeBuilder.getS().getX() && mazeBuilder.getH().getY() == mazeBuilder.getS().getY() || mazeBuilder.getH().getX() == mazeBuilder.getEg().getX() && mazeBuilder.getH().getY() == mazeBuilder.getEg().getY() && mazeBuilder.getEg().getStatus() ) {
+				mazeBuilder.getH().setSymb("A") ;
+				mazeBuilder.getS().disable() ;
+				mazeBuilder.getEg().disable() ;
 			}
 
-			b.showBoard(h,d,s,eg);
+			mazeBuilder.showBoard();
 
 			Scanner myScanner = new Scanner(System.in);
 			String input = myScanner.nextLine();
-			if(endGame()) {myScanner.close(); return; }
+			if(mazeBuilder.endGame()) {myScanner.close(); return; }
 
 			if(input.equals("f")) {
-				EagleReleased = true ;
-				eg.setdX(s.getX()) ;
-				eg.setdY(s.getY());
+				mazeBuilder.getEg().reenable ();
+				mazeBuilder.getEg().setdX(mazeBuilder.getS().getX()) ;
+				mazeBuilder.getEg().setdY(mazeBuilder.getS().getY());
 			}
 
-			h.move(b,input);
+			mazeBuilder.getH().move(b,input);
 
-			if(EagleReleased) eg.move(b, input);
+			if(mazeBuilder.getEg().getStatus() ) mazeBuilder.getEg().move(b, input);
 			else {
-				eg.setX(h.getX());
-				eg.setY(h.getY()) ;
+				mazeBuilder.getEg().setX(mazeBuilder.getH().getX());
+				mazeBuilder.getEg().setY(mazeBuilder.getH().getY()) ;
 			}
 
-			if(eg.getX() == s.getX() && eg.getY() == s.getY()) {
-				s.disable() ;
-				eg.setSymb("V") ;
-				eg.setdX(eg.getiX());
-				eg.setdY(eg.getiY());
+			if(mazeBuilder.getEg().getX() == mazeBuilder.getS().getX() && mazeBuilder.getEg().getY() == mazeBuilder.getS().getY()) {
+				mazeBuilder.getS().disable() ;
+				mazeBuilder.getEg().setSymb("V") ;
+				mazeBuilder.getEg().setdX(mazeBuilder.getEg().getiX());
+				mazeBuilder.getEg().setdY(mazeBuilder.getEg().getiY());
 			}
 
 			int x= (int) Math.round(Math.random());
-			if(x == 0) d.setSleeping();
-			if(!d.getSleeping()) d.move(b,input);
+			if(x == 0) mazeBuilder.getD().setSleeping();
+			if(!mazeBuilder.getD().getSleeping()) mazeBuilder.getD().move(b,input);
 		} while(!won());
 
 	}
 
-	private static boolean endGame() {
-		if(Math.sqrt(Math.pow(h.getY()-d.getY(),2) + Math.pow(h.getX()-d.getX(),2))<=Math.sqrt(2) && d.getStatus()) {
-			if(h.getSymb() == "H" && d.getSymb()=="D")
-				return true;
-			else if(h.getSymb() == "A")
-				d.disable() ;
-		}
-		return false;
-	}
 
 
 	public static boolean won() {
-		if(h.getSymb()=="A" && h.getX()==b.getSx() && h.getY()==b.getSy())
+		if(mazeBuilder.getH().getSymb()=="A" && mazeBuilder.getH().getX()==mazeBuilder.getSx() && mazeBuilder.getH().getY()==mazeBuilder.getSy())
 			return true;
 		return false;
 	}

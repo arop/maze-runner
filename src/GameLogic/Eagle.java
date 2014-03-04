@@ -11,6 +11,7 @@ public class Eagle extends Personagem {
 		iX = x ;
 		iY = y ;
 		symbol = "v";
+		active = false ;
 	}
 
 	public int getdX() { return dX ; }
