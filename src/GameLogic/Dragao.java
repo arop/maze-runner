@@ -13,6 +13,11 @@ public class Dragao extends Personagem {
 		super(board);
 		symbol = "D" ;
 	}
+	
+	public Dragao(int X,int Y) {
+		super(X,Y);
+		symbol = "D" ;
+	}
 
 	public boolean nextPosition(mazeBuilder board, int x, int y) {
 		if(board.getMaze()[x][y] == " " || board.getMaze()[x][y] == "E") 

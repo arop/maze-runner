@@ -1,4 +1,4 @@
-package GameLogic;
+package Interface;
 
 public class MazeGameCLI { 
 
@@ -10,10 +10,6 @@ public class MazeGameCLI {
 		System.out.println("3. Quit") ;
 	}
 	
-
-
-
-
 
 
 

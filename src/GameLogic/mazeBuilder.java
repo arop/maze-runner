@@ -5,12 +5,18 @@ import java.util.Stack;
 public class mazeBuilder {
 
 	private static String[][] maze;
+	private static Personagem h;
+	private static Dragao d;
+	private static Sword s;
+	private static Eagle eg;
 	private static int Sx ;
 	private static int Sy ;
 
-	public int getSx() {return Sx;}
-	public int getSy() {return Sy;}
-	public String[][] getMaze() {return maze ;}
+
+	public static int getSx() {return Sx;}
+	public static int getSy() {return Sy;}
+	
+	public static String[][] getMaze() {return maze ;}
 
 	public static String[][] defaultMaze=	
 		{{"X","X","X","X","X","X","X","X","X","X"},
@@ -66,16 +72,54 @@ public class mazeBuilder {
 				Sx=i;
 				Sy=j;
 			}
+			
 			maze[Sx][Sy]= "S";
+			
+			h= new Heroi(maze);
+			s= new Sword(maze);
+			
+			do {
+				d = new Dragao(maze);
+			} while(endGame());
+			
 		}
 
 		else if(n==1) {
 			maze=defaultMaze; 
 			Sx=5;
-			Sy=9;}
+			Sy=9;
+			h= new Heroi(1,1);
+			s= new Sword(8,1);
+			d = new Dragao(3,1);
+		}
 	}
 
 
+	public static Personagem getH() {
+		return h;
+	}
+	public static void setH(Personagem h) {
+		mazeBuilder.h = h;
+	}
+	public static Dragao getD() {
+		return d;
+	}
+	public static void setD(Dragao d) {
+		mazeBuilder.d = d;
+	}
+	public static Sword getS() {
+		return s;
+	}
+	public static void setS(Sword s) {
+		mazeBuilder.s = s;
+	}
+	public static Eagle getEg() {
+		return eg;
+	}
+	public static void setEg(Eagle eg) {
+		mazeBuilder.eg = eg;
+	}
+	
 	static void makePath(int n) {
 		int iX = (int) (3+(Math.random()*(n-5))) ;
 		int iY = (int) (3+(Math.random()*(n-5))) ;
@@ -135,9 +179,19 @@ public class mazeBuilder {
 			}
 		}
 	}
+	
+	public static boolean endGame() {
+		if(Math.sqrt(Math.pow(mazeBuilder.getH().getY()-mazeBuilder.getD().getY(),2) + Math.pow(mazeBuilder.getH().getX()-mazeBuilder.getD().getX(),2))<=Math.sqrt(2)) {
+			if(mazeBuilder.getH().getSymb() == "H" && mazeBuilder.getD().getSymb()=="D")
+				return true;
+			else if(mazeBuilder.getH().getSymb() == "A")
+				mazeBuilder.getD().disable() ;
+		}
+		return false;
+	}
 
 
-	void showBoard(GameObject h, GameObject d, GameObject s, GameObject eg) {
+	public static void showBoard() {
 		for( int i = 0 ; i < maze.length ; i++){
 			for (int k = 0 ; k < maze[i].length; k++){
 				if(h.getX() == i && h.getY()== k && h.getStatus()) {
