@@ -16,51 +16,86 @@ public class Board {
 	
 	public Board(int n, int nDragons) {
 		builder = new MazeBuilder(n);
-		dragons = new Dragao[nDragons] ;		
-		
+		dragons = new Dragao[nDragons] ;	
+		currentState = copy(builder.getField()); 
+
 		if(n>1) {
 			h = new Heroi(0,0) ;
-			addObjectToBoard(h);
+			generateObject(h);
+			drawObject(h);
+
 			for(int i = 0; i < dragons.length; i++) {
 				dragons[i] = new Dragao(0,0);
-				addObjectToBoard(dragons[i]);
+				generateObject(dragons[i]);
+				drawObject(dragons[i]);
 			}
+
 			s = new Sword(0,0) ;
-			addObjectToBoard(s);
+			generateObject(s);
+			drawObject(s);
 		}
-			
+
 		else if(n==1) {
 			h= new Heroi(1,1);
+			drawObject(h);
 			s= new Sword(8,1);
+			drawObject(s);
 			dragons[0] = new Dragao(3,1);
+			drawObject(dragons[0]);
+
 		}
-		
+
 		Sx = MazeBuilder.getSx();
 		Sy = MazeBuilder.getSy() ;
 		eg = new Eagle (h.getX(),h.getY());
+		
 
 	}
-	
-
-
-	//SET POSITIONS FOR OBJECTS
-	public void addObjectToBoard(GameObject object) {
-		int tempx;
-		int tempy;
+		
+	//SET POSITIONS FOR OBJECTS AND ADD THEM
+	public void generateObject(GameObject object) {
+		int tempx,tempy;
+		
 		do {
 			tempx = (int) (3 + (Math.random()*(builder.getField().length-6)));
 			tempy =  (int) (3 + (Math.random()*(builder.getField().length-6)));
-
 		}while(!validPos(tempx,tempy));
 		
 		object.setX(tempx);
 		object.setY(tempy);
-		
 	}
 	
-	public boolean validPos(int x, int y) {
+	public void drawObject(GameObject object) {
+		currentState[object.getX()][object.getY()] = object.getSymb();
+	}
+	
+	// UPDATE AND SHOW BOARD
+	
+	public void UpdateBoard() {
+		currentState = copy(builder.getField()); 
+		drawObject(eg);
+		drawObject(h);
+		drawObject(s);
+		for (int i = 0; i < dragons.length ; i++) {
+			drawObject(dragons[i]);
+		}
+	}
+	
+	public void showBoard() { 
+		for (String[] line : currentState) {
+			for (String cell : line)
+				System.out.print(cell + " ");
+			System.out.println();
+		}
+
+	}
+	
+	
+	// TOOLS 
+	
+	public boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
 		if(x <= 1 || x >= builder.getField().length-2 || y <=1 || y >= builder.getField().length-2) return false ;
-		if (builder.getField()[x][y] == " ") return true;
+		if (currentState[x][y] == " ") return true;
 		return false;
 	}
 	
@@ -71,28 +106,8 @@ public class Board {
 	      }
 	      return target;
 	}
-
 	
-	// DRAW IN BOARD AND SHOW BOARD 
-	
-	public void showBoard() { 
-		currentState = copy(builder.getField()); 
-		currentState[eg.getX()][eg.getY()] = eg.getSymb() ;
-		currentState[h.getX()][h.getY()] = h.getSymb() ;
-		currentState[s.getX()][s.getY()] = s.getSymb() ;
 
-		for (int i = 0; i < dragons.length ; i++) {
-			currentState[dragons[i].getX()][dragons[i].getY()] = dragons[i].getSymb() ;
-		}
-		
-		for (String[] line : currentState) {
-			for (String cell : line)
-				System.out.print(cell + " ");
-			System.out.println();
-		}
-
-	}
-	
 	//SETTERS AND GETTERS
 	
 	public String[][] getCurrentState() {
