@@ -21,11 +21,11 @@ public class Eagle extends Personagem {
 	public void setdX(int x) { dX = x; }
 	public void setdY(int y) { dY = y; }
 
-	public boolean nextPosition(mazeBuilder board, int x, int y) {
+	public boolean nextPosition(Board board, int x, int y) {
 		return true ;
 	}
 
-	public void move(mazeBuilder b, String input) {
+	public void move(Board b, String input) {
 	/*	if (Y < dY) MoveRight(b) ;
 		if (Y > dY) MoveLeft(b) ;
 		if (X < dX) MoveDown(b) ;
