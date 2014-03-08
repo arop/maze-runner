@@ -17,8 +17,8 @@ public class MazeGameCLI {
 		System.out.println(">>> MAZE GAME <<<");
 		System.out.println() ;
 		System.out.println("1. Play Game");
-		System.out.println("2. Options") ;
-		System.out.println("3. Quit") ;
+		System.out.println("2. Options");
+		System.out.println("3. Quit");
 
 		Scanner option = new Scanner(System.in);
 		String n = option.nextLine();
@@ -26,15 +26,15 @@ public class MazeGameCLI {
 		switch(a) {
 		case 1:
 			if(g1 == null) {
-			System.out.println("Do you want to play with default map? (y for yes)") ;
-			Scanner option2 = new Scanner(System.in);
-			String opt2 = option.nextLine();
-			if(opt2.equals("y")) g1 = new Game() ;
-			else mainMenu(); }
+				System.out.println("Do you want to play with default map? (y for yes)") ;
+				Scanner option2 = new Scanner(System.in);
+				String opt2 = option.nextLine();
+				if(opt2.equals("y")) g1 = new Game();
+				else mainMenu(); }
 			break;
 		case 2: 
-			optionsMenu() ;
-			mainMenu() ;
+			optionsMenu();
+			mainMenu();
 			break;
 		case 3:
 			return ;
@@ -46,11 +46,11 @@ public class MazeGameCLI {
 
 	private static int optionsMenu() {
 		System.out.println("> OPTIONS <");
-		System.out.println() ;
+		System.out.println();
 		System.out.println("1. Random maze, choose size");
-		System.out.println("2. Multiple dragons") ;
-		System.out.println("3. Sleeping dragons") ;
-		System.out.println("4. Back to main menu") ;
+		System.out.println("2. Multiple dragons");
+		System.out.println("3. Sleeping dragons");
+		System.out.println("4. Back to main menu");
 
 		Scanner option = new Scanner(System.in);
 		String b = option.nextLine();
@@ -81,7 +81,21 @@ public class MazeGameCLI {
 			break;
 
 		case 2:
-			System.out.println("You must have a maximum ");
+			if(g1 == null) {
+				System.out.println("You haven't chosen a board size yet!");
+			}
+			
+			else { 
+				System.out.println("Enter the number of dragons desired: ");
+				Scanner noDrag = new Scanner(System.in);
+				String n= noDrag.nextLine();
+				int n1=Integer.parseInt(n);
+				g1.setNumber_dragons(n1);
+			}
+			
+			optionsMenu() ;
+			break;
+
 
 		case 4: 
 			return 1;
@@ -93,4 +107,5 @@ public class MazeGameCLI {
 
 
 
-	}}
+	}
+}
