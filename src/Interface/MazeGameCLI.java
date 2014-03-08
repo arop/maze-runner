@@ -8,7 +8,6 @@ public class MazeGameCLI {
 
 	public static Game g1;
 
-
 	public static void main (String[] args) {
 		mainMenu() ;
 

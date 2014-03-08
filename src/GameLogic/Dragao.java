@@ -9,23 +9,28 @@ public class Dragao extends Personagem {
 	public boolean getSleeping() {return isSleeping;}
 	public void setSleeping() {isSleeping=!isSleeping; if(isSleeping) symbol="d"; else symbol="D";}
 	
-	public Dragao(String[][] board) {
-		super(board);
-		symbol = "D" ;
-	}
+//	public Dragao(String[][] board) {
+//		super(board);
+//		symbol = "D" ;
+//	}
 	
+
 	public Dragao(int X,int Y) {
 		super(X,Y);
 		symbol = "D" ;
 	}
 
-	public boolean nextPosition(mazeBuilder board, int x, int y) {
-		if(board.getMaze()[x][y] == " " || board.getMaze()[x][y] == "E") 
+	public Dragao() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public boolean nextPosition(Board board, int x, int y) {
+		if(board.getCurrentState()[x][y] == " " || board.getCurrentState()[x][y] == "E") 
 			return true;
 		return false;
 	} 
 
-	public void move(mazeBuilder b, String input) {
+	public void move(Board b, String input) {
 		double a = Math.round((Math.random()*4));
 		if (a == 0) MoveUp(b);
 		else if (a == 1) MoveLeft(b);

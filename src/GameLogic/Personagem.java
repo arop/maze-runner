@@ -3,24 +3,31 @@ package GameLogic;
 
 public abstract class Personagem extends GameObject {
 
-	public Personagem(String[][] board) {
+/*	public Personagem(String[][] board) {
 		super(board);
 	}
+	*/
+	
 
 	public Personagem(int x, int y) {
 		super(x,y);
 	}
 
-	public abstract boolean nextPosition(mazeBuilder board, int x, int y); 
+	public Personagem() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public void move(mazeBuilder b, String input) {	}
+	public abstract boolean nextPosition(Board board, int x, int y); 
 
-	public void MoveUp (mazeBuilder board) {
+	public void move(Board b, String input) {	}
+
+	public void MoveUp (Board board) {
 		if(nextPosition(board,X-1,Y))	X-- ;	}
-	public void MoveDown(mazeBuilder board) {
+	public void MoveDown(Board board) {
 		if(nextPosition(board,X+1,Y)) X++ ; 	}
-	public void MoveLeft(mazeBuilder board) {
+	public void MoveLeft(Board board) {
 		if(nextPosition(board,X,Y-1)) Y--; }
-	public void MoveRight(mazeBuilder board) {
+	public void MoveRight(Board board) {
 		if(nextPosition(board,X,Y+1)) Y++ ; }
 }

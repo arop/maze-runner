@@ -1,12 +1,9 @@
 package GameLogic;
 import java.util.Scanner;
 
-
-
-
 public class Game {
 
-	private mazeBuilder b;
+	private Board b;
 	private int size ;
 	
 	public Game() { size = 1; }
@@ -15,11 +12,8 @@ public class Game {
 		size = s ;
 	}
 	
-
 	public void Play() {
-		b= new mazeBuilder(size); 
-
-		b.setEg(new Eagle (b.getH().getX(),b.getH().getY())) ;
+		b= new Board(size); 
 
 		do {
 			if(b.getH().getX() == b.getS().getX() && b.getH().getY() == b.getS().getY() || b.getH().getX() == b.getEg().getX() && b.getH().getY() == b.getEg().getY() && b.getEg().getStatus() ) {
@@ -29,10 +23,10 @@ public class Game {
 			}
 
 			b.showBoard();
-
+			
 			Scanner myScanner = new Scanner(System.in);
 			String input = myScanner.nextLine();
-			if(b.endGame()) {myScanner.close(); return; }
+			if(endGame()) {myScanner.close(); return; }
 
 			if(input.equals("f")) {
 				b.getEg().reenable ();
@@ -63,7 +57,16 @@ public class Game {
 		} while(!won());
 
 	}
-
+	
+	public boolean endGame() {
+		if(Math.sqrt(Math.pow(b.getH().getY()-b.getD().getY(),2) + Math.pow(b.getH().getX()-b.getD().getX(),2))<=Math.sqrt(2)) {
+			if(b.getH().getSymb() == "H" && b.getD().getSymb()=="D")
+				return true;
+			else if(b.getH().getSymb() == "A")
+				b.getD().disable() ;
+		}
+		return false;
+	}
 
 
 	public boolean won() {
