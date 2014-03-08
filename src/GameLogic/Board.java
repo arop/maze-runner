@@ -6,23 +6,25 @@ public class Board {
 	
 	private MazeBuilder builder ;
 	private String[][] currentState ;
-	private String[][] OriginalMaze;
 	private  Heroi h;
-	private  Dragao d;
+	private  Dragao[] dragons;
 	private  Sword s;
 	private  Eagle eg;
 	private static int Sx ;
 	private static int Sy ;
 
 	
-	public Board(int n) {
+	public Board(int n, int nDragons) {
 		builder = new MazeBuilder(n);
-				
+		dragons = new Dragao[nDragons] ;		
+		
 		if(n>1) {
 			h = new Heroi(0,0) ;
 			addObjectToBoard(h);
-			d = new Dragao(0,0) ;
-			addObjectToBoard(d);
+			for(int i = 0; i < dragons.length; i++) {
+				dragons[i] = new Dragao(0,0);
+				addObjectToBoard(dragons[i]);
+			}
 			s = new Sword(0,0) ;
 			addObjectToBoard(s);
 		}
@@ -30,7 +32,7 @@ public class Board {
 		else if(n==1) {
 			h= new Heroi(1,1);
 			s= new Sword(8,1);
-			d = new Dragao(3,1);
+			dragons[0] = new Dragao(3,1);
 		}
 		
 		Sx = MazeBuilder.getSx();
@@ -39,6 +41,8 @@ public class Board {
 
 	}
 	
+
+
 	//SET POSITIONS FOR OBJECTS
 	public void addObjectToBoard(GameObject object) {
 		int tempx;
@@ -56,7 +60,7 @@ public class Board {
 	
 	public boolean validPos(int x, int y) {
 		if(x <= 1 || x >= builder.getField().length-2 || y <=1 || y >= builder.getField().length-2) return false ;
-		if (OriginalMaze[x][y] == " ") return true;
+		if (builder.getField()[x][y] == " ") return true;
 		return false;
 	}
 	
@@ -75,9 +79,11 @@ public class Board {
 		currentState = copy(builder.getField()); 
 		currentState[eg.getX()][eg.getY()] = eg.getSymb() ;
 		currentState[h.getX()][h.getY()] = h.getSymb() ;
-		currentState[d.getX()][d.getY()] = d.getSymb() ;
 		currentState[s.getX()][s.getY()] = s.getSymb() ;
-		
+
+		for (int i = 0; i < dragons.length ; i++) {
+			currentState[dragons[i].getX()][dragons[i].getY()] = dragons[i].getSymb() ;
+		}
 		
 		for (String[] line : currentState) {
 			for (String cell : line)
@@ -103,12 +109,7 @@ public class Board {
 	public void setH(Heroi h) {
 		this.h = h;
 	}
-	public Dragao getD() {
-		return d;
-	}
-	public void setD(Dragao d) {
-		this.d = d;
-	}
+
 	public Sword getS() {
 		return s;
 	}
@@ -127,10 +128,16 @@ public class Board {
 	public int getSy() {
 		return Sy ;
 	}
+	public Dragao[] getDragons() {
+		return dragons;
+	}
+	public void setDragons(Dragao[] dragons) {
+		this.dragons = dragons;
+	}
 
 
 
-	
+// PROVAVELMENTE LIXO 	
 
 	
 //	public boolean endGame() {

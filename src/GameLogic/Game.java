@@ -5,6 +5,7 @@ public class Game {
 
 	private Board b;
 	private int size ;
+	private int number_dragons = 1 ;
 	
 	public Game() { size = 1; }
 	
@@ -13,7 +14,7 @@ public class Game {
 	}
 	
 	public void Play() {
-		b= new Board(size); 
+		b= new Board(size,number_dragons); 
 
 		do {
 			if(b.getH().getX() == b.getS().getX() && b.getH().getY() == b.getS().getY() || b.getH().getX() == b.getEg().getX() && b.getH().getY() == b.getEg().getY() && b.getEg().getStatus() ) {
@@ -51,19 +52,24 @@ public class Game {
 				b.getEg().setdY(b.getEg().getiY());
 			}
 
-			int x= (int) Math.round(Math.random());
-			if(x == 0) b.getD().setSleeping();
-			if(!b.getD().getSleeping()) b.getD().move(b,input);
+			for(int i = 0 ; i < b.getDragons().length ; i++) {
+				int x= (int) Math.round(Math.random());
+				if(x == 0) b.getDragons()[i].setSleeping();
+				if(!b.getDragons()[i].getSleeping()) b.getDragons()[i].move(b,input);
+
+			}
 		} while(!won());
 
 	}
 	
 	public boolean endGame() {
-		if(Math.sqrt(Math.pow(b.getH().getY()-b.getD().getY(),2) + Math.pow(b.getH().getX()-b.getD().getX(),2))<=Math.sqrt(2)) {
-			if(b.getH().getSymb() == "H" && b.getD().getSymb()=="D")
+		for(int i = 0 ; i < b.getDragons().length ; i++){
+		if(Math.sqrt(Math.pow(b.getH().getY()-b.getDragons()[i].getY(),2) + Math.pow(b.getH().getX()-b.getDragons()[i].getX(),2))<=Math.sqrt(2)) {
+			if(b.getH().getSymb() == "H" && b.getDragons()[i].getSymb()=="D")
 				return true;
 			else if(b.getH().getSymb() == "A")
-				b.getD().disable() ;
+				b.getDragons()[i].disable() ;
+		}
 		}
 		return false;
 	}
@@ -73,5 +79,13 @@ public class Game {
 		if(b.getH().getSymb()=="A" && b.getH().getX()==b.getSx() && b.getH().getY()==b.getSy())
 			return true;
 		return false;
+	}
+
+	public int getNumber_dragons() {
+		return number_dragons;
+	}
+
+	public void setNumber_dragons(int number_dragons) {
+		this.number_dragons = number_dragons;
 	}
 }
