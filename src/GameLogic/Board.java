@@ -72,11 +72,15 @@ public class Board {
 	// UPDATE AND SHOW BOARD
 	
 	public void UpdateBoard() {
-		currentState = copy(builder.getField()); 
+		currentState = copy(builder.getField());
+		if(eg.getStatus())
 		drawObject(eg);
 		drawObject(h);
+		if(s.getStatus())
 		drawObject(s);
+		
 		for (int i = 0; i < dragons.length ; i++) {
+			if(dragons[i].getStatus())
 			drawObject(dragons[i]);
 		}
 	}
