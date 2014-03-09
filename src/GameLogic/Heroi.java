@@ -26,6 +26,8 @@ public class Heroi extends Personagem {
 			return true;
 		if(board.getCurrentState()[x][y] == "S" && symbol.equals("A"))
 			return true;
+		if(board.getCurrentState()[x][y] == "V")
+			return true;
 		return false;
 	} 
 

@@ -2,20 +2,13 @@ package GameLogic;
 
 
 public abstract class Personagem extends GameObject {
-
-/*	public Personagem(String[][] board) {
-		super(board);
-	}
-	*/
 	
-
 	public Personagem(int x, int y) {
 		super(x,y);
 	}
 
 	public Personagem() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public abstract boolean nextPosition(Board board, int x, int y); 

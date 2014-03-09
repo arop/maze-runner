@@ -48,6 +48,4 @@ public class GameObject {
 	public void reenable() { active = true ; }
 	public boolean getStatus() { return active ; }
 	
-	
-
 }
