@@ -27,7 +27,6 @@ public class MazeGameCLI {
 		case 1:
 			if(g1 == null) {
 				System.out.println("Do you want to play with default map? (y for yes)") ;
-				//Scanner option2 = new Scanner(System.in);
 				String opt2 = option.nextLine();
 				if(opt2.equals("y")) g1 = new Game();
 				else mainMenu(); }
@@ -40,8 +39,23 @@ public class MazeGameCLI {
 			System.exit(0) ;
 		}
 
-		g1.Play();
+		play();
+
+		option.close();
 		System.exit(0);
+	}
+
+	private static void play() {
+		g1.setBoard();
+		Scanner myScanner = new Scanner(System.in);
+		do {
+			System.out.println(g1.getBoard());
+			String input = myScanner.nextLine();
+			g1.Play(input);
+			g1.getBoard().UpdateBoard();
+			if(g1.won()) System.out.println("Voce ganhou!");
+		} while(!g1.won());
+		myScanner.close();
 	}
 
 	private static int optionsMenu() {
@@ -88,16 +102,16 @@ public class MazeGameCLI {
 			else { 
 				System.out.println("Enter the number of dragons desired: ");
 				Scanner noDrag = new Scanner(System.in);
-				
+
 				String n= noDrag.nextLine();
 				int n1=Integer.parseInt(n);
-				
+
 				while(n1>(g1.getSize()/7)) {
 					System.out.println("Not valid, please enter a number between [1, size/7]: ");
 					n= noDrag.nextLine();
 					n1=Integer.parseInt(n);
 				}
-				
+
 				g1.setNumber_dragons(n1);
 			}
 
@@ -121,4 +135,5 @@ public class MazeGameCLI {
 		}
 		return 1;
 	}
+
 }

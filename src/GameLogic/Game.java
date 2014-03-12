@@ -1,5 +1,4 @@
 package GameLogic;
-import java.util.Scanner;
 
 public class Game {
 
@@ -14,64 +13,57 @@ public class Game {
 		size = s ;
 	}
 
-	public void Play() {
-		board = new Board(size,number_dragons); 
+	public Board getBoard() {return board;}
 
-		do {
-			board.UpdateBoard();
-			System.out.println(board);;
-			
-			//verificar se heroi apanhou a espada/aguia
-			if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
-				board.getH().setSymb("A") ;
-				board.getS().disable() ;
-				board.getEg().disable() ;
+	public void Play(String input) {
+		//verificar se heroi apanhou a espada/aguia
+		if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
+			board.getH().setSymb("A") ;
+			board.getS().disable() ;
+			board.getEg().disable() ;
+		}
+
+		if(endGame()) return;
+
+		//lancar aguia
+		if(input.equals("f") && board.getS().getStatus()) {
+			board.getEg().reenable();
+
+			board.getEg().setiX(board.getH().getX());
+			board.getEg().setiY(board.getH().getY());
+
+			board.getEg().setdX(board.getS().getX());
+			board.getEg().setdY(board.getS().getY());
+		}
+
+		//sair do jogo
+		else if (input.equals("q")) return;
+
+		//mover heroi
+		board.getH().move(board,input);
+
+		//mover aguia
+		if(board.getEg().getStatus() ) board.getEg().move(board, input);
+		else {
+			board.getEg().setX(board.getH().getX());
+			board.getEg().setY(board.getH().getY());
+		}
+
+		if(board.getEg().getX() == board.getS().getX() && board.getEg().getY() == board.getS().getY()) {
+			board.getS().disable() ;
+			board.getEg().setSymb("V") ;
+			board.getEg().setdX(board.getEg().getiX());
+			board.getEg().setdY(board.getEg().getiY());
+		}
+
+		// mover dragoes
+		for(int i = 0 ; i < board.getDragons().length ; i++) {
+			if(sleepingDragons) {
+				int x= (int) Math.round(Math.random());
+				if(x == 0) board.getDragons()[i].setSleeping();
 			}
-
-			Scanner myScanner = new Scanner(System.in);
-			String input = myScanner.nextLine();
-			if(endGame()) {myScanner.close(); return; }
-
-			//lancar aguia
-			if(input.equals("f") && board.getS().getStatus()) {
-				board.getEg().reenable();
-				
-				board.getEg().setiX(board.getH().getX());
-				board.getEg().setiY(board.getH().getY());
-				
-				board.getEg().setdX(board.getS().getX());
-				board.getEg().setdY(board.getS().getY());
-			}
-
-			//sair do jogo
-			else if (input.equals("q")) return;
-
-			//mover heroi
-			board.getH().move(board,input);
-
-			//mover aguia
-			if(board.getEg().getStatus() ) board.getEg().move(board, input);
-			else {
-				board.getEg().setX(board.getH().getX());
-				board.getEg().setY(board.getH().getY());
-			}
-
-			if(board.getEg().getX() == board.getS().getX() && board.getEg().getY() == board.getS().getY()) {
-				board.getS().disable() ;
-				board.getEg().setSymb("V") ;
-				board.getEg().setdX(board.getEg().getiX());
-				board.getEg().setdY(board.getEg().getiY());
-			}
-
-			// mover dragoes
-			for(int i = 0 ; i < board.getDragons().length ; i++) {
-				if(sleepingDragons) {
-					int x= (int) Math.round(Math.random());
-					if(x == 0) board.getDragons()[i].setSleeping();
-				}
-				if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input);
-			}
-		} while(!won());
+			if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input);
+		}
 	}
 
 	public boolean endGame() {
@@ -104,6 +96,8 @@ public class Game {
 	public boolean getSleepingDragons() {return sleepingDragons;}
 
 	public void setSleepingDragons() {sleepingDragons=!sleepingDragons;}
-	
+
 	public int getSize() {return size;}
+
+	public void setBoard() {board = new Board(size,number_dragons); }
 }
