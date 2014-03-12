@@ -85,13 +85,14 @@ public class Board {
 		}
 	}
 	
-	public void showBoard() { 
+	public String toString() { 
+		String s="";
 		for (String[] line : currentState) {
 			for (String cell : line)
-				System.out.print(cell + " ");
-			System.out.println();
+				s+=cell + " ";
+			s+="\n";
 		}
-
+		return s;
 	}
 	
 	
