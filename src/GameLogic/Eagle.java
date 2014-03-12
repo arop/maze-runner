@@ -14,13 +14,15 @@ public class Eagle extends Personagem {
 		active = false ;
 	}
 
-	public int getdX() { return dX ; }
-	public int getdY() { return dY ; }
-	public int getiY() { return iY ; }
-	public int getiX() { return iX ; }
-	public void setdX(int x) { dX = x; }
-	public void setdY(int y) { dY = y; }
-
+	public int getdX() { return dX;}
+	public int getdY() { return dY;}
+	public int getiY() { return iY;}
+	public int getiX() { return iX;}
+	public void setdX(int x) { dX = x;}
+	public void setdY(int y) { dY = y;}
+	public void setiX(int x) { iX = x;}
+	public void setiY(int y) { iY = y;}
+	
 	public boolean nextPosition(Board board, int x, int y) {
 		return true ;
 	}
@@ -55,6 +57,7 @@ public class Eagle extends Personagem {
 		}
 	
 	}
+	
 }
 
 

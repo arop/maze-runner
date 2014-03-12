@@ -19,7 +19,7 @@ public class Game {
 
 		do {
 			board.UpdateBoard();
-			board.showBoard();
+			System.out.println(board);;
 			
 			//verificar se heroi apanhou a espada/aguia
 			if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
@@ -34,8 +34,12 @@ public class Game {
 
 			//lancar aguia
 			if(input.equals("f") && board.getS().getStatus()) {
-				board.getEg().reenable ();
-				board.getEg().setdX(board.getS().getX()) ;
+				board.getEg().reenable();
+				
+				board.getEg().setiX(board.getH().getX());
+				board.getEg().setiY(board.getH().getY());
+				
+				board.getEg().setdX(board.getS().getX());
 				board.getEg().setdY(board.getS().getY());
 			}
 
@@ -49,7 +53,7 @@ public class Game {
 			if(board.getEg().getStatus() ) board.getEg().move(board, input);
 			else {
 				board.getEg().setX(board.getH().getX());
-				board.getEg().setY(board.getH().getY()) ;
+				board.getEg().setY(board.getH().getY());
 			}
 
 			if(board.getEg().getX() == board.getS().getX() && board.getEg().getY() == board.getS().getY()) {

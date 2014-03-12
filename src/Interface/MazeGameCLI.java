@@ -37,11 +37,11 @@ public class MazeGameCLI {
 			mainMenu();
 			break;
 		case 3:
-			return ;
+			System.exit(0) ;
 		}
 
 		g1.Play();
-		return;
+		System.exit(0);
 	}
 
 	private static int optionsMenu() {
