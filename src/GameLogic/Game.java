@@ -15,33 +15,16 @@ public class Game {
 
 	public Board getBoard() {return board;}
 
-	public void Play(String input) {
-		//verificar se heroi apanhou a espada/aguia
-		if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
-			board.getH().setSymb("A") ;
-			board.getS().disable() ;
-			board.getEg().disable() ;
-		}
-
-		if(endGame()) return;
-
-		//lancar aguia
-		if(input.equals("f") && board.getS().getStatus()) {
-			board.getEg().reenable();
-
-			board.getEg().setiX(board.getH().getX());
-			board.getEg().setiY(board.getH().getY());
-
-			board.getEg().setdX(board.getS().getX());
-			board.getEg().setdY(board.getS().getY());
-		}
-
+	// RETURN VALUES: 0-keeps playing, 1-quit, 2-dead, 3-won
+	public int Play(String input) {
+	
 		//sair do jogo
-		else if (input.equals("q")) return;
+		if (input.equals("q")) return 1;
 
 		//mover heroi
 		board.getH().move(board,input);
-
+		
+		
 		//mover aguia
 		if(board.getEg().getStatus() ) board.getEg().move(board, input);
 		else {
@@ -55,6 +38,24 @@ public class Game {
 			board.getEg().setdX(board.getEg().getiX());
 			board.getEg().setdY(board.getEg().getiY());
 		}
+		
+		//verificar se heroi apanhou a espada/aguia
+		if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
+			board.getH().setSymb("A") ;
+			board.getS().disable() ;
+			board.getEg().disable() ;
+		}
+	
+		//lancar aguia
+		if(input.equals("f") && board.getS().getStatus()) {
+			board.getEg().reenable();
+
+			board.getEg().setiX(board.getH().getX());
+			board.getEg().setiY(board.getH().getY());
+
+			board.getEg().setdX(board.getS().getX());
+			board.getEg().setdY(board.getS().getY());
+		}
 
 		// mover dragoes
 		for(int i = 0 ; i < board.getDragons().length ; i++) {
@@ -64,21 +65,37 @@ public class Game {
 			}
 			if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input);
 		}
+		
+		// update
+		board.UpdateBoard();
+
+		
+		// terminar jogo 
+		if(endGame()) {
+			board.UpdateBoard();
+			return 2;
+		}
+			
+		if(won()) return 3;
+		
+		return 0;
 	}
 
 	public boolean endGame() {
 		for(int i = 0 ; i < board.getDragons().length ; i++){
 			if(Math.sqrt(Math.pow(board.getH().getY()-board.getDragons()[i].getY(),2) + Math.pow(board.getH().getX()-board.getDragons()[i].getX(),2))<=Math.sqrt(2)) {
-				if(board.getH().getSymb() == "H" && board.getDragons()[i].getSymb()=="D")
+				if(board.getH().getSymb() == "H" && board.getDragons()[i].getSymb()=="D"){
+					board.getH().disable();
+					System.out.println("Coiso");
 					return true;
+				}
 				else if(board.getH().getSymb() == "A")
 					board.getDragons()[i].disable() ;
 			}
 		}
 		return false;
 	}
-
-
+	
 	public boolean won() {
 		if(board.getH().getSymb()=="A" && board.getH().getX()==board.getSx() && board.getH().getY()==board.getSy())
 			return true;

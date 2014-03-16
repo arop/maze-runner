@@ -26,7 +26,7 @@ public class MazeGameCLI {
 		switch(a) {
 		case 1:
 			if(g1 == null) {
-				System.out.println("Do you want to play with default map? (y for yes)") ;
+				System.out.println("Do you want to play with default map? (y/n)") ;
 				String opt2 = option.nextLine();
 				if(opt2.equals("y")) g1 = new Game();
 				else mainMenu(); }
@@ -40,7 +40,7 @@ public class MazeGameCLI {
 		}
 
 		play();
-
+		
 		option.close();
 		System.exit(0);
 	}
@@ -48,14 +48,32 @@ public class MazeGameCLI {
 	private static void play() {
 		g1.setBoard();
 		Scanner myScanner = new Scanner(System.in);
-		do {
+		while(true) {
 			System.out.println(g1.getBoard());
 			String input = myScanner.nextLine();
-			g1.Play(input);
-			g1.getBoard().UpdateBoard();
-			if(g1.won()) System.out.println("Voce ganhou!");
-		} while(!g1.won());
-		myScanner.close();
+			int a = g1.Play(input);
+			System.out.println(g1.getBoard());
+
+			switch(a) {
+			case 0: 
+				break;
+			case 1:
+				System.out.println("Are you sure you want to quit? (y/n)");
+				String input2 = myScanner.nextLine();
+				if(input2.equals("y")) return;
+				break;
+			case 2:
+				System.out.println("You lost, faggot!"); 
+				myScanner.close();
+				return;
+			case 3:
+				System.out.println("You won!") ;
+				myScanner.close();
+				return;
+			}
+			
+		}
+		
 	}
 
 	private static int optionsMenu() {
