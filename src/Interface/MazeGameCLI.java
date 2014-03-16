@@ -63,7 +63,7 @@ public class MazeGameCLI {
 				if(input2.equals("y")) return;
 				break;
 			case 2:
-				System.out.println("You lost, faggot!"); 
+				System.out.println("You lost!"); 
 				myScanner.close();
 				return;
 			case 3:
@@ -81,8 +81,9 @@ public class MazeGameCLI {
 		System.out.println();
 		System.out.println("1. Random maze, choose size");
 		System.out.println("2. Multiple dragons");
-		System.out.println("3. Sleeping dragons");
-		System.out.println("4. Back to main menu");
+		System.out.println("3. Moving dragons");
+		System.out.println("4. Sleeping dragons");
+		System.out.println("5. Back to main menu");
 
 		Scanner option = new Scanner(System.in);
 		String b = option.nextLine();
@@ -141,6 +142,20 @@ public class MazeGameCLI {
 				System.out.println("You haven't chosen a board size yet!");
 			}
 			else {
+				g1.setMovingDragons();
+				if(!g1.getMovingDragons())
+					System.out.println("Dragons' moving mode is now disabled!\n");
+				else
+					System.out.println("Dragons' moving mode is now enabled!\n");
+			}
+			break;
+			
+			
+		case 4:
+			if(g1 == null) {
+				System.out.println("You haven't chosen a board size yet!");
+			}
+			else {
 				g1.setSleepingDragons();
 				if(!g1.getSleepingDragons())
 					System.out.println("Dragons' sleeping mode is now disabled!\n");
@@ -148,9 +163,11 @@ public class MazeGameCLI {
 					System.out.println("Dragons' sleeping mode is now enabled!\n");
 			}
 			break;
-		case 4: 
+		
+		case 5: 
 			return 1;
 		}
+		
 		return 1;
 	}
 

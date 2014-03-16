@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import GameLogic.Game;
 
-public class TestesMaze {
+public class TestHero {
 
 	@Test
 	public void MoveHero() {
@@ -21,7 +21,6 @@ public class TestesMaze {
 		jogo.getBoard().getH().MoveUp(jogo.getBoard());  // NAO MOVE CONTRA PAREDE
 		assertEquals(posX,jogo.getBoard().getH().getX());
 		assertEquals(posY+1,jogo.getBoard().getH().getY());
-		
 	}
 	
 	@Test
@@ -37,7 +36,6 @@ public class TestesMaze {
 		}
 		
 		assertEquals("A", jogo.getBoard().getH().getSymb());
-			
 	}
 	
 	@Test
@@ -94,14 +92,6 @@ public class TestesMaze {
 		
 		assertEquals(0,a);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 }

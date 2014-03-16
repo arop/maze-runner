@@ -5,7 +5,8 @@ public class Game {
 	private Board board;
 	private int size ;
 	private int number_dragons = 1 ;
-	private boolean sleepingDragons = true; //if true dragons can sleep
+	private boolean movingDragons = false;
+	private boolean sleepingDragons = false; //if true dragons can sleep
 
 	public Game() { size = 1; }
 
@@ -57,15 +58,17 @@ public class Game {
 			board.getEg().setdY(board.getS().getY());
 		}
 
-		// mover dragoes
-		for(int i = 0 ; i < board.getDragons().length ; i++) {
-			if(sleepingDragons) {
-				int x= (int) Math.round(Math.random());
-				if(x == 0) board.getDragons()[i].setSleeping();
+		if(movingDragons) {
+			// mover dragoes
+			for(int i = 0 ; i < board.getDragons().length ; i++) {
+				if(sleepingDragons) {
+					int x= (int) Math.round(Math.random());
+					if(x == 0) board.getDragons()[i].setSleeping();
+				}
+				if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input);
 			}
-			if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input);
 		}
-		
+
 		// update
 		board.UpdateBoard();
 
@@ -111,10 +114,13 @@ public class Game {
 	}
 
 	public boolean getSleepingDragons() {return sleepingDragons;}
+	public boolean getMovingDragons() {return movingDragons; }
 
 	public void setSleepingDragons() {sleepingDragons=!sleepingDragons;}
+	public void setMovingDragons() {movingDragons=!movingDragons;}
 
 	public int getSize() {return size;}
 
 	public void setBoard() {board = new Board(size,number_dragons); }
+
 }
