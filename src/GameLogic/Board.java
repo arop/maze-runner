@@ -95,7 +95,6 @@ public class Board {
 		return s;
 	}
 	
-	
 	// TOOLS 
 	
 	public boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
@@ -112,7 +111,7 @@ public class Board {
 	      return target;
 	}
 	
-
+	
 	//SETTERS AND GETTERS
 	
 	public String[][] getCurrentState() {

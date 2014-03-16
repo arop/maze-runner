@@ -39,9 +39,10 @@ public class MazeBuilder {
 			}
 
 			makePath(n);
-			makeExit(n);
-
 		}
+		
+		makeExit(n);
+
 	}
 
 	public String[][] getField() {
@@ -112,29 +113,34 @@ public class MazeBuilder {
 		}
 	}
 	
-	
+
 	void makeExit(int n) {
-	//"contrutor" do S(saida)
-	   int i,j, r1=2;
-	   boolean a=false;
+		//"contrutor" do S(saida)
+		if(n>=5) {
+			int i,j, r1=2;
+			boolean a=false;
+			int r = (int) Math.round((Math.random()*4));
 
-	   int r = (int) Math.round((Math.random()*4));
+			while(!a) {
+				while(r1==2 || r1==(n-1))
+					r1 = (int) (2 + (Math.random()*(n-4)));
 
+				if(r==0){i=n-1; j=r1; if(!field[i-1][j].equals("X")) a=true;}
+				else if(r==1) {i=2; j=r1; if(!field[i+1][j].equals("X")) a=true;}
+				else if(r==2) {i=r1; j=2; if(!field[i][j+1].equals("X")) a=true;}
+				else {i=r1; j=n-1; if(!field[i][j-1].equals("X")) a=true;}
 
-	   while(!a) {
-	    while(r1==2 || r1==(n-1))
-	     r1 = (int) (2 + (Math.random()*(n-4)));
+				Sx=i;
+				Sy=j;
+			}
+		}
+		
+		else if(n==1) {
+			Sx = 5;
+			Sy = 9;
+		}
 
-	    if(r==0){i=n-1; j=r1; if(!field[i-1][j].equals("X")) a=true;}
-	    else if(r==1) {i=2; j=r1; if(!field[i+1][j].equals("X")) a=true;}
-	    else if(r==2) {i=r1; j=2; if(!field[i][j+1].equals("X")) a=true;}
-	    else {i=r1; j=n-1; if(!field[i][j-1].equals("X")) a=true;}
-
-	    Sx=i;
-	    Sy=j;
-	   }
-	   
-	   field[Sx][Sy]= "S";
+		field[Sx][Sy]= "S";
 	}
 
 	public static int getSx() {
