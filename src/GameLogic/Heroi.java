@@ -3,14 +3,6 @@ package GameLogic;
 
 public class Heroi extends Personagem {
 
-/*	public Heroi(String[][] board) {
-		super(board);
-		symbol = "H" ;
-	}
-	*/
-	
-	
-
 	public Heroi(int X,int Y) {
 		super(X,Y);
 		symbol = "H" ;
@@ -18,7 +10,6 @@ public class Heroi extends Personagem {
 
 	public Heroi() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public boolean nextPosition(Board board, int x, int y) {

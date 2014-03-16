@@ -5,7 +5,7 @@ public class Game {
 	private Board board;
 	private int size ;
 	private int number_dragons = 1 ;
-	private boolean movingDragons = false;
+	private boolean movingDragons = false; //if true dragons can move
 	private boolean sleepingDragons = false; //if true dragons can sleep
 
 	public Game() { size = 1; }
@@ -105,22 +105,14 @@ public class Game {
 		return false;
 	}
 
-	public int getNumber_dragons() {
-		return number_dragons;
-	}
-
-	public void setNumber_dragons(int number_dragons) {
-		this.number_dragons = number_dragons;
-	}
-
+	//Getters and setters
+	public int getNumber_dragons() {return number_dragons;}
+	public void setNumber_dragons(int number_dragons) {this.number_dragons = number_dragons;}
 	public boolean getSleepingDragons() {return sleepingDragons;}
 	public boolean getMovingDragons() {return movingDragons; }
-
 	public void setSleepingDragons() {sleepingDragons=!sleepingDragons;}
 	public void setMovingDragons() {movingDragons=!movingDragons;}
-
 	public int getSize() {return size;}
-
 	public void setBoard() {board = new Board(size,number_dragons); }
 
 }

@@ -8,12 +8,6 @@ public class Dragao extends Personagem {
 	
 	public boolean getSleeping() {return isSleeping;}
 	public void setSleeping() {isSleeping=!isSleeping; if(isSleeping) symbol="d"; else symbol="D";}
-	
-//	public Dragao(String[][] board) {
-//		super(board);
-//		symbol = "D" ;
-//	}
-	
 
 	public Dragao(int X,int Y) {
 		super(X,Y);
@@ -22,7 +16,6 @@ public class Dragao extends Personagem {
 
 	public Dragao() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public boolean nextPosition(Board board, int x, int y) {
 		if(board.getCurrentState()[x][y] == " " || board.getCurrentState()[x][y] == "E") 
