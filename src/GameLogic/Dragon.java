@@ -1,22 +1,21 @@
 package GameLogic;
 
-
-
-public class Dragao extends Personagem {
+public class Dragon extends Personagem {
 
 	private static boolean isSleeping;
 	
 	public boolean getSleeping() {return isSleeping;}
 	public void setSleeping() {isSleeping=!isSleeping; if(isSleeping) symbol="d"; else symbol="D";}
 
-	public Dragao(int X,int Y) {
+	public Dragon(int X,int Y) {
 		super(X,Y);
 		symbol = "D" ;
 	}
 
-	public Dragao() {
+	public Dragon() {
 		super();
 	}
+	
 	public boolean nextPosition(Board board, int x, int y) {
 		if(board.getCurrentState()[x][y] == " " || board.getCurrentState()[x][y] == "E") 
 			return true;

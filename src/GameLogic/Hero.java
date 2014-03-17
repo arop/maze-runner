@@ -1,14 +1,14 @@
 package GameLogic;
 
 
-public class Heroi extends Personagem {
+public class Hero extends Personagem {
 
-	public Heroi(int X,int Y) {
+	public Hero(int X,int Y) {
 		super(X,Y);
 		symbol = "H" ;
 	}
 
-	public Heroi() {
+	public Hero() {
 		super();
 	}
 
