@@ -48,7 +48,7 @@ public class Game {
 		}
 	
 		//lancar aguia
-		if(input.equals("f") && board.getS().getStatus()) {
+		if(input.equals("f") && board.getS().getStatus()  && !board.getEg().getStatus()) {
 			board.getEg().reenable();
 
 			board.getEg().setiX(board.getH().getX());
@@ -89,7 +89,6 @@ public class Game {
 			if(Math.sqrt(Math.pow(board.getH().getY()-board.getDragons()[i].getY(),2) + Math.pow(board.getH().getX()-board.getDragons()[i].getX(),2))<=Math.sqrt(2)) {
 				if(board.getH().getSymb() == "H" && board.getDragons()[i].getSymb()=="D"){
 					board.getH().disable();
-					System.out.println("Coiso");
 					return true;
 				}
 				else if(board.getH().getSymb() == "A")

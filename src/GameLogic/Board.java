@@ -6,8 +6,8 @@ public class Board {
 	
 	private MazeBuilder builder ;
 	private String[][] currentState ;
-	private  Heroi h;
-	private  Dragao[] dragons;
+	private  Hero h;
+	private  Dragon[] dragons;
 	private  Sword s;
 	private  Eagle eg;
 	private static int Sx ;
@@ -16,16 +16,16 @@ public class Board {
 	
 	public Board(int n, int nDragons) {
 		builder = new MazeBuilder(n);
-		dragons = new Dragao[nDragons] ;	
+		dragons = new Dragon[nDragons] ;	
 		currentState = copy(builder.getField()); 
 
 		if(n>1) {
-			h = new Heroi(0,0) ;
+			h = new Hero(0,0) ;
 			generateObject(h);
 			drawObject(h);
 
 			for(int i = 0; i < dragons.length; i++) {
-				dragons[i] = new Dragao(0,0);
+				dragons[i] = new Dragon(0,0);
 				generateObject(dragons[i]);
 				drawObject(dragons[i]);
 			}
@@ -36,11 +36,11 @@ public class Board {
 		}
 
 		else if(n==1) {
-			h= new Heroi(1,1);
+			h= new Hero(1,1);
 			drawObject(h);
 			s= new Sword(8,1);
 			drawObject(s);
-			dragons[0] = new Dragao(3,1);
+			dragons[0] = new Dragon(3,1);
 			drawObject(dragons[0]);
 
 		}
@@ -125,7 +125,7 @@ public class Board {
 	public Personagem getH() {
 		return h;
 	}
-	public void setH(Heroi h) {
+	public void setH(Hero h) {
 		this.h = h;
 	}
 
@@ -147,54 +147,11 @@ public class Board {
 	public int getSy() {
 		return Sy ;
 	}
-	public Dragao[] getDragons() {
+	public Dragon[] getDragons() {
 		return dragons;
 	}
-	public void setDragons(Dragao[] dragons) {
+	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
 	}
-
-
-
-// PROVAVELMENTE LIXO 	
-
-	
-//	public boolean endGame() {
-//		if(Math.sqrt(Math.pow(h.getY()-d.getY(),2) + Math.pow(h.getX()-d.getX(),2))<=Math.sqrt(2)) {
-//			if(h.getSymb() == "H" && d.getSymb()=="D")
-//				return true;
-//			else if(h.getSymb() == "A")
-//				d.disable() ;
-//		}
-//		return false;
-//	}
-
-
-//	public void showBoard() {
-//		for( int i = 0 ; i < OriginalMaze.length ; i++){
-//			for (int k = 0 ; k < OriginalMaze[i].length; k++){
-//				if(h.getX() == i && h.getY()== k && h.getStatus()) {
-//					System.out.print(h.getSymb());
-//				}
-//				else if (d.getX() == i && d.getY()== k && d.getStatus()){
-//					System.out.print(d.getSymb());
-//				}
-//
-//				else if (eg.getX() == i && eg.getY()== k && eg.getStatus()){
-//					System.out.print(eg.getSymb());
-//				}			
-//
-//				else if (s.getX() == i && s.getY() == k && s.getStatus() ) {
-//					System.out.print(s.getSymb());
-//				}
-//
-//				else System.out.print(OriginalMaze[i][k]);
-//
-//				System.out.print(" ") ;				
-//			}
-//			System.out.println();
-//
-//		}
-//	}
 
 }

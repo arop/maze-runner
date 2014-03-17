@@ -28,11 +28,7 @@ public class Eagle extends Personagem {
 	}
 
 	public void move(Board b, String input) {
-	/*	if (Y < dY) MoveRight(b) ;
-		if (Y > dY) MoveLeft(b) ;
-		if (X < dX) MoveDown(b) ;
-		if (X > dX) MoveUp(b);	*/
-		
+			
 		float deltax=Math.abs(X-dX);
 		float deltay=Math.abs(Y-dY);
 		
