@@ -122,7 +122,7 @@ public class Board {
 		return builder.getField();
 	}
 
-	public Personagem getH() {
+	public Character getH() {
 		return h;
 	}
 	public void setH(Hero h) {

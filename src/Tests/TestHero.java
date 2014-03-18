@@ -69,10 +69,10 @@ public class TestHero {
 		jogo.getBoard().getH().setSymb("A");
 		int a = 0 ;
 		
-		String [] moves = {"d","d","d","d","d","d","d","s","s","s","s","d"};
+		String moves = "dddddddssssd"; // "d","d","d","d","d","d","d","s","s","s","s","d"};
 		
-		for(int i = 0; i < moves.length; i++) {
-			a = jogo.Play(moves[i]);
+		for(int i = 0; i < moves.length(); i++) {
+			a = jogo.Play(Character.toString(moves.charAt(i)));
 		}
 		
 		assertEquals(3,a);

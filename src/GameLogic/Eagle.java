@@ -1,6 +1,6 @@
 package GameLogic;
 
-public class Eagle extends Personagem {
+public class Eagle extends Character {
 	private int dX = 0 ;
 	private int dY = 0 ;
 	private int iX = 0 ;
