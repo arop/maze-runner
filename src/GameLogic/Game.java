@@ -25,6 +25,9 @@ public class Game {
 		//mover heroi
 		board.getH().move(board,input);
 		
+		//morrer aguia?
+		if(board.getEg().getStatus()) characterDies(board.getEg());
+		
 		
 		//mover aguia
 		if(board.getEg().getStatus() ) board.getEg().move(board, input);
@@ -57,6 +60,8 @@ public class Game {
 			board.getEg().setdX(board.getS().getX());
 			board.getEg().setdY(board.getS().getY());
 		}
+		
+		
 
 		if(movingDragons) {
 			// mover dragoes
@@ -74,7 +79,7 @@ public class Game {
 
 		
 		// terminar jogo 
-		if(endGame()) {
+		if(characterDies(board.getH())) {
 			board.UpdateBoard();
 			return 2;
 		}
@@ -84,15 +89,14 @@ public class Game {
 		return 0;
 	}
 
-	public boolean endGame() {
+	public boolean characterDies(Character p) {
 		for(int i = 0 ; i < board.getDragons().length ; i++){
-			if(Math.sqrt(Math.pow(board.getH().getY()-board.getDragons()[i].getY(),2) + Math.pow(board.getH().getX()-board.getDragons()[i].getX(),2))<=Math.sqrt(2)) {
-				if(board.getH().getSymb() == "H" && board.getDragons()[i].getSymb()=="D"){
-					board.getH().disable();
+			if(Math.sqrt(Math.pow(p.getY()-board.getDragons()[i].getY(),2) + Math.pow(p.getX()-board.getDragons()[i].getX(),2))<=Math.sqrt(2)) {
+				if(p.getSymb() == "A") board.getDragons()[i].disable() ;
+				else if(board.getDragons()[i].getSymb()=="D"){
+					p.disable();
 					return true;
 				}
-				else if(board.getH().getSymb() == "A")
-					board.getDragons()[i].disable() ;
 			}
 		}
 		return false;

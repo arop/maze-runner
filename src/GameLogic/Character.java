@@ -1,13 +1,13 @@
 package GameLogic;
 
 
-public abstract class Personagem extends GameObject {
+public abstract class Character extends GameObject {
 	
-	public Personagem(int x, int y) {
+	public Character(int x, int y) {
 		super(x,y);
 	}
 
-	public Personagem() {
+	public Character() {
 		super();
 	}
 

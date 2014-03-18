@@ -1,7 +1,7 @@
 package GameLogic;
 
 
-public class Hero extends Personagem {
+public class Hero extends Character {
 
 	public Hero(int X,int Y) {
 		super(X,Y);
@@ -13,8 +13,11 @@ public class Hero extends Personagem {
 	}
 
 	public boolean nextPosition(Board board, int x, int y) {
-		if(board.getCurrentState()[x][y] == " " || board.getCurrentState()[x][y] == "E") 
+		if(board.getOriginalMaze()[x][y] == " " || board.getCurrentState()[x][y] == "E") 
 			return true;
+		if(board.getOriginalMaze()[x][y] == " " && board.getCurrentState()[x][y] == "V")
+			return true;
+		
 		if(board.getCurrentState()[x][y] == "S" && symbol.equals("A"))
 			return true;
 

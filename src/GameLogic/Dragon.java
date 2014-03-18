@@ -1,6 +1,6 @@
 package GameLogic;
 
-public class Dragon extends Personagem {
+public class Dragon extends Character {
 
 	private static boolean isSleeping;
 	
