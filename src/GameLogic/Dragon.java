@@ -23,11 +23,21 @@ public class Dragon extends Character {
 	} 
 
 	public void move(Board b, String input) {
-		double a = Math.round((Math.random()*4));
-		if (a == 0) MoveUp(b);
-		else if (a == 1) MoveLeft(b);
-		else if (a == 2) MoveRight(b);
-		else if (a == 3) MoveDown(b);
+		if(input == null) {
+			double a = Math.round((Math.random()*4));
+			if (a == 0) MoveUp(b);
+			else if (a == 1) MoveLeft(b);
+			else if (a == 2) MoveRight(b);
+			else if (a == 3) MoveDown(b);
+		}
+		
+		else {
+			if(input.equals("w")) MoveUp(b);
+			else if(input.equals("a")) MoveLeft(b);
+			else if(input.equals("d")) MoveRight(b);
+			else if(input.equals("s")) MoveDown(b);
+		}
+	
 	}
 
 

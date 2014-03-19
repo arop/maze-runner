@@ -1,33 +1,45 @@
 package GUI;
 import javax.swing.*; 
+
 import java.awt.*;
+import java.awt.FlowLayout;
 
 import GameLogic.Game;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+
 
 public class MazeGameGUI  {
 	
+	public static Game g1 = new Game();
+
+
+	
 	private JFrame frame;
-	private JPanel panel;
-	private JButton button;
-	private JLabel lab ;
+	private JButton btnPlayGame;
+	private JButton Quit;
+	private JButton btnOptions;
 	
 	public MazeGameGUI() {
+		g1.setBoard();
+
 		frame = new JFrame("Maze Game");
 		frame.setVisible(true);
 		frame.setSize(500,500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		panel = new JPanel();
-		panel.setBackground(Color.blue);
+		btnPlayGame = new JButton("Play Game");
+		frame.getContentPane().add(btnPlayGame);
 		
-		button = new JButton("Test");
+		btnOptions = new JButton("Options");
+		frame.getContentPane().add(btnOptions);
 		
-		lab = new JLabel("This is a test label");
+		Quit = new JButton("Quit");
+		frame.getContentPane().add(Quit);
 		
-		panel.add(button);
-		panel.add(lab);
-		
-		frame.add(panel);
+		String b = g1.getBoard().toString();
 		
 	}
 	

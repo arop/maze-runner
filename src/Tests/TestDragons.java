@@ -27,6 +27,25 @@ public class TestDragons {
 	}
 	
 	
+	@Test
+	public void DragonGetsSword() {
+		
+		Game jogo = new Game();
+		jogo.setMovingDragons();
+		
+		jogo.setBoard();
+		
+		String DragonMoves = "sssss";
+				
+		for(int i = 0 ; i < DragonMoves.length(); i++) {
+			jogo.Play("w",Character.toString(DragonMoves.charAt(i)));
+		}
+		
+		assertEquals("F",jogo.getBoard().getS().getSymb());
+		
+		
+	}
+	
 	
 	
 	
