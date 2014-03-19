@@ -22,15 +22,16 @@ public class OptionsMenu extends MazeGameGUI implements Menu {
 	private boolean validSize = true;
 	private boolean validNumDragons = true;
 
+
 	public OptionsMenu() {
 		frame = new JFrame("Options Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(5,5));
 		createWidgets();
 		addWidgets(frame.getContentPane());
-		
+
 		frame.setPreferredSize(new Dimension(WIDTH,HEIGHT)); //change values
-		
+
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -65,9 +66,12 @@ public class OptionsMenu extends MazeGameGUI implements Menu {
 	public class BackListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			//TODO this
-			//if(!validSize) pop up size not changed
-			//if(!validNumDragons) pop up
+			if(!validSize) JOptionPane.showMessageDialog(frame, "Size of board not accepted, please enter an " +
+					"odd number bigger than 5");
+
+			if(!validNumDragons) JOptionPane.showMessageDialog(frame, "Number of dragons not valid, please enter " +
+					"a smaller number (smaller than (size/7))");
+
 			frame.setVisible(false);
 			g1.setBoard();
 			new MainMenu();
