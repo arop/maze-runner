@@ -17,7 +17,7 @@ public class Game {
 	public Board getBoard() {return board;}
 
 	// RETURN VALUES: 0-keeps playing, 1-quit, 2-dead, 3-won
-	public int Play(String input) {
+	public int Play(String input, String input2) {
 	
 		//sair do jogo
 		if (input.equals("q")) return 1;
@@ -70,10 +70,23 @@ public class Game {
 					int x= (int) Math.round(Math.random());
 					if(x == 0) board.getDragons()[i].setSleeping();
 				}
-				if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input);
+				if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input2);
 			}
 		}
-
+		
+		//dragon protecting sword
+		boolean sProtected = false;
+		for(int i = 0 ; i < board.getDragons().length ; i++) {
+			if(board.getDragons()[i].getX() == board.getS().getX() && board.getDragons()[i].getY() == board.getS().getY()){
+				board.getS().setSymb("F");
+				sProtected = true;
+				break;
+			}
+		}
+		
+		if(!sProtected) board.getS().setSymb("E");
+		
+				
 		// update
 		board.UpdateBoard();
 
@@ -87,6 +100,10 @@ public class Game {
 		if(won()) return 3;
 		
 		return 0;
+	}
+	
+	public int Play(String input) {
+		return Play(input,null);
 	}
 
 	public boolean characterDies(Character p) {
