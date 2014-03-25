@@ -22,7 +22,6 @@ public class OptionsMenu extends MazeGameGUI implements Menu {
 	private boolean validSize = true;
 	private boolean validNumDragons = true;
 
-
 	public OptionsMenu() {
 		frame = new JFrame("Options Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,6 +101,7 @@ public class OptionsMenu extends MazeGameGUI implements Menu {
 				if(n1<(g1.getSize()/7)) {
 					validNumDragons=true;
 					g1.setNumber_dragons(n1);
+					g1.setBoard();
 				}
 				else validNumDragons=false;				
 			}
@@ -116,9 +116,11 @@ public class OptionsMenu extends MazeGameGUI implements Menu {
 		public void itemStateChanged(ItemEvent arg0) {
 			if(arg0.getSource()==movingOption) { 
 				g1.setMovingDragons();
+				g1.setBoard();
 			}
 			if(arg0.getSource()==sleepingOption) { 
 				g1.setSleepingDragons();
+				g1.setBoard();
 			}
 		}
 
