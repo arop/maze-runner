@@ -8,8 +8,9 @@ import GameLogic.Game;
 
 import java.awt.event.*;
 
-public class OptionsMenu extends MazeGameGUI implements Menu {
+public class OptionsMenu extends JPanel {
 
+	
 	private JFrame frame;
 	private JButton back_button;
 	private JTextField sizeField;
@@ -21,8 +22,10 @@ public class OptionsMenu extends MazeGameGUI implements Menu {
 
 	private boolean validSize = true;
 	private boolean validNumDragons = true;
+	private Game g1;
 
-	public OptionsMenu() {
+	public OptionsMenu(Game currentGame) {
+		g1 = currentGame;
 		frame = new JFrame("Options Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(5,5));
@@ -73,7 +76,7 @@ public class OptionsMenu extends MazeGameGUI implements Menu {
 
 			frame.setVisible(false);
 			g1.setBoard();
-			new MainMenu();
+			new MainMenu(g1);
 		}
 	}
 
