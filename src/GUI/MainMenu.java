@@ -4,26 +4,25 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import GameLogic.Game;
+
 import java.awt.event.*;
 
-public class MainMenu extends MazeGameGUI implements Menu {
+public class MainMenu extends JPanel {
 
-	private JFrame frame;
 	private JButton play_button;
 	private JButton options_button;
 	private JButton quit_button;
+	private Game g1;
 
-	public MainMenu() {
-		frame = new JFrame("Main Menu");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new GridLayout(3,3));
+	public MainMenu(Game currentGame) {
+		g1 = currentGame;
 		createWidgets();
-		addWidgets(frame.getContentPane());
+		addWidgets(this);
 		
-		frame.setPreferredSize(new Dimension(WIDTH,HEIGHT)); //change values
+		this.setPreferredSize(new Dimension(WIDTH,HEIGHT)); //change values
 		
-		frame.pack();
-		frame.setVisible(true);
+		this.setVisible(true);
 	}
 
 	public void createWidgets(){ 
@@ -47,16 +46,16 @@ public class MainMenu extends MazeGameGUI implements Menu {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(arg0.getSource()==quit_button) {
-				frame.setVisible(false);
+				setVisible(false);
 				System.exit(0);
 			}
 			if(arg0.getSource()==options_button) {
-				frame.setVisible(false);
-				new OptionsMenu();
+				setVisible(false);
+				new OptionsMenu(g1);
 			}
 			if(arg0.getSource()==play_button) {
-				frame.setVisible(false);
-				new MenuPlay();
+				setVisible(false);
+				
 			}
 		}
 	}
