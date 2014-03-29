@@ -55,7 +55,7 @@ public class MainMenu extends JPanel {
 			}
 			if(arg0.getSource()==play_button) {
 				setVisible(false);
-				
+								
 			}
 		}
 	}
