@@ -33,6 +33,7 @@ public class OptionsMenu extends JPanel {
 		addWidgets(frame.getContentPane());
 
 		frame.setPreferredSize(new Dimension(WIDTH,HEIGHT)); //change values
+		frame.setBounds(100, 100, 500, 500);
 
 		frame.pack();
 		frame.setVisible(true);
