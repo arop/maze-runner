@@ -33,8 +33,6 @@ public class MazeBuilder {
 					if(i == 0 || i==1 || k==1 || k ==0 || i==n+1|| i == n || k==n+1||  k==n ){
 						field[i][k] = " ";
 					}
-
-
 				}
 			}
 
