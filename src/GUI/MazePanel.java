@@ -17,20 +17,24 @@ public class MazePanel extends JPanel {
 	private JPanel GraphicBoard[][];
 	private Game g1;
 	private MazeGameGUI frame;
+	private int realSize;
 	
 	public MazePanel(Game currentGame, MazeGameGUI window) {
 
 		g1 = currentGame;
 		frame = window;
 		
-		GraphicBoard = new JPanel[g1.getSize()-2][g1.getSize()-2];
+		if(g1.getSize()-2 < 5) realSize = 10;
+		else realSize = g1.getSize()-2 ;
+		
+		GraphicBoard = new JPanel[realSize][realSize];
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(new GridLayout(g1.getSize()-2,g1.getSize()-2));
+		this.setLayout(new GridLayout(realSize,realSize));
 
 
-		for (int i = 0 ; i < g1.getSize()-2; i++) {
-			for (int j = 0; j < g1.getSize()-2; j++) {
+		for (int i = 0 ; i < realSize; i++) {
+			for (int j = 0; j < realSize; j++) {
 				GraphicBoard[i][j] = new JPanel() ;
 				this.add(GraphicBoard[i][j]);
 
@@ -109,29 +113,29 @@ public class MazePanel extends JPanel {
 	//TODO change color of specials (armado, sleeping dragons, etc)
 	public void UpdateGraphicBoard() {
 
-		for (int i = 0, k = 2 ; i < g1.getSize()-2; i++, k++) {
-			for (int j = 0 , l = 2; j < g1.getSize()-2; j++, l++) {
+		for (int i = 0 ; i < realSize; i++) {
+			for (int j = 0; j < realSize; j++) {
 
-				if(g1.getBoard().getCurrentState()[k][l].equals("X")) {
+				if(g1.getBoard().getCurrentState()[i][j].equals("X")) {
 					GraphicBoard[i][j].setBackground(Color.DARK_GRAY);
 				}
 
 
-				else if (g1.getBoard().getCurrentState()[k][l].equals("E")) {
+				else if (g1.getBoard().getCurrentState()[i][j].equals("E")) {
 					GraphicBoard[i][j].setBackground(Color.YELLOW);
 				}
 
 
-				else if (g1.getBoard().getCurrentState()[k][l].equals("H") || g1.getBoard().getCurrentState()[i][j].equals("A")) {
+				else if (g1.getBoard().getCurrentState()[i][j].equals("H") || g1.getBoard().getCurrentState()[i][j].equals("A")) {
 					GraphicBoard[i][j].setBackground(Color.BLUE);
 				}
 
 
-				else if (g1.getBoard().getCurrentState()[k][l].equals("D")) {
+				else if (g1.getBoard().getCurrentState()[i][j].equals("D")) {
 					GraphicBoard[i][j].setBackground(Color.RED);
 				}
 
-				else if(g1.getBoard().getCurrentState()[k][l].equals("v") || g1.getBoard().getCurrentState()[k][l].equals("V")) {
+				else if(g1.getBoard().getCurrentState()[i][j].equals("v") || g1.getBoard().getCurrentState()[i][j].equals("V")) {
 					GraphicBoard[i][j].setBackground(Color.GREEN);
 				}
 

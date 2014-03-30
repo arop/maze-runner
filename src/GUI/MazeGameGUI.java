@@ -11,7 +11,7 @@ import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MazeGameGUI extends JFrame implements KeyListener {
+public class MazeGameGUI extends JFrame {
 
 	private MazePanel mazePanel;
 	private MainMenu mainMenu;
@@ -34,12 +34,11 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 
 
 	public MazeGameGUI() {
-
-		g1 = new Game(31) ;
-		g1.setBoard();
-		g1.setNumber_dragons(5);
-		g1.setSleepingDragons();
+		this.setFocusable(true);
 		
+		g1 = new Game() ;
+		g1.setBoard();
+				
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 500);
@@ -48,56 +47,34 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 		setBounds(100, 100, 500, 500);
 		setVisible(true);
 		
-		mazePanel = new MazePanel(g1, this);
-		this.add(mazePanel);
-		mazePanel.setVisible(false);
-		mazePanel.requestFocusInWindow();
-		
 		options = new OptionsMenu(g1, this) ;
 		this.add(options);
 		options.setVisible(false);
-		options.requestFocusInWindow();
-			
+		
 		mainMenu = new MainMenu(g1, this);
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
-		mainMenu.requestFocusInWindow();	
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	
+	public void disableAll() {
+//		mazePanel.setVisible(false);
+		mainMenu.setVisible(false);
+		options.setVisible(false);
+
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
+	
 	public OptionsMenu getOptions() {
 		return options;
 	}
-	
-	
-	public void disableAll() {
-		mazePanel.setVisible(false);
-		mainMenu.setVisible(false);
-		options.setVisible(false);
-	}
-
 
 	public MazePanel getMazePanel() {
 		return mazePanel;
 	}
-
 
 	public void setMazePanel(MazePanel mazePanel) {
 		this.mazePanel = mazePanel;
@@ -107,11 +84,9 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 		return mainMenu;
 	}
 
-
 	public void setMainMenu(MainMenu mainMenu) {
 		this.mainMenu = mainMenu;
 	}
-
 
 	public void setOptions(OptionsMenu options) {
 		this.options = options;
