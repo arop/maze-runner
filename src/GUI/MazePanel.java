@@ -75,6 +75,12 @@ public class MazePanel extends JPanel {
 			else if(e.getKeyCode() == KeyEvent.VK_Q) {
 				output = g1.Play("q");
 			}
+			
+			else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				frame.disableAll();
+				setVisible(false);
+				frame.getPaused().setVisible(true);
+			}
 
 			UpdateGraphicBoard();
 
