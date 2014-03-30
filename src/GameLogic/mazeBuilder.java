@@ -1,11 +1,25 @@
 package GameLogic;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class MazeBuilder {
 	
 	private static int Sx ;
 	private static int Sy ;
+	
+	private String[][] finalField=	
+		{{"X","X","X","X","X","X","X","X","X","X"},
+		{"X"," "," "," "," "," "," "," "," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," "," "," "," "," "," ","X"," ","S"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," ","X"," ","X"," ","X"},
+		{"X"," ","X","X"," "," "," "," "," ","X"},
+		{"X","X","X","X","X","X","X","X","X","X"}};
+	
 	
 	public static String[][] field=	
 		{{"X","X","X","X","X","X","X","X","X","X"},
@@ -18,6 +32,7 @@ public class MazeBuilder {
 		{"X"," ","X","X"," ","X"," ","X"," ","X"},
 		{"X"," ","X","X"," "," "," "," "," ","X"},
 		{"X","X","X","X","X","X","X","X","X","X"}};
+	
 	
 	
 	MazeBuilder(int n) {
@@ -35,20 +50,21 @@ public class MazeBuilder {
 					}
 				}
 			}
-
 			makePath(n);
+			makeExit(n);
+			removeBorders(n);
+
 		}
 		
 		makeExit(n);
-
 	}
 
 	public String[][] getField() {
-		return field;
+		return finalField;
 	}
 
-	public static void setField(String[][] field) {
-		MazeBuilder.field = field;
+	public void setField(String[][] fieldIn) {
+		field = fieldIn;
 	}
 
 	static void makePath(int n) {
@@ -140,6 +156,30 @@ public class MazeBuilder {
 
 		field[Sx][Sy]= "S";
 	}
+	
+	public void removeBorders(int n) {
+		finalField = new String[n-2][n-2];
+		for(int i = 2, j = 0; i < n; i++, j++){
+			for(int k = 2, l = 0; k < n; k++,l++) {
+				
+				finalField[j][l] = field[i][k];
+			}
+			System.out.println();
+		}
+		
+		System.out.println(finalField[0].length);
+		
+	}
+	
+	
+	public String[][] copy(String[][] input) { // DEEP COPY FUNCTION (double array of strings)
+	      String[][] target = new String[input.length][];
+	      for (int i=0; i <input.length; i++) {
+	        target[i] = Arrays.copyOf(input[i], input[i].length);
+	      }
+	      return target;
+	}
+	
 
 	public static int getSx() {
 		return Sx;
@@ -156,10 +196,5 @@ public class MazeBuilder {
 	public static void setSy(int sy) {
 		Sy = sy;
 	}
-	
-	
-
-	
-	
 
 }
