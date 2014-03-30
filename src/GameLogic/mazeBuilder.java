@@ -21,18 +21,7 @@ public class MazeBuilder {
 		{"X","X","X","X","X","X","X","X","X","X"}};
 	
 	
-	public static String[][] field=	
-		{{"X","X","X","X","X","X","X","X","X","X"},
-		{"X"," "," "," "," "," "," "," "," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," "," "," "," "," "," ","X"," ","S"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," "," "," "," "," ","X"},
-		{"X","X","X","X","X","X","X","X","X","X"}};
-	
+	private String[][] field;
 	
 	
 	MazeBuilder(int n) {
@@ -63,11 +52,8 @@ public class MazeBuilder {
 		return finalField;
 	}
 
-	public void setField(String[][] fieldIn) {
-		field = fieldIn;
-	}
 
-	static void makePath(int n) {
+	public void makePath(int n) {
 		int iX = (int) (3+(Math.random()*(n-5))) ;
 		int iY = (int) (3+(Math.random()*(n-5))) ;
 		Stack<Integer> x = new Stack<Integer>() ;
@@ -154,30 +140,16 @@ public class MazeBuilder {
 			Sy = 9;
 		}
 
-		field[Sx][Sy]= "S";
+		finalField[Sx][Sy]= "S";
 	}
 	
 	public void removeBorders(int n) {
 		finalField = new String[n-2][n-2];
 		for(int i = 2, j = 0; i < n; i++, j++){
 			for(int k = 2, l = 0; k < n; k++,l++) {
-				
 				finalField[j][l] = field[i][k];
 			}
-			System.out.println();
 		}
-		
-		System.out.println(finalField[0].length);
-		
-	}
-	
-	
-	public String[][] copy(String[][] input) { // DEEP COPY FUNCTION (double array of strings)
-	      String[][] target = new String[input.length][];
-	      for (int i=0; i <input.length; i++) {
-	        target[i] = Arrays.copyOf(input[i], input[i].length);
-	      }
-	      return target;
 	}
 	
 
