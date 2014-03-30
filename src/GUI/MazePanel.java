@@ -62,7 +62,7 @@ public class MazePanel extends JPanel {
 			else if (e.getKeyCode() == KeyEvent.VK_LEFT){
 				output = g1.Play("a");
 			}
-			else if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			else if(e.getKeyCode() == KeyEvent.VK_F) {
 				output = g1.Play("f");
 			}
 			
@@ -96,21 +96,25 @@ public class MazePanel extends JPanel {
 					GraphicBoard[i][j].setBackground(Color.DARK_GRAY);
 				}
 				
-				else if(g1.getBoard().getCurrentState()[k][l].equals("v") || g1.getBoard().getCurrentState()[k][l].equals("V")) {
-					GraphicBoard[i][j].setBackground(Color.GREEN);
-				}
-
+				
 				else if (g1.getBoard().getCurrentState()[k][l].equals("E")) {
 					GraphicBoard[i][j].setBackground(Color.YELLOW);
 				}
+				
 
 				else if (g1.getBoard().getCurrentState()[k][l].equals("H") || g1.getBoard().getCurrentState()[i][j].equals("A")) {
 					GraphicBoard[i][j].setBackground(Color.BLUE);
 				}
+								
 
 				else if (g1.getBoard().getCurrentState()[k][l].equals("D")) {
 					GraphicBoard[i][j].setBackground(Color.RED);
 				}
+				
+				else if(g1.getBoard().getCurrentState()[k][l].equals("v") || g1.getBoard().getCurrentState()[k][l].equals("V")) {
+					GraphicBoard[i][j].setBackground(Color.GREEN);
+				}
+
 				else GraphicBoard[i][j].setBackground(Color.WHITE);
 
 
