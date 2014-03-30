@@ -134,5 +134,5 @@ public class Game {
 	public void setMovingDragons() {movingDragons=!movingDragons;}
 	public int getSize() {return size;}
 	public void setBoard() {board = new Board(size,number_dragons); }
-
+	public void setSize(int size) {this.size=size; setBoard();}
 }
