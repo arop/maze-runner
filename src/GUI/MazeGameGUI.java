@@ -16,6 +16,7 @@ public class MazeGameGUI extends JFrame {
 	private MazePanel mazePanel;
 	private MainMenu mainMenu;
 	private OptionsMenu options;
+	private GameMenu paused;
 	public Game g1; 	
 
 	public static void main(String[] args) {
@@ -51,6 +52,10 @@ public class MazeGameGUI extends JFrame {
 		this.add(options);
 		options.setVisible(false);
 		
+		paused = new GameMenu(g1, this) ;
+		this.add(paused);
+		paused.setVisible(false);
+		
 		mainMenu = new MainMenu(g1, this);
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
@@ -59,6 +64,16 @@ public class MazeGameGUI extends JFrame {
 	}
 
 	
+	public GameMenu getPaused() {
+		return paused;
+	}
+
+
+	public void setPaused(GameMenu paused) {
+		this.paused = paused;
+	}
+
+
 	public void disableAll() {
 //		mazePanel.setVisible(false);
 		mainMenu.setVisible(false);
