@@ -2,26 +2,14 @@ package GUI;
 
 import GameLogic.Game;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Color;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import javax.swing.JLabel;
 
 public class MazeGameGUI extends JFrame implements KeyListener {
 
@@ -60,7 +48,7 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 		setBounds(100, 100, 500, 500);
 		setVisible(true);
 		
-		mazePanel = new MazePanel(g1);
+		mazePanel = new MazePanel(g1, this);
 		this.add(mazePanel);
 		mazePanel.setVisible(false);
 		mazePanel.requestFocusInWindow();
@@ -73,8 +61,7 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 		mainMenu = new MainMenu(g1, this);
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
-		mainMenu.requestFocusInWindow();
-				
+		mainMenu.requestFocusInWindow();	
 	}
 
 	@Override
@@ -104,7 +91,6 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 		mazePanel.setVisible(false);
 		mainMenu.setVisible(false);
 		options.setVisible(false);
-		
 	}
 
 
@@ -116,7 +102,6 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 	public void setMazePanel(MazePanel mazePanel) {
 		this.mazePanel = mazePanel;
 	}
-
 
 	public MainMenu getMainMenu() {
 		return mainMenu;
@@ -131,8 +116,4 @@ public class MazeGameGUI extends JFrame implements KeyListener {
 	public void setOptions(OptionsMenu options) {
 		this.options = options;
 	}
-
-
-	
-	
 }

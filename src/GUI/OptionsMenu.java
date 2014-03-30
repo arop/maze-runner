@@ -10,8 +10,6 @@ import java.awt.event.*;
 
 public class OptionsMenu extends JPanel {
 
-	
-//	private JFrame frame;
 	private JButton back_button;
 	private JTextField sizeField;
 	private JLabel sizeLabel;
@@ -20,8 +18,6 @@ public class OptionsMenu extends JPanel {
 	private JCheckBox movingOption;
 	private JCheckBox sleepingOption;
 
-	private boolean validSize = true;
-	private boolean validNumDragons = true;
 	private Game g1;
 	private MazeGameGUI frame;
 
@@ -31,12 +27,12 @@ public class OptionsMenu extends JPanel {
 		frame = window;
 		createWidgets();
 		addWidgets(this);
-		
+
 		JLabel OPTIONS = new JLabel("OPTIONS");
 		OPTIONS.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		OPTIONS.setBounds(167, 11, 103, 36);
 		add(OPTIONS);
-		
+
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(242, 200, 119, 42);
 		add(btnCancel);
@@ -61,8 +57,8 @@ public class OptionsMenu extends JPanel {
 		sleepingOption.setBackground(Color.CYAN);
 		sleepingOption.setBounds(112, 154, 174, 23);
 
-		sizeField.addActionListener(new NumberListener());
-		numDragonsField.addActionListener(new NumberListener());
+		sizeField.addFocusListener(new SizeListener());
+		numDragonsField.addFocusListener(new NumDragonsListener());
 		movingOption.addItemListener(new OptionsListener());
 		sleepingOption.addItemListener(new OptionsListener());
 	}
@@ -82,55 +78,53 @@ public class OptionsMenu extends JPanel {
 	public class BackListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(!validSize) JOptionPane.showMessageDialog(frame, "Size of board not accepted, please enter an " +
-					"odd number bigger than 5");
-
-			if(!validNumDragons) JOptionPane.showMessageDialog(frame, "Number of dragons not valid, please enter " +
-					"a smaller number (smaller than (size/7))");
-
-//			g1.setBoard();
-			
-			else {
-				frame.disableAll();
-				frame.getMainMenu().setVisible(true);
-				
-			}
-			
+			frame.disableAll();
+			frame.getMainMenu().setVisible(true);
 		}
 	}
 
-	public class NumberListener implements ActionListener {
+	public class SizeListener implements FocusListener {
 
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			String s;
-			if(arg0.getSource()==sizeField) {
-				s = sizeField.getText();
-				int n1=Integer.parseInt(s);
+		public void focusGained(FocusEvent arg0) {
+			// TODO Auto-generated method stub
 
-				if( n1>=5 && n1%2!=0){
-					validSize= true;
-					g1 = new Game(n1+2);
-				}
-				
+		}
 
-				else  validSize=false;
-			}
-			
-					
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			String s = sizeField.getText();
+			int n1=Integer.parseInt(s);
 
-			if(arg0.getSource()==numDragonsField) {
-				s= numDragonsField.getText();
-				int n1=Integer.parseInt(s);
-
-				if(n1<(g1.getSize()/7)) {
-					validNumDragons=true;
-					g1.setNumber_dragons(n1);
-					g1.setBoard();
-				}
-				else validNumDragons=false;				
+			if( n1>=5 && n1%2!=0){
+				g1.setSize(n1);
 			}
 
+			else  JOptionPane.showMessageDialog(frame, "Size of board not accepted, please enter an " +
+					"odd number bigger than 5");
+		}
+
+	}
+
+	public class NumDragonsListener implements FocusListener {
+
+		@Override
+		public void focusGained(FocusEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			String s = numDragonsField.getText();
+			int n1=Integer.parseInt(s);
+
+			if(n1<(g1.getSize()/7)) {
+				g1.setNumber_dragons(n1);
+				g1.setBoard();
+			}
+			else JOptionPane.showMessageDialog(frame, "Number of dragons not valid, please enter " +
+					"a smaller number (smaller than (size/7))");				
 		}
 
 	}
