@@ -7,19 +7,23 @@ import javax.swing.*;
 import GameLogic.Game;
 
 import java.awt.event.*;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class OptionsMenu extends JPanel {
 
 	private JButton back_button;
-	private JTextField sizeField;
 	private JLabel sizeLabel;
-	private JTextField numDragonsField;
 	private JLabel numDragonsLabel;
 	private JCheckBox movingOption;
 	private JCheckBox sleepingOption;
+	
+	private int size = 10;
+	private int numberDrags = 1;
 
 	private Game g1;
 	private MazeGameGUI frame;
+	private JSpinner spinner_1;
 
 	public OptionsMenu(Game currentGame,MazeGameGUI window) {
 		setBackground(Color.CYAN);
@@ -34,20 +38,37 @@ public class OptionsMenu extends JPanel {
 		add(OPTIONS);
 
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
 		btnCancel.setBounds(242, 200, 119, 42);
 		add(btnCancel);
+		
+		final JSpinner spinner = new JSpinner();
+		spinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				size = (int) spinner.getValue();
+				g1.setSize(size+2);
+		}
+		});
+		spinner.setModel(new SpinnerNumberModel(11, 5, 51, 2));
+		spinner.setBounds(252, 69, 56, 20);
+		add(spinner);
+		
+		spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+		spinner_1.setBounds(252, 94, 56, 20);
+		add(spinner_1);
 	}
 
 	public void createWidgets(){ 
 		back_button = new JButton("Save & Back");
 		back_button.setBounds(100, 200, 126, 42);
 		back_button.addActionListener(new BackListener());
-		sizeField = new JTextField();
-		sizeField.setBounds(283, 69, 34, 20);
 		sizeLabel = new JLabel("Size of maze");
 		sizeLabel.setBounds(112, 72, 126, 14);
-		numDragonsField  = new JTextField();
-		numDragonsField.setBounds(283, 94, 34, 20);
 		numDragonsLabel = new JLabel("Number of dragons");
 		numDragonsLabel.setBounds(112, 97, 130, 14);
 		movingOption = new JCheckBox("Moving dragons");
@@ -56,9 +77,6 @@ public class OptionsMenu extends JPanel {
 		sleepingOption = new JCheckBox("Sleeping dragons");
 		sleepingOption.setBackground(Color.CYAN);
 		sleepingOption.setBounds(112, 154, 174, 23);
-
-		sizeField.addFocusListener(new SizeListener());
-		numDragonsField.addFocusListener(new NumDragonsListener());
 		movingOption.addItemListener(new OptionsListener());
 		sleepingOption.addItemListener(new OptionsListener());
 	}
@@ -67,9 +85,7 @@ public class OptionsMenu extends JPanel {
 	public void addWidgets (Container cont) {
 		setLayout(null);
 		cont.add(sizeLabel);
-		cont.add(sizeField);		
 		cont.add(numDragonsLabel);
-		cont.add(numDragonsField);
 		cont.add(movingOption);
 		cont.add(sleepingOption);
 		cont.add(back_button);
@@ -81,52 +97,6 @@ public class OptionsMenu extends JPanel {
 			frame.disableAll();
 			frame.getMainMenu().setVisible(true);
 		}
-	}
-
-	public class SizeListener implements FocusListener {
-
-		@Override
-		public void focusGained(FocusEvent arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void focusLost(FocusEvent arg0) {
-			String s = sizeField.getText();
-			int n1=Integer.parseInt(s);
-
-			if( n1>=5 && n1%2!=0){
-				g1.setSize(n1);
-			}
-
-			else  JOptionPane.showMessageDialog(frame, "Size of board not accepted, please enter an " +
-					"odd number bigger than 5");
-		}
-
-	}
-
-	public class NumDragonsListener implements FocusListener {
-
-		@Override
-		public void focusGained(FocusEvent arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void focusLost(FocusEvent arg0) {
-			String s = numDragonsField.getText();
-			int n1=Integer.parseInt(s);
-
-			if(n1<(g1.getSize()/7)) {
-				g1.setNumber_dragons(n1);
-				g1.setBoard();
-			}
-			else JOptionPane.showMessageDialog(frame, "Number of dragons not valid, please enter " +
-					"a smaller number (smaller than (size/7))");				
-		}
-
 	}
 
 	public class OptionsListener implements ItemListener {

@@ -129,18 +129,21 @@ public class MazeBuilder {
 				else if(r==1) {i=2; j=r1; if(!field[i+1][j].equals("X")) a=true;}
 				else if(r==2) {i=r1; j=2; if(!field[i][j+1].equals("X")) a=true;}
 				else {i=r1; j=n-1; if(!field[i][j-1].equals("X")) a=true;}
-
+				
 				Sx=i;
 				Sy=j;
+				
+				field[Sx][Sy]= "S";
 			}
 		}
 		
 		else if(n==1) {
 			Sx = 5;
 			Sy = 9;
+			finalField[Sx][Sy]= "S";
 		}
 
-		finalField[Sx][Sy]= "S";
+		
 	}
 	
 	public void removeBorders(int n) {
