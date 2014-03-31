@@ -61,8 +61,6 @@ public class Game {
 			board.getEg().setdY(board.getS().getY());
 		}
 		
-		
-
 		if(movingDragons) {
 			// mover dragoes
 			for(int i = 0 ; i < board.getDragons().length ; i++) {
@@ -120,7 +118,9 @@ public class Game {
 	}
 	
 	public boolean won() {
-		if(board.getH().getSymb()=="A" && board.getH().getX()==board.getSx() && board.getH().getY()==board.getSy())
+		if(board.getH().getSymb() == "A" && 
+				board.getH().getX() == board.getSx() 
+				&& board.getH().getY() == board.getSy())
 			return true;
 		return false;
 	}

@@ -66,17 +66,13 @@ public class MainMenu extends JPanel {
 			if(arg0.getSource()==options_button) {
 				frame.disableAll();
 				frame.getOptions().setVisible(true);
-				
 			}
 			if(arg0.getSource()==play_button) {
 				frame.disableAll();
 				frame.setMazePanel(new MazePanel(g1, frame));
 				frame.add(frame.getMazePanel());
 				frame.getMazePanel().setVisible(true);
-				frame.getMazePanel().requestFocusInWindow();
-
-
-								
+				frame.getMazePanel().requestFocusInWindow();								
 			}
 		}
 	}

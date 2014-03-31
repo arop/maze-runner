@@ -3,26 +3,26 @@ package GameLogic;
 import java.util.Stack;
 
 public class MazeBuilder {
-	
+
 	private int Sx ;
 	private int Sy ;
-	
+
 	private String[][] finalField=	
 		{{"X","X","X","X","X","X","X","X","X","X"},
-		{"X"," "," "," "," "," "," "," "," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," "," "," "," "," "," ","X"," ","S"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," ","X"," ","X"," ","X"},
-		{"X"," ","X","X"," "," "," "," "," ","X"},
-		{"X","X","X","X","X","X","X","X","X","X"}};
-	
-	
+			{"X"," "," "," "," "," "," "," "," ","X"},
+			{"X"," ","X","X"," ","X"," ","X"," ","X"},
+			{"X"," ","X","X"," ","X"," ","X"," ","X"},
+			{"X"," ","X","X"," ","X"," ","X"," ","X"},
+			{"X"," "," "," "," "," "," ","X"," ","S"},
+			{"X"," ","X","X"," ","X"," ","X"," ","X"},
+			{"X"," ","X","X"," ","X"," ","X"," ","X"},
+			{"X"," ","X","X"," "," "," "," "," ","X"},
+			{"X","X","X","X","X","X","X","X","X","X"}};
+
+
 	private String[][] field;
-	
-	
+
+
 	MazeBuilder(int n) {
 		if(n>5) {
 			field = new String[n+2][n+2] ;
@@ -39,11 +39,8 @@ public class MazeBuilder {
 				}
 			}
 			makePath(n);
-			makeExit(n);
 			removeBorders(n);
-
 		}
-		
 		makeExit(n);
 	}
 
@@ -111,40 +108,39 @@ public class MazeBuilder {
 			}
 		}
 	}
-	
+
 
 	void makeExit(int n) {
 		//"contrutor" do S(saida)
 		if(n>=5) {
+			n-=2;
 			int i,j, r1=2;
 			boolean a=false;
 			int r = (int) Math.round((Math.random()*4));
 
 			while(!a) {
-				while(r1==2 || r1==(n-1))
-					r1 = (int) (2 + (Math.random()*(n-4)));
+				while(r1==0 || r1==(n-1))
+					r1 = (int) (Math.random()*(n-1));
 
-				if(r==0){i=n-1; j=r1; if(!field[i-1][j].equals("X")) a=true;}
-				else if(r==1) {i=2; j=r1; if(!field[i+1][j].equals("X")) a=true;}
-				else if(r==2) {i=r1; j=2; if(!field[i][j+1].equals("X")) a=true;}
-				else {i=r1; j=n-1; if(!field[i][j-1].equals("X")) a=true;}
-				
+				if(r==0){i=n; j=r1; if(!field[i][j].equals("X")) a=true;}
+				else if(r==1) {i=0; j=r1; if(!field[i][j].equals("X")) a=true;}
+				else if(r==2) {i=r1; j=0; if(!field[i][j].equals("X")) a=true;}
+				else {i=r1; j=n; if(!field[i][j].equals("X")) a=true;}
+
 				Sx=i;
 				Sy=j;
-				
-				field[Sx][Sy]= "S";
+				finalField[Sx][Sy]= "S";
 			}
 		}
-		
+
 		else if(n==1) {
 			Sx = 5;
-			Sy = 9;
+			Sy = 9; 
 			finalField[Sx][Sy]= "S";
 		}
-
 		
 	}
-	
+
 	public void removeBorders(int n) {
 		finalField = new String[n-2][n-2];
 		for(int i = 2, j = 0; i < n; i++, j++){
@@ -153,7 +149,7 @@ public class MazeBuilder {
 			}
 		}
 	}
-	
+
 
 	public int getSx() {
 		return Sx;
