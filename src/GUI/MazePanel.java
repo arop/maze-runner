@@ -25,7 +25,7 @@ public class MazePanel extends JPanel {
 		frame = window;
 		
 		if(g1.getSize()-2 < 5) realSize = 10;
-		else realSize = g1.getSize()-2 ;
+		else realSize = g1.getSize()-2;
 		
 		GraphicBoard = new JPanel[realSize][realSize];
 
@@ -72,10 +72,6 @@ public class MazePanel extends JPanel {
 			else if(e.getKeyCode() == KeyEvent.VK_F) {
 				output = g1.Play("f");
 			}
-			else if(e.getKeyCode() == KeyEvent.VK_Q) {
-				output = g1.Play("q");
-			}
-			
 			else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				frame.disableAll();
 				setVisible(false);
@@ -146,8 +142,6 @@ public class MazePanel extends JPanel {
 				}
 
 				else GraphicBoard[i][j].setBackground(Color.WHITE);
-
-
 			}
 		}
 	}

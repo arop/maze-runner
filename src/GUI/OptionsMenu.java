@@ -18,7 +18,7 @@ public class OptionsMenu extends JPanel {
 	private JCheckBox movingOption;
 	private JCheckBox sleepingOption;
 	
-	private int size = 10;
+	private int size = 11;
 	private int numberDrags = 1;
 
 	private Game g1;
@@ -61,7 +61,7 @@ public class OptionsMenu extends JPanel {
 			}
 		});
 		
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 5, 1));
+		spinner_1.setModel(new SpinnerNumberModel(1, 1, 15, 1));
 		spinner_1.setBounds(252, 94, 56, 20);
 		add(spinner_1);
 	}

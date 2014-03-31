@@ -15,7 +15,6 @@ import java.awt.event.ActionEvent;
 public class GameMenu extends JPanel {
 		private Game g1;
 		private MazeGameGUI frame;
-		private JLabel lblMazeGame;
 
 		public GameMenu(Game currentGame,MazeGameGUI window) {
 			setBackground(Color.BLACK);
