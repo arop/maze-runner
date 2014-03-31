@@ -45,8 +45,8 @@ public class Board {
 
 		}
 
-		Sx = MazeBuilder.getSx();
-		Sy = MazeBuilder.getSy() ;
+		Sx = builder.getSx();
+		Sy = builder.getSy() ;
 		eg = new Eagle (h.getX(),h.getY());
 		
 
