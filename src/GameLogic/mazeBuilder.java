@@ -1,12 +1,11 @@
 package GameLogic;
 
-import java.util.Arrays;
 import java.util.Stack;
 
 public class MazeBuilder {
 	
-	private static int Sx ;
-	private static int Sy ;
+	private int Sx ;
+	private int Sy ;
 	
 	private String[][] finalField=	
 		{{"X","X","X","X","X","X","X","X","X","X"},
@@ -156,19 +155,19 @@ public class MazeBuilder {
 	}
 	
 
-	public static int getSx() {
+	public int getSx() {
 		return Sx;
 	}
 
-	public static void setSx(int sx) {
+	public void setSx(int sx) {
 		Sx = sx;
 	}
 
-	public static int getSy() {
+	public int getSy() {
 		return Sy;
 	}
 
-	public static void setSy(int sy) {
+	public void setSy(int sy) {
 		Sy = sy;
 	}
 
