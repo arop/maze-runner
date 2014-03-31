@@ -78,7 +78,6 @@ public class MazeGameGUI extends JFrame {
 //		mazePanel.setVisible(false);
 		mainMenu.setVisible(false);
 		options.setVisible(false);
-
 	}
 
 	
