@@ -1,9 +1,14 @@
 package GameLogic;
 
+import java.io.Serializable;
 import java.util.Stack;
 
-public class MazeBuilder {
+public class MazeBuilder implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8487919861009006442L;
 	private int Sx ;
 	private int Sy ;
 

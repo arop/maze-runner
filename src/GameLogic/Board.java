@@ -1,9 +1,14 @@
 package GameLogic;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Board {
+public class Board implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5843035626760272684L;
 	private MazeBuilder builder ;
 	private String[][] currentState ;
 	private  Hero h;

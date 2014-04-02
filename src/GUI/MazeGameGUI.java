@@ -10,6 +10,10 @@ import java.awt.CardLayout;
 
 public class MazeGameGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1271756560536221038L;
 	private MazePanel mazePanel;
 	private MainMenu mainMenu;
 	private OptionsMenu options;

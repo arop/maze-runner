@@ -1,6 +1,10 @@
 package GameLogic;
 
 public class Eagle extends Character {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3257329955375489783L;
 	private int dX = 0 ;
 	private int dY = 0 ;
 	private int iX = 0 ;

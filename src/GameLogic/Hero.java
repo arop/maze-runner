@@ -1,7 +1,11 @@
 package GameLogic;
 
-
 public class Hero extends Character {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5627871862645940010L;
 
 	public Hero(int X,int Y) {
 		super(X,Y);

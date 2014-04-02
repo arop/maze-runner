@@ -14,6 +14,10 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class GameMenu extends JPanel {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3085160492446725384L;
 		private Game g1;
 		private MazeGameGUI frame;
 

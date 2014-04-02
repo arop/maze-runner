@@ -4,6 +4,10 @@ import java.io.*;
 
 public class Game implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3959183976630237955L;
 	private Board board;
 	private int size ;
 	private int number_dragons = 1 ;
