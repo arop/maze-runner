@@ -104,7 +104,7 @@ public class OptionsMenu extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			frame.disableAll();
-			//g1.setNumber_dragons(numberDrags);
+			g1.setNumber_dragons(numberDrags);
 			g1.setSize(size+2);
 			frame.getMainMenu().setVisible(true);
 		}
