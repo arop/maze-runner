@@ -11,6 +11,7 @@ import GameLogic.Game;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class GameMenu extends JPanel {
 		private Game g1;
@@ -42,6 +43,16 @@ public class GameMenu extends JPanel {
 			add(btnNewButton);
 			
 			JButton btnNewButton_1 = new JButton("Save Game");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						g1.saveGame();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
 			btnNewButton_1.setBounds(161, 119, 141, 30);
 			add(btnNewButton_1);
 			
