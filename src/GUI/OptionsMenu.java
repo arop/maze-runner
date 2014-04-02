@@ -12,6 +12,10 @@ import javax.swing.event.ChangeEvent;
 
 public class OptionsMenu extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2263198567267112200L;
 	private JButton back_button;
 	private JLabel sizeLabel;
 	private JLabel numDragonsLabel;

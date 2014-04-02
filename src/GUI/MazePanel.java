@@ -13,19 +13,23 @@ import GameLogic.Game;
 
 public class MazePanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4524861054188045761L;
 	private JPanel GraphicBoard[][];
 	private Game g1;
 	private MazeGameGUI frame;
 	private int realSize;
-	
+
 	public MazePanel(Game currentGame, MazeGameGUI window) {
 
 		g1 = currentGame;
 		frame = window;
-		
+
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
-		
+
 		GraphicBoard = new JPanel[realSize][realSize];
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -43,8 +47,6 @@ public class MazePanel extends JPanel {
 		Play();
 		UpdateGraphicBoard();
 	}
-
-
 
 	public void Play() {
 		KeyListener listener = new MyKeyListener();

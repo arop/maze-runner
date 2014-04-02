@@ -11,6 +11,10 @@ import java.io.IOException;
 
 public class MainMenu extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7979274358212876062L;
 	private JButton new_game_button;
 	private JButton load_button;
 	private JButton options_button;
@@ -40,13 +44,17 @@ public class MainMenu extends JPanel {
 	public void createWidgets(){ 
 		new_game_button = new JButton("New Game");
 		new_game_button.setBounds(153, 88, 149, 53);
+		new_game_button.setFocusable(false);
 		load_button = new JButton("Load Game");
 		load_button.setBounds(153, 166, 149, 53);
+		load_button.setFocusable(false);
 		options_button = new JButton("Options");
 		options_button.setBounds(153, 244, 149, 53);
+		options_button.setFocusable(false);
 		quit_button = new JButton("Quit");
 		quit_button.setBounds(153, 322, 149, 53);
-
+		quit_button.setFocusable(false);
+		
 		quit_button.addActionListener(new MainMenuListener());
 		options_button.addActionListener(new MainMenuListener());
 		new_game_button.addActionListener(new MainMenuListener());

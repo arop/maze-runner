@@ -2,6 +2,10 @@ package GameLogic;
 
 public class Dragon extends Character {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8940307252439695340L;
 	private static boolean isSleeping;
 	
 	public boolean getSleeping() {return isSleeping;}

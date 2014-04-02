@@ -3,6 +3,10 @@ package GameLogic;
 
 public abstract class Character extends GameObject {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 756100146373153204L;
 	public Character(int x, int y) {
 		super(x,y);
 	}

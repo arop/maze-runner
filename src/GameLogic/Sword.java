@@ -1,12 +1,11 @@
 package GameLogic;
 
 public class Sword extends GameObject{
-//	public Sword(String[][] board) {
-//		super(board);
-//		setSymb("E");
-//	}
-	
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6936583830730831124L;
 
 	public Sword(int X, int Y) {
 		super(X,Y);

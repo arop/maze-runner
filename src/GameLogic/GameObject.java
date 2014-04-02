@@ -1,7 +1,13 @@
 package GameLogic;
 
-public class GameObject {
+import java.io.Serializable;
 
+public class GameObject implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9003288141673197317L;
 	protected int X ;
 	protected int Y ;
 	protected  String symbol ;
