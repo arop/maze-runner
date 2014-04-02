@@ -1,36 +1,53 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import GameLogic.Game;
 
-public class MazePanel extends JPanel {
+public class MazePanel extends JLabel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4524861054188045761L;
-	private JPanel GraphicBoard[][];
+	private JLabel GraphicBoard[][];
 	private Game g1;
 	private MazeGameGUI frame;
-	private int realSize;
-
-	public MazePanel(Game currentGame, MazeGameGUI window) {
+	private int realSize = 10;
+	private ImageIcon icon;
+	private ImageIcon ground;
+	private ImageIcon hero;
+	
+	
+	public MazePanel(Game currentGame, MazeGameGUI window){
 
 		g1 = currentGame;
 		frame = window;
+			
+		icon = new ImageIcon("Water.gif");
+		ground = new ImageIcon("ground.jpg");
+		hero = new ImageIcon("Hero.jpg");
+		
+		this.setIcon(icon);
 
+		
+		
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
-
-		GraphicBoard = new JPanel[realSize][realSize];
+		
+		GraphicBoard = new JLabel[realSize][realSize];
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new GridLayout(realSize,realSize));
@@ -38,7 +55,8 @@ public class MazePanel extends JPanel {
 
 		for (int i = 0 ; i < realSize; i++) {
 			for (int j = 0; j < realSize; j++) {
-				GraphicBoard[i][j] = new JPanel() ;
+				GraphicBoard[i][j] = new JLabel() ;
+				GraphicBoard[i][j].setOpaque(true);
 				this.add(GraphicBoard[i][j]);
 
 			}
@@ -47,6 +65,22 @@ public class MazePanel extends JPanel {
 		Play();
 		UpdateGraphicBoard();
 	}
+
+	
+
+//
+//	@Override
+//	protected void paintComponent(Graphics g) {
+//		// TODO Auto-generated method stub
+//	//	super.paintComponent(g);
+//		 
+//		
+//		g.drawImage(image, 0, 0, null);
+//		
+//	}
+
+
+
 
 	public void Play() {
 		KeyListener listener = new MyKeyListener();
@@ -78,6 +112,8 @@ public class MazePanel extends JPanel {
 				setVisible(false);
 				frame.getPaused().setVisible(true);
 			}
+			
+			
 
 			UpdateGraphicBoard();
 
@@ -115,34 +151,45 @@ public class MazePanel extends JPanel {
 
 	//TODO change color of specials (armado, sleeping dragons, etc)
 	public void UpdateGraphicBoard() {
+	
 
 		for (int i = 0 ; i < realSize; i++) {
 			for (int j = 0; j < realSize; j++) {
 
-				if(g1.getBoard().getCurrentState()[i][j].equals("X")) {
-					GraphicBoard[i][j].setBackground(Color.DARK_GRAY);
-				}
+				if (g1.getBoard().getCurrentState()[i][j].equals(" ")) {
+					GraphicBoard[i][j].setIcon(ground);
+					GraphicBoard[i][j].setOpaque(true);
 
+				}
+				else if(g1.getBoard().getCurrentState()[i][j].equals("X")) {
+					GraphicBoard[i][j].setBackground(Color.DARK_GRAY);
+					GraphicBoard[i][j].setOpaque(false);
+
+				}
 
 				else if (g1.getBoard().getCurrentState()[i][j].equals("E")) {
 					GraphicBoard[i][j].setBackground(Color.YELLOW);
-				}
 
+				}
 
 				else if (g1.getBoard().getCurrentState()[i][j].equals("H") || g1.getBoard().getCurrentState()[i][j].equals("A")) {
-					GraphicBoard[i][j].setBackground(Color.BLUE);
-				}
+					
+					GraphicBoard[i][j].setIcon(hero);
+					GraphicBoard[i][j].setOpaque(true);
 
+				}
 
 				else if (g1.getBoard().getCurrentState()[i][j].equals("D")) {
 					GraphicBoard[i][j].setBackground(Color.RED);
+
 				}
 
 				else if(g1.getBoard().getCurrentState()[i][j].equals("v") || g1.getBoard().getCurrentState()[i][j].equals("V")) {
 					GraphicBoard[i][j].setBackground(Color.GREEN);
+
 				}
 
-				else GraphicBoard[i][j].setBackground(Color.WHITE);
+				
 			}
 		}
 	}
