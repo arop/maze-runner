@@ -8,9 +8,6 @@ import javax.swing.JFrame;
 
 import java.awt.CardLayout;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 public class MazeGameGUI extends JFrame {
 
 	private MazePanel mazePanel;

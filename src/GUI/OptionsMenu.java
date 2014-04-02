@@ -38,6 +38,12 @@ public class OptionsMenu extends JPanel {
 		add(OPTIONS);
 
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.disableAll();
+				frame.getMainMenu().setVisible(true);	
+			}
+		});
 	
 		btnCancel.setBounds(242, 200, 119, 42);
 		add(btnCancel);
@@ -98,8 +104,7 @@ public class OptionsMenu extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			frame.disableAll();
-			g1.setSize(size+2);
-			g1.setNumber_dragons(numberDrags);
+			//g1.setNumber_dragons(numberDrags);
 			g1.setSize(size+2);
 			frame.getMainMenu().setVisible(true);
 		}

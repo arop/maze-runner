@@ -7,10 +7,12 @@ import javax.swing.*;
 import GameLogic.Game;
 
 import java.awt.event.*;
+import java.io.IOException;
 
 public class MainMenu extends JPanel {
 
-	private JButton play_button;
+	private JButton new_game_button;
+	private JButton load_button;
 	private JButton options_button;
 	private JButton quit_button;
 	private Game g1;
@@ -36,22 +38,26 @@ public class MainMenu extends JPanel {
 	}
 
 	public void createWidgets(){ 
-		play_button = new JButton("Play");
-		play_button.setBounds(153, 88, 149, 53);
+		new_game_button = new JButton("New Game");
+		new_game_button.setBounds(153, 88, 149, 53);
+		load_button = new JButton("Load Game");
+		load_button.setBounds(153, 166, 149, 53);
 		options_button = new JButton("Options");
-		options_button.setBounds(153, 166, 149, 53);
+		options_button.setBounds(153, 244, 149, 53);
 		quit_button = new JButton("Quit");
-		quit_button.setBounds(153, 244, 149, 53);
+		quit_button.setBounds(153, 322, 149, 53);
 
 		quit_button.addActionListener(new MainMenuListener());
 		options_button.addActionListener(new MainMenuListener());
-		play_button.addActionListener(new MainMenuListener());
+		new_game_button.addActionListener(new MainMenuListener());
+		load_button.addActionListener(new MainMenuListener());
 	}
 
 
 	public void addWidgets (Container cont) {
 		setLayout(null);
-		cont.add(play_button);
+		cont.add(new_game_button);
+		cont.add(load_button);
 		cont.add(options_button);
 		cont.add(quit_button);
 	}
@@ -67,7 +73,23 @@ public class MainMenu extends JPanel {
 				frame.disableAll();
 				frame.getOptions().setVisible(true);
 			}
-			if(arg0.getSource()==play_button) {
+			if(arg0.getSource()==load_button) {
+				try {
+					g1.loadGame();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				frame.disableAll();
+				frame.setMazePanel(new MazePanel(g1,frame));
+				frame.add(frame.getMazePanel());
+				frame.getMazePanel().setVisible(true);
+				frame.getMazePanel().requestFocusInWindow();
+			}
+			if(arg0.getSource()==new_game_button) {
 				frame.disableAll();
 				frame.setMazePanel(new MazePanel(g1, frame));
 				frame.add(frame.getMazePanel());

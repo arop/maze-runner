@@ -122,23 +122,22 @@ public class MazeBuilder {
 				while(r1==0 || r1==(n-1))
 					r1 = (int) (Math.random()*(n-1));
 
-				if(r==0){i=n; j=r1; if(!field[i-1][j].equals("X")) a=true;}
-				else if(r==1) {i=0; j=r1; if(!field[i+1][j].equals("X")) a=true;}
-				else if(r==2) {i=r1; j=0; if(!field[i][j+1].equals("X")) a=true;}
-				else {i=r1; j=n; if(!field[i][j-1].equals("X")) a=true;}
+				if(r==0){i=n-1; j=r1; if(!finalField[i-1][j].equals("X")) a=true;}
+				else if(r==1) {i=0; j=r1; if(!finalField[i+1][j].equals("X")) a=true;}
+				else if(r==2) {i=r1; j=0; if(!finalField[i][j+1].equals("X")) a=true;}
+				else {i=r1; j=n-1; if(!finalField[i][j-1].equals("X")) a=true;}
 
 				Sx=i;
-				Sy=j;
-				finalField[Sx][Sy]= "S";
+				Sy=j;		
 			}
 		}
 
 		else if(n==1) {
 			Sx = 5;
 			Sy = 9; 
-			finalField[Sx][Sy]= "S";
 		}
 		
+		finalField[Sx][Sy]= "S";
 	}
 
 	public void removeBorders(int n) {

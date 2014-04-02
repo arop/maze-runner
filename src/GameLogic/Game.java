@@ -1,6 +1,8 @@
 package GameLogic;
 
-public class Game {
+import java.io.*;
+
+public class Game implements Serializable {
 
 	private Board board;
 	private int size ;
@@ -135,4 +137,26 @@ public class Game {
 	public int getSize() {return size;}
 	public void setBoard() {board = new Board(size,number_dragons); }
 	public void setSize(int size) {this.size=size; setBoard();}
+	
+	public void saveGame() throws IOException {
+		FileOutputStream saveFile = new FileOutputStream("saveFile.sav");
+		ObjectOutputStream save = new ObjectOutputStream(saveFile);
+		save.writeObject(this);
+		save.close();
+	}
+	
+	public void loadGame() throws IOException, ClassNotFoundException {
+		FileInputStream saveFile = new FileInputStream("saveFile.sav");
+		ObjectInputStream restore = new ObjectInputStream(saveFile);
+		Game g = new Game();
+		g = (Game) restore.readObject();
+		
+		this.board = g.board;
+		this.movingDragons=g.movingDragons;
+		this.number_dragons=g.number_dragons;
+		this.size=g.size;
+		this.sleepingDragons=g.sleepingDragons;
+		
+		restore.close();
+	}
 }
