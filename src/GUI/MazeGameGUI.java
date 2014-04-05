@@ -39,7 +39,6 @@ public class MazeGameGUI extends JFrame {
 		this.setFocusable(true);
 		
 		g1 = new Game() ;
-		g1.setBoard();
 				
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
