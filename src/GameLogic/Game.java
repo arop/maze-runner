@@ -24,17 +24,17 @@ public class Game implements Serializable {
 
 	// RETURN VALUES: 0-keeps playing, 1-quit, 2-dead, 3-won
 	public int Play(String input, String input2) {
-	
+
 		//sair do jogo
 		if (input.equals("q")) return 1;
 
 		//mover heroi
 		board.getH().move(board,input);
-		
+
 		//morrer aguia?
 		if(board.getEg().getStatus()) characterDies(board.getEg());
-		
-		
+
+
 		//mover aguia
 		if(board.getEg().getStatus() ) board.getEg().move(board, input);
 		else {
@@ -48,14 +48,14 @@ public class Game implements Serializable {
 			board.getEg().setdX(board.getEg().getiX());
 			board.getEg().setdY(board.getEg().getiY());
 		}
-		
+
 		//verificar se heroi apanhou a espada/aguia
 		if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
 			board.getH().setSymb("A") ;
 			board.getS().disable() ;
 			board.getEg().disable() ;
 		}
-	
+
 		//lancar aguia
 		if(input.equals("f") && board.getS().getStatus()  && !board.getEg().getStatus()) {
 			board.getEg().reenable();
@@ -66,7 +66,7 @@ public class Game implements Serializable {
 			board.getEg().setdX(board.getS().getX());
 			board.getEg().setdY(board.getS().getY());
 		}
-		
+
 		if(movingDragons) {
 			// mover dragoes
 			for(int i = 0 ; i < board.getDragons().length ; i++) {
@@ -77,7 +77,7 @@ public class Game implements Serializable {
 				if(!board.getDragons()[i].getSleeping()) board.getDragons()[i].move(board,input2);
 			}
 		}
-		
+
 		//dragon protecting sword
 		boolean sProtected = false;
 		for(int i = 0 ; i < board.getDragons().length ; i++) {
@@ -87,25 +87,25 @@ public class Game implements Serializable {
 				break;
 			}
 		}
-		
+
 		if(!sProtected) board.getS().setSymb("E");
-		
-				
+
+
 		// update
 		board.UpdateBoard();
 
-		
+
 		// terminar jogo 
 		if(characterDies(board.getH())) {
 			board.UpdateBoard();
 			return 2;
 		}
-			
+
 		if(won()) return 3;
-		
+
 		return 0;
 	}
-	
+
 	public int Play(String input) {
 		return Play(input,null);
 	}
@@ -122,7 +122,7 @@ public class Game implements Serializable {
 		}
 		return false;
 	}
-	
+
 	public boolean won() {
 		if(board.getH().getSymb() == "A" && 
 				board.getH().getX() == board.getSx() 
@@ -141,26 +141,31 @@ public class Game implements Serializable {
 	public int getSize() {return size;}
 	public void setBoard() {board = new Board(size,number_dragons); }
 	public void setSize(int size) {this.size=size; setBoard();}
-	
+
 	public void saveGame() throws IOException {
-		FileOutputStream saveFile = new FileOutputStream("saveFile.sav");
-		ObjectOutputStream save = new ObjectOutputStream(saveFile);
-		save.writeObject(this);
-		save.close();
+		ObjectOutputStream os = null; 
+		try { 
+			os = new ObjectOutputStream(new FileOutputStream("saveFile.dat")); 
+			os.writeObject(this); 
+		} 
+		catch (IOException e) { } 
+		finally { if (os != null) os.close(); } 
 	}
-	
+
 	public void loadGame() throws IOException, ClassNotFoundException {
-		FileInputStream saveFile = new FileInputStream("saveFile.sav");
-		ObjectInputStream restore = new ObjectInputStream(saveFile);
 		Game g = new Game();
-		g = (Game) restore.readObject();
-		
+		ObjectInputStream is = null; 
+		try { 
+			is = new ObjectInputStream(new FileInputStream("saveFile.dat")); 
+			g = (Game) is.readObject(); 
+		} 
+		catch (IOException e) {} 
+		finally { if (is != null) is.close(); }
+
 		this.board = g.board;
 		this.movingDragons=g.movingDragons;
 		this.number_dragons=g.number_dragons;
 		this.size=g.size;
 		this.sleepingDragons=g.sleepingDragons;
-		
-		restore.close();
 	}
 }
