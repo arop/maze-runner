@@ -38,7 +38,7 @@ public class OptionsMenu extends JPanel {
 
 		JLabel OPTIONS = new JLabel("OPTIONS");
 		OPTIONS.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		OPTIONS.setBounds(183, 11, 103, 36);
+		OPTIONS.setBounds(172, 11, 103, 36);
 		add(OPTIONS);
 
 		JButton btnCancel = new JButton("Cancel");
@@ -49,7 +49,7 @@ public class OptionsMenu extends JPanel {
 			}
 		});
 	
-		btnCancel.setBounds(242, 200, 119, 42);
+		btnCancel.setBounds(296, 216, 114, 42);
 		add(btnCancel);
 		
 		final JSpinner spinner = new JSpinner();
@@ -74,11 +74,22 @@ public class OptionsMenu extends JPanel {
 		spinner_1.setModel(new SpinnerNumberModel(1, 1, 15, 1));
 		spinner_1.setBounds(252, 94, 56, 20);
 		add(spinner_1);
+		
+		JButton btnDefault = new JButton("Default");
+		btnDefault.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				g1.setSize(1);
+				g1.setNumber_dragons(1);
+				g1.setBoard();
+			}
+		});
+		btnDefault.setBounds(172, 216, 114, 42);
+		add(btnDefault);
 	}
 
 	public void createWidgets(){ 
 		back_button = new JButton("Save & Back");
-		back_button.setBounds(100, 200, 126, 42);
+		back_button.setBounds(52, 216, 114, 42);
 		back_button.addActionListener(new BackListener());
 		sizeLabel = new JLabel("Size of maze");
 		sizeLabel.setBounds(112, 72, 126, 14);
@@ -110,6 +121,7 @@ public class OptionsMenu extends JPanel {
 			frame.disableAll();
 			g1.setNumber_dragons(numberDrags);
 			g1.setSize(size+2);
+			g1.setBoard();
 			frame.getMainMenu().setVisible(true);
 		}
 	}
