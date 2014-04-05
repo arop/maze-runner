@@ -21,7 +21,7 @@ public class OptionsMenu extends JPanel {
 	private JLabel numDragonsLabel;
 	private JCheckBox movingOption;
 	private JCheckBox sleepingOption;
-	
+
 	private int size = 11;
 	private int numberDrags = 1;
 
@@ -48,10 +48,10 @@ public class OptionsMenu extends JPanel {
 				frame.getMainMenu().setVisible(true);	
 			}
 		});
-	
+
 		btnCancel.setBounds(296, 216, 114, 42);
 		add(btnCancel);
-		
+
 		final JSpinner spinner = new JSpinner();
 		spinner.setBackground(Color.LIGHT_GRAY);
 		spinner.addChangeListener(new ChangeListener() {
@@ -62,7 +62,7 @@ public class OptionsMenu extends JPanel {
 		spinner.setModel(new SpinnerNumberModel(11, 5, 51, 2));
 		spinner.setBounds(252, 69, 56, 20);
 		add(spinner);
-		
+
 		spinner_1 = new JSpinner();
 		spinner_1.setBackground(Color.LIGHT_GRAY);
 		spinner_1.addChangeListener(new ChangeListener() {
@@ -70,7 +70,7 @@ public class OptionsMenu extends JPanel {
 				numberDrags = (int) spinner_1.getValue();
 			}
 		});
-		
+
 		spinner_1.setModel(new SpinnerNumberModel(1, 1, 15, 1));
 		spinner_1.setBounds(252, 94, 56, 20);
 		add(spinner_1);

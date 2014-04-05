@@ -25,8 +25,6 @@ public class MazeGameGUI extends JFrame {
 			public void run() {
 				try {
 					MazeGameGUI frame = new MazeGameGUI();
-					
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -37,33 +35,33 @@ public class MazeGameGUI extends JFrame {
 
 	public MazeGameGUI() {
 		this.setFocusable(true);
-		
+
 		g1 = new Game() ;
-				
-		
+
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 500);
-		
+
 		this.getContentPane().setLayout(new CardLayout());
 		setBounds(100, 100, 500, 500);
 		setVisible(true);
-		
+
 		options = new OptionsMenu(g1, this) ;
 		this.add(options);
 		options.setVisible(false);
-		
+
 		paused = new GameMenu(g1, this) ;
 		this.add(paused);
 		paused.setVisible(false);
-		
+
 		mainMenu = new MainMenu(g1, this);
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
-	
-		
+
+
 	}
 
-	
+
 	public GameMenu getPaused() {
 		return paused;
 	}
@@ -75,13 +73,13 @@ public class MazeGameGUI extends JFrame {
 
 
 	public void disableAll() {
-//		mazePanel.setVisible(false);
+		//		mazePanel.setVisible(false);
 		mainMenu.setVisible(false);
 		options.setVisible(false);
 	}
 
-	
-	
+
+
 	public OptionsMenu getOptions() {
 		return options;
 	}

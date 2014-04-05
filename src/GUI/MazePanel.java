@@ -1,27 +1,23 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import GameLogic.Game;
 
 public class MazePanel extends JLabel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7836117138272018391L;
 	private JLabel GraphicBoard[][];
 	private Game g1;
 	private MazeGameGUI frame;
@@ -29,24 +25,24 @@ public class MazePanel extends JLabel {
 	private ImageIcon icon;
 	private ImageIcon ground;
 	private ImageIcon hero;
-	
-	
+
+
 	public MazePanel(Game currentGame, MazeGameGUI window){
 
 		g1 = currentGame;
 		frame = window;
-			
+
 		icon = new ImageIcon("Water.gif");
 		ground = new ImageIcon("ground.jpg");
 		hero = new ImageIcon("Hero.jpg");
-		
+
 		this.setIcon(icon);
 
-		
-		
+
+
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
-		
+
 		GraphicBoard = new JLabel[realSize][realSize];
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,23 +62,24 @@ public class MazePanel extends JLabel {
 		UpdateGraphicBoard();
 	}
 
-	
 
-//
-//	@Override
-//	protected void paintComponent(Graphics g) {
-//		// TODO Auto-generated method stub
-//	//	super.paintComponent(g);
-//		 
-//		
-//		g.drawImage(image, 0, 0, null);
-//		
-//	}
+
+	//
+	//	@Override
+	//	protected void paintComponent(Graphics g) {
+	//		// TODO Auto-generated method stub
+	//	//	super.paintComponent(g);
+	//		 
+	//		
+	//		g.drawImage(image, 0, 0, null);
+	//		
+	//	}
 
 
 
 
 	public void Play() {
+		System.out.println("size:"+g1.getSize() + " hero x: " + g1.getBoard().getH().getX()+ " hero y: " + g1.getBoard().getH().getY()) ;
 		KeyListener listener = new MyKeyListener();
 		this.addKeyListener(listener);
 	}
@@ -112,8 +109,6 @@ public class MazePanel extends JLabel {
 				setVisible(false);
 				frame.getPaused().setVisible(true);
 			}
-			
-			
 
 			UpdateGraphicBoard();
 
@@ -151,7 +146,7 @@ public class MazePanel extends JLabel {
 
 	//TODO change color of specials (armado, sleeping dragons, etc)
 	public void UpdateGraphicBoard() {
-	
+
 
 		for (int i = 0 ; i < realSize; i++) {
 			for (int j = 0; j < realSize; j++) {
@@ -173,7 +168,7 @@ public class MazePanel extends JLabel {
 				}
 
 				else if (g1.getBoard().getCurrentState()[i][j].equals("H") || g1.getBoard().getCurrentState()[i][j].equals("A")) {
-					
+
 					GraphicBoard[i][j].setIcon(hero);
 					GraphicBoard[i][j].setOpaque(true);
 
@@ -189,7 +184,7 @@ public class MazePanel extends JLabel {
 
 				}
 
-				
+
 			}
 		}
 	}
