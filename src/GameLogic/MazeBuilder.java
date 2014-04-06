@@ -29,7 +29,7 @@ public class MazeBuilder implements Serializable{
 
 
 	MazeBuilder(int n) {
-		if(n>5) {
+		if(n>=5) {
 			field = new String[n+2][n+2] ;
 			for( int i = 0 ; i < field.length ; i++){
 				for (int k = 0 ; k < field[i].length; k++){

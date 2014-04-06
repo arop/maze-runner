@@ -62,8 +62,9 @@ public class Board implements Serializable {
 		int tempx,tempy;
 		
 		do {
-			tempx = (int) (3 + (Math.random()*(builder.getField().length-6)));
-			tempy =  (int) (3 + (Math.random()*(builder.getField().length-6)));
+			System.out.println("PRESO NO WHILE");
+			tempx = (int) (1 + (Math.random()*(builder.getField().length-2)));
+			tempy =  (int) (1 + (Math.random()*(builder.getField().length-2)));
 		}while(!validPos(tempx,tempy));
 		
 		object.setX(tempx);
@@ -103,7 +104,7 @@ public class Board implements Serializable {
 	// TOOLS 
 	
 	public boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
-		if(x <= 1 || x >= builder.getField().length-2 || y <=1 || y >= builder.getField().length-2) return false ;
+		if(x <= 1 || x >= builder.getField().length-1 || y <=1 || y >= builder.getField().length-1) return false ;
 		if (currentState[x][y] == " ") return true;
 		return false;
 	}
