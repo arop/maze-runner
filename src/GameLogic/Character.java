@@ -20,11 +20,11 @@ public abstract class Character extends GameObject {
 	public void move(Board b, String input) {}
 
 	public void MoveUp (Board board) {
-		if(nextPosition(board,X-1,Y))	X-- ;	}
+		if(nextPosition(board,X-1,Y)) X--;}
 	public void MoveDown(Board board) {
-		if(nextPosition(board,X+1,Y)) X++ ; 	}
+		if(nextPosition(board,X+1,Y)) X++;}
 	public void MoveLeft(Board board) {
-		if(nextPosition(board,X,Y-1)) Y--; }
+		if(nextPosition(board,X,Y-1)) Y--;}
 	public void MoveRight(Board board) {
-		if(nextPosition(board,X,Y+1)) Y++ ; }
+		if(nextPosition(board,X,Y+1)) Y++;}
 }
