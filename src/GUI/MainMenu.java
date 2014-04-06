@@ -103,8 +103,10 @@ public class MainMenu extends JPanel {
 				frame.getMazePanel().requestFocusInWindow();
 			}
 			if(arg0.getSource()==new_game_button) {
+				if(g1.getBoard() == null) {
+					g1.setBoard();
+				}				
 				frame.disableAll();
-				g1.setBoard();
 				frame.setMazePanel(new MazePanel(g1, frame));
 				frame.add(frame.getMazePanel());
 				frame.getMazePanel().setVisible(true);
