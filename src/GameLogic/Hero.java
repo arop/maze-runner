@@ -29,6 +29,7 @@ public class Hero extends Character {
 	} 
 
 	public void move(Board b, String input) {
+		System.out.println("input move h:" +input);
 		if(input.equals("w")) MoveUp(b);
 		else if(input.equals("a")) MoveLeft(b);
 		else if(input.equals("d")) MoveRight(b);

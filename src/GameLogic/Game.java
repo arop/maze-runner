@@ -34,7 +34,7 @@ public class Game implements Serializable {
 		//morrer aguia?
 		if(board.getEg().getStatus()) characterDies(board.getEg());
 
-
+		
 		//mover aguia
 		if(board.getEg().getStatus() ) board.getEg().move(board, input);
 		else {
@@ -94,7 +94,6 @@ public class Game implements Serializable {
 		// update
 		board.UpdateBoard();
 
-
 		// terminar jogo 
 		if(characterDies(board.getH())) {
 			board.UpdateBoard();
@@ -145,6 +144,7 @@ public class Game implements Serializable {
 		board = new Board(size,number_dragons); }
 	public void setSize(int size) {this.size=size; setBoard();}
 
+	/*
 	public void saveGame() throws IOException {
 		ObjectOutputStream os = null; 
 		try { 
@@ -171,4 +171,5 @@ public class Game implements Serializable {
 		this.size=g.size;
 		this.sleepingDragons=g.sleepingDragons;
 	}
+	*/
 }

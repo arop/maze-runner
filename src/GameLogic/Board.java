@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 public class Board implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -18,7 +18,7 @@ public class Board implements Serializable {
 	private static int Sx ;
 	private static int Sy ;
 
-	
+
 	public Board(int n, int nDragons) {
 		builder = new MazeBuilder(n);
 		dragons = new Dragon[nDragons] ;	
@@ -47,50 +47,47 @@ public class Board implements Serializable {
 			drawObject(s);
 			dragons[0] = new Dragon(3,1);
 			drawObject(dragons[0]);
-
 		}
 
 		Sx = builder.getSx();
 		Sy = builder.getSy() ;
 		eg = new Eagle (h.getX(),h.getY());
-		
-
 	}
-		
+
 	//SET POSITIONS FOR OBJECTS AND ADD THEM
 	public void generateObject(GameObject object) {
 		int tempx,tempy;
-		
+
 		do {
 			System.out.println("PRESO NO WHILE");
 			tempx = (int) (1 + (Math.random()*(builder.getField().length-2)));
 			tempy =  (int) (1 + (Math.random()*(builder.getField().length-2)));
 		}while(!validPos(tempx,tempy));
-		
+
 		object.setX(tempx);
 		object.setY(tempy);
 	}
-	
+
 	public void drawObject(GameObject object) {
 		currentState[object.getX()][object.getY()] = object.getSymb();
 	}
-	
+
 	// UPDATE AND SHOW BOARD
-	
+
 	public void UpdateBoard() {
 		currentState = copy(builder.getField());
 		if(eg.getStatus())
-		drawObject(eg);
+			drawObject(eg);
 		drawObject(h);
 		if(s.getStatus())
-		drawObject(s);
-		
+			drawObject(s);
+
 		for (int i = 0; i < dragons.length ; i++) {
 			if(dragons[i].getStatus())
-			drawObject(dragons[i]);
+				drawObject(dragons[i]);
 		}
 	}
-	
+
 	public String toString() { 
 		String s="";
 		for (String[] line : currentState) {
@@ -100,26 +97,26 @@ public class Board implements Serializable {
 		}
 		return s;
 	}
-	
+
 	// TOOLS 
-	
+
 	public boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
 		if(x <= 1 || x >= builder.getField().length-1 || y <=1 || y >= builder.getField().length-1) return false ;
 		if (currentState[x][y] == " ") return true;
 		return false;
 	}
-	
+
 	public String[][] copy(String[][] input) { // DEEP COPY FUNCTION (double array of strings)
-	      String[][] target = new String[input.length][];
-	      for (int i=0; i <input.length; i++) {
-	        target[i] = Arrays.copyOf(input[i], input[i].length);
-	      }
-	      return target;
+		String[][] target = new String[input.length][];
+		for (int i=0; i <input.length; i++) {
+			target[i] = Arrays.copyOf(input[i], input[i].length);
+		}
+		return target;
 	}
-	
-	
+
+
 	//SETTERS AND GETTERS
-	
+
 	public String[][] getCurrentState() {
 		return currentState;
 	}
@@ -159,6 +156,4 @@ public class Board implements Serializable {
 	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
 	}
-
-
 }
