@@ -17,19 +17,19 @@ public class Hero extends Character {
 	}
 
 	public boolean nextPosition(Board board, int x, int y) {
-		if(board.getOriginalMaze()[x][y] == " " || board.getCurrentState()[x][y] == "E") 
+	
+		if(board.getOriginalMaze()[x][y].equals(" ") || board.getCurrentState()[x][y].equals( "E")) 
 			return true;
-		if(board.getOriginalMaze()[x][y] == " " && board.getCurrentState()[x][y] == "V")
+		if(board.getOriginalMaze()[x][y].equals(" ") && board.getCurrentState()[x][y].equals("V"))
 			return true;
 		
-		if(board.getCurrentState()[x][y] == "S" && symbol.equals("A"))
+		if(board.getCurrentState()[x][y].equals("S") && symbol.equals("A"))
 			return true;
 
 		return false;
 	} 
 
 	public void move(Board b, String input) {
-		System.out.println("input move h:" +input);
 		if(input.equals("w")) MoveUp(b);
 		else if(input.equals("a")) MoveLeft(b);
 		else if(input.equals("d")) MoveRight(b);

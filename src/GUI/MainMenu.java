@@ -87,7 +87,6 @@ public class MainMenu extends JPanel {
 			if(arg0.getSource()==load_button) {
 				try {
 					sg.loadGame();
-					System.out.println(sg.getGame().getSize());
 					g1=(Game) sg.getGame();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block

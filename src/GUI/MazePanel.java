@@ -79,7 +79,6 @@ public class MazePanel extends JLabel {
 
 
 	public void Play() {
-		System.out.println("size:"+g1.getSize() + " hero x: " + g1.getBoard().getH().getX()+ " hero y: " + g1.getBoard().getH().getY()) ;
 		KeyListener listener = new MyKeyListener();
 		this.addKeyListener(listener);
 	}
@@ -91,8 +90,6 @@ public class MazePanel extends JLabel {
 
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT){
 				output = g1.Play("d");
-				System.out.println("x"+g1.getBoard().getH().getX());
-				System.out.println("y"+g1.getBoard().getH().getY());
 			}
 			else if (e.getKeyCode() == KeyEvent.VK_UP){
 				output = g1.Play("w");
@@ -150,45 +147,35 @@ public class MazePanel extends JLabel {
 
 	//TODO change color of specials (armado, sleeping dragons, etc)
 	public void UpdateGraphicBoard() {
-
-
 		for (int i = 0 ; i < realSize; i++) {
 			for (int j = 0; j < realSize; j++) {
 
 				if (g1.getBoard().getCurrentState()[i][j].equals(" ")) {
 					GraphicBoard[i][j].setIcon(ground);
 					GraphicBoard[i][j].setOpaque(true);
-
 				}
 				else if(g1.getBoard().getCurrentState()[i][j].equals("X")) {
 					GraphicBoard[i][j].setBackground(Color.DARK_GRAY);
 					GraphicBoard[i][j].setOpaque(false);
-
 				}
 
 				else if (g1.getBoard().getCurrentState()[i][j].equals("E")) {
 					GraphicBoard[i][j].setBackground(Color.YELLOW);
-
 				}
 
 				else if (g1.getBoard().getCurrentState()[i][j].equals("H") || g1.getBoard().getCurrentState()[i][j].equals("A")) {
 
 					GraphicBoard[i][j].setIcon(hero);
 					GraphicBoard[i][j].setOpaque(true);
-
 				}
 
 				else if (g1.getBoard().getCurrentState()[i][j].equals("D")) {
 					GraphicBoard[i][j].setBackground(Color.RED);
-
 				}
 
 				else if(g1.getBoard().getCurrentState()[i][j].equals("v") || g1.getBoard().getCurrentState()[i][j].equals("V")) {
 					GraphicBoard[i][j].setBackground(Color.GREEN);
-
 				}
-
-
 			}
 		}
 	}
