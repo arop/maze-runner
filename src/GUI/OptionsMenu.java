@@ -78,8 +78,11 @@ public class OptionsMenu extends JPanel {
 		JButton btnDefault = new JButton("Default");
 		btnDefault.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				frame.disableAll();
 				g1.setNumber_dragons(1);
 				g1.setSize(1);
+				frame.getMainMenu().setVisible(true);
+
 
 			}
 		});
