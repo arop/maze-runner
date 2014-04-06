@@ -139,7 +139,10 @@ public class Game implements Serializable {
 	public void setSleepingDragons() {sleepingDragons=!sleepingDragons;}
 	public void setMovingDragons() {movingDragons=!movingDragons;}
 	public int getSize() {return size;}
-	public void setBoard() {board = new Board(size,number_dragons); }
+	public void setBoard() {
+		System.out.println("ENTROU NO SET BOARD");
+		
+		board = new Board(size,number_dragons); }
 	public void setSize(int size) {this.size=size; setBoard();}
 
 	public void saveGame() throws IOException {
