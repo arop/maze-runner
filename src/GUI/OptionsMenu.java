@@ -78,9 +78,9 @@ public class OptionsMenu extends JPanel {
 		JButton btnDefault = new JButton("Default");
 		btnDefault.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				g1.setSize(1);
 				g1.setNumber_dragons(1);
-				g1.setBoard();
+				g1.setSize(1);
+
 			}
 		});
 		btnDefault.setBounds(172, 216, 114, 42);
@@ -121,7 +121,6 @@ public class OptionsMenu extends JPanel {
 			frame.disableAll();
 			g1.setNumber_dragons(numberDrags);
 			g1.setSize(size+2);
-			g1.setBoard();
 			frame.getMainMenu().setVisible(true);
 		}
 	}
