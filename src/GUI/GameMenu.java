@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import GameLogic.Game;
+import GameLogic.SaveGame;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,8 +22,10 @@ public class GameMenu extends JPanel {
 	private static final long serialVersionUID = 3085160492446725384L;
 	private Game g1;
 	private MazeGameGUI frame;
+	public SaveGame sg;
 
 	public GameMenu(Game currentGame,MazeGameGUI window) {
+		sg = new SaveGame(null);
 		setBackground(Color.BLACK);
 		frame = window;
 		g1 = currentGame;
@@ -50,7 +54,8 @@ public class GameMenu extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					g1.saveGame();
+					sg.setGame(g1);
+					sg.saveGame();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

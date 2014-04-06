@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import GameLogic.Game;
+import GameLogic.SaveGame;
 
 import java.awt.event.*;
 import java.io.IOException;
@@ -22,8 +23,10 @@ public class MainMenu extends JPanel {
 	private Game g1;
 	private MazeGameGUI frame;
 	private JLabel lblMazeGame;
+	public SaveGame sg;
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
+		sg=new SaveGame(null);
 		setBackground(Color.BLACK);
 		frame = window;
 		g1 = currentGame;
@@ -83,7 +86,9 @@ public class MainMenu extends JPanel {
 			}
 			if(arg0.getSource()==load_button) {
 				try {
-					g1.loadGame();
+					sg.loadGame();
+					System.out.println(sg.getGame().getSize());
+					g1=(Game) sg.getGame();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -93,7 +98,6 @@ public class MainMenu extends JPanel {
 				}
 				frame.disableAll();
 				frame.setMazePanel(new MazePanel(g1,frame));
-				
 				frame.add(frame.getMazePanel());
 				frame.getMazePanel().setVisible(true);
 				frame.getMazePanel().requestFocusInWindow();

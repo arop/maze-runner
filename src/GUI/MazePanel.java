@@ -91,6 +91,8 @@ public class MazePanel extends JLabel {
 
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT){
 				output = g1.Play("d");
+				System.out.println("x"+g1.getBoard().getH().getX());
+				System.out.println("y"+g1.getBoard().getH().getY());
 			}
 			else if (e.getKeyCode() == KeyEvent.VK_UP){
 				output = g1.Play("w");
@@ -111,7 +113,9 @@ public class MazePanel extends JLabel {
 			}
 
 			UpdateGraphicBoard();
-
+			
+		
+			
 			switch(output) {
 			case 1: //quit
 				frame.disableAll();

@@ -17,7 +17,7 @@ public abstract class Character extends GameObject {
 
 	public abstract boolean nextPosition(Board board, int x, int y); 
 
-	public void move(Board b, String input) {	}
+	public void move(Board b, String input) {}
 
 	public void MoveUp (Board board) {
 		if(nextPosition(board,X-1,Y))	X-- ;	}
