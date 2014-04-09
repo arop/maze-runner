@@ -18,7 +18,7 @@ public class MazeGameGUI extends JFrame {
 	private MainMenu mainMenu;
 	private OptionsMenu options;
 	private GameMenu paused;
-	public Game g1; 	
+	public Game g1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

@@ -8,6 +8,7 @@ import GameLogic.Game;
 import GameLogic.SaveGame;
 
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 
 public class MainMenu extends JPanel {
@@ -20,13 +21,17 @@ public class MainMenu extends JPanel {
 	private JButton load_button;
 	private JButton options_button;
 	private JButton quit_button;
+	private JFileChooser fc;
 	private Game g1;
 	private MazeGameGUI frame;
 	private JLabel lblMazeGame;
 	public SaveGame sg;
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
-		sg=new SaveGame(null);
+		fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		sg=new SaveGame(null,null);
+
 		setBackground(Color.BLACK);
 		frame = window;
 		g1 = currentGame;
@@ -76,6 +81,7 @@ public class MainMenu extends JPanel {
 	public class MainMenuListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			boolean x = false;
 			if(arg0.getSource()==quit_button) {
 				setVisible(false);
 				System.exit(0);
@@ -86,8 +92,15 @@ public class MainMenu extends JPanel {
 			}
 			if(arg0.getSource()==load_button) {
 				try {
-					sg.loadGame();
-					g1=(Game) sg.getGame();
+					int returnVal = fc.showOpenDialog(MainMenu.this);
+					if (returnVal == JFileChooser.APPROVE_OPTION) {
+						File file = fc.getSelectedFile();
+						//This is where a real application would open the file.
+						sg.setFile(file);
+						sg.loadGame();
+						g1=(Game) sg.getGame();
+						x=true;
+					}
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -95,11 +108,13 @@ public class MainMenu extends JPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				frame.disableAll();
-				frame.setMazePanel(new MazePanel(g1,frame));
-				frame.add(frame.getMazePanel());
-				frame.getMazePanel().setVisible(true);
-				frame.getMazePanel().requestFocusInWindow();
+				if(x) {
+					frame.disableAll();
+					frame.setMazePanel(new MazePanel(g1,frame));
+					frame.add(frame.getMazePanel());
+					frame.getMazePanel().setVisible(true);
+					frame.getMazePanel().requestFocusInWindow();
+				}
 			}
 			if(arg0.getSource()==new_game_button) {
 				if(g1.getBoard() == null) {

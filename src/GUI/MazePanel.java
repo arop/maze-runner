@@ -62,22 +62,6 @@ public class MazePanel extends JLabel {
 		UpdateGraphicBoard();
 	}
 
-
-
-	//
-	//	@Override
-	//	protected void paintComponent(Graphics g) {
-	//		// TODO Auto-generated method stub
-	//	//	super.paintComponent(g);
-	//		 
-	//		
-	//		g.drawImage(image, 0, 0, null);
-	//		
-	//	}
-
-
-
-
 	public void Play() {
 		KeyListener listener = new MyKeyListener();
 		this.addKeyListener(listener);

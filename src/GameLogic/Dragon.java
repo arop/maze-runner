@@ -21,7 +21,7 @@ public class Dragon extends Character {
 	}
 	
 	public boolean nextPosition(Board board, int x, int y) {
-		if(board.getCurrentState()[x][y] == " " || board.getCurrentState()[x][y] == "E") 
+		if(board.getCurrentState()[x][y].equals(" ") || board.getCurrentState()[x][y].equals("E")) 
 			return true;
 		return false;
 	} 

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -13,6 +14,7 @@ import GameLogic.SaveGame;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 
 public class GameMenu extends JPanel {
@@ -22,10 +24,14 @@ public class GameMenu extends JPanel {
 	private static final long serialVersionUID = 3085160492446725384L;
 	private Game g1;
 	private MazeGameGUI frame;
+	private JFileChooser fc;
 	public SaveGame sg;
 
 	public GameMenu(Game currentGame,MazeGameGUI window) {
-		sg = new SaveGame(null);
+		sg = new SaveGame(null, null);
+		fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		
 		setBackground(Color.BLACK);
 		frame = window;
 		g1 = currentGame;
@@ -54,8 +60,14 @@ public class GameMenu extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					sg.setGame(g1);
-					sg.saveGame();
+					File file = null;
+					int returnVal = fc.showSaveDialog(GameMenu.this);
+					if (returnVal == JFileChooser.APPROVE_OPTION) {
+						file = fc.getSelectedFile();
+						sg.setFile(file);
+						sg.setGame(g1);
+						sg.saveGame();
+					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
