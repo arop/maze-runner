@@ -1,5 +1,6 @@
 package GameLogic;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,15 +9,17 @@ import java.io.ObjectOutputStream;
 
 public class SaveGame {
 	private Game g;
+	private File f;
 	
-	public SaveGame(Game game) {
+	public SaveGame(Game game, File f) {
 		g=game;
+		this.f=f;
 	}
 	
 	public void saveGame() throws IOException {
 		ObjectOutputStream os = null; 
 		try { 
-			os = new ObjectOutputStream(new FileOutputStream("saveFile.dat")); 
+			os = new ObjectOutputStream(new FileOutputStream(f)); 
 			os.writeObject(g); 
 		} 
 		catch (IOException e) { } 
@@ -27,7 +30,7 @@ public class SaveGame {
 		Game g = new Game();
 		ObjectInputStream is = null; 
 		try { 
-			is = new ObjectInputStream(new FileInputStream("saveFile.dat")); 
+			is = new ObjectInputStream(new FileInputStream(f)); 
 			g = (Game) is.readObject(); 
 		} 
 		catch (IOException e) {} 
@@ -37,5 +40,7 @@ public class SaveGame {
 	}
 	
 	public Game getGame() {return g;}
+	public File getFile() {return f;}
 	public void setGame(Game game) {this.g=game;}
+	public void setFile(File f) {this.f=f;}
 }
