@@ -18,7 +18,11 @@ public class Board implements Serializable {
 	private static int Sx ;
 	private static int Sy ;
 
-
+	/** Construtor da classe Board;
+	 * 
+	 * @param n tamanho do labirinto
+	 * @param nDragons número de dragões
+	 */
 	public Board(int n, int nDragons) {
 		builder = new MazeBuilder(n);
 		dragons = new Dragon[nDragons] ;	
@@ -55,6 +59,10 @@ public class Board implements Serializable {
 	}
 
 	//SET POSITIONS FOR OBJECTS AND ADD THEM
+	/**
+	 * Gera os objetos do jogo numa posição válida
+	 * @param object objeto a ser gerado
+	 */
 	public void generateObject(GameObject object) {
 		int tempx,tempy;
 
@@ -68,12 +76,18 @@ public class Board implements Serializable {
 		object.setY(tempy);
 	}
 
+	/**
+	 * Desenha o objeto no Board
+	 * @param object Objeto a ser desenhado
+	 */
 	public void drawObject(GameObject object) {
 		currentState[object.getX()][object.getY()] = object.getSymb();
 	}
 
 	// UPDATE AND SHOW BOARD
-
+	/**
+	 * Atualiza do board e desenha-o 
+	 */
 	public void UpdateBoard() {
 		currentState = copy(builder.getField());
 		if(eg.getStatus())
@@ -88,6 +102,9 @@ public class Board implements Serializable {
 		}
 	}
 
+	/**
+	 * Cria uma String com o formato pretendido para o display do Board
+	 */
 	public String toString() { 
 		String s="";
 		for (String[] line : currentState) {
@@ -99,13 +116,22 @@ public class Board implements Serializable {
 	}
 
 	// TOOLS 
-
+	/**
+	 * Verifica se a posição é válida
+	 * @param x	Coordenada x
+	 * @param y	Coordenada y
+	 * @return	true se for válido, false se inválido
+	 */
 	public boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
 		if(x <= 1 || x >= builder.getField().length-1 || y <=1 || y >= builder.getField().length-1) return false ;
 		if (currentState[x][y].equals(" ")) return true;
 		return false;
 	}
-
+	/**
+	 * Faz uma cópia do array do Board (deep copy) 
+	 * @param input board em questão
+	 * @return retorna a cópia
+	 */
 	public String[][] copy(String[][] input) { // DEEP COPY FUNCTION (double array of strings)
 		String[][] target = new String[input.length][];
 		for (int i=0; i <input.length; i++) {
@@ -116,43 +142,87 @@ public class Board implements Serializable {
 
 
 	//SETTERS AND GETTERS
-
+	/**
+	 * 
+	 * @return Board no estado correto no momento em que é invocada a função
+	 */
 	public String[][] getCurrentState() {
 		return currentState;
 	}
-
+	/**
+	 * 
+	 * @return Labirinto sem os objetos
+	 */
 	public String[][] getOriginalMaze() {
 		return builder.getField();
 	}
-
+	/**
+	 * 
+	 * @return Heroi
+	 */
 	public Character getH() {
 		return h;
 	}
+	/**
+	 * Muda o heroi
+	 * @param h Heroi
+	 */
 	public void setH(Hero h) {
 		this.h = h;
 	}
-
+	/**
+	 * 
+	 * @return Espada
+	 */
 	public Sword getS() {
 		return s;
 	}
+	/**
+	 * Muda a espada
+	 * @param s Espada
+	 */
 	public void setS(Sword s) {
 		this.s = s;
 	}
+	/**
+	 * 
+	 * @return Aguia
+	 */
 	public Eagle getEg() {
 		return eg;
 	}
+	/**
+	 * Muda a aguia
+	 * @param eg Aguia
+	 */
 	public void setEg(Eagle eg) {
 		this.eg = eg;
 	}
+	/**
+	 * 
+	 * @return coordenada x da Saida
+	 */
 	public int getSx() {
 		return Sx ;
 	}
+	/**
+	 * 
+	 * @return coordenada y da saida
+	 */
 	public int getSy() {
 		return Sy ;
 	}
+	/**
+	 * 
+	 * @return array dos dragões
+	 */
 	public Dragon[] getDragons() {
 		return dragons;
 	}
+	/**
+	 * Muda o array de dragões
+	 * @param dragons array de dragões
+	 */
 	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
 	}

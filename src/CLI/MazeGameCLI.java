@@ -9,13 +9,13 @@ public class MazeGameCLI {
 	public static Game g1;
 
 	public static void main (String[] args) {
-		mainMenu() ;
+		mainMenu();
 		return;
 	}
 
 	public static void mainMenu() {
 		System.out.println(">>> MAZE GAME <<<");
-		System.out.println() ;
+		System.out.println();
 		System.out.println("1. Play Game");
 		System.out.println("2. Options");
 		System.out.println("3. Quit");
@@ -40,7 +40,7 @@ public class MazeGameCLI {
 		}
 
 		play();
-		
+
 		option.close();
 		System.exit(0);
 	}
@@ -71,9 +71,7 @@ public class MazeGameCLI {
 				myScanner.close();
 				return;
 			}
-			
 		}
-		
 	}
 
 	private static int optionsMenu() {
@@ -134,7 +132,7 @@ public class MazeGameCLI {
 				g1.setNumber_dragons(n1);
 			}
 
-			optionsMenu() ;
+			optionsMenu();
 			break;
 
 		case 3:
@@ -149,8 +147,7 @@ public class MazeGameCLI {
 					System.out.println("Dragons' moving mode is now enabled!\n");
 			}
 			break;
-			
-			
+
 		case 4:
 			if(g1 == null) {
 				System.out.println("You haven't chosen a board size yet!");
@@ -163,11 +160,10 @@ public class MazeGameCLI {
 					System.out.println("Dragons' sleeping mode is now enabled!\n");
 			}
 			break;
-		
+
 		case 5: 
 			return 1;
 		}
-		
 		return 1;
 	}
 

@@ -75,7 +75,7 @@ public class OptionsMenu extends JPanel {
 		spinner_1.setModel(new SpinnerNumberModel(1, 1, 15, 1));
 		spinner_1.setBounds(252, 94, 56, 20);
 		add(spinner_1);
-		
+
 		JButton btnDefault = new JButton("Default");
 		btnDefault.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -89,7 +89,7 @@ public class OptionsMenu extends JPanel {
 		});
 		btnDefault.setBounds(172, 216, 114, 42);
 		add(btnDefault);
-		
+
 		textField = new JTextField();
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -139,7 +139,6 @@ public class OptionsMenu extends JPanel {
 	}
 
 	public class OptionsListener implements ItemListener {
-
 		@Override
 		public void itemStateChanged(ItemEvent arg0) {
 			if(arg0.getSource()==movingOption) { 
@@ -152,6 +151,3 @@ public class OptionsMenu extends JPanel {
 
 	}
 }
-
-
-
