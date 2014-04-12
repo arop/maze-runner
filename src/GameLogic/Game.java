@@ -112,8 +112,8 @@ public class Game implements Serializable {
 	public boolean characterDies(Character p) {
 		for(int i = 0 ; i < board.getDragons().length ; i++){
 			if(Math.sqrt(Math.pow(p.getY()-board.getDragons()[i].getY(),2) + Math.pow(p.getX()-board.getDragons()[i].getX(),2))<=Math.sqrt(2)) {
-				if(p.getSymb() == "A") board.getDragons()[i].disable() ;
-				else if(board.getDragons()[i].getSymb()=="D"){
+				if(p.getSymb().equals("A")) board.getDragons()[i].disable() ;
+				else if(board.getDragons()[i].getSymb().equals("D")){
 					p.disable();
 					return true;
 				}
@@ -123,7 +123,7 @@ public class Game implements Serializable {
 	}
 
 	public boolean won() {
-		if(board.getH().getSymb() == "A" && 
+		if(board.getH().getSymb().equals("A") && 
 				board.getH().getX() == board.getSx() 
 				&& board.getH().getY() == board.getSy())
 			return true;

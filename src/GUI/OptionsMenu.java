@@ -28,6 +28,7 @@ public class OptionsMenu extends JPanel {
 	private Game g1;
 	private MazeGameGUI frame;
 	private JSpinner spinner_1;
+	private JTextField textField;
 
 	public OptionsMenu(Game currentGame,MazeGameGUI window) {
 		setBackground(Color.GRAY);
@@ -88,6 +89,15 @@ public class OptionsMenu extends JPanel {
 		});
 		btnDefault.setBounds(172, 216, 114, 42);
 		add(btnDefault);
+		
+		textField = new JTextField();
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		textField.setBounds(117, 295, 86, 20);
+		add(textField);
+		textField.setColumns(10);
 	}
 
 	public void createWidgets(){ 
