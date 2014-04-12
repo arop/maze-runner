@@ -27,7 +27,10 @@ public class MazeBuilder implements Serializable{
 
 	private String[][] field;
 
-
+	/**
+	 * Cria um labirinto
+	 * @param n Tamanho do labirinto
+	 */
 	MazeBuilder(int n) {
 		if(n>=5) {
 			field = new String[n+2][n+2] ;
@@ -48,12 +51,18 @@ public class MazeBuilder implements Serializable{
 		}
 		makeExit(n);
 	}
-
+	/**
+	 * 
+	 * @return Labirinto
+	 */
 	public String[][] getField() {
 		return finalField;
 	}
 
-
+	/**
+	 * Cria um labirinto aleatorio
+	 * @param n Tamanho do labirinto
+	 */
 	public void makePath(int n) {
 		int iX = (int) (3+(Math.random()*(n-5))) ;
 		int iY = (int) (3+(Math.random()*(n-5))) ;
@@ -114,7 +123,10 @@ public class MazeBuilder implements Serializable{
 		}
 	}
 
-
+	/**
+	 * Cria a saida do labirinto num local aleatorio  
+	 * @param n Tamanho do labirinto
+	 */
 	void makeExit(int n) {
 		//"contrutor" do S(saida)
 		if(n>=5) {
@@ -141,10 +153,13 @@ public class MazeBuilder implements Serializable{
 			Sx = 5;
 			Sy = 9; 
 		}
-		
+
 		finalField[Sx][Sy]= "S";
 	}
-
+	/**
+	 * Remove as bordas do labirinto (criadas na funcao MakePath)
+	 * @param n Tamanho do labirinto
+	 */
 	public void removeBorders(int n) {
 		finalField = new String[n-2][n-2];
 		for(int i = 2, j = 0; i < n; i++, j++){
@@ -154,21 +169,32 @@ public class MazeBuilder implements Serializable{
 		}
 	}
 
-
+	/**
+	 * 
+	 * @return coordenada x da saida
+	 */
 	public int getSx() {
 		return Sx;
 	}
-
+	/**
+	 * Modifica a coordenada x da saida 
+	 * @param sx
+	 */
 	public void setSx(int sx) {
 		Sx = sx;
 	}
-
+	/**
+	 * 
+	 * @return coordenada y da saida
+	 */
 	public int getSy() {
 		return Sy;
 	}
-
+	/**
+	 * Modifica a coordenada y da saida
+	 * @param sy coordenada y da saida
+	 */
 	public void setSy(int sy) {
 		Sy = sy;
 	}
-
 }
