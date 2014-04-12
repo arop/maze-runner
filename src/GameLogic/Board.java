@@ -102,7 +102,7 @@ public class Board implements Serializable {
 
 	public boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
 		if(x <= 1 || x >= builder.getField().length-1 || y <=1 || y >= builder.getField().length-1) return false ;
-		if (currentState[x][y] == " ") return true;
+		if (currentState[x][y].equals(" ")) return true;
 		return false;
 	}
 
