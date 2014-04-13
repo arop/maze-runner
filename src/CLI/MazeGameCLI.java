@@ -3,7 +3,12 @@ package CLI;
 import java.util.Scanner;
 
 import GameLogic.Game;
-
+/**
+ * MazeGameCLI.java - Esta classe tem como função mostrar o jogo na linha de comandos e estabelecer a ligação 
+ * entre o jogo e o utilizador através da interface mencionada
+ * @author André Pires, Filipe Gama
+ * @see Game
+ */
 public class MazeGameCLI { 
 
 	public static Game g1;
@@ -12,7 +17,10 @@ public class MazeGameCLI {
 		mainMenu();
 		return;
 	}
-
+	/**
+	 * Representa o menu principal do jogo, tendo a possibilidade de iniciar um novo jogo, de mudar de menu (para o
+	 * menu de opções) ou terminar o programa
+	 */
 	public static void mainMenu() {
 		System.out.println(">>> MAZE GAME <<<");
 		System.out.println();
@@ -44,7 +52,9 @@ public class MazeGameCLI {
 		option.close();
 		System.exit(0);
 	}
-
+	/**
+	 * Representa o jogo em si, fazendo as alterações necessárias consoante a interação com o utilizador
+	 */
 	private static void play() {
 		g1.setBoard();
 		Scanner myScanner = new Scanner(System.in);
@@ -73,7 +83,11 @@ public class MazeGameCLI {
 			}
 		}
 	}
-
+	/**
+	 * Representa o menu de opções, sendo elas a alteração do tamanho do labirinto, a quantidade de dragões,
+	 * a possibilidade destes se mexerem ou adormecerem
+	 * @return 
+	 */
 	private static int optionsMenu() {
 		System.out.println("> OPTIONS <");
 		System.out.println();

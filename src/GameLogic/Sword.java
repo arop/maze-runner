@@ -1,5 +1,9 @@
 package GameLogic;
-
+/**
+ * Sword.java - Esta classe representa a espada do jogo, podendo esta ser apanhada pelo heroi
+ * @author André Pires, Filipe Gama
+ * @see Hero, GameObject 
+ */
 public class Sword extends GameObject{
 
 	/**

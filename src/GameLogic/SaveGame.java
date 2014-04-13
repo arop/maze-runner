@@ -6,7 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
+/**
+ * SaveGame.java - Esta classe tem como função a gravação/carregamento dum jogo num ficheiro  
+ * @author André Pires, Filipe Gama
+ * @see Game
+ */
 public class SaveGame {
 	private Game g;
 	private File f;
