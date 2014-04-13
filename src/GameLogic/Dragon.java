@@ -1,5 +1,10 @@
 package GameLogic;
-
+/**
+ * Dragon.java - Esta classe representa um dragão individual, podendo este movimentar-se e adormecer
+ * Tem tambem a possibilidade de matar o Heroi do jogo
+ * @author André Pires, Filipe Gama
+ * @see Character
+ */
 public class Dragon extends Character {
 
 	/**

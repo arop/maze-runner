@@ -1,5 +1,10 @@
 package GameLogic;
-
+/**
+ * Hero.java - Esta classe pretende representar o heroi do jogo, sendo esta a personagem principal do jogo
+ * controlada pelo utilizador
+ * @author André Pires, Filipe Gama
+ * @see Character
+ */
 public class Hero extends Character {
 
 	/**

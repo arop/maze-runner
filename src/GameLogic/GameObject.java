@@ -1,7 +1,12 @@
 package GameLogic;
 
 import java.io.Serializable;
-
+/**
+ * GameObject.java - Esta classe simboliza um objeto do jogo, tendo este coordenadas no Board e
+ * uma função no jogo dependendo do objeto
+ * @author André Pires, Filipe Gama
+ * @see Board
+ */
 public class GameObject implements Serializable {
 
 	/**

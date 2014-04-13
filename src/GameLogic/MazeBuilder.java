@@ -2,7 +2,11 @@ package GameLogic;
 
 import java.io.Serializable;
 import java.util.Stack;
-
+/**
+ * MazeBuilder.java - Esta classe tem como objetivo a construção de um labirinto com um determinado tamanho
+ * podendo ser utilizado o labirinto pre-definido 
+ * @author André Pires, Filipe Gama
+ */
 public class MazeBuilder implements Serializable{
 
 	/**

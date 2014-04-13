@@ -1,5 +1,10 @@
 package GameLogic;
-
+/**
+ * Character.java - Esta classe simboliza uma personagem do jogo; As personagens são também objetos do
+ * jogo tendo a particularidade de se poderem movimentar 
+ * @author André Pires, Filipe Gama
+ * @see GameObject
+ */
 
 public abstract class Character extends GameObject {
 

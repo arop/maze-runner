@@ -1,5 +1,11 @@
 package GameLogic;
-
+/**
+ * Eagle.java - Esta classe representa a aguia do jogo, sendo que esta permanece junto do heroi ate ser 
+ * lançada por comando do mesmo, movimentando-se então em direção da espada, voltando, de seguida, para a posição
+ * onde foi lançada
+ * @author André Pires, Filipe Gama
+ * @see Character
+ */
 public class Eagle extends Character {
 	/**
 	 * 

@@ -2,9 +2,13 @@ package GameLogic;
 
 import java.io.Serializable;
 import java.util.Arrays;
-
+/**
+ * Board.java - Esta classe simboliza o board do jogo, isto é, o labirinto com todos os objetos do jogo;
+ * sendo eles o heroi, os dragoes, a espada e a aguia
+ * @author André Pires, Filipe Gama
+ *
+ */
 public class Board implements Serializable {
-
 	/**
 	 * 
 	 */

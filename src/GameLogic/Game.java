@@ -1,7 +1,16 @@
 package GameLogic;
 
 import java.io.*;
-
+/**
+ * Game.java - Esta classe simboliza o jogo, tendo como principais atributos um board, e o estado do proprio jogo, 
+ * nomeadamente, a quantidade de dragoes e se estes se podem movimentar/adormecer
+ * Esta classe contem a "função principal" do jogo [Play] que determina o que acontece no jogo dependendo da 
+ * interação do utilizador
+ * Sendo assim, o utilizador pode ganhar o jogo (quando, tendo a espada, chegar à saída) e perder o jogo (quando, não tendo 
+ * a espada, se aproxima dum dragão) 
+ * @author André Pires, Filipe Gama
+ * @see Board, GameObject
+ */
 public class Game implements Serializable {
 
 	/**
