@@ -135,13 +135,17 @@ public class MazeBuilder implements Serializable{
 		//"contrutor" do S(saida)
 		if(n>=5) {
 			n-=2;
-			int i,j, r1=2;
+			int i,j, r1=0;
 			boolean a=false;
-			int r = (int) Math.round((Math.random()*4));
-
+			int r;
+			
 			while(!a) {
-				while(r1==0 || r1==(n-1))
+				r = (int) Math.round((Math.random()*4));
+				System.out.println("r:"+r+"\n");
+				while(r1 == 0 || r1 == (n-1)) {
 					r1 = (int) (Math.random()*(n-1));
+					System.out.println("r1:" + r1 + "\n");
+				}
 
 				if(r==0){i=n-1; j=r1; if(!finalField[i-1][j].equals("X")) a=true;}
 				else if(r==1) {i=0; j=r1; if(!finalField[i+1][j].equals("X")) a=true;}
