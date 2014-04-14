@@ -10,7 +10,13 @@ import GameLogic.SaveGame;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * MainMenu.java - Esta classe representa o menu principal do jogo, tendo como opçoes: 1-"New game" que inicia
+ * um novo jogo, 2-"Load game" que da a possibilidade ao utilizador de retomar um jogo previamente guardado sendo 
+ * que abre uma nova janela onde o utilizador escolhe o ficheiro
+ * @author André Pires, Filipe Gama
+ *
+ */
 public class MainMenu extends JPanel {
 
 	/**
@@ -95,17 +101,14 @@ public class MainMenu extends JPanel {
 					int returnVal = fc.showOpenDialog(MainMenu.this);
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 						File file = fc.getSelectedFile();
-						//This is where a real application would open the file.
 						sg.setFile(file);
 						sg.loadGame();
 						g1=(Game) sg.getGame();
 						x=true;
 					}
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				if(x) {

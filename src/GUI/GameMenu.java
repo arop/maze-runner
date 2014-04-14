@@ -16,7 +16,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * GameMenu.java - Esta classe representa o menu de "pause" durante o jogo; é invocado quando esta a decorrer
+ * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume game" continuar o jogo,
+ * 2-"Save game" guardar o jogo (abrindo uma janela para escolher o nome e sitio onde guardar o ficheiro),
+ * 3-"Return to main menu" volta para o menu principal, 4-"Exit Game" termina o programa
+ * @author André Pires, Filipe Gama
+ *
+ */
 public class GameMenu extends JPanel {
 	/**
 	 * 
@@ -26,12 +33,16 @@ public class GameMenu extends JPanel {
 	private MazeGameGUI frame;
 	private JFileChooser fc;
 	public SaveGame sg;
-
+	/**
+	 * Construtor da classe GameMenu
+	 * @param currentGame do tipo Game, representa o jogo que esta a ser jogado naquele momento
+	 * @param window o menu pause é inserido neste parametro 
+	 */
 	public GameMenu(Game currentGame,MazeGameGUI window) {
 		sg = new SaveGame(null, null);
 		fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		
+
 		setBackground(Color.BLACK);
 		frame = window;
 		g1 = currentGame;
