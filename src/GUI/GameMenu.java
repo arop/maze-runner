@@ -21,8 +21,9 @@ import java.io.IOException;
  * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume game" continuar o jogo,
  * 2-"Save game" guardar o jogo (abrindo uma janela para escolher o nome e sitio onde guardar o ficheiro),
  * 3-"Return to main menu" volta para o menu principal, 4-"Exit Game" termina o programa
+ * Esta classe servira como um painel inserido na classe principal MazeGameGUI
  * @author André Pires, Filipe Gama
- *
+ * @see MazeGameGUI
  */
 public class GameMenu extends JPanel {
 	/**

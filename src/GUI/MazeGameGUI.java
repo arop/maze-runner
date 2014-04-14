@@ -7,7 +7,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import java.awt.CardLayout;
-
+/**
+ * MazeGameGUI.java - Classe principal do package, representando a janela utilizada com os menus inseridos nesta 
+ * @author André Pires, Filipe Gama
+ *
+ */
 public class MazeGameGUI extends JFrame {
 
 	/**
