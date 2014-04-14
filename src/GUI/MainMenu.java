@@ -14,8 +14,9 @@ import java.io.IOException;
  * MainMenu.java - Esta classe representa o menu principal do jogo, tendo como opçoes: 1-"New game" que inicia
  * um novo jogo, 2-"Load game" que da a possibilidade ao utilizador de retomar um jogo previamente guardado sendo 
  * que abre uma nova janela onde o utilizador escolhe o ficheiro
+ * Esta classe servira como um painel inserido na classe principal MazeGameGUI
  * @author André Pires, Filipe Gama
- *
+ * @see MazeGameGUI
  */
 public class MainMenu extends JPanel {
 

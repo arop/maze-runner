@@ -9,7 +9,12 @@ import GameLogic.Game;
 import java.awt.event.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-
+/**
+ * OptionsMenu.java - Esta classe representa o menu de opções, sendo que é possivel alterar o tamanho do labirinto,
+ * o numero de dragoes, a possibilidade dos dragoes adormecerem/moverem, e a mudança dos controlos do jogo
+ * @author André Pires, Filipe Gama
+ *
+ */
 public class OptionsMenu extends JPanel {
 
 	/**
@@ -148,6 +153,5 @@ public class OptionsMenu extends JPanel {
 				g1.setSleepingDragons();
 			}
 		}
-
 	}
 }
