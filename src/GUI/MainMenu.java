@@ -162,6 +162,17 @@ public class MainMenu extends JPanel {
 		panel_4.add(label_4);
 
 		JButton button_7 = new JButton("Editor");
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO ask size 
+				int s=7;
+				frame.disableAll();
+				frame.setMazeEditor(new MazeEditor(s, frame));
+				frame.getContentPane().add(frame.getEditor());
+				frame.getEditor().setVisible(true);
+				frame.getEditor().requestFocusInWindow();
+			}
+		});
 		panel_4.add(button_7);
 
 		JLabel label_5 = new JLabel();
@@ -186,11 +197,5 @@ public class MainMenu extends JPanel {
 
 		JLabel label_7 = new JLabel();
 		panel_5.add(label_7);
-
-
-
 	}
-
-
-
 }

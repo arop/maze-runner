@@ -22,6 +22,7 @@ public class MazeGameGUI extends JFrame {
 	private MainMenu mainMenu;
 	private OptionsMenu options;
 	private GameMenu paused;
+	private MazeEditor editor;
 	public Game g1;
 
 	public static void main(String[] args) {
@@ -49,7 +50,7 @@ public class MazeGameGUI extends JFrame {
 		this.getContentPane().setLayout(new CardLayout());
 		setBounds(100, 100, 500, 500);
 		setVisible(true);
-		
+
 
 		options = new OptionsMenu(g1, this) ;
 		this.add(options);
@@ -62,8 +63,10 @@ public class MazeGameGUI extends JFrame {
 		mainMenu = new MainMenu(g1,this);
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
-
-
+		
+		editor = new MazeEditor(17,this);
+		this.add(editor);
+		editor.setVisible(false);
 	}
 
 
@@ -107,5 +110,13 @@ public class MazeGameGUI extends JFrame {
 
 	public void setOptions(OptionsMenu options) {
 		this.options = options;
+	}
+	
+	public MazeEditor getEditor() {
+		return editor;
+	}
+	
+	public void setMazeEditor(MazeEditor ed) {
+		this.editor=ed;
 	}
 }

@@ -1,8 +1,10 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +21,6 @@ import GameLogic.Game;
  */
 public class MazeEditor extends JPanel {
 
-
 	private Game g1;
 	private MazeGameGUI frame;
 	private int realSize;
@@ -35,25 +36,39 @@ public class MazeEditor extends JPanel {
 	private BufferedImage Dragon_sleeping = creatImage("images/DragonSleeping.jpg");
 	private BufferedImage Eagle  =  creatImage("imagens/eagle.jpg");
 
-	public MazeEditor(Game currentGame, MazeGameGUI window){
-		g1 = currentGame;
+
+	public MazeEditor(int size,MazeGameGUI window) {
 		frame = window;
+		realSize=size;
+		g1 = new Game(size+2);
+		g1.setBoard();
 
-		if(g1.getSize()-2 < 5) realSize = 10;
-		else realSize = g1.getSize()-2;
+		for(int i=0; i<size;i++)
+			for(int j=0; j<size;j++){
+				g1.getBoard().changeCurrentMaze(i, j, "X");
+			}
 
-		Edit();
-		UpdateGraphicBoard();
+		this.setLayout(new GridLayout(size,size));
+		this.setBackground(Color.BLACK);
 
+		this.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				int n = (int) (e.getPoint().getX()/(frame.getWidth()/(realSize)));
+				int m = (int) (e.getPoint().getY()/(frame.getHeight()/(realSize+1)));
+
+				if(g1.getBoard().getCurrentState()[m][n].equals("X"))
+					g1.getBoard().changeCurrentMaze(m, n, " ");
+				else g1.getBoard().changeCurrentMaze(m, n, "X");
+
+				updateGraphicBoard();
+			}
+		});
+
+		updateGraphicBoard();
 	}
 
-
-	public void Edit() {
-		MouseListener listener = new MyMouseListener();
-		this.addMouseListener(listener);
-	}
-	
-	
 	private BufferedImage creatImage(String path) {
 		BufferedImage image = null;
 		try {                
@@ -62,48 +77,6 @@ public class MazeEditor extends JPanel {
 			// handle exception...
 		}
 		return image;
-	}
-
-	public class MyMouseListener implements MouseListener {
-
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-
-	
-	}
-
-
-	private void UpdateGraphicBoard() {
-		this.repaint();
-
 	}
 
 	@Override
@@ -122,34 +95,11 @@ public class MazeEditor extends JPanel {
 				else if(g1.getBoard().getCurrentState()[j][i].equals("X")) {
 					arg0.drawImage(Wall, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
 				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("E")) {
-					arg0.drawImage(sword, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50,50,null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("H")) {
-					arg0.drawImage(Hero, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("A")) {
-					arg0.drawImage(Hero_sword, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("D")) {
-					arg0.drawImage(Dragon_awake, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("t")) {
-					arg0.drawImage(Dragon_sleeping, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else if(g1.getBoard().getCurrentState()[j][i].equals("v") || g1.getBoard().getCurrentState()[j][i].equals("V")) {
-					arg0.drawImage(Eagle, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
 			}
 		}
-
 	}
 
+	private void updateGraphicBoard() {
+		this.repaint();
+	}
 }
-
