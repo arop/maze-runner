@@ -1,16 +1,13 @@
 package GUI;
 
 import java.awt.Graphics;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GameLogic.Game;
@@ -20,7 +17,7 @@ import GameLogic.Game;
  * @author André Pires, Filipe Gama
  * @see GameLogic.Board, GameLogic.Game
  */
-public class MazePanel extends JPanel {
+public class MazeEditor extends JPanel {
 
 
 	private Game g1;
@@ -38,18 +35,25 @@ public class MazePanel extends JPanel {
 	private BufferedImage Dragon_sleeping = creatImage("images/DragonSleeping.jpg");
 	private BufferedImage Eagle  =  creatImage("imagens/eagle.jpg");
 
-	public MazePanel(Game currentGame, MazeGameGUI window){
+	public MazeEditor(Game currentGame, MazeGameGUI window){
 		g1 = currentGame;
 		frame = window;
 
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
 
-		Play();
+		Edit();
 		UpdateGraphicBoard();
 
 	}
 
+
+	public void Edit() {
+		MouseListener listener = new MyMouseListener();
+		this.addMouseListener(listener);
+	}
+	
+	
 	private BufferedImage creatImage(String path) {
 		BufferedImage image = null;
 		try {                
@@ -60,68 +64,42 @@ public class MazePanel extends JPanel {
 		return image;
 	}
 
-	public class MyKeyListener implements KeyListener {
-		private int output ;
+	public class MyMouseListener implements MouseListener {
+
 		@Override
-		public void keyPressed(KeyEvent e) {
-
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-				output = g1.Play("d");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_UP){
-				output = g1.Play("w");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_DOWN){
-				output = g1.Play("s");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_LEFT){
-				output = g1.Play("a");
-			}
-			else if(e.getKeyCode() == KeyEvent.VK_F) {
-				output = g1.Play("f");
-			}
-			else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				frame.disableAll();
-				setVisible(false);
-				frame.getPaused().setVisible(true);
-			}
-
-			UpdateGraphicBoard();
-
-
-			switch(output) {
-			case 1: //quit
-				frame.disableAll();
-				frame.getMainMenu().setVisible(true);
-				break;
-			case 2: //dead
-				JOptionPane.showMessageDialog(frame, "You died!");
-
-				frame.disableAll();
-				frame.getMainMenu().setVisible(true);
-				break;
-			case 3: //won
-				JOptionPane.showMessageDialog(frame, "You won!");
-
-				frame.disableAll();
-				frame.getMainMenu().setVisible(true);
-				break;
-			}
-
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override
-		public void keyReleased(KeyEvent e) {}
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
 
 		@Override
-		public void keyTyped(KeyEvent e) {}
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+
+	
 	}
 
-
-	public void Play() {
-		KeyListener listener = new MyKeyListener();
-		this.addKeyListener(listener);
-	}
 
 	private void UpdateGraphicBoard() {
 		this.repaint();
@@ -160,14 +138,13 @@ public class MazePanel extends JPanel {
 				else if (g1.getBoard().getCurrentState()[j][i].equals("D")) {
 					arg0.drawImage(Dragon_awake, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
 				}
-				
+
+				else if (g1.getBoard().getCurrentState()[j][i].equals("t")) {
+					arg0.drawImage(Dragon_sleeping, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
+				}
 
 				else if(g1.getBoard().getCurrentState()[j][i].equals("v") || g1.getBoard().getCurrentState()[j][i].equals("V")) {
 					arg0.drawImage(Eagle, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-				
-				else {
-					arg0.drawImage(Dragon_sleeping, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
 				}
 			}
 		}
