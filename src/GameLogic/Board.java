@@ -240,4 +240,26 @@ public class Board implements Serializable {
 	public void changeCurrentMaze(int x, int y, String symbol) {
 		currentState[x][y]=symbol;
 	}
+
+	public void createBoardFromString(String[][] a, int numD) {
+		//TODO
+		int x=0;
+		Dragon[] d = new Dragon[numD];
+		
+		for(int i=0; i<a.length;i++)
+			for(int j=0; j<a.length;j++){
+				if(a[i][j].equals("H"))
+					setH(new Hero(i,j));
+				else if(a[i][j].equals("E"))
+					setS(new Sword(i,j));
+				else if(a[i][j].equals("D"))
+					d[x++]=new Dragon(i,j);
+				else if(a[i][j].equals("S")) {
+					Sx=i;
+					Sy=j;
+				}
+			}
+		
+		setDragons(d);
+	}
 }
