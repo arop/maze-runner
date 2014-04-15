@@ -1,8 +1,10 @@
 package GUI;
 
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -18,56 +20,54 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 
 
-public class MainMenu extends JPanel {
+public class MainMenu extends JLabel {
 
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7979274358212876062L;
-	
+	private JLabel panel_6;
 	private JFileChooser fc;
 	private Game g1;
 	private MazeGameGUI frame;
 	public SaveGame sg;
+	private BufferedImage title = creatImage("imagens/Title.gif");
+	private BufferedImage background = creatImage("imagens/mainMenuBackground.jpg");
+
 
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
-		setBackground(Color.BLACK);
+		setForeground(Color.WHITE);
+		setBackground(Color.WHITE);
 
 		setLayout(new BorderLayout(0, 0));
 		
 		frame = window;
 		g1 = currentGame;
 
-		JPanel panel = new JPanel();
+		JLabel panel = new JLabel();
 		panel.setBackground(Color.BLACK);
 		GridLayout gridlayout = new GridLayout(8,3);
 		gridlayout.setVgap(20);
 		panel.setLayout(gridlayout);
 		
-		JPanel panel_7 = new JPanel();
-		panel_7.setOpaque(false);
+		JLabel panel_7 = new JLabel();
 		panel.add(panel_7);
 
-		JPanel panel_6 = new JPanel();
+		panel_6 = new JLabel();
 		panel_6.setOpaque(false);
 		panel.add(panel_6);
 		panel_6.setLayout(new GridLayout(1,3));
+		
 
-		ImageIcon icon = new ImageIcon("Title.gif");
-		JLabel label_8 = new JLabel("");
-		label_8.setOpaque(false);
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setIcon(icon);
-		panel_6.add(label_8);
-
-		JPanel panel_1 = new JPanel();
+		JLabel panel_1 = new JLabel();
 		panel_1.setOpaque(false);
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(1, 3));
@@ -162,17 +162,6 @@ public class MainMenu extends JPanel {
 		panel_4.add(label_4);
 
 		JButton button_7 = new JButton("Editor");
-		button_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO ask size 
-				int s=7;
-				frame.disableAll();
-				frame.setMazeEditor(new MazeEditor(s, frame));
-				frame.getContentPane().add(frame.getEditor());
-				frame.getEditor().setVisible(true);
-				frame.getEditor().requestFocusInWindow();
-			}
-		});
 		panel_4.add(button_7);
 
 		JLabel label_5 = new JLabel();
@@ -197,5 +186,30 @@ public class MainMenu extends JPanel {
 
 		JLabel label_7 = new JLabel();
 		panel_5.add(label_7);
+
+
+
 	}
+	
+	private BufferedImage creatImage(String path) {
+		BufferedImage image = null;
+		try {                
+			image = ImageIO.read(new File(path));
+		} catch (IOException ex) {
+			// handle exception...
+		}
+		return image;
+	}
+
+
+	@Override
+	protected void paintComponent(Graphics arg0) {
+		super.paintComponent(arg0);
+	//	arg0.drawImage(title,panel_7.getX(),panel_7.getY(),panel_7.getX()+title.getWidth(),panel_7.getY()+title.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
+		arg0.drawImage(background,0,0,this.getWidth(),this.getHeight(), 0, 0, background.getWidth(),background.getHeight(), null);
+		arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
+	}
+
+
+
 }
