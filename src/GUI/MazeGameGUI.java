@@ -49,6 +49,7 @@ public class MazeGameGUI extends JFrame {
 		this.getContentPane().setLayout(new CardLayout());
 		setBounds(100, 100, 500, 500);
 		setVisible(true);
+		
 
 		options = new OptionsMenu(g1, this) ;
 		this.add(options);
@@ -58,7 +59,7 @@ public class MazeGameGUI extends JFrame {
 		this.add(paused);
 		paused.setVisible(false);
 
-		mainMenu = new MainMenu(g1, this);
+		mainMenu = new MainMenu(g1,this);
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
 

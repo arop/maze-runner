@@ -1,103 +1,112 @@
 package GUI;
 
-import java.awt.*;
+import javax.swing.JPanel;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import GameLogic.Game;
 import GameLogic.SaveGame;
 
-import java.awt.event.*;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-/**
- * MainMenu.java - Esta classe representa o menu principal do jogo, tendo como opçoes: 1-"New game" que inicia
- * um novo jogo, 2-"Load game" que da a possibilidade ao utilizador de retomar um jogo previamente guardado sendo 
- * que abre uma nova janela onde o utilizador escolhe o ficheiro
- * Esta classe servira como um painel inserido na classe principal MazeGameGUI
- * @author André Pires, Filipe Gama
- * @see MazeGameGUI
- */
+
+
+
 public class MainMenu extends JPanel {
+
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7979274358212876062L;
-	private JButton new_game_button;
-	private JButton load_button;
-	private JButton options_button;
-	private JButton quit_button;
+	
 	private JFileChooser fc;
 	private Game g1;
 	private MazeGameGUI frame;
-	private JLabel lblMazeGame;
 	public SaveGame sg;
 
-	public MainMenu(Game currentGame,MazeGameGUI window) {
-		fc = new JFileChooser();
-		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		sg=new SaveGame(null,null);
 
+	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setBackground(Color.BLACK);
+
+		setLayout(new BorderLayout(0, 0));
+		
 		frame = window;
 		g1 = currentGame;
-		createWidgets();
-		addWidgets(this);
 
-		this.setPreferredSize(new Dimension(440, 357)); //change values
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		GridLayout gridlayout = new GridLayout(8,3);
+		gridlayout.setVgap(20);
+		panel.setLayout(gridlayout);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setOpaque(false);
+		panel.add(panel_7);
 
-		lblMazeGame = new JLabel("MAZE GAME");
-		lblMazeGame.setForeground(Color.RED);
-		lblMazeGame.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblMazeGame.setBounds(141, 11, 194, 58);
-		add(lblMazeGame);
+		JPanel panel_6 = new JPanel();
+		panel_6.setOpaque(false);
+		panel.add(panel_6);
+		panel_6.setLayout(new GridLayout(1,3));
 
-		this.setVisible(true);
-	}
+		ImageIcon icon = new ImageIcon("Title.gif");
+		JLabel label_8 = new JLabel("");
+		label_8.setOpaque(false);
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setIcon(icon);
+		panel_6.add(label_8);
 
-	public void createWidgets(){ 
-		new_game_button = new JButton("New Game");
-		new_game_button.setBounds(153, 88, 149, 53);
-		new_game_button.setFocusable(false);
-		load_button = new JButton("Load Game");
-		load_button.setBounds(153, 166, 149, 53);
-		load_button.setFocusable(false);
-		options_button = new JButton("Options");
-		options_button.setBounds(153, 244, 149, 53);
-		options_button.setFocusable(false);
-		quit_button = new JButton("Quit");
-		quit_button.setBounds(153, 322, 149, 53);
-		quit_button.setFocusable(false);
+		JPanel panel_1 = new JPanel();
+		panel_1.setOpaque(false);
+		panel.add(panel_1);
+		panel_1.setLayout(new GridLayout(1, 3));
 
-		quit_button.addActionListener(new MainMenuListener());
-		options_button.addActionListener(new MainMenuListener());
-		new_game_button.addActionListener(new MainMenuListener());
-		load_button.addActionListener(new MainMenuListener());
-	}
+		JLabel label_9 = new JLabel();
+		panel_1.add(label_9);
 
-
-	public void addWidgets (Container cont) {
-		setLayout(null);
-		cont.add(new_game_button);
-		cont.add(load_button);
-		cont.add(options_button);
-		cont.add(quit_button);
-	}
-
-	public class MainMenuListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			boolean x = false;
-			if(arg0.getSource()==quit_button) {
-				setVisible(false);
-				System.exit(0);
-			}
-			if(arg0.getSource()==options_button) {
+		JButton btnNewButton = new JButton("Start");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(g1.getBoard() == null) {
+					g1.setBoard();
+				}				
 				frame.disableAll();
-				frame.getOptions().setVisible(true);
+				frame.setMazePanel(new MazePanel(g1, frame));
+				frame.getContentPane().add(frame.getMazePanel());
+				frame.getMazePanel().setVisible(true);
+				frame.getMazePanel().requestFocusInWindow();	
 			}
-			if(arg0.getSource()==load_button) {
+		});
+		panel_1.add(btnNewButton);
+
+		JLabel label_10 = new JLabel();
+		panel_1.add(label_10);
+
+		add(panel, BorderLayout.CENTER);
+
+		JLabel panel_2 = new JLabel();
+		panel.add(panel_2);
+		panel_2.setLayout(new GridLayout(1, 3));
+
+		JLabel label = new JLabel();
+		label.setOpaque(false);
+		panel_2.add(label);
+
+		JButton btnLoad = new JButton("Load");
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean x = false;
 				try {
 					int returnVal = fc.showOpenDialog(MainMenu.this);
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -107,29 +116,81 @@ public class MainMenu extends JPanel {
 						g1=(Game) sg.getGame();
 						x=true;
 					}
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				}
 				if(x) {
 					frame.disableAll();
 					frame.setMazePanel(new MazePanel(g1,frame));
-					frame.add(frame.getMazePanel());
+					frame.getContentPane().add(frame.getMazePanel());
 					frame.getMazePanel().setVisible(true);
 					frame.getMazePanel().requestFocusInWindow();
 				}
 			}
-			if(arg0.getSource()==new_game_button) {
-				if(g1.getBoard() == null) {
-					g1.setBoard();
-				}				
+		});
+		panel_2.add(btnLoad);
+
+		JLabel label_1 = new JLabel();
+		panel_2.add(label_1);
+
+		JLabel panel_3 = new JLabel();
+		panel.add(panel_3);
+		panel_3.setLayout(new GridLayout(1, 3));
+
+		JLabel label_2 = new JLabel();
+		panel_3.add(label_2);
+
+		JButton button_6 = new JButton("Options");
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frame.disableAll();
-				frame.setMazePanel(new MazePanel(g1, frame));
-				frame.add(frame.getMazePanel());
-				frame.getMazePanel().setVisible(true);
-				frame.getMazePanel().requestFocusInWindow();								
+				frame.getOptions().setVisible(true);
 			}
-		}
+		});
+		panel_3.add(button_6);
+
+		JLabel label_3 = new JLabel();
+		panel_3.add(label_3);
+
+		JLabel panel_4 = new JLabel();
+		panel.add(panel_4);
+		panel_4.setLayout(new GridLayout(1, 3));
+
+		JLabel label_4 = new JLabel();
+		panel_4.add(label_4);
+
+		JButton button_7 = new JButton("Editor");
+		panel_4.add(button_7);
+
+		JLabel label_5 = new JLabel();
+		panel_4.add(label_5);
+
+		JLabel panel_5 = new JLabel();
+		panel.add(panel_5);
+		panel_5.setLayout(new GridLayout(1, 3));
+
+		JLabel label_6 = new JLabel();
+		panel_5.add(label_6);
+
+
+		JButton button_8 = new JButton("Exit");
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				System.exit(0);
+			}
+		});
+		panel_5.add(button_8);
+
+		JLabel label_7 = new JLabel();
+		panel_5.add(label_7);
+
+
+
 	}
+
+
+
 }
