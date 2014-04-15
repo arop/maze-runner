@@ -14,13 +14,13 @@ public class Board implements Serializable {
 	 */
 	private static final long serialVersionUID = -5843035626760272684L;
 	private MazeBuilder builder ;
-	private String[][] currentState ;
+	private String[][] currentState;
 	private  Hero h;
 	private  Dragon[] dragons;
 	private  Sword s;
 	private  Eagle eg;
-	private static int Sx ;
-	private static int Sy ;
+	private static int Sx;
+	private static int Sy;
 
 	/** Construtor da classe Board;
 	 * 
@@ -229,5 +229,15 @@ public class Board implements Serializable {
 	 */
 	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
+	}
+
+	/**
+	 * Este metodo serve para modificar um componente numa determinada coordenada
+	 * @param x coordenada x
+	 * @param y coordenada y
+	 * @param symbol Novo simbolo 
+	 */
+	public void changeCurrentMaze(int x, int y, String symbol) {
+		currentState[x][y]=symbol;
 	}
 }

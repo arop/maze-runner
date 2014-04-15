@@ -22,7 +22,6 @@ import GameLogic.Game;
  */
 public class MazePanel extends JPanel {
 
-
 	private Game g1;
 	private MazeGameGUI frame;
 	private int realSize;
@@ -87,7 +86,6 @@ public class MazePanel extends JPanel {
 			}
 
 			UpdateGraphicBoard();
-
 
 			switch(output) {
 			case 1: //quit
@@ -175,4 +173,3 @@ public class MazePanel extends JPanel {
 	}
 
 }
-
