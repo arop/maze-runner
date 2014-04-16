@@ -43,8 +43,8 @@ public class GameMenu extends JLabel implements ActionListener {
 	private JPanel panel_5 = new JPanel();
 	private PaintTools paintObj = new PaintTools();
 
-	private BufferedImage title = paintObj.creatImage("imagens/Title.gif");
-	private BufferedImage background = paintObj.creatImage("imagens/mainMenuBackground.jpg");
+	private BufferedImage title = paintObj.createImage("imagens/Title.gif");
+	private BufferedImage background = paintObj.createImage("imagens/mainMenuBackground.jpg");
 	/**
 	 * Construtor da classe GameMenu
 	 * @param currentGame do tipo Game, representa o jogo que esta a ser jogado naquele momento
