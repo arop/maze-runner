@@ -5,9 +5,16 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import GameLogic.Game;
-
+/**
+ * TestDragons.java - serve para testar se a classe Dragon (dragao) esta bem implementada e cumpre todas as funcionalidades
+ * @author André Pires, Filipe Gama
+ * @see Dragon
+ */
 public class TestDragons {
 
+	/**
+	 * Testa se o dragao se move corretamente
+	 */
 	@Test
 	public void MoveDragon() {
 
@@ -26,7 +33,9 @@ public class TestDragons {
 		assertEquals(posY,jogo.getBoard().getDragons()[0].getY());
 	}
 
-
+	/**
+	 * Testa se o dragao muda de simbolo em cima da espada
+	 */
 	@Test
 	public void DragonGetsSword() {
 
