@@ -72,7 +72,6 @@ public class Board implements Serializable {
 		int tempx,tempy;
 
 		do {
-			System.out.println("PRESO NO WHILE");
 			tempx = (int) (1 + (Math.random()*(builder.getField().length-2)));
 			tempy =  (int) (1 + (Math.random()*(builder.getField().length-2)));
 		}while(!validPos(tempx,tempy));

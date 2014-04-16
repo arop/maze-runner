@@ -1,5 +1,6 @@
 package GUI;
 
+
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
@@ -8,6 +9,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.Timer;
 
 import GameLogic.Game;
 import GameLogic.SaveGame;
@@ -27,7 +29,7 @@ import java.io.IOException;
  * @author André Pires, Filipe Gama
  * @see MazeGameGUI
  */
-public class MainMenu extends JLabel {
+public class MainMenu extends JLabel implements ActionListener {
 	private static final long serialVersionUID = -7979274358212876062L;
 	private JLabel panel_6;
 	private JFileChooser fc;
@@ -36,14 +38,27 @@ public class MainMenu extends JLabel {
 	public SaveGame sg;
 
 	private PaintTools paintObj = new PaintTools();
-	private BufferedImage title = paintObj.creatImage("imagens/Title.gif");
-	private BufferedImage background = paintObj.creatImage("imagens/mainMenuBackground.jpg");
+	private BufferedImage title = paintObj.createImage("imagens/Title.gif");
+	private BufferedImage background = paintObj.createImage("imagens/mainMenuBackground.jpg");
+	
+	private Timer animation;
+	private int delay = 50, totalFrames = 15, currentFrame = 0;
+	private BufferedImage imageArray[];
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
 		setBackground(Color.WHITE);
 		fc = new JFileChooser();
 		sg = new SaveGame(null,null);
+		
+		
+		imageArray = new BufferedImage[5];
+		for(int i = 0; i < imageArray.length; i++) {
+			imageArray[i] = paintObj.createImage("imagens/" + "Title" + i +".png");
+		}
+		animation = new Timer(delay,this);
+		animation.start();
+		
 
 		setLayout(new BorderLayout(0, 0));
 
@@ -206,7 +221,19 @@ public class MainMenu extends JLabel {
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
 		arg0.drawImage(background,0,0,this.getWidth(),this.getHeight(), 0, 0, background.getWidth(),background.getHeight(), null);
-		arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
+		if(currentFrame >= imageArray.length-1) {
+			currentFrame = 0;
+		}
+		currentFrame++;
+		//arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
+		arg0.drawImage(imageArray[currentFrame],this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		repaint();
 	}
 
 }
