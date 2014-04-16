@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.Font;
 /**
  * GameMenu.java - Esta classe representa o menu de "pause" durante o jogo; é invocado quando esta a decorrer
  * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume game" continuar o jogo,
@@ -82,6 +83,11 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_5.setBackground(Color.BLACK);
 		panel_5.setForeground(Color.WHITE);
 		panel.add(panel_5);
+		
+		JLabel lblNewLabel = new JLabel("GAME PAUSED");
+		lblNewLabel.setFont(new Font("Trajan Pro", Font.PLAIN, 27));
+		lblNewLabel.setForeground(Color.RED);
+		panel_5.add(lblNewLabel);
 
 
 		JPanel panel_2 = new JPanel();
