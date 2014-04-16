@@ -27,6 +27,7 @@ import java.awt.Choice;
 import java.awt.GridLayout;
 
 import javax.swing.JCheckBox;
+import java.awt.Color;
 
 public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	
@@ -44,6 +45,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	private int choice=0;
 	
 	public MazeEditor(Game currentGame,MazeGameGUI window)  {
+		setBackground(Color.BLACK);
 		g1 = currentGame;
 		frame = window;
 		customBoard = new Board(7,0);
@@ -55,9 +57,12 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		add(list, BorderLayout.WEST);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.BLACK);
 		add(panel_1, BorderLayout.SOUTH);
 		
 		JButton Play = new JButton("Play");
+		Play.setBackground(Color.BLACK);
+		Play.setForeground(Color.RED);
 		Play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				customBoard.createBoardFromString();
@@ -73,9 +78,13 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		panel_1.add(Play);
 		
 		JButton Save = new JButton("Save");
+		Save.setForeground(Color.RED);
+		Save.setBackground(Color.BLACK);
 		panel_1.add(Save);
 		
 		JButton btnNewButton_2 = new JButton("Cancel");
+		btnNewButton_2.setForeground(Color.RED);
+		btnNewButton_2.setBackground(Color.BLACK);
 		panel_1.add(btnNewButton_2);
 		
 		Board_label = new JLabel("");
@@ -87,9 +96,13 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		panel.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Maze Editor");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setBackground(Color.BLACK);
 		panel.add(lblNewLabel);
 		
 		final JSpinner spinner = new JSpinner();
+		spinner.setForeground(Color.WHITE);
+		spinner.setBackground(Color.DARK_GRAY);
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				customBoard = new Board((int) spinner.getValue(),0);
@@ -103,9 +116,13 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		panel.add(choice);
 		
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Sleeping Dragons");
+		chckbxNewCheckBox_1.setForeground(Color.RED);
+		chckbxNewCheckBox_1.setBackground(Color.BLACK);
 		panel.add(chckbxNewCheckBox_1);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Moving Dragons");
+		chckbxNewCheckBox.setForeground(Color.RED);
+		chckbxNewCheckBox.setBackground(Color.BLACK);
 		panel.add(chckbxNewCheckBox);
 		choice.add("Dragon");
 		choice.add("Wall");
