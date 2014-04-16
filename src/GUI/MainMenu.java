@@ -1,57 +1,52 @@
 package GUI;
 
-import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 import GameLogic.Game;
 import GameLogic.SaveGame;
 
-import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-
-
+/**
+ * MainMenu.java - Esta classe representa o menu principal do jogo, tendo como opçoes: 1-"Start" que inicia
+ * um novo jogo, 2-"Load" que da a possibilidade ao utilizador de retomar um jogo previamente guardado sendo 
+ * que abre uma nova janela onde o utilizador escolhe o ficheiro, 3-"Options" podendo aqui o utilizador mudar 
+ * alguns aspetos do jogo, 4-"Editor" onde se pode criar um labirinto, 5-"Exit" para sair do programa
+ * Esta classe servira como um painel inserido na classe principal MazeGameGUI
+ * @author André Pires, Filipe Gama
+ * @see MazeGameGUI
+ */
 public class MainMenu extends JLabel {
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7979274358212876062L;
 	private JLabel panel_6;
 	private JFileChooser fc;
 	private Game g1;
 	private MazeGameGUI frame;
 	public SaveGame sg;
-	
+
 	private PaintTools paintObj = new PaintTools();
 	private BufferedImage title = paintObj.creatImage("imagens/Title.gif");
 	private BufferedImage background = paintObj.creatImage("imagens/mainMenuBackground.jpg");
-
-
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
 		setBackground(Color.WHITE);
 		fc = new JFileChooser();
+		sg = new SaveGame(null,null);
 
 		setLayout(new BorderLayout(0, 0));
-		
+
 		frame = window;
 		g1 = currentGame;
 
@@ -60,7 +55,7 @@ public class MainMenu extends JLabel {
 		GridLayout gridlayout = new GridLayout(8,3);
 		gridlayout.setVgap(20);
 		panel.setLayout(gridlayout);
-		
+
 		JLabel panel_7 = new JLabel();
 		panel.add(panel_7);
 
@@ -68,7 +63,7 @@ public class MainMenu extends JLabel {
 		panel_6.setOpaque(false);
 		panel.add(panel_6);
 		panel_6.setLayout(new GridLayout(1,3));
-		
+
 
 		JLabel panel_1 = new JLabel();
 		panel_1.setOpaque(false);
@@ -205,20 +200,13 @@ public class MainMenu extends JLabel {
 
 		JLabel label_7 = new JLabel();
 		panel_5.add(label_7);
-
-
-
 	}
-
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
-	//	arg0.drawImage(title,panel_7.getX(),panel_7.getY(),panel_7.getX()+title.getWidth(),panel_7.getY()+title.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
 		arg0.drawImage(background,0,0,this.getWidth(),this.getHeight(), 0, 0, background.getWidth(),background.getHeight(), null);
 		arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
 	}
-
-
 
 }

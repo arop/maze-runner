@@ -216,33 +216,4 @@ public class Game implements Serializable {
 	 * @param size tamanho do board
 	 */
 	public void setSize(int size) {this.size=size; setBoard();}
-
-	/*
-	public void saveGame() throws IOException {
-		ObjectOutputStream os = null; 
-		try { 
-			os = new ObjectOutputStream(new FileOutputStream("saveFile.dat")); 
-			os.writeObject(this); 
-		} 
-		catch (IOException e) { } 
-		finally { if (os != null) os.close(); } 
-	}
-
-	public void loadGame() throws IOException, ClassNotFoundException {
-		Game g = new Game();
-		ObjectInputStream is = null; 
-		try { 
-			is = new ObjectInputStream(new FileInputStream("saveFile.dat")); 
-			g = (Game) is.readObject(); 
-		} 
-		catch (IOException e) {} 
-		finally { if (is != null) is.close(); }
-
-		this.board = g.board;
-		this.movingDragons=g.movingDragons;
-		this.number_dragons=g.number_dragons;
-		this.size=g.size;
-		this.sleepingDragons=g.sleepingDragons;
-	}
-	 */
 }

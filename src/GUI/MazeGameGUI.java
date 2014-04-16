@@ -10,15 +10,12 @@ import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 /**
- * MazeGameGUI.java - Classe principal do package, representando a janela utilizada com os menus inseridos nesta 
+ * MazeGameGUI.java - Classe principal do package, representando a janela utilizada, com os menus inseridos na mesma 
  * @author André Pires, Filipe Gama
  *
  */
 public class MazeGameGUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1271756560536221038L;
 	private MazePanel mazePanel;
 	private MainMenu mainMenu;
@@ -26,19 +23,27 @@ public class MazeGameGUI extends JFrame {
 	private GameMenu paused;
 	private MazeEditor editor;
 	private ArrayList<Integer> controls;
-	
+	/**
+	 * 
+	 * @return controlos escolhidos para o jogo
+	 */
 	public ArrayList<Integer> getControls() {
 		return controls;
 	}
 
-
+	/**
+	 * Modifica os controlos do jogo
+	 * @param controls novos controlos
+	 */
 	public void setControls(ArrayList<Integer> controls) {
 		this.controls = controls;
 	}
 
 	Game g1;
-	
-
+	/**
+	 * Funcao main do package
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,16 +56,19 @@ public class MazeGameGUI extends JFrame {
 		});
 	}
 
-
+	/**
+	 * Construtor da classe, criando a janela do programa e os diferentes paineis correspondentes aos 
+	 * diferentes menus
+	 */
 	public MazeGameGUI() {
 		this.setFocusable(true);
-		
+
 		controls = new ArrayList<Integer>() ;
 		controls.add(KeyEvent.VK_RIGHT);
 		controls.add(KeyEvent.VK_UP);
 		controls.add(KeyEvent.VK_DOWN);
 		controls.add(KeyEvent.VK_LEFT);
-		controls.add(KeyEvent.VK_BACK_SPACE);
+		controls.add(KeyEvent.VK_SPACE);
 
 		g1 = new Game() ;
 
@@ -84,61 +92,91 @@ public class MazeGameGUI extends JFrame {
 		mainMenu = new MainMenu(g1,this);
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
-		
+
 		editor = new MazeEditor(g1,this);
 		this.add(editor);
 		editor.setVisible(false);
 	}
-
+	/**
+	 * 
+	 * @return menu de pause
+	 */
 
 	public GameMenu getPaused() {
 		return paused;
 	}
 
-
+	/**
+	 * Modifica o menu de pause
+	 * @param paused novo menu
+	 */
 	public void setPaused(GameMenu paused) {
 		this.paused = paused;
 	}
 
-
+	/**
+	 * Muda a visibilidade dos menus para invisiveis
+	 */
 	public void disableAll() {
-		//		mazePanel.setVisible(false);
 		mainMenu.setVisible(false);
 		options.setVisible(false);
 		editor.setVisible(false);
 		paused.setVisible(false);
 	}
 
-
-
+	/**
+	 * 
+	 * @return menu de opçoes
+	 */
 	public OptionsMenu getOptions() {
 		return options;
 	}
-
+	/**
+	 * 
+	 * @return menu do jogo
+	 */
 	public MazePanel getMazePanel() {
 		return mazePanel;
 	}
-
+	/**
+	 * Modifica o menu do jogo
+	 * @param mazePanel novo menu
+	 */
 	public void setMazePanel(MazePanel mazePanel) {
 		this.mazePanel = mazePanel;
 	}
-
+	/**
+	 * 
+	 * @return menu principal
+	 */
 	public MainMenu getMainMenu() {
 		return mainMenu;
 	}
-
+	/**
+	 * Modifica o menu principal
+	 * @param mainMenu novo menu
+	 */
 	public void setMainMenu(MainMenu mainMenu) {
 		this.mainMenu = mainMenu;
 	}
-
+	/**
+	 * Modifica o menu de opçoes
+	 * @param options novo menu
+	 */
 	public void setOptions(OptionsMenu options) {
 		this.options = options;
 	}
-	
+	/**
+	 * 
+	 * @return menu de ediçao
+	 */
 	public MazeEditor getEditor() {
 		return editor;
 	}
-	
+	/**
+	 * Modifica o menu de ediçao
+	 * @param ed novo menu
+	 */
 	public void setMazeEditor(MazeEditor ed) {
 		this.editor=ed;
 	}

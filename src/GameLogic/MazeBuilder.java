@@ -7,11 +7,7 @@ import java.util.Stack;
  * podendo ser utilizado o labirinto pre-definido 
  * @author André Pires, Filipe Gama
  */
-public class MazeBuilder implements Serializable{
-
-	/**
-	 * 
-	 */
+public class MazeBuilder implements Serializable {
 	private static final long serialVersionUID = -8487919861009006442L;
 	private int Sx ;
 	private int Sy ;
