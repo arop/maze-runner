@@ -13,6 +13,8 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.BoxLayout;
@@ -20,7 +22,13 @@ import javax.swing.BoxLayout;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JLabel;
+
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 /**
  * GameMenu.java - Esta classe representa o menu de "pause" durante o jogo; é invocado quando esta a decorrer
  * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume game" continuar o jogo,
@@ -31,7 +39,7 @@ import java.awt.Color;
  * @see MazeGameGUI
  */
 
-public class GameMenu extends JLabel {
+public class GameMenu extends JLabel implements ActionListener {
 	/**
 	 * 
 	 */
@@ -40,10 +48,10 @@ public class GameMenu extends JLabel {
 	private MazeGameGUI frame;
 	private JFileChooser fc;
 	public SaveGame sg;
-	
+
 	private JPanel panel_5 = new JPanel();
 	private PaintTools paintObj = new PaintTools();
-	
+
 	private BufferedImage title = paintObj.creatImage("imagens/Title.gif");
 	private BufferedImage background = paintObj.creatImage("imagens/mainMenuBackground.jpg");
 	/**
@@ -52,88 +60,132 @@ public class GameMenu extends JLabel {
 	 * @param window o menu pause é inserido neste parametro 
 	 */
 	public GameMenu(Game currentGame,MazeGameGUI window) {
-		
+
 		sg = new SaveGame(null, null);
 		fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		frame = window;
 		g1 = currentGame;
-		
+
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.WHITE);
 		add(panel, BorderLayout.CENTER);
-		
+
 		GridLayout gridlayout = new GridLayout(6,3);
 		gridlayout.setVgap(20);
 		panel.setLayout(gridlayout);
-		
+
 		JPanel panel_5 = new JPanel();
 		panel_5.setForeground(Color.WHITE);
 		panel.add(panel_5);
 
-		
+
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JLabel lblNewLabel = new JLabel("");
-		panel_2.add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Resume");
-		panel_2.add(btnNewButton);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		panel_2.add(lblNewLabel_1);
-		
+
+		panel_2.add(new JLabel(""));
+
+		JButton Resume = new JButton("Resume");
+		Resume.setActionCommand("Resume");
+		Resume.addActionListener(this);
+		panel_2.add(Resume);
+
+		panel_2.add(new JLabel(""));
+
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
 		panel_3.setLayout(new GridLayout(1, 0, 0, 0));
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
 		panel_3.add(lblNewLabel_2);
-		
-		JButton btnNewButton_1 = new JButton("Save");
-		panel_3.add(btnNewButton_1);
-		
+
+		JButton Save = new JButton("Save");
+		Save.setActionCommand("Save");
+		Save.addActionListener(this);
+		panel_3.add(Save);
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		panel_3.add(lblNewLabel_3);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		panel_1.add(lblNewLabel_4);
-		
-		JButton btnNewButton_2 = new JButton("Return to Main Menu");
-		panel_1.add(btnNewButton_2);
-		
-		JLabel lblNewLabel_5 = new JLabel("");
-		panel_1.add(lblNewLabel_5);
-		
+
+		JButton Return = new JButton("Return to Main Menu");
+		Return.setActionCommand("Return");
+		Return.addActionListener(this);
+		panel_1.add(Return);
+
+		panel_1.add(new JLabel(""));
+
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		panel_4.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JLabel lblNewLabel_6 = new JLabel("");
-		panel_4.add(lblNewLabel_6);
-		
-		JButton btnNewButton_3 = new JButton("Exit");
-		panel_4.add(btnNewButton_3);
-		
-		JLabel lblNewLabel_7 = new JLabel("");
-		panel_4.add(lblNewLabel_7);
-	
+
+		panel_4.add(new JLabel(""));
+
+		JButton Exit = new JButton("Exit");
+		Exit.setActionCommand("Exit");
+		Exit.addActionListener(this);
+		panel_4.add(Exit);
+
+		panel_4.add( new JLabel(""));
+
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
 		arg0.drawImage(background,0,0,this.getWidth(),this.getHeight(), 0, 0, background.getWidth(),background.getHeight(), null);
 		arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_5.getY()+panel_5.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
 	}
-	
-	
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		switch(arg0.getActionCommand()){
+		case ("Resume"): 
+			setVisible(false);
+		frame.getMazePanel().setVisible(true);
+		frame.getMazePanel().requestFocusInWindow();
+		break;
+
+		case("Save"): 
+			try {
+				File file = null;
+				int returnVal = fc.showSaveDialog(GameMenu.this);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					file = fc.getSelectedFile();
+					sg.setFile(file);
+					sg.setGame(g1);
+					sg.saveGame();
+				}
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		break;
+
+		case("Return"):
+			setVisible(false);
+			g1.setBoard();
+			frame.getMainMenu().setVisible(true);
+		break;
+
+		case("Exit"):
+			System.exit(0);
+
+		}
+	}
 }
+
+
+
+
+
+

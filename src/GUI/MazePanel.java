@@ -50,19 +50,19 @@ public class MazePanel extends JPanel {
 		@Override
 		public void keyPressed(KeyEvent e) {
 
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+			if (e.getKeyCode() == frame.getControls().get(0)){
 				output = g1.Play("d");
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_UP){
+			else if (e.getKeyCode() == frame.getControls().get(1)){
 				output = g1.Play("w");
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_DOWN){
+			else if (e.getKeyCode() == frame.getControls().get(2)){
 				output = g1.Play("s");
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_LEFT){
+			else if (e.getKeyCode() == frame.getControls().get(3)){
 				output = g1.Play("a");
 			}
-			else if(e.getKeyCode() == KeyEvent.VK_F) {
+			else if(e.getKeyCode() == frame.getControls().get(4)) {
 				output = g1.Play("f");
 			}
 			else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {

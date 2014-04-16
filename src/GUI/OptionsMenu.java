@@ -1,157 +1,227 @@
 package GUI;
 
-import java.awt.*;
+import javax.swing.JPanel;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import java.awt.GridBagLayout;
+
+import javax.swing.JSpinner;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
 
 import GameLogic.Game;
 
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-/**
- * OptionsMenu.java - Esta classe representa o menu de opções, sendo que é possivel alterar o tamanho do labirinto,
- * o numero de dragoes, a possibilidade dos dragoes adormecerem/moverem, e a mudança dos controlos do jogo
- * @author André Pires, Filipe Gama
- *
- */
+
 public class OptionsMenu extends JPanel {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2263198567267112200L;
-	private JButton back_button;
-	private JLabel sizeLabel;
-	private JLabel numDragonsLabel;
-	private JCheckBox movingOption;
-	private JCheckBox sleepingOption;
-
-	private int size = 11;
-	private int numberDrags = 1;
-
+	
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 	private Game g1;
 	private MazeGameGUI frame;
-	private JSpinner spinner_1;
-	private JTextField textField;
-
+	private int size = 11;
+	private int numberDrags = 1;
+	
 	public OptionsMenu(Game currentGame,MazeGameGUI window) {
-		setBackground(Color.GRAY);
 		g1 = currentGame;
 		frame = window;
-		createWidgets();
-		addWidgets(this);
-
-		JLabel OPTIONS = new JLabel("OPTIONS");
-		OPTIONS.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		OPTIONS.setBounds(172, 11, 103, 36);
-		add(OPTIONS);
-
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.SOUTH);
+		panel_1.setLayout(new GridLayout(2, 3, 0, 0));
+		
+		JLabel lblNewLabel = new JLabel("");
+		panel_1.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Confirm");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				frame.disableAll();
-				frame.getMainMenu().setVisible(true);	
+				g1.setNumber_dragons(numberDrags);
+				g1.setSize(size+2);
+				frame.getMainMenu().setVisible(true);
+				
 			}
 		});
-
-		btnCancel.setBounds(296, 216, 114, 42);
-		add(btnCancel);
-
+		panel_1.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		panel_1.add(lblNewLabel_2);
+		
+		JButton btnNewButton_1 = new JButton("Cancel");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.disableAll();
+				frame.getMainMenu().setVisible(true);
+			}
+		});
+		panel_1.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		panel_1.add(lblNewLabel_3);
+		
+		JPanel panel_2 = new JPanel();
+		add(panel_2, BorderLayout.WEST);
+		panel_2.setLayout(new GridLayout(2, 0, 0, 0));
+		
+		JButton btnNewButton_2 = new JButton("Default");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.disableAll();
+				g1.setNumber_dragons(1);
+				g1.setSize(1);
+				frame.getMainMenu().setVisible(true);
+			}
+		});
+		panel_2.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Custom");
+		panel_2.add(btnNewButton_3);
+		
+		JPanel panel_3 = new JPanel();
+		add(panel_3, BorderLayout.EAST);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnNewButton_4 = new JButton("Fullscreen");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				frame.setExtendedState(frame.MAXIMIZED_BOTH);  
+				frame.setUndecorated(true);
+				frame.setVisible(true);
+			}
+		});
+		panel_3.add(btnNewButton_4, BorderLayout.NORTH);
+		
+		JPanel panel_4 = new JPanel();
+		add(panel_4, BorderLayout.CENTER);
+		panel_4.setLayout(new GridLayout(7, 1, 0, 0));
+		
+		JLabel lblNewLabel_5 = new JLabel("Size of Maze");
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_4.add(lblNewLabel_5);
+		
 		final JSpinner spinner = new JSpinner();
-		spinner.setBackground(Color.LIGHT_GRAY);
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				size = (int) spinner.getValue();
 			}
 		});
-		spinner.setModel(new SpinnerNumberModel(11, 5, 51, 2));
-		spinner.setBounds(252, 69, 56, 20);
-		add(spinner);
-
-		spinner_1 = new JSpinner();
-		spinner_1.setBackground(Color.LIGHT_GRAY);
+		panel_4.add(spinner);
+		
+		JLabel lblNewLabel_4 = new JLabel("Number of Dragons");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_4.add(lblNewLabel_4);
+		
+		final JSpinner spinner_1 = new JSpinner();
 		spinner_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				numberDrags = (int) spinner_1.getValue();
 			}
 		});
-
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 15, 1));
-		spinner_1.setBounds(252, 94, 56, 20);
-		add(spinner_1);
-
-		JButton btnDefault = new JButton("Default");
-		btnDefault.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frame.disableAll();
-				g1.setNumber_dragons(1);
-				g1.setSize(1);
-				frame.getMainMenu().setVisible(true);
-
-
-			}
-		});
-		btnDefault.setBounds(172, 216, 114, 42);
-		add(btnDefault);
-
-		textField = new JTextField();
-		textField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		textField.setBounds(117, 295, 86, 20);
-		add(textField);
-		textField.setColumns(10);
-	}
-
-	public void createWidgets(){ 
-		back_button = new JButton("Save & Back");
-		back_button.setBounds(52, 216, 114, 42);
-		back_button.addActionListener(new BackListener());
-		sizeLabel = new JLabel("Size of maze");
-		sizeLabel.setBounds(112, 72, 126, 14);
-		numDragonsLabel = new JLabel("Number of dragons");
-		numDragonsLabel.setBounds(112, 97, 130, 14);
-		movingOption = new JCheckBox("Moving dragons");
-		movingOption.setBackground(Color.GRAY);
-		movingOption.setBounds(112, 128, 174, 23);
-		sleepingOption = new JCheckBox("Sleeping dragons");
-		sleepingOption.setBackground(Color.GRAY);
-		sleepingOption.setBounds(112, 154, 174, 23);
-		movingOption.addItemListener(new OptionsListener());
-		sleepingOption.addItemListener(new OptionsListener());
-	}
-
-
-	public void addWidgets (Container cont) {
-		setLayout(null);
-		cont.add(sizeLabel);
-		cont.add(numDragonsLabel);
-		cont.add(movingOption);
-		cont.add(sleepingOption);
-		cont.add(back_button);
-	}
-
-	public class BackListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			frame.disableAll();
-			g1.setNumber_dragons(numberDrags);
-			g1.setSize(size+2);
-			frame.getMainMenu().setVisible(true);
-		}
-	}
-
-	public class OptionsListener implements ItemListener {
-		@Override
-		public void itemStateChanged(ItemEvent arg0) {
-			if(arg0.getSource()==movingOption) { 
-				g1.setMovingDragons();
-			}
-			if(arg0.getSource()==sleepingOption) { 
+		panel_4.add(spinner_1);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Sleeping Dragons");
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				g1.setSleepingDragons();
 			}
-		}
+		});
+		panel_4.add(chckbxNewCheckBox);
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Moving Dragons");
+		chckbxNewCheckBox_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				g1.setMovingDragons();
+			}
+		});
+		panel_4.add(chckbxNewCheckBox_1);
+		
+		JPanel panel_5 = new JPanel();
+		panel_4.add(panel_5);
+		panel_5.setLayout(new GridLayout(2, 5, 0, 0));
+		
+		JLabel lblNewLabel_6 = new JLabel("RIGHT");
+		panel_5.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("UP");
+		panel_5.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("LEFT");
+		panel_5.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("DOWN");
+		lblNewLabel_9.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				frame.getControls().set(4, e.getKeyCode());
+			}
+		});
+		panel_5.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("Eagle");
+		panel_5.add(lblNewLabel_10);
+		
+		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				frame.getControls().set(0, arg0.getKeyCode());
+				
+			}
+		});
+		panel_5.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				frame.getControls().set(1, arg0.getKeyCode());
+			}
+		});
+		panel_5.add(textField);
+		textField.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				frame.getControls().set(3, arg0.getKeyCode());
+			}
+		});
+		panel_5.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		panel_5.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		panel_5.add(textField_4);
+		textField_4.setColumns(10);
 	}
+
 }
