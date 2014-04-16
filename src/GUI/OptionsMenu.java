@@ -25,6 +25,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Font;
+import java.awt.FlowLayout;
 
 public class OptionsMenu extends JPanel {
 	
@@ -54,10 +55,41 @@ public class OptionsMenu extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new GridLayout(2, 3, 0, 0));
+		panel_1.setLayout(new GridLayout(4, 2, 0, 0));
 		
 		JLabel lblNewLabel = new JLabel("");
 		panel_1.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		panel_1.add(lblNewLabel_1);
+		
+		JButton btnNewButton_1 = new JButton("Cancel");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.disableAll();
+				frame.getMainMenu().setVisible(true);
+			}
+		});
+		
+		JButton btnNewButton_2 = new JButton("Default");
+		panel_1.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.disableAll();
+				g1.setNumber_dragons(1);
+				g1.setSize(1);
+				frame.getMainMenu().setVisible(true);
+			}
+		});
+		
+		JButton btnNewButton_3 = new JButton("Custom");
+		panel_1.add(btnNewButton_3);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.disableAll();
+				frame.getEditor().setVisible(true);
+			}
+		});
 		
 		JButton btnNewButton = new JButton("Confirm");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -70,54 +102,39 @@ public class OptionsMenu extends JPanel {
 			}
 		});
 		panel_1.add(btnNewButton);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		panel_1.add(lblNewLabel_1);
+		panel_1.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		panel_1.add(lblNewLabel_2);
-		
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.disableAll();
-				frame.getMainMenu().setVisible(true);
-			}
-		});
-		panel_1.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		panel_1.add(lblNewLabel_3);
 		
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.WEST);
-		panel_2.setLayout(new GridLayout(2, 0, 0, 0));
-		
-		JButton btnNewButton_2 = new JButton("Default");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.disableAll();
-				g1.setNumber_dragons(1);
-				g1.setSize(1);
-				frame.getMainMenu().setVisible(true);
-			}
-		});
-		panel_2.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Custom");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frame.disableAll();
-				frame.getEditor().setVisible(true);
-			}
-		});
-		panel_2.add(btnNewButton_3);
+		panel_2.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_3 = new JPanel();
 		add(panel_3, BorderLayout.EAST);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
+		JPanel panel_6 = new JPanel();
+		panel_3.add(panel_6, BorderLayout.NORTH);
+		panel_6.setLayout(new GridLayout(2, 0, 0, 0));
+		
+		JPanel panel_4 = new JPanel();
+		add(panel_4, BorderLayout.CENTER);
+		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panel_8 = new JPanel();
+		panel_4.add(panel_8);
+		panel_8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnNewButton_5 = new JButton("Windowed");
+		panel_8.add(btnNewButton_5);
+		
 		JButton btnNewButton_4 = new JButton("Fullscreen");
+		panel_8.add(btnNewButton_4);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -126,53 +143,64 @@ public class OptionsMenu extends JPanel {
 				frame.setVisible(true);
 			}
 		});
-		panel_3.add(btnNewButton_4, BorderLayout.NORTH);
-		
-		JPanel panel_4 = new JPanel();
-		add(panel_4, BorderLayout.CENTER);
-		panel_4.setLayout(new GridLayout(7, 1, 0, 0));
-		
-		JLabel lblNewLabel_5 = new JLabel("Size of Maze");
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_4.add(lblNewLabel_5);
-		
-		final JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(11, 7, 51, 2));
-		spinner.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
-				size = (int) spinner.getValue();
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				frame.setUndecorated(false);
+				frame.setVisible(true);
 			}
 		});
-		panel_4.add(spinner);
+		
+		JPanel panel_9 = new JPanel();
+		panel_4.add(panel_9);
+		
+		JLabel lblNewLabel_5 = new JLabel("Size of Maze");
+		panel_9.add(lblNewLabel_5);
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		final JSpinner spinner = new JSpinner();
+		panel_9.add(spinner);
+		spinner.setModel(new SpinnerNumberModel(11, 7, 51, 2));
 		
 		JLabel lblNewLabel_4 = new JLabel("Number of Dragons");
+		panel_9.add(lblNewLabel_4);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_4.add(lblNewLabel_4);
 		
 		final JSpinner spinner_1 = new JSpinner();
+		panel_9.add(spinner_1);
 		spinner_1.setModel(new SpinnerNumberModel(1, 1, 5, 1));
 		spinner_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				numberDrags = (int) spinner_1.getValue();
 			}
 		});
-		panel_4.add(spinner_1);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Sleeping Dragons");
-		chckbxNewCheckBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				g1.setSleepingDragons();
+		spinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				size = (int) spinner.getValue();
 			}
 		});
-		panel_4.add(chckbxNewCheckBox);
+		
+		JPanel panel_7 = new JPanel();
+		panel_4.add(panel_7);
+		panel_7.setLayout(new GridLayout(1, 2, 0, 0));
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Sleeping Dragons");
+		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_7.add(chckbxNewCheckBox);
 		
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Moving Dragons");
+		chckbxNewCheckBox_1.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_7.add(chckbxNewCheckBox_1);
 		chckbxNewCheckBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				g1.setMovingDragons();
 			}
 		});
-		panel_4.add(chckbxNewCheckBox_1);
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				g1.setSleepingDragons();
+			}
+		});
 		
 		JPanel panel_5 = new JPanel();
 		panel_4.add(panel_5);
