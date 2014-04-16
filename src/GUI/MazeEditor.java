@@ -1,141 +1,186 @@
 package GUI;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import GameLogic.Board;
 import GameLogic.Game;
-/**
- * MazePanel.java - Esta classe representa o painel utilizado para a visualização do jogo em si
- * Assim, é apresentado o Board com todos os seus componentes
- * @author André Pires, Filipe Gama
- * @see GameLogic.Board, GameLogic.Game
- */
-public class MazeEditor extends JPanel {
 
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.JList;
+
+import java.awt.Panel;
+import java.awt.Choice;
+import java.awt.GridLayout;
+
+import javax.swing.JCheckBox;
+
+public class MazeEditor extends JPanel implements MouseListener, ItemListener {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private PaintTools paintObj = new PaintTools();
+	private JLabel Board_label;
+	private Board customBoard;
 	private Game g1;
 	private MazeGameGUI frame;
-	private int realSize;
-
-	private static final long serialVersionUID = 7836117138272018391L;
-
-	private BufferedImage Wall =  creatImage("imagens/muralhaTemp.jpg");
-	private BufferedImage Water =  creatImage("imagens/Water.gif");
-	private BufferedImage sword = creatImage("imagens/sword.jpg");
-	private BufferedImage Hero =  creatImage("imagens/hero.jpg");
-	private BufferedImage Hero_sword =  creatImage("imagens/HeroSword.jpg");
-	private BufferedImage Dragon_awake  =  creatImage("imagens/dragonAwake.png");
-	private BufferedImage Dragon_sleeping = creatImage("images/DragonSleeping.jpg");
-	private BufferedImage Eagle  =  creatImage("imagens/eagle.jpg");
-
 	private String[] choose = {" ", "X", "H", "D", "E"};
-	private int choose1=0;
-
-
-	public MazeEditor(int size,MazeGameGUI window) {
+	private int choice=0;
+	
+	public MazeEditor(Game currentGame,MazeGameGUI window)  {
+		g1 = currentGame;
 		frame = window;
-		realSize=size;
-		g1 = new Game(size+2);
-		g1.setBoard();
+		customBoard = new Board(7,0);
 
-		for(int i=0; i<size;i++)
-			for(int j=0; j<size;j++){
-				g1.getBoard().changeCurrentMaze(i, j, "X");
-			}
-
-		this.setLayout(new GridLayout(size,size));
-		this.setBackground(Color.BLACK);
-
-		this.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				int n = (int) (e.getPoint().getX()/(frame.getWidth()/(realSize)));
-				int m = (int) (e.getPoint().getY()/(frame.getHeight()/(realSize+1)));
-
-				if(e.getButton() == MouseEvent.BUTTON1) {
-					if(g1.getBoard().getCurrentState()[m][n].equals("X"))
-						g1.getBoard().changeCurrentMaze(m, n, " ");
-					else g1.getBoard().changeCurrentMaze(m, n, "X");
-				}
-				else {
-					if(choose1>=4) choose1=0;
-					else choose1++;
-
-					g1.getBoard().changeCurrentMaze(m, n, choose[choose1]);
-				}
-
-				updateGraphicBoard();
+		
+		setLayout(new BorderLayout(0, 0));
+		
+		JList list = new JList();
+		add(list, BorderLayout.WEST);
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.SOUTH);
+		
+		JButton Play = new JButton("Play");
+		Play.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				customBoard.createBoardFromString();
+				g1.setSize(customBoard.getCurrentState().length+2);
+				g1.setBoard(customBoard);
+				frame.disableAll();
+				frame.setMazePanel(new MazePanel(g1, frame));
+				frame.getContentPane().add(frame.getMazePanel());
+				frame.getMazePanel().setVisible(true);
+				frame.getMazePanel().requestFocusInWindow();	
 			}
 		});
+		panel_1.add(Play);
+		
+		JButton Save = new JButton("Save");
+		panel_1.add(Save);
+		
+		JButton btnNewButton_2 = new JButton("Cancel");
+		panel_1.add(btnNewButton_2);
+		
+		Board_label = new JLabel("");
+		add(Board_label, BorderLayout.CENTER);
+		Board_label.addMouseListener(this);
+		
+		Panel panel = new Panel();
+		add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 3, 0, 0));
+		
+		JLabel lblNewLabel = new JLabel("Maze Editor");
+		panel.add(lblNewLabel);
+		
+		final JSpinner spinner = new JSpinner();
+		spinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				customBoard = new Board((int) spinner.getValue(),0);
+				repaint();
+			}
+		});
+		spinner.setModel(new SpinnerNumberModel(7, 5, 51, 2));
+		panel.add(spinner);
+		
+		Choice choice = new Choice();
+		panel.add(choice);
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Sleeping Dragons");
+		panel.add(chckbxNewCheckBox_1);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Moving Dragons");
+		panel.add(chckbxNewCheckBox);
+		choice.add("Dragon");
+		choice.add("Wall");
+		choice.add("Path");
+		choice.add("Hero");
+		choice.add("Sword");
+		choice.addItemListener(this);
 
-		updateGraphicBoard();
-	}
-
-	private BufferedImage creatImage(String path) {
-		BufferedImage image = null;
-		try {                
-			image = ImageIO.read(new File(path));
-		} catch (IOException ex) {
-			// handle exception...
-		}
-		return image;
+		
 	}
 
 	@Override
-	protected void paintComponent(Graphics arg0) {
-		super.paintComponent(arg0);
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		paintObj.drawGraphicBoard(g, customBoard.getCurrentState().length, Board_label.getWidth(),Board_label.getHeight(), customBoard,Board_label);
+		
 
-		float w = this.getWidth()/realSize;
-		float h = this.getHeight()/realSize;
+	}
 
-		for(int i = 0; i < realSize; i++) {
-			for(int j= 0; j < realSize; j++) {
-				if(g1.getBoard().getCurrentState()[j][i].equals(" ")) {
-					arg0.drawImage(Water, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		int n= (int) (customBoard.getCurrentState().length*arg0.getPoint().getX()/(Board_label.getWidth()));
+		int m = (int) (customBoard.getCurrentState().length*arg0.getPoint().getY()/(Board_label.getHeight()));
+		
+		System.out.println(m + " " + n);
+		System.out.println(arg0.getPoint().getX() + " " + arg0.getPoint().getY());
+		
+		if(arg0.getButton() == MouseEvent.BUTTON1) {
+			if(choice < 2) customBoard.getOriginalMaze()[m][n] = choose[choice];
+			
+			customBoard.getCurrentState()[m][n] = choose[choice];
 
-				else if(g1.getBoard().getCurrentState()[j][i].equals("X")) {
-					arg0.drawImage(Wall, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("E")) {
-					arg0.drawImage(sword, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50,50,null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("H")) {
-					arg0.drawImage(Hero, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("A")) {
-					arg0.drawImage(Hero_sword, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else if (g1.getBoard().getCurrentState()[j][i].equals("D")) {
-					arg0.drawImage(Dragon_awake, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-
-				else if(g1.getBoard().getCurrentState()[j][i].equals("v") || g1.getBoard().getCurrentState()[j][i].equals("V")) {
-					arg0.drawImage(Eagle, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-
-				else {
-					arg0.drawImage(Dragon_sleeping, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-				}
-			}
 		}
-
+	
+		repaint();
+			
 	}
 
-	private void updateGraphicBoard() {
-		this.repaint();
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		// TODO Auto-generated method stub
+		if(((String) arg0.getItem()).equals("Path")) choice = 0;
+		else if (((String) arg0.getItem()).equals("Wall")) choice = 1;
+		else if(((String) arg0.getItem()).equals("Dragon")) choice = 3;
+		else if(((String) arg0.getItem()).equals("Hero")) choice = 2;
+		else if(((String) arg0.getItem()).equals("Sword")) choice = 4;
+		
+	}
+	
+	
+	
+
 }

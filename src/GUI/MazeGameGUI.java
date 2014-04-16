@@ -64,7 +64,7 @@ public class MazeGameGUI extends JFrame {
 		this.add(mainMenu);
 		mainMenu.setVisible(true);
 		
-		editor = new MazeEditor(17,this);
+		editor = new MazeEditor(g1,this);
 		this.add(editor);
 		editor.setVisible(false);
 	}
@@ -84,6 +84,8 @@ public class MazeGameGUI extends JFrame {
 		//		mazePanel.setVisible(false);
 		mainMenu.setVisible(false);
 		options.setVisible(false);
+		editor.setVisible(false);
+		paused.setVisible(false);
 	}
 
 
