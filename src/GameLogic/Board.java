@@ -241,12 +241,12 @@ public class Board implements Serializable {
 	public void changeCurrentMaze(int x, int y, String symbol) {
 		currentState[x][y]=symbol;
 	}
-
+	/**
+	 * Esta funcao cria um novo board, com todas as suas componentes, atraves duma string[][] (o currentState)
+	 */
 	public void createBoardFromString() {
-		//TODO
-		int x=0;
 		ArrayList<Dragon> dragons = new ArrayList<Dragon>();
-		
+
 		for(int i=0; i<currentState.length;i++)
 			for(int j=0; j<currentState.length;j++){
 				if(currentState[i][j].equals("H"))
@@ -260,7 +260,7 @@ public class Board implements Serializable {
 					Sy=j;
 				}
 			}
-		
+
 		setDragons(dragons.toArray(new Dragon[dragons.size()]));
 	}
 }

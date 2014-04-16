@@ -4,11 +4,6 @@ import java.awt.Graphics;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,7 +24,7 @@ public class MazePanel extends JPanel {
 
 	private static final long serialVersionUID = 7836117138272018391L;
 
-	
+
 	public MazePanel(Game currentGame, MazeGameGUI window){
 		g1 = currentGame;
 		frame = window;
@@ -42,8 +37,6 @@ public class MazePanel extends JPanel {
 		UpdateGraphicBoard();
 
 	}
-
-
 
 	public class MyKeyListener implements KeyListener {
 		private int output ;
@@ -111,8 +104,8 @@ public class MazePanel extends JPanel {
 		this.repaint();
 
 	}
-	
-	
+
+
 	@Override
 	protected void paintComponent(Graphics arg0) {
 

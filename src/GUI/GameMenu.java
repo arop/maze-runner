@@ -12,14 +12,9 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
-import javax.swing.BoxLayout;
-
-import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JLabel;
 
@@ -27,23 +22,18 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 import java.awt.Font;
 /**
  * GameMenu.java - Esta classe representa o menu de "pause" durante o jogo; é invocado quando esta a decorrer
- * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume game" continuar o jogo,
- * 2-"Save game" guardar o jogo (abrindo uma janela para escolher o nome e sitio onde guardar o ficheiro),
- * 3-"Return to main menu" volta para o menu principal, 4-"Exit Game" termina o programa
+ * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume" continuar o jogo,
+ * 2-"Save" guardar o jogo (abrindo uma janela para escolher o nome e sitio onde guardar o ficheiro),
+ * 3-"Return to main menu" volta para o menu principal, 4-"ExiT" termina o programa
  * Esta classe servira como um painel inserido na classe principal MazeGameGUI
  * @author André Pires, Filipe Gama
  * @see MazeGameGUI
  */
 
 public class GameMenu extends JLabel implements ActionListener {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3085160492446725384L;
 	private Game g1;
 	private MazeGameGUI frame;
@@ -83,7 +73,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_5.setBackground(Color.BLACK);
 		panel_5.setForeground(Color.WHITE);
 		panel.add(panel_5);
-		
+
 		JLabel lblNewLabel = new JLabel("GAME PAUSED");
 		lblNewLabel.setFont(new Font("Trajan Pro", Font.PLAIN, 27));
 		lblNewLabel.setForeground(Color.RED);
@@ -156,7 +146,6 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_4.add(Exit);
 
 		panel_4.add( new JLabel(""));
-
 	}
 
 	@Override
@@ -186,26 +175,18 @@ public class GameMenu extends JLabel implements ActionListener {
 					sg.saveGame();
 				}
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		break;
 
 		case("Return"):
 			setVisible(false);
-			g1.setBoard();
-			frame.getMainMenu().setVisible(true);
+		g1.setBoard();
+		frame.getMainMenu().setVisible(true);
 		break;
 
 		case("Exit"):
 			System.exit(0);
-
 		}
 	}
 }
-
-
-
-
-
-
