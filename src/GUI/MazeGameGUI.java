@@ -7,6 +7,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 /**
  * MazeGameGUI.java - Classe principal do package, representando a janela utilizada com os menus inseridos nesta 
  * @author André Pires, Filipe Gama
@@ -23,7 +25,19 @@ public class MazeGameGUI extends JFrame {
 	private OptionsMenu options;
 	private GameMenu paused;
 	private MazeEditor editor;
-	public Game g1;
+	private ArrayList<Integer> controls;
+	
+	public ArrayList<Integer> getControls() {
+		return controls;
+	}
+
+
+	public void setControls(ArrayList<Integer> controls) {
+		this.controls = controls;
+	}
+
+	Game g1;
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,6 +54,13 @@ public class MazeGameGUI extends JFrame {
 
 	public MazeGameGUI() {
 		this.setFocusable(true);
+		
+		controls = new ArrayList<Integer>() ;
+		controls.add(KeyEvent.VK_RIGHT);
+		controls.add(KeyEvent.VK_UP);
+		controls.add(KeyEvent.VK_DOWN);
+		controls.add(KeyEvent.VK_LEFT);
+		controls.add(KeyEvent.VK_BACK_SPACE);
 
 		g1 = new Game() ;
 
