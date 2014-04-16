@@ -18,15 +18,16 @@ import GameLogic.Board;
  */
 public class PaintTools {
 
-	private BufferedImage sword = createImage("imagens/sword.jpg");
-	private BufferedImage wall =  createImage("imagens/muralhaTemp.jpg");
-	private BufferedImage water =  createImage("imagens/Water.gif");
-	private BufferedImage hero =  createImage("imagens/hero.jpg");
-	private BufferedImage hero_sword =  createImage("imagens/HeroSword.jpg");
+	private BufferedImage sword = createImage("imagens/sword.png");
+	private BufferedImage wall =  createImage("imagens/lava.png");
+	private BufferedImage path =  createImage("imagens/metal.jpg");
+	private BufferedImage hero =  createImage("imagens/hero.png");
+	private BufferedImage hero_sword =  createImage("imagens/HeroSword.png");
 	private BufferedImage dragon_awake  =  createImage("imagens/dragonAwake.png");
-	private BufferedImage dragon_sleeping = createImage("images/DragonSleeping.jpg");
+	private BufferedImage dragon_sleeping = createImage("images/DragonSleeping.png");
 	private BufferedImage Eagle  =  createImage("imagens/eagle.jpg");
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
+	
 	private BufferedImage Title[] = createSprite(5,"title");
 
 	BufferedImage createImage(String path) {
@@ -61,7 +62,7 @@ public class PaintTools {
 		for(int i = 0; i < realSize; i++) {
 			for(int j= 0; j < realSize; j++) {
 
-				if(b.getCurrentState()[j][i].equals(" ")) paintGrid(arg0,water,w,h,i,j,label);
+				if(b.getCurrentState()[j][i].equals(" ")) paintGrid(arg0,path,w,h,i,j,label);
 				else if(b.getCurrentState()[j][i].equals("X")) paintGrid(arg0,wall,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("E")) paintGrid(arg0,sword,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("H")) paintGrid(arg0,hero,w,h,i,j,label);
@@ -100,11 +101,11 @@ public class PaintTools {
 	}
 
 	public BufferedImage getWater() {
-		return water;
+		return path;
 	}
 
 	public void setWater(BufferedImage water) {
-		this.water = water;
+		this.path = water;
 	}
 
 	public BufferedImage getHero() {
