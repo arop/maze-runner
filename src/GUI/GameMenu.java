@@ -70,6 +70,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.BLACK);
 		panel.setForeground(Color.WHITE);
 		add(panel, BorderLayout.CENTER);
 
@@ -78,17 +79,21 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel.setLayout(gridlayout);
 
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.BLACK);
 		panel_5.setForeground(Color.WHITE);
 		panel.add(panel_5);
 
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.BLACK);
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
 
 		panel_2.add(new JLabel(""));
 
 		JButton Resume = new JButton("Resume");
+		Resume.setForeground(Color.RED);
+		Resume.setBackground(Color.BLACK);
 		Resume.setActionCommand("Resume");
 		Resume.addActionListener(this);
 		panel_2.add(Resume);
@@ -96,6 +101,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_2.add(new JLabel(""));
 
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.BLACK);
 		panel.add(panel_3);
 		panel_3.setLayout(new GridLayout(1, 0, 0, 0));
 
@@ -103,6 +109,8 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_3.add(lblNewLabel_2);
 
 		JButton Save = new JButton("Save");
+		Save.setForeground(Color.RED);
+		Save.setBackground(Color.BLACK);
 		Save.setActionCommand("Save");
 		Save.addActionListener(this);
 		panel_3.add(Save);
@@ -111,6 +119,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_3.add(lblNewLabel_3);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.BLACK);
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
 
@@ -118,6 +127,8 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_1.add(lblNewLabel_4);
 
 		JButton Return = new JButton("Return to Main Menu");
+		Return.setForeground(Color.RED);
+		Return.setBackground(Color.BLACK);
 		Return.setActionCommand("Return");
 		Return.addActionListener(this);
 		panel_1.add(Return);
@@ -125,12 +136,15 @@ public class GameMenu extends JLabel implements ActionListener {
 		panel_1.add(new JLabel(""));
 
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.BLACK);
 		panel.add(panel_4);
 		panel_4.setLayout(new GridLayout(1, 0, 0, 0));
 
 		panel_4.add(new JLabel(""));
 
 		JButton Exit = new JButton("Exit");
+		Exit.setForeground(Color.RED);
+		Exit.setBackground(Color.BLACK);
 		Exit.setActionCommand("Exit");
 		Exit.addActionListener(this);
 		panel_4.add(Exit);

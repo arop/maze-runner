@@ -79,6 +79,8 @@ public class MainMenu extends JLabel {
 		panel_1.add(label_9);
 
 		JButton btnNewButton = new JButton("Start");
+		btnNewButton.setForeground(Color.RED);
+		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(g1.getBoard() == null) {
@@ -107,6 +109,8 @@ public class MainMenu extends JLabel {
 		panel_2.add(label);
 
 		JButton btnLoad = new JButton("Load");
+		btnLoad.setForeground(Color.RED);
+		btnLoad.setBackground(Color.BLACK);
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean x = false;
@@ -146,6 +150,8 @@ public class MainMenu extends JLabel {
 		panel_3.add(label_2);
 
 		JButton button_6 = new JButton("Options");
+		button_6.setForeground(Color.RED);
+		button_6.setBackground(Color.BLACK);
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.disableAll();
@@ -165,6 +171,8 @@ public class MainMenu extends JLabel {
 		panel_4.add(label_4);
 
 		JButton button_7 = new JButton("Editor");
+		button_7.setForeground(Color.RED);
+		button_7.setBackground(Color.BLACK);
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.disableAll();
@@ -185,6 +193,8 @@ public class MainMenu extends JLabel {
 
 
 		JButton button_8 = new JButton("Exit");
+		button_8.setForeground(Color.RED);
+		button_8.setBackground(Color.BLACK);
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
