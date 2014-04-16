@@ -23,6 +23,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.SpinnerNumberModel;
+import java.awt.Font;
 
 public class OptionsMenu extends JPanel {
 	
@@ -43,7 +45,12 @@ public class OptionsMenu extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		panel.setLayout(new GridLayout(2, 1, 0, 0));
+		
+		JLabel lblNewLabel_11 = new JLabel("OPTIONS MENU");
+		lblNewLabel_11.setFont(new Font("Trajan Pro", Font.PLAIN, 25));
+		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblNewLabel_11);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1, BorderLayout.SOUTH);
@@ -98,6 +105,12 @@ public class OptionsMenu extends JPanel {
 		panel_2.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Custom");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.disableAll();
+				frame.getEditor().setVisible(true);
+			}
+		});
 		panel_2.add(btnNewButton_3);
 		
 		JPanel panel_3 = new JPanel();
@@ -124,6 +137,7 @@ public class OptionsMenu extends JPanel {
 		panel_4.add(lblNewLabel_5);
 		
 		final JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(11, 7, 51, 2));
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				size = (int) spinner.getValue();
@@ -136,6 +150,7 @@ public class OptionsMenu extends JPanel {
 		panel_4.add(lblNewLabel_4);
 		
 		final JSpinner spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(1, 1, 5, 1));
 		spinner_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				numberDrags = (int) spinner_1.getValue();
