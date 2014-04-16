@@ -1,21 +1,26 @@
 package GUI;
 
-import java.awt.Color;
-import java.awt.Container;
-
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import GameLogic.Game;
 import GameLogic.SaveGame;
 
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+
+import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
+
+import javax.swing.BoxLayout;
+
+import net.miginfocom.swing.MigLayout;
+
+import javax.swing.JLabel;
+import java.awt.Color;
 /**
  * GameMenu.java - Esta classe representa o menu de "pause" durante o jogo; é invocado quando esta a decorrer
  * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume game" continuar o jogo,
@@ -25,7 +30,8 @@ import java.io.IOException;
  * @author André Pires, Filipe Gama
  * @see MazeGameGUI
  */
-public class GameMenu extends JPanel {
+
+public class GameMenu extends JLabel {
 	/**
 	 * 
 	 */
@@ -34,88 +40,100 @@ public class GameMenu extends JPanel {
 	private MazeGameGUI frame;
 	private JFileChooser fc;
 	public SaveGame sg;
+	
+	private JPanel panel_5 = new JPanel();
+	private PaintTools paintObj = new PaintTools();
+	
+	private BufferedImage title = paintObj.creatImage("imagens/Title.gif");
+	private BufferedImage background = paintObj.creatImage("imagens/mainMenuBackground.jpg");
 	/**
 	 * Construtor da classe GameMenu
 	 * @param currentGame do tipo Game, representa o jogo que esta a ser jogado naquele momento
 	 * @param window o menu pause é inserido neste parametro 
 	 */
 	public GameMenu(Game currentGame,MazeGameGUI window) {
+		
 		sg = new SaveGame(null, null);
 		fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-
-		setBackground(Color.BLACK);
 		frame = window;
 		g1 = currentGame;
-		createWidgets();
-		addWidgets(this);
-		setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("GAME PAUSED");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setBounds(146, 11, 199, 58);
-		add(lblNewLabel);
-
-		JButton btnNewButton = new JButton("Resume Game");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				frame.getMazePanel().setVisible(true);
-				frame.getMazePanel().requestFocusInWindow();
-			}
-		});
-		btnNewButton.setBounds(161, 80, 141, 30);
-		add(btnNewButton);
-
-		JButton btnNewButton_1 = new JButton("Save Game");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					File file = null;
-					int returnVal = fc.showSaveDialog(GameMenu.this);
-					if (returnVal == JFileChooser.APPROVE_OPTION) {
-						file = fc.getSelectedFile();
-						sg.setFile(file);
-						sg.setGame(g1);
-						sg.saveGame();
-					}
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_1.setBounds(161, 119, 141, 30);
-		add(btnNewButton_1);
-
-		JButton btnReturnToMain = new JButton("Return to main menu");
-		btnReturnToMain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				frame.getMainMenu().setVisible(true);
-			}
-		});
-		btnReturnToMain.setBounds(161, 160, 141, 30);
-		add(btnReturnToMain);
-
-		JButton btnExitGame = new JButton("Exit Game");
-		btnExitGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnExitGame.setBounds(161, 201, 141, 30);
-		add(btnExitGame);
-
-		this.setVisible(true);
-	}
-
-	public void createWidgets(){
 		
-	}
+		setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		panel.setForeground(Color.WHITE);
+		add(panel, BorderLayout.CENTER);
+		
+		GridLayout gridlayout = new GridLayout(6,3);
+		gridlayout.setVgap(20);
+		panel.setLayout(gridlayout);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setForeground(Color.WHITE);
+		panel.add(panel_5);
 
-
-	public void addWidgets (Container cont) {
+		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
+		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JLabel lblNewLabel = new JLabel("");
+		panel_2.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Resume");
+		panel_2.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		panel_2.add(lblNewLabel_1);
+		
+		JPanel panel_3 = new JPanel();
+		panel.add(panel_3);
+		panel_3.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		panel_3.add(lblNewLabel_2);
+		
+		JButton btnNewButton_1 = new JButton("Save");
+		panel_3.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		panel_3.add(lblNewLabel_3);
+		
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1);
+		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		panel_1.add(lblNewLabel_4);
+		
+		JButton btnNewButton_2 = new JButton("Return to Main Menu");
+		panel_1.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		panel_1.add(lblNewLabel_5);
+		
+		JPanel panel_4 = new JPanel();
+		panel.add(panel_4);
+		panel_4.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		panel_4.add(lblNewLabel_6);
+		
+		JButton btnNewButton_3 = new JButton("Exit");
+		panel_4.add(btnNewButton_3);
+		
+		JLabel lblNewLabel_7 = new JLabel("");
+		panel_4.add(lblNewLabel_7);
+	
 	}
+	
+	@Override
+	protected void paintComponent(Graphics arg0) {
+		super.paintComponent(arg0);
+		arg0.drawImage(background,0,0,this.getWidth(),this.getHeight(), 0, 0, background.getWidth(),background.getHeight(), null);
+		arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_5.getY()+panel_5.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
+	}
+	
+	
 }

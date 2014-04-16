@@ -35,7 +35,7 @@ public class MazeBuilder implements Serializable{
 	 * Cria um labirinto
 	 * @param n Tamanho do labirinto
 	 */
-	MazeBuilder(int n) {
+	public MazeBuilder(int n) {
 		if(n>=5) {
 			field = new String[n+2][n+2] ;
 			for( int i = 0 ; i < field.length ; i++){

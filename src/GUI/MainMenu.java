@@ -38,14 +38,17 @@ public class MainMenu extends JLabel {
 	private Game g1;
 	private MazeGameGUI frame;
 	public SaveGame sg;
-	private BufferedImage title = creatImage("imagens/Title.gif");
-	private BufferedImage background = creatImage("imagens/mainMenuBackground.jpg");
+	
+	private PaintTools paintObj = new PaintTools();
+	private BufferedImage title = paintObj.creatImage("imagens/Title.gif");
+	private BufferedImage background = paintObj.creatImage("imagens/mainMenuBackground.jpg");
 
 
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
 		setBackground(Color.WHITE);
+		fc = new JFileChooser();
 
 		setLayout(new BorderLayout(0, 0));
 		
@@ -162,6 +165,12 @@ public class MainMenu extends JLabel {
 		panel_4.add(label_4);
 
 		JButton button_7 = new JButton("Editor");
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.disableAll();
+				frame.getEditor().setVisible(true);
+			}
+		});
 		panel_4.add(button_7);
 
 		JLabel label_5 = new JLabel();
@@ -189,16 +198,6 @@ public class MainMenu extends JLabel {
 
 
 
-	}
-	
-	private BufferedImage creatImage(String path) {
-		BufferedImage image = null;
-		try {                
-			image = ImageIO.read(new File(path));
-		} catch (IOException ex) {
-			// handle exception...
-		}
-		return image;
 	}
 
 

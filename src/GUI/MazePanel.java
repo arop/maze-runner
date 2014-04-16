@@ -29,15 +29,7 @@ public class MazePanel extends JPanel {
 
 	private static final long serialVersionUID = 7836117138272018391L;
 
-	private BufferedImage sword = paintObj.creatImage("imagens/sword.jpg");
-	private BufferedImage Wall =  paintObj.creatImage("imagens/muralhaTemp.jpg");
-	private BufferedImage Water =  paintObj.creatImage("imagens/Water.gif");
-	private BufferedImage Hero =  paintObj.creatImage("imagens/hero.jpg");
-	private BufferedImage Hero_sword =  paintObj.creatImage("imagens/HeroSword.jpg");
-	private BufferedImage Dragon_awake  =  paintObj.creatImage("imagens/dragonAwake.png");
-	private BufferedImage Dragon_sleeping = paintObj.creatImage("images/DragonSleeping.jpg");
-	private BufferedImage Eagle  =  paintObj.creatImage("imagens/eagle.jpg");
-
+	
 	public MazePanel(Game currentGame, MazeGameGUI window){
 		g1 = currentGame;
 		frame = window;
@@ -45,6 +37,7 @@ public class MazePanel extends JPanel {
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
 
+		System.out.println(g1.getBoard());
 		Play();
 		UpdateGraphicBoard();
 
@@ -119,31 +112,12 @@ public class MazePanel extends JPanel {
 
 	}
 	
-	private void paintGrid(Graphics arg0, BufferedImage image, float w, float h, int i,int j) {
-		arg0.drawImage(image, (int) (0+w*i), (int)(0+h*j), (int)(w+w*i),(int) (h+h*j), 0, 0, 50, 50, null);
-
-	}
-
+	
 	@Override
 	protected void paintComponent(Graphics arg0) {
+
 		super.paintComponent(arg0);
-
-		float w = this.getWidth()/realSize;
-		float h = this.getHeight()/realSize;
-
-		for(int i = 0; i < realSize; i++) {
-			for(int j= 0; j < realSize; j++) {
-				
-				if(g1.getBoard().getCurrentState()[j][i].equals(" ")) paintGrid(arg0,Water,w,h,i,j);
-				else if(g1.getBoard().getCurrentState()[j][i].equals("X")) paintGrid(arg0,Wall,w,h,i,j);
-				else if (g1.getBoard().getCurrentState()[j][i].equals("E")) paintGrid(arg0,sword,w,h,i,j);
-				else if (g1.getBoard().getCurrentState()[j][i].equals("H")) paintGrid(arg0,Hero,w,h,i,j);
-				else if (g1.getBoard().getCurrentState()[j][i].equals("A")) paintGrid(arg0,Hero_sword,w,h,i,j);
-				else if (g1.getBoard().getCurrentState()[j][i].equals("D")) paintGrid(arg0,Dragon_awake,w,h,i,j);
-				else if(g1.getBoard().getCurrentState()[j][i].equals("v") || g1.getBoard().getCurrentState()[j][i].equals("V")) paintGrid(arg0,Eagle,w,h,i,j);
-				else paintGrid(arg0,Dragon_sleeping,w,h,i,j);
-			}
-		}
+		paintObj.drawGraphicBoard(arg0,realSize, getWidth(), getHeight(), g1.getBoard(),this);
 
 	}
 

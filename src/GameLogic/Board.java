@@ -1,6 +1,7 @@
 package GameLogic;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 /**
  * Board.java - Esta classe simboliza o board do jogo, isto é, o labirinto com todos os objetos do jogo;
@@ -241,25 +242,25 @@ public class Board implements Serializable {
 		currentState[x][y]=symbol;
 	}
 
-	public void createBoardFromString(String[][] a, int numD) {
+	public void createBoardFromString() {
 		//TODO
 		int x=0;
-		Dragon[] d = new Dragon[numD];
+		ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 		
-		for(int i=0; i<a.length;i++)
-			for(int j=0; j<a.length;j++){
-				if(a[i][j].equals("H"))
+		for(int i=0; i<currentState.length;i++)
+			for(int j=0; j<currentState.length;j++){
+				if(currentState[i][j].equals("H"))
 					setH(new Hero(i,j));
-				else if(a[i][j].equals("E"))
+				else if(currentState[i][j].equals("E"))
 					setS(new Sword(i,j));
-				else if(a[i][j].equals("D"))
-					d[x++]=new Dragon(i,j);
-				else if(a[i][j].equals("S")) {
+				else if(currentState[i][j].equals("D"))
+					dragons.add(new Dragon(i,j));
+				else if(currentState[i][j].equals("S")) {
 					Sx=i;
 					Sy=j;
 				}
 			}
 		
-		setDragons(d);
+		setDragons(dragons.toArray(new Dragon[dragons.size()]));
 	}
 }
