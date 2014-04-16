@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,8 @@ public class PaintTools {
 	private BufferedImage dragon_awake  =  createImage("imagens/dragonAwake.png");
 	private BufferedImage dragon_sleeping = createImage("images/DragonSleeping.jpg");
 	private BufferedImage Eagle  =  createImage("imagens/eagle.jpg");
-//	private BufferedImage Title[] = createSprite(5,"title");
+	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
+	private BufferedImage Title[] = createSprite(5,"title");
 
 	BufferedImage createImage(String path) {
 		BufferedImage image = null;
@@ -37,14 +39,15 @@ public class PaintTools {
 		return image;
 	}
 
-//	private BufferedImage[] createSprite(int size, String string) {
-//		BufferedImage arrayOfImages[] = new BufferedImage[size];
-//		for(int i = 0; i < Title.length; i++) {
-//			arrayOfImages[i] = createImage("imagens/" + string + i +".jpg");
-//		}
-//		
-//		return arrayOfImages;
-//	}
+	private BufferedImage[] createSprite(int size, String string) {
+		BufferedImage arrayOfImages[] = new BufferedImage[size];
+		for(int i = 0; i < size; i++) {
+			arrayOfImages[i] = createImage("imagens/" + string + i +".png");
+		}
+		
+		return arrayOfImages;
+	}
+
 
 	private void paintGrid(Graphics arg0, BufferedImage image, float w, float h, int i,int j,Component label) {
 		arg0.drawImage(image, (int) (label.getX()+w*i), (int)(label.getY()+h*j), (int)(label.getX()+w+w*i),(int) (label.getY()+h+h*j), 0, 0, 50, 50, null);
@@ -70,6 +73,96 @@ public class PaintTools {
 			}
 		}
 	}
+	
+	public BufferedImage[] getTitle() {
+		return Title;
+	}
+
+	public void setTitle(BufferedImage[] title) {
+		Title = title;
+	}
+
+
+	public BufferedImage getSword() {
+		return sword;
+	}
+
+	public void setSword(BufferedImage sword) {
+		this.sword = sword;
+	}
+
+	public BufferedImage getWall() {
+		return wall;
+	}
+
+	public void setWall(BufferedImage wall) {
+		this.wall = wall;
+	}
+
+	public BufferedImage getWater() {
+		return water;
+	}
+
+	public void setWater(BufferedImage water) {
+		this.water = water;
+	}
+
+	public BufferedImage getHero() {
+		return hero;
+	}
+
+	public void setHero(BufferedImage hero) {
+		this.hero = hero;
+	}
+
+	public BufferedImage getHero_sword() {
+		return hero_sword;
+	}
+
+	public void setHero_sword(BufferedImage hero_sword) {
+		this.hero_sword = hero_sword;
+	}
+
+	public BufferedImage getDragon_awake() {
+		return dragon_awake;
+	}
+
+	public void setDragon_awake(BufferedImage dragon_awake) {
+		this.dragon_awake = dragon_awake;
+	}
+
+	public BufferedImage getDragon_sleeping() {
+		return dragon_sleeping;
+	}
+
+	public void setDragon_sleeping(BufferedImage dragon_sleeping) {
+		this.dragon_sleeping = dragon_sleeping;
+	}
+
+	public BufferedImage getEagle() {
+		return Eagle;
+	}
+
+	public void setEagle(BufferedImage eagle) {
+		Eagle = eagle;
+	}
+
+	public BufferedImage getBackground() {
+		return background;
+	}
+
+	public void setBackground(BufferedImage background) {
+		this.background = background;
+	}
+
+//	public BufferedImage[] getTitle() {
+//		return Title;
+//	}
+//
+//	public void setTitle(BufferedImage[] title) {
+//		Title = title;
+//	}
+
 
 
 }
