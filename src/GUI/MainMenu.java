@@ -38,12 +38,9 @@ public class MainMenu extends JLabel implements ActionListener {
 	public SaveGame sg;
 
 	private PaintTools paintObj = new PaintTools();
-	private BufferedImage title = paintObj.createImage("imagens/Title.gif");
-	private BufferedImage background = paintObj.createImage("imagens/mainMenuBackground.jpg");
 	
 	private Timer animation;
 	private int delay = 50, totalFrames = 15, currentFrame = 0;
-	private BufferedImage imageArray[];
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
@@ -51,11 +48,6 @@ public class MainMenu extends JLabel implements ActionListener {
 		fc = new JFileChooser();
 		sg = new SaveGame(null,null);
 		
-		
-		imageArray = new BufferedImage[5];
-		for(int i = 0; i < imageArray.length; i++) {
-			imageArray[i] = paintObj.createImage("imagens/" + "Title" + i +".png");
-		}
 		animation = new Timer(delay,this);
 		animation.start();
 		
@@ -220,13 +212,12 @@ public class MainMenu extends JLabel implements ActionListener {
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
-		arg0.drawImage(background,0,0,this.getWidth(),this.getHeight(), 0, 0, background.getWidth(),background.getHeight(), null);
-		if(currentFrame >= imageArray.length-1) {
+		arg0.drawImage(paintObj.getBackground(),0,0,this.getWidth(),this.getHeight(), 0, 0, paintObj.getBackground().getWidth(),paintObj.getBackground().getHeight(), null);
+		if(currentFrame >= paintObj.getTitle().length-1) {
 			currentFrame = 0;
 		}
 		currentFrame++;
-		//arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
-		arg0.drawImage(imageArray[currentFrame],this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
+		arg0.drawImage(paintObj.getTitle()[currentFrame],this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, paintObj.getTitle()[currentFrame].getWidth(),paintObj.getTitle()[currentFrame].getHeight(), null);
 
 	}
 
