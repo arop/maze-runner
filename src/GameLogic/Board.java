@@ -233,18 +233,22 @@ public class Board implements Serializable {
 	 */
 	public void createBoardFromString() {
 		ArrayList<Dragon> dragons = new ArrayList<Dragon>();
-
+		boolean x=false, y=false, z=false;
+		
 		for(int i=0; i<currentState.length;i++)
 			for(int j=0; j<currentState.length;j++){
-				if(currentState[i][j].equals("H"))
+				if(currentState[i][j].equals("H") && !x) {
 					setH(new Hero(i,j));
-				else if(currentState[i][j].equals("E"))
+					x=true;
+				}
+				else if(currentState[i][j].equals("E") && !y)
 					setS(new Sword(i,j));
 				else if(currentState[i][j].equals("D"))
 					dragons.add(new Dragon(i,j));
-				else if(currentState[i][j].equals("S")) {
-					Sx=j;
-					Sy=i;
+				else if((currentState[i][j].equals("S") || currentState[i][j].equals("s")) && !z) {
+					Sx=i;
+					Sy=j;
+					y=true;
 				}
 			}
 

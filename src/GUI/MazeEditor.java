@@ -68,9 +68,9 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		Play.setForeground(Color.RED);
 		Play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				customBoard.createBoardFromString();
 				g1.setSize(customBoard.getCurrentState().length+2);
 				g1.setBoard(customBoard);
+				customBoard.createBoardFromString();
 				frame.disableAll();
 				frame.setMazePanel(new MazePanel(g1, frame));
 				frame.getContentPane().add(frame.getMazePanel());
@@ -137,9 +137,9 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		chckbxNewCheckBox.setForeground(Color.RED);
 		chckbxNewCheckBox.setBackground(Color.BLACK);
 		panel.add(chckbxNewCheckBox);
+		choice.add("Path");
 		choice.add("Dragon");
 		choice.add("Wall");
-		choice.add("Path");
 		choice.add("Hero");
 		choice.add("Sword");
 		choice.add("Exit");
@@ -160,6 +160,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		//System.out.println(m + " " + n);
 		//System.out.println(arg0.getPoint().getX() + " " + arg0.getPoint().getY());
 
+		//so pode desenhar parede ou saidas nas bordas
 		if(choice==1 || choice==2 || (m!=0 && m!=customBoard.getCurrentState().length-1 && n!=0 && n!=customBoard.getCurrentState().length-1))
 			if(arg0.getButton() == MouseEvent.BUTTON1) {
 				if(choice < 3) customBoard.getOriginalMaze()[m][n] = choose[choice];
