@@ -24,9 +24,10 @@ public class PaintTools {
 	private BufferedImage hero_sword =  createImage("imagens/HeroSword.png");
 	private BufferedImage dragon_awake  =  createImage("imagens/dragonAwake.png");
 	private BufferedImage dragon_sleeping = createImage("imagens/DragonSleeping.png");
-	private BufferedImage Eagle  =  createImage("imagens/eagle_fly.gif");
+	private BufferedImage eagle  =  createImage("imagens/eagle_fly.gif");
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
 	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
+	private BufferedImage door = createImage("imagens/door1.png");
 	private BufferedImage eagle_sprite[] = createSprite(10,"eagle");
 	private BufferedImage title_sprite[] = createSprite(5,"title");
 
@@ -65,7 +66,7 @@ public class PaintTools {
 
 		for(int i = 0; i < realSize; i++) {
 			for(int j= 0; j < realSize; j++) {
-				if(b.getCurrentState()[j][i].equals(" ") || b.getCurrentState()[j][i].equals("S")) paintGrid(arg0,path,w,h,i,j,label);
+				if(b.getCurrentState()[j][i].equals(" ")) paintGrid(arg0,path,w,h,i,j,label);
 				else if(b.getCurrentState()[j][i].equals("X")) paintGrid(arg0,wall,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("E")) paintGrid(arg0,sword,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("H")) paintGrid(arg0,hero,w,h,i,j,label);
@@ -76,6 +77,7 @@ public class PaintTools {
 					else if (b.getOriginalMaze()[j][i].equals("X"))paintGrid(arg0,wall,w,h,i,j,label);
 					paintGrid(arg0,eagle_sprite[eagle_sprite_frame],w,h,i,j,label);
 				}
+				else if(b.getCurrentState()[j][i].equals("S")) paintGrid(arg0,door,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("d")) paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
 
 			}
@@ -159,13 +161,21 @@ public class PaintTools {
 	}
 
 	public BufferedImage getEagle() {
-		return Eagle;
+		return eagle;
 	}
 
 	public void setEagle(BufferedImage eagle) {
-		Eagle = eagle;
+		this.eagle = eagle;
 	}
 
+	public BufferedImage getDoor() {
+		return door;
+	}
+
+	public void setDoor(BufferedImage door) {
+		this.door = door;
+	}
+	
 	public BufferedImage getBackground() {
 		return background;
 	}
