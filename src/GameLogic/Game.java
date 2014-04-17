@@ -102,6 +102,14 @@ public class Game implements Serializable {
 			}
 		}
 
+		else { //if not moving, can fall asleep
+			for(int i = 0 ; i < board.getDragons().length ; i++)
+				if(sleepingDragons) {
+					int x= (int) Math.round(Math.random());
+					if(x == 0) board.getDragons()[i].setSleeping();
+				}
+		}
+
 		//dragon protecting sword
 		boolean sProtected = false;
 		for(int i = 0 ; i < board.getDragons().length ; i++) {
@@ -207,7 +215,7 @@ public class Game implements Serializable {
 
 		board = new Board(size,number_dragons); 
 	}
-	
+
 	public void setBoard(Board board) {
 		this.board = board;
 	}

@@ -32,7 +32,7 @@ public class MazePanel extends JPanel implements ActionListener {
 	public MazePanel(Game currentGame, MazeGameGUI window){
 		g1 = currentGame;
 		frame = window;
-		
+
 		animation = new Timer(delay,this);
 		animation.start();
 
@@ -115,17 +115,12 @@ public class MazePanel extends JPanel implements ActionListener {
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
-
 		super.paintComponent(arg0);
 		paintObj.drawGraphicBoard(arg0,realSize, getWidth(), getHeight(), g1.getBoard(),this);
-		
-		
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		repaint();
 	}
 
