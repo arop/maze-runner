@@ -34,7 +34,7 @@ public class TestDragons {
 	}
 
 	/**
-	 * Testa se o dragao muda de simbolo em cima da espada
+	 * Testa se espada muda de simbolo quando dragao esta em cima da espada
 	 */
 	@Test
 	public void DragonGetsSword() {
