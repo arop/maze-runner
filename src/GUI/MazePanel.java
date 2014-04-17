@@ -24,7 +24,7 @@ public class MazePanel extends JPanel implements ActionListener {
 	private int realSize;
 	private PaintTools paintObj = new PaintTools();
 	private Timer animation;
-	private int delay = 50, totalFrames = 10, currentFrame = 0;
+	private int delay = 50;
 
 	private static final long serialVersionUID = 7836117138272018391L;
 
@@ -39,7 +39,7 @@ public class MazePanel extends JPanel implements ActionListener {
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
 
-		System.out.println(g1.getBoard());
+		//System.out.println(g1.getBoard());
 		Play();
 		UpdateGraphicBoard();
 
@@ -80,14 +80,22 @@ public class MazePanel extends JPanel implements ActionListener {
 				break;
 			case 2: //dead
 				JOptionPane.showMessageDialog(frame, "You died!");
-
 				frame.disableAll();
+				setVisible(false);
+				
+				//create new game with same components		
+				frame.getMainMenu().getGame().setBoard();
+
 				frame.getMainMenu().setVisible(true);
 				break;
 			case 3: //won
 				JOptionPane.showMessageDialog(frame, "You won!");
-
 				frame.disableAll();
+				setVisible(false);
+				
+				//create new game with same components	
+				frame.getMainMenu().getGame().setBoard();
+				
 				frame.getMainMenu().setVisible(true);
 				break;
 			}
@@ -109,7 +117,6 @@ public class MazePanel extends JPanel implements ActionListener {
 
 	private void UpdateGraphicBoard() {
 		this.repaint();
-
 	}
 
 

@@ -10,9 +10,6 @@ import java.util.Arrays;
  *
  */
 public class Board implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5843035626760272684L;
 	private MazeBuilder builder ;
 	private String[][] currentState;
@@ -231,15 +228,6 @@ public class Board implements Serializable {
 		this.dragons = dragons;
 	}
 
-	/**
-	 * Este metodo serve para modificar um componente numa determinada coordenada
-	 * @param x coordenada x
-	 * @param y coordenada y
-	 * @param symbol Novo simbolo 
-	 */
-	public void changeCurrentMaze(int x, int y, String symbol) {
-		currentState[x][y]=symbol;
-	}
 	/**
 	 * Esta funcao cria um novo board, com todas as suas componentes, atraves duma string[][] (o currentState)
 	 */

@@ -29,7 +29,7 @@ public class PaintTools {
 	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
 	private BufferedImage eagle_sprite[] = createSprite(10,"eagle");
 	private BufferedImage title_sprite[] = createSprite(5,"title");
-	
+
 	int eagle_sprite_frame = 0;
 
 	BufferedImage createImage(String path) {
@@ -42,7 +42,7 @@ public class PaintTools {
 		return image;
 	}
 
-	
+
 
 	private BufferedImage[] createSprite(int size, String string) {
 		BufferedImage arrayOfImages[] = new BufferedImage[size];
@@ -80,17 +80,15 @@ public class PaintTools {
 
 			}
 		}
-		
+
 		refreshScreen();
 	}
 
 	private void refreshScreen() {
-		// TODO Auto-generated method stub
 		if(eagle_sprite_frame >= eagle_sprite.length-1) {
 			eagle_sprite_frame = 0;
 		}
 		eagle_sprite_frame++;
-//		drawImage(eagle_sprite[eagle_sprite_frame],this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, eagle_sprite[eagle_sprite_frame].getWidth(),eagle_sprite[eagle_sprite_frame].getHeight(), null);
 	}
 
 
@@ -98,7 +96,7 @@ public class PaintTools {
 	public BufferedImage[] getEagle_sprite() {
 		return eagle_sprite;
 	}
-	
+
 	public BufferedImage[] getTitle() {
 		return title_sprite;
 	}
@@ -175,7 +173,7 @@ public class PaintTools {
 	public void setBackground(BufferedImage background) {
 		this.background = background;
 	}
-	
+
 	public BufferedImage getDragonMainMenu() {
 		return dragonMainMenu;
 	}

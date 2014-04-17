@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import GameLogic.Game;
@@ -180,13 +181,21 @@ public class GameMenu extends JLabel implements ActionListener {
 		break;
 
 		case("Return"):
+			int resposta;
+		resposta = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to main menu?");
+		if (resposta == JOptionPane.YES_OPTION) {
 			setVisible(false);
-		g1.setBoard();
-		frame.getMainMenu().setVisible(true);
+			g1.setBoard();
+			frame.getMainMenu().setVisible(true);
+		}
 		break;
 
 		case("Exit"):
+			int resposta1;
+		resposta1 = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?");
+		if (resposta1 == JOptionPane.YES_OPTION) {
 			System.exit(0);
+		}
 		}
 	}
 }
