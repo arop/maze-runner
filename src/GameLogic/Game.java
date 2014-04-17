@@ -211,7 +211,7 @@ public class Game implements Serializable {
 	 * Modifica o board
 	 */
 	public void setBoard() {
-		System.out.println("ENTROU NO SET BOARD");
+		//System.out.println("ENTROU NO SET BOARD");
 
 		board = new Board(size,number_dragons); 
 	}

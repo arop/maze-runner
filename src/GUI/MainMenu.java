@@ -32,14 +32,16 @@ public class MainMenu extends JLabel implements ActionListener {
 	private static final long serialVersionUID = -7979274358212876062L;
 	private JLabel panel_6;
 	private JFileChooser fc;
+
+
 	private Game g1;
 	private MazeGameGUI frame;
-	public SaveGame sg;
-
+	private SaveGame sg;
+	
 	private PaintTools paintObj = new PaintTools();
 
 	private Timer animation;
-	private int delay = 50, totalFrames = 15, currentFrame = 0;
+	private int delay = 50, currentFrame = 0;
 
 	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
@@ -49,7 +51,6 @@ public class MainMenu extends JLabel implements ActionListener {
 
 		animation = new Timer(delay,this);
 		animation.start();
-
 
 		setLayout(new BorderLayout(0, 0));
 
@@ -225,4 +226,11 @@ public class MainMenu extends JLabel implements ActionListener {
 		repaint();
 	}
 
+	public Game getGame() {
+		return g1;
+	}
+
+	public void setGame(Game g1) {
+		this.g1 = g1;
+	}
 }

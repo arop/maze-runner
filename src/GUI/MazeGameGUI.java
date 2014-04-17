@@ -23,6 +23,8 @@ public class MazeGameGUI extends JFrame {
 	private GameMenu paused;
 	private MazeEditor editor;
 	private ArrayList<Integer> controls;
+	Game g1;
+
 	/**
 	 * 
 	 * @return controlos escolhidos para o jogo
@@ -38,8 +40,6 @@ public class MazeGameGUI extends JFrame {
 	public void setControls(ArrayList<Integer> controls) {
 		this.controls = controls;
 	}
-
-	Game g1;
 	/**
 	 * Funcao main do package
 	 * @param args

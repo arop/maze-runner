@@ -132,8 +132,6 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		choice.add("Hero");
 		choice.add("Sword");
 		choice.addItemListener(this);
-
-
 	}
 
 	@Override
