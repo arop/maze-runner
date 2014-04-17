@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,9 +24,9 @@ public class PaintTools {
 	private BufferedImage hero_sword =  createImage("imagens/HeroSword.png");
 	private BufferedImage dragon_awake  =  createImage("imagens/dragonAwake.png");
 	private BufferedImage dragon_sleeping = createImage("images/DragonSleeping.png");
-	private BufferedImage Eagle  =  createImage("imagens/eagle.jpg");
+	private BufferedImage Eagle  =  createImage("imagens/eagle_fly.gif");
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
-	
+
 	private BufferedImage Title[] = createSprite(5,"title");
 
 	BufferedImage createImage(String path) {
@@ -45,7 +44,7 @@ public class PaintTools {
 		for(int i = 0; i < size; i++) {
 			arrayOfImages[i] = createImage("imagens/" + string + i +".png");
 		}
-		
+
 		return arrayOfImages;
 	}
 
@@ -61,7 +60,6 @@ public class PaintTools {
 
 		for(int i = 0; i < realSize; i++) {
 			for(int j= 0; j < realSize; j++) {
-
 				if(b.getCurrentState()[j][i].equals(" ")) paintGrid(arg0,path,w,h,i,j,label);
 				else if(b.getCurrentState()[j][i].equals("X")) paintGrid(arg0,wall,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("E")) paintGrid(arg0,sword,w,h,i,j,label);
@@ -74,7 +72,7 @@ public class PaintTools {
 			}
 		}
 	}
-	
+
 	public BufferedImage[] getTitle() {
 		return Title;
 	}
@@ -156,13 +154,13 @@ public class PaintTools {
 		this.background = background;
 	}
 
-//	public BufferedImage[] getTitle() {
-//		return Title;
-//	}
-//
-//	public void setTitle(BufferedImage[] title) {
-//		Title = title;
-//	}
+	//	public BufferedImage[] getTitle() {
+	//		return Title;
+	//	}
+	//
+	//	public void setTitle(BufferedImage[] title) {
+	//		Title = title;
+	//	}
 
 
 

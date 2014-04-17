@@ -17,7 +17,6 @@ import GameLogic.SaveGame;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 /**
@@ -38,7 +37,7 @@ public class MainMenu extends JLabel implements ActionListener {
 	public SaveGame sg;
 
 	private PaintTools paintObj = new PaintTools();
-	
+
 	private Timer animation;
 	private int delay = 50, totalFrames = 15, currentFrame = 0;
 
@@ -47,10 +46,10 @@ public class MainMenu extends JLabel implements ActionListener {
 		setBackground(Color.WHITE);
 		fc = new JFileChooser();
 		sg = new SaveGame(null,null);
-		
+
 		animation = new Timer(delay,this);
 		animation.start();
-		
+
 
 		setLayout(new BorderLayout(0, 0));
 
