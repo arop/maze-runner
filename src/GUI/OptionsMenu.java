@@ -25,6 +25,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.Color;
+import java.awt.Frame;
 /**
  * OptionsMenu.java - Esta classe representa o menu de opções, sendo que é possivel alterar o tamanho do labirinto,
  * o numero de dragoes, a possibilidade dos dragoes adormecerem/moverem, e a mudança dos controlos do jogo
@@ -172,7 +173,7 @@ public class OptionsMenu extends JPanel {
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				frame.setExtendedState(frame.MAXIMIZED_BOTH);  
+				frame.setExtendedState(Frame.MAXIMIZED_BOTH);  
 				frame.setUndecorated(true);
 				frame.setVisible(true);
 			}
@@ -296,6 +297,7 @@ public class OptionsMenu extends JPanel {
 
 		panel_5.add(lblNewLabel_10);
 
+		// RIGHT
 		textField_1 = new JTextField();
 		textField_1.setBackground(Color.DARK_GRAY);
 		textField_1.addKeyListener(new KeyAdapter() {
@@ -308,6 +310,7 @@ public class OptionsMenu extends JPanel {
 		panel_5.add(textField_1);
 		textField_1.setColumns(10);
 
+		// UP
 		textField = new JTextField();
 		textField.setBackground(Color.DARK_GRAY);
 		textField.addKeyListener(new KeyAdapter() {
@@ -319,6 +322,7 @@ public class OptionsMenu extends JPanel {
 		panel_5.add(textField);
 		textField.setColumns(10);
 
+		// LEFT
 		textField_2 = new JTextField();
 		textField_2.setBackground(Color.DARK_GRAY);
 		textField_2.addKeyListener(new KeyAdapter() {
@@ -330,13 +334,27 @@ public class OptionsMenu extends JPanel {
 		panel_5.add(textField_2);
 		textField_2.setColumns(10);
 
+		// DOWN
 		textField_3 = new JTextField();
 		textField_3.setBackground(Color.DARK_GRAY);
+		textField_3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				frame.getControls().set(2, arg0.getKeyCode());
+			}
+		});
 		panel_5.add(textField_3);
 		textField_3.setColumns(10);
 
+		// EAGLE
 		textField_4 = new JTextField();
 		textField_4.setBackground(Color.DARK_GRAY);
+		textField_4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				frame.getControls().set(4, arg0.getKeyCode());
+			}
+		});
 		panel_5.add(textField_4);
 		textField_4.setColumns(10);
 	}
