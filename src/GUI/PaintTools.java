@@ -23,11 +23,14 @@ public class PaintTools {
 	private BufferedImage hero =  createImage("imagens/hero.png");
 	private BufferedImage hero_sword =  createImage("imagens/HeroSword.png");
 	private BufferedImage dragon_awake  =  createImage("imagens/dragonAwake.png");
-	private BufferedImage dragon_sleeping = createImage("images/DragonSleeping.png");
+	private BufferedImage dragon_sleeping = createImage("imagens/DragonSleeping.png");
 	private BufferedImage Eagle  =  createImage("imagens/eagle_fly.gif");
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
-
-	private BufferedImage Title[] = createSprite(5,"title");
+	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
+	private BufferedImage eagle_sprite[] = createSprite(10,"eagle");
+	private BufferedImage title_sprite[] = createSprite(5,"title");
+	
+	int eagle_sprite_frame = 0;
 
 	BufferedImage createImage(String path) {
 		BufferedImage image = null;
@@ -38,6 +41,8 @@ public class PaintTools {
 		}
 		return image;
 	}
+
+	
 
 	private BufferedImage[] createSprite(int size, String string) {
 		BufferedImage arrayOfImages[] = new BufferedImage[size];
@@ -66,19 +71,36 @@ public class PaintTools {
 				else if (b.getCurrentState()[j][i].equals("H")) paintGrid(arg0,hero,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("A")) paintGrid(arg0,hero_sword,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("D")) paintGrid(arg0,dragon_awake,w,h,i,j,label);
-				else if(b.getCurrentState()[j][i].equals("v") || b.getCurrentState()[j][i].equals("V")) paintGrid(arg0,Eagle,w,h,i,j,label);
-				else paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
+				else if (b.getCurrentState()[j][i].equals("v") || b.getCurrentState()[j][i].equals("V")) {
+					if(b.getOriginalMaze()[j][i].equals(" "))paintGrid(arg0,path,w,h,i,j,label);
+					else if (b.getOriginalMaze()[j][i].equals("X"))paintGrid(arg0,wall,w,h,i,j,label);
+					paintGrid(arg0,eagle_sprite[eagle_sprite_frame],w,h,i,j,label);
+				}
+				else if (b.getCurrentState()[j][i].equals("d")) paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
 
 			}
 		}
+		
+		refreshScreen();
 	}
 
+	private void refreshScreen() {
+		// TODO Auto-generated method stub
+		if(eagle_sprite_frame >= eagle_sprite.length-1) {
+			eagle_sprite_frame = 0;
+		}
+		eagle_sprite_frame++;
+//		drawImage(eagle_sprite[eagle_sprite_frame],this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, eagle_sprite[eagle_sprite_frame].getWidth(),eagle_sprite[eagle_sprite_frame].getHeight(), null);
+	}
+
+
+
+	public BufferedImage[] getEagle_sprite() {
+		return eagle_sprite;
+	}
+	
 	public BufferedImage[] getTitle() {
-		return Title;
-	}
-
-	public void setTitle(BufferedImage[] title) {
-		Title = title;
+		return title_sprite;
 	}
 
 
@@ -153,6 +175,15 @@ public class PaintTools {
 	public void setBackground(BufferedImage background) {
 		this.background = background;
 	}
+	
+	public BufferedImage getDragonMainMenu() {
+		return dragonMainMenu;
+	}
+
+	public void setDragonMainMenu(BufferedImage dragonMainMenu) {
+		this.dragonMainMenu = dragonMainMenu;
+	}
+
 
 	//	public BufferedImage[] getTitle() {
 	//		return Title;

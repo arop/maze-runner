@@ -1,12 +1,14 @@
 package GUI;
 
 import java.awt.Graphics;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import GameLogic.Game;
 /**
@@ -15,12 +17,14 @@ import GameLogic.Game;
  * @author André Pires, Filipe Gama
  * @see GameLogic.Board, GameLogic.Game
  */
-public class MazePanel extends JPanel {
+public class MazePanel extends JPanel implements ActionListener {
 
 	private Game g1;
 	private MazeGameGUI frame;
 	private int realSize;
 	private PaintTools paintObj = new PaintTools();
+	private Timer animation;
+	private int delay = 50, totalFrames = 10, currentFrame = 0;
 
 	private static final long serialVersionUID = 7836117138272018391L;
 
@@ -28,6 +32,9 @@ public class MazePanel extends JPanel {
 	public MazePanel(Game currentGame, MazeGameGUI window){
 		g1 = currentGame;
 		frame = window;
+		
+		animation = new Timer(delay,this);
+		animation.start();
 
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
@@ -111,7 +118,15 @@ public class MazePanel extends JPanel {
 
 		super.paintComponent(arg0);
 		paintObj.drawGraphicBoard(arg0,realSize, getWidth(), getHeight(), g1.getBoard(),this);
+		
+		
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		repaint();
 	}
 
 }
