@@ -48,7 +48,7 @@ public class MazeGameGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MazeGameGUI frame = new MazeGameGUI();
+					new MazeGameGUI();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

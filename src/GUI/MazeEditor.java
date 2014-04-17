@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
@@ -39,7 +40,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	private static final long serialVersionUID = 1L;
 
 	private PaintTools paintObj = new PaintTools();
-	private JLabel Board_label;
+	private JLabel board_label;
 	private Board customBoard;
 	private Game g1;
 	private MazeGameGUI frame;
@@ -85,13 +86,23 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		panel_1.add(Save);
 
 		JButton btnNewButton_2 = new JButton("Cancel");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int resposta;
+				resposta = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to main menu?");
+				if (resposta == JOptionPane.YES_OPTION) {
+					setVisible(false);
+					frame.getMainMenu().setVisible(true);
+				}
+			}
+		});
 		btnNewButton_2.setForeground(Color.RED);
 		btnNewButton_2.setBackground(Color.BLACK);
 		panel_1.add(btnNewButton_2);
 
-		Board_label = new JLabel("");
-		add(Board_label, BorderLayout.CENTER);
-		Board_label.addMouseListener(this);
+		board_label = new JLabel("");
+		add(board_label, BorderLayout.CENTER);
+		board_label.addMouseListener(this);
 
 		Panel panel = new Panel();
 		add(panel, BorderLayout.NORTH);
@@ -138,21 +149,23 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		paintObj.drawGraphicBoard(g, customBoard.getCurrentState().length, Board_label.getWidth(),Board_label.getHeight(), customBoard,Board_label);
+		paintObj.drawGraphicBoard(g, customBoard.getCurrentState().length, board_label.getWidth(),board_label.getHeight(), customBoard,board_label);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		int n= (int) (customBoard.getCurrentState().length*arg0.getPoint().getX()/(Board_label.getWidth()));
-		int m = (int) (customBoard.getCurrentState().length*arg0.getPoint().getY()/(Board_label.getHeight()));
+		int n= (int) (customBoard.getCurrentState().length*arg0.getPoint().getX()/(board_label.getWidth()));
+		int m = (int) (customBoard.getCurrentState().length*arg0.getPoint().getY()/(board_label.getHeight()));
 
-		System.out.println(m + " " + n);
-		System.out.println(arg0.getPoint().getX() + " " + arg0.getPoint().getY());
+		//System.out.println(m + " " + n);
+		//System.out.println(arg0.getPoint().getX() + " " + arg0.getPoint().getY());
 
-		if(arg0.getButton() == MouseEvent.BUTTON1) {
-			if(choice < 3) customBoard.getOriginalMaze()[m][n] = choose[choice];
-			customBoard.getCurrentState()[m][n] = choose[choice];
-		}
+		if(choice==1 || choice==2 || (m!=0 && m!=customBoard.getCurrentState().length-1 && n!=0 && n!=customBoard.getCurrentState().length-1))
+			if(arg0.getButton() == MouseEvent.BUTTON1) {
+				if(choice < 3) customBoard.getOriginalMaze()[m][n] = choose[choice];
+				customBoard.getCurrentState()[m][n] = choose[choice];
+			}
+
 		repaint();
 	}
 
