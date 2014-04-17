@@ -29,6 +29,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JCheckBox;
 import java.awt.Color;
+import java.awt.Font;
 /**
  * MazeEditor.java - Esta classe representa o editor do jogo, isto é, cria a possibilidade do utilizador
  * editar o labirinto do jogo, acrescentando, a seu gosto, os objetos (heroi, dragao, etc)
@@ -53,10 +54,9 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		frame = window;
 		customBoard = new Board(7,0);
 
-
 		setLayout(new BorderLayout(0, 0));
 
-		JList list = new JList();
+		JList<Object> list = new JList<Object>();
 		add(list, BorderLayout.WEST);
 
 		JPanel panel_1 = new JPanel();
@@ -109,6 +109,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		panel.setLayout(new GridLayout(0, 3, 0, 0));
 
 		JLabel lblNewLabel = new JLabel("Maze Editor");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setBackground(Color.BLACK);
 		panel.add(lblNewLabel);
