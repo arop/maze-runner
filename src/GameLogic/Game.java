@@ -75,9 +75,10 @@ public class Game implements Serializable {
 
 		//verificar se heroi apanhou a espada/aguia
 		if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
-			board.getH().setSymb("A") ;
-			board.getS().disable() ;
-			board.getEg().disable() ;
+			board.getH().setSymb("A");
+			board.getS().disable();
+			board.getEg().disable();
+			board.getOriginalMaze()[board.getSx()][board.getSy()] = "S";
 		}
 
 		//lancar aguia

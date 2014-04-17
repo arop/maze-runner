@@ -18,7 +18,7 @@ public class MazeBuilder implements Serializable {
 			{"X"," ","X","X"," ","X"," ","X"," ","X"},
 			{"X"," ","X","X"," ","X"," ","X"," ","X"},
 			{"X"," ","X","X"," ","X"," ","X"," ","X"},
-			{"X"," "," "," "," "," "," ","X"," ","S"},
+			{"X"," "," "," "," "," "," ","X"," ","s"},
 			{"X"," ","X","X"," ","X"," ","X"," ","X"},
 			{"X"," ","X","X"," ","X"," ","X"," ","X"},
 			{"X"," ","X","X"," "," "," "," "," ","X"},
@@ -155,7 +155,7 @@ public class MazeBuilder implements Serializable {
 			Sy = 9; 
 		}
 
-		finalField[Sx][Sy]= "S";
+		finalField[Sx][Sy]= "s";
 	}
 	/**
 	 * Remove as bordas do labirinto (criadas na funcao MakePath)
