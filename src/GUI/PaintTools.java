@@ -18,17 +18,16 @@ import GameLogic.Board;
 public class PaintTools {
 
 	private BufferedImage sword = createImage("imagens/sword.png");
-	private BufferedImage wall =  createImage("imagens/lava.png");
-	private BufferedImage path =  createImage("imagens/metal.jpg");
-	private BufferedImage hero =  createImage("imagens/hero.png");
-	private BufferedImage hero_sword =  createImage("imagens/HeroSword.png");
-	private BufferedImage dragon_awake  =  createImage("imagens/dragonAwake.png");
+	private BufferedImage wall = createImage("imagens/lava.png");
+	private BufferedImage path = createImage("imagens/metal.jpg");
+	private BufferedImage hero = createImage("imagens/hero.png");
+	private BufferedImage hero_sword = createImage("imagens/HeroSword.png");
+	private BufferedImage dragon_awake = createImage("imagens/dragonAwake.png");
 	private BufferedImage dragon_sleeping = createImage("imagens/DragonSleeping.png");
-	private BufferedImage dragon_sword  =  createImage("imagens/dragonSword.png");
-	private BufferedImage eagle  =  createImage("imagens/eagle_fly.gif");
+	private BufferedImage dragon_sword = createImage("imagens/dragonSword.png");
+	private BufferedImage eagle = createImage("imagens/eagle_fly.gif");
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
 	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
-	private BufferedImage doorOpened = createImage("imagens/door1.png");
 	private BufferedImage doorClosed = createImage("imagens/door2.png");
 	private BufferedImage eagle_sprite[] = createSprite(10,"eagle");
 	private BufferedImage title_sprite[] = createSprite(5,"title");
@@ -47,8 +46,6 @@ public class PaintTools {
 		return image;
 	}
 
-
-
 	private BufferedImage[] createSprite(int size, String string) {
 		BufferedImage arrayOfImages[] = new BufferedImage[size];
 		for(int i = 0; i < size; i++) {
@@ -58,10 +55,8 @@ public class PaintTools {
 		return arrayOfImages;
 	}
 
-
 	private void paintGrid(Graphics arg0, BufferedImage image, float w, float h, int i,int j,Component label) {
 		arg0.drawImage(image, (int) (label.getX()+w*i), (int)(label.getY()+h*j), (int)(label.getX()+w+w*i),(int) (label.getY()+h+h*j), 0, 0, 50, 50, null);
-
 	}
 
 	void drawGraphicBoard(Graphics arg0,int realSize,int width,int height, Board b, Component label) {
@@ -70,7 +65,7 @@ public class PaintTools {
 
 		for(int i = 0; i < realSize; i++) {
 			for(int j= 0; j < realSize; j++) {
-				
+
 				if(b.getCurrentState()[j][i].equals(" ")) paintGrid(arg0,path,w,h,i,j,label);
 				else if(b.getCurrentState()[j][i].equals("X")) paintGrid(arg0,wall,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("E")) paintGrid(arg0,sword,w,h,i,j,label);
@@ -93,9 +88,9 @@ public class PaintTools {
 					paintGrid(arg0,path,w,h,i,j,label);
 					paintGrid(arg0,door_sprite[door_sprite_frame],w,h,i,j,label);
 				}
-				
+
 				else if (b.getCurrentState()[j][i].equals("d")) paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
-				}
+			}
 		}
 
 		refreshScreen();
@@ -112,7 +107,7 @@ public class PaintTools {
 			}
 			else door_sprite_frame++;
 		}
-		
+
 	}
 
 
@@ -201,7 +196,7 @@ public class PaintTools {
 	public void setDoor(BufferedImage door) {
 		this.doorClosed = door;
 	}
-	
+
 	public BufferedImage getBackground() {
 		return background;
 	}
@@ -217,18 +212,6 @@ public class PaintTools {
 	public void setDragonMainMenu(BufferedImage dragonMainMenu) {
 		this.dragonMainMenu = dragonMainMenu;
 	}
-
-
-	//	public BufferedImage[] getTitle() {
-	//		return Title;
-	//	}
-	//
-	//	public void setTitle(BufferedImage[] title) {
-	//		Title = title;
-	//	}
-
-
-
 }
 
 

@@ -32,8 +32,6 @@ public class MainMenu extends JLabel implements ActionListener {
 	private static final long serialVersionUID = -7979274358212876062L;
 	private JLabel panel_6;
 	private JFileChooser fc;
-
-
 	private Game g1;
 	private MazeGameGUI frame;
 	private SaveGame sg;
