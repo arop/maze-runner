@@ -24,6 +24,7 @@ public class PaintTools {
 	private BufferedImage hero_sword =  createImage("imagens/HeroSword.png");
 	private BufferedImage dragon_awake  =  createImage("imagens/dragonAwake.png");
 	private BufferedImage dragon_sleeping = createImage("imagens/DragonSleeping.png");
+	private BufferedImage dragon_sword  =  createImage("imagens/dragonSword.png");
 	private BufferedImage eagle  =  createImage("imagens/eagle_fly.gif");
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
 	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
@@ -72,6 +73,7 @@ public class PaintTools {
 				else if (b.getCurrentState()[j][i].equals("E")) paintGrid(arg0,sword,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("H")) paintGrid(arg0,hero,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("A")) paintGrid(arg0,hero_sword,w,h,i,j,label);
+				else if (b.getCurrentState()[j][i].equals("F")) paintGrid(arg0,dragon_sword,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("D")) paintGrid(arg0,dragon_awake,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("v") || b.getCurrentState()[j][i].equals("V")) {
 					if(b.getOriginalMaze()[j][i].equals(" "))paintGrid(arg0,path,w,h,i,j,label);
@@ -81,8 +83,7 @@ public class PaintTools {
 				else if(b.getCurrentState()[j][i].equals("s")) paintGrid(arg0,doorClosed,w,h,i,j,label);
 				else if(b.getCurrentState()[j][i].equals("S")) paintGrid(arg0,doorOpened,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("d")) paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
-
-			}
+				}
 		}
 
 		refreshScreen();

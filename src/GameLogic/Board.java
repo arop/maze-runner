@@ -94,13 +94,13 @@ public class Board implements Serializable {
 		if(eg.getStatus())
 			drawObject(eg);
 		drawObject(h);
-		if(s.getStatus())
-			drawObject(s);
 
 		for (int i = 0; i < dragons.length ; i++) {
 			if(dragons[i].getStatus())
 				drawObject(dragons[i]);
 		}
+		if(s.getStatus())
+			drawObject(s);
 	}
 
 	/**
