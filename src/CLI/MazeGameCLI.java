@@ -97,9 +97,11 @@ public class MazeGameCLI {
 		System.out.println("4. Sleeping dragons");
 		System.out.println("5. Back to main menu");
 
+		@SuppressWarnings("resource")
 		Scanner option = new Scanner(System.in);
 		String b = option.nextLine();
 		int a = Integer.parseInt(b);
+
 
 		switch(a) {
 		case 1:
@@ -132,6 +134,7 @@ public class MazeGameCLI {
 
 			else { 
 				System.out.println("Enter the number of dragons desired: ");
+				@SuppressWarnings("resource")
 				Scanner noDrag = new Scanner(System.in);
 
 				String n= noDrag.nextLine();
@@ -175,7 +178,7 @@ public class MazeGameCLI {
 			}
 			break;
 
-		case 5: 
+		case 5: 	
 			return 1;
 		}
 		return 1;
