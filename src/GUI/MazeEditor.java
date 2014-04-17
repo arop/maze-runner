@@ -43,7 +43,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	private Board customBoard;
 	private Game g1;
 	private MazeGameGUI frame;
-	private String[] choose = {" ", "X", "H", "D", "E"};
+	private String[] choose = {" ", "X", "S", "H", "D", "E"};
 	private int choice=0;
 
 	public MazeEditor(Game currentGame,MazeGameGUI window)  {
@@ -131,6 +131,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		choice.add("Path");
 		choice.add("Hero");
 		choice.add("Sword");
+		choice.add("Exit");
 		choice.addItemListener(this);
 	}
 
@@ -149,8 +150,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		System.out.println(arg0.getPoint().getX() + " " + arg0.getPoint().getY());
 
 		if(arg0.getButton() == MouseEvent.BUTTON1) {
-			if(choice < 2) customBoard.getOriginalMaze()[m][n] = choose[choice];
-
+			if(choice < 3) customBoard.getOriginalMaze()[m][n] = choose[choice];
 			customBoard.getCurrentState()[m][n] = choose[choice];
 		}
 		repaint();
@@ -183,8 +183,9 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	public void itemStateChanged(ItemEvent arg0) {
 		if(((String) arg0.getItem()).equals("Path")) choice = 0;
 		else if (((String) arg0.getItem()).equals("Wall")) choice = 1;
-		else if(((String) arg0.getItem()).equals("Dragon")) choice = 3;
-		else if(((String) arg0.getItem()).equals("Hero")) choice = 2;
-		else if(((String) arg0.getItem()).equals("Sword")) choice = 4;
+		else if(((String) arg0.getItem()).equals("Exit")) choice = 2;
+		else if(((String) arg0.getItem()).equals("Hero")) choice = 3;
+		else if(((String) arg0.getItem()).equals("Dragon")) choice = 4;
+		else if(((String) arg0.getItem()).equals("Sword")) choice = 5;
 	}
 }

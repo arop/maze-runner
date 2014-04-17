@@ -243,8 +243,8 @@ public class Board implements Serializable {
 				else if(currentState[i][j].equals("D"))
 					dragons.add(new Dragon(i,j));
 				else if(currentState[i][j].equals("S")) {
-					Sx=i;
-					Sy=j;
+					Sx=j;
+					Sy=i;
 				}
 			}
 
