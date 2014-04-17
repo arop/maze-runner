@@ -32,7 +32,9 @@ public class PaintTools {
 	private BufferedImage doorClosed = createImage("imagens/door2.png");
 	private BufferedImage eagle_sprite[] = createSprite(10,"eagle");
 	private BufferedImage title_sprite[] = createSprite(5,"title");
-
+	private BufferedImage door_sprite[] = createSprite(4,"door");
+	private boolean openDoor = false;
+	int door_sprite_frame = 0;
 	int eagle_sprite_frame = 0;
 
 	BufferedImage createImage(String path) {
@@ -68,6 +70,7 @@ public class PaintTools {
 
 		for(int i = 0; i < realSize; i++) {
 			for(int j= 0; j < realSize; j++) {
+				
 				if(b.getCurrentState()[j][i].equals(" ")) paintGrid(arg0,path,w,h,i,j,label);
 				else if(b.getCurrentState()[j][i].equals("X")) paintGrid(arg0,wall,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("E")) paintGrid(arg0,sword,w,h,i,j,label);
@@ -80,8 +83,17 @@ public class PaintTools {
 					else if (b.getOriginalMaze()[j][i].equals("X"))paintGrid(arg0,wall,w,h,i,j,label);
 					paintGrid(arg0,eagle_sprite[eagle_sprite_frame],w,h,i,j,label);
 				}
-				else if(b.getCurrentState()[j][i].equals("s")) paintGrid(arg0,doorClosed,w,h,i,j,label);
-				else if(b.getCurrentState()[j][i].equals("S")) paintGrid(arg0,doorOpened,w,h,i,j,label);
+
+				else if(b.getCurrentState()[j][i].equals("s")){
+					paintGrid(arg0,path,w,h,i,j,label);
+					paintGrid(arg0,door_sprite[door_sprite_frame],w,h,i,j,label);
+				}
+				else if(b.getCurrentState()[j][i].equals("S")) {
+					openDoor = true;
+					paintGrid(arg0,path,w,h,i,j,label);
+					paintGrid(arg0,door_sprite[door_sprite_frame],w,h,i,j,label);
+				}
+				
 				else if (b.getCurrentState()[j][i].equals("d")) paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
 				}
 		}
@@ -94,8 +106,19 @@ public class PaintTools {
 			eagle_sprite_frame = 0;
 		}
 		eagle_sprite_frame++;
+		if(openDoor) {
+			if(door_sprite_frame >= door_sprite.length-1) {
+				openDoor = false;
+			}
+			else door_sprite_frame++;
+		}
+		
 	}
 
+
+	public BufferedImage[] getDoor_sprite() {
+		return door_sprite;
+	}
 
 
 	public BufferedImage[] getEagle_sprite() {
