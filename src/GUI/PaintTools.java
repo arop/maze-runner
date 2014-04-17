@@ -27,7 +27,8 @@ public class PaintTools {
 	private BufferedImage eagle  =  createImage("imagens/eagle_fly.gif");
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
 	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
-	private BufferedImage door = createImage("imagens/door1.png");
+	private BufferedImage doorOpened = createImage("imagens/door1.png");
+	private BufferedImage doorClosed = createImage("imagens/door2.png");
 	private BufferedImage eagle_sprite[] = createSprite(10,"eagle");
 	private BufferedImage title_sprite[] = createSprite(5,"title");
 
@@ -77,7 +78,8 @@ public class PaintTools {
 					else if (b.getOriginalMaze()[j][i].equals("X"))paintGrid(arg0,wall,w,h,i,j,label);
 					paintGrid(arg0,eagle_sprite[eagle_sprite_frame],w,h,i,j,label);
 				}
-				else if(b.getCurrentState()[j][i].equals("S")) paintGrid(arg0,door,w,h,i,j,label);
+				else if(b.getCurrentState()[j][i].equals("s")) paintGrid(arg0,doorClosed,w,h,i,j,label);
+				else if(b.getCurrentState()[j][i].equals("S")) paintGrid(arg0,doorOpened,w,h,i,j,label);
 				else if (b.getCurrentState()[j][i].equals("d")) paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
 
 			}
@@ -169,11 +171,11 @@ public class PaintTools {
 	}
 
 	public BufferedImage getDoor() {
-		return door;
+		return doorClosed;
 	}
 
 	public void setDoor(BufferedImage door) {
-		this.door = door;
+		this.doorClosed = door;
 	}
 	
 	public BufferedImage getBackground() {
