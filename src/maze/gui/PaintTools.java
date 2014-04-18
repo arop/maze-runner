@@ -29,9 +29,11 @@ public class PaintTools {
 	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
 	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
 	private BufferedImage doorClosed = createImage("imagens/door2.png");
-	private BufferedImage eagle_sprite[] = createSprite(10,"eagle");
-	private BufferedImage title_sprite[] = createSprite(5,"title");
-	private BufferedImage door_sprite[] = createSprite(4,"door");
+	
+	private BufferedImage eagle_animation[] = createSprite(10,"eagle");
+	private BufferedImage title_animation[] = createSprite(5,"title");
+	private BufferedImage door_animation[] = createSprite(4,"door");
+	
 	private boolean openDoor = false;
 	int door_sprite_frame = 0;
 	int eagle_sprite_frame = 0;
@@ -76,17 +78,17 @@ public class PaintTools {
 				else if (b.getCurrentState()[j][i].equals("v") || b.getCurrentState()[j][i].equals("V")) {
 					if(b.getOriginalMaze()[j][i].equals(" "))paintGrid(arg0,path,w,h,i,j,label);
 					else if (b.getOriginalMaze()[j][i].equals("X"))paintGrid(arg0,wall,w,h,i,j,label);
-					paintGrid(arg0,eagle_sprite[eagle_sprite_frame],w,h,i,j,label);
+					paintGrid(arg0,eagle_animation[eagle_sprite_frame],w,h,i,j,label);
 				}
 
 				else if(b.getCurrentState()[j][i].equals("s")){
 					paintGrid(arg0,path,w,h,i,j,label);
-					paintGrid(arg0,door_sprite[door_sprite_frame],w,h,i,j,label);
+					paintGrid(arg0,door_animation[door_sprite_frame],w,h,i,j,label);
 				}
 				else if(b.getCurrentState()[j][i].equals("S")) {
 					openDoor = true;
 					paintGrid(arg0,path,w,h,i,j,label);
-					paintGrid(arg0,door_sprite[door_sprite_frame],w,h,i,j,label);
+					paintGrid(arg0,door_animation[door_sprite_frame],w,h,i,j,label);
 				}
 
 				else if (b.getCurrentState()[j][i].equals("d")) paintGrid(arg0,dragon_sleeping,w,h,i,j,label);
@@ -97,7 +99,7 @@ public class PaintTools {
 	}
 
 	private void refreshScreen() {
-		if(eagle_sprite_frame >= eagle_sprite.length-1) {
+		if(eagle_sprite_frame >= eagle_animation.length-1) {
 			eagle_sprite_frame = 0;
 		}
 		eagle_sprite_frame++;
@@ -107,7 +109,7 @@ public class PaintTools {
 				GameSounds.load("BladeDragged.wav", "blade");
 				GameSounds.play("blade");
 			}
-			if(door_sprite_frame >= door_sprite.length-1) {
+			if(door_sprite_frame >= door_animation.length-1) {
 				openDoor = false;
 			}
 			else door_sprite_frame++;
@@ -117,16 +119,16 @@ public class PaintTools {
 
 
 	public BufferedImage[] getDoor_sprite() {
-		return door_sprite;
+		return door_animation;
 	}
 
 
 	public BufferedImage[] getEagle_sprite() {
-		return eagle_sprite;
+		return eagle_animation;
 	}
 
 	public BufferedImage[] getTitle() {
-		return title_sprite;
+		return title_animation;
 	}
 
 

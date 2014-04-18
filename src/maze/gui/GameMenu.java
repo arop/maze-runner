@@ -1,5 +1,4 @@
 package maze.gui;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,8 +11,6 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JLabel;
 
 import maze.logic.Game;
@@ -26,8 +23,8 @@ import java.awt.Font;
 /**
  * GameMenu.java - Esta classe representa o menu de "pause" durante o jogo; é invocado quando esta a decorrer
  * um jogo e o utilizador pressiona a tecla 'Esc'. Este menu contem 4 opçoes, 1- "Resume" continuar o jogo,
- * 2-"Save" guardar o jogo (abrindo uma janela para escolher o nome e sitio onde guardar o ficheiro),
- * 3-"Return to main menu" volta para o menu principal, 4-"ExiT" termina o programa
+ * 2-"Save" guardar o jogo (abrindo uma janela para escolher o nome e directorio onde guardar o ficheiro),
+ * 3-"Return to main menu" volta para o menu principal, 4-"Exit" termina o programa
  * Esta classe servira como um painel inserido na classe principal MazeGameGUI
  * @author André Pires, Filipe Gama
  * @see MazeGameGUI
@@ -40,11 +37,9 @@ public class GameMenu extends JLabel implements ActionListener {
 	private JFileChooser fc;
 	public SaveGame sg;
 
+	@SuppressWarnings("unused")
 	private JPanel panel_5 = new JPanel();
-	private PaintTools paintObj = new PaintTools();
-
-	private BufferedImage title = paintObj.createImage("imagens/Title.gif");
-	private BufferedImage background = paintObj.createImage("imagens/mainMenuBackground.jpg");
+	
 	/**
 	 * Construtor da classe GameMenu
 	 * @param currentGame do tipo Game, representa o jogo que esta a ser jogado naquele momento
@@ -151,8 +146,6 @@ public class GameMenu extends JLabel implements ActionListener {
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
-		arg0.drawImage(background,0,0,this.getWidth(),this.getHeight(), 0, 0, background.getWidth(),background.getHeight(), null);
-		arg0.drawImage(title,this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_5.getY()+panel_5.getHeight(), 0, 0, title.getWidth(),title.getHeight(), null);
 	}
 
 	@Override
