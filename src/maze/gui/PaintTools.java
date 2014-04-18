@@ -20,7 +20,7 @@ public class PaintTools {
 	private BufferedImage sword = createImage("imagens/sword.png");
 	private BufferedImage wall = createImage("imagens/lava.png");
 	private BufferedImage path = createImage("imagens/metal.jpg");
-	private BufferedImage hero = createImage("imagens/hero.png");
+	private BufferedImage hero = createImage("imagens/darkknight2.png");
 	private BufferedImage hero_sword = createImage("imagens/HeroSword.png");
 	private BufferedImage dragon_awake = createImage("imagens/dragonAwake.png");
 	private BufferedImage dragon_sleeping = createImage("imagens/DragonSleeping.png");

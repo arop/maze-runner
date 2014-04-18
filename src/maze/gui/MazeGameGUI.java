@@ -37,8 +37,9 @@ public class MazeGameGUI extends JFrame {
 	 * Modifica os controlos do jogo
 	 * @param controls novos controlos
 	 */
+	@SuppressWarnings("unchecked")
 	public void setControls(ArrayList<Integer> controls) {
-		this.controls = controls;
+		this.controls = (ArrayList<Integer>) controls.clone();
 	}
 	/**
 	 * Funcao main do package
