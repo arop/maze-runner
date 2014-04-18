@@ -83,6 +83,8 @@ public class MazePanel extends JPanel implements ActionListener {
 				frame.getMainMenu().setVisible(true);
 				break;
 			case 2: //dead
+				GameSounds.load("sons/DragonRoaring.wav", "dragon");
+				GameSounds.play("dragon");
 				JOptionPane.showMessageDialog(frame, "You died!");
 				frame.disableAll();
 				setVisible(false);

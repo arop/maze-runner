@@ -73,7 +73,7 @@ public class MazeGameGUI extends JFrame {
 
 		g1 = new Game() ;
 		
-		GameSounds.load("musica.wav", "musiquinha");
+		GameSounds.load("sons/musica.wav", "musiquinha");
 		GameSounds.play("musiquinha");
 
 
