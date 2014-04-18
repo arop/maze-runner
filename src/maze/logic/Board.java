@@ -30,7 +30,6 @@ public class Board implements Serializable {
 		builder = new MazeBuilder(n);
 		dragons = new Dragon[nDragons] ;	
 		currentState = copy(builder.getField()); 
-		visited = new boolean[n-2][n-2];
 
 		if(n>1) {
 			h = new Hero(0,0) ;
