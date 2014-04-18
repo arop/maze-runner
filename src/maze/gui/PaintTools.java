@@ -106,7 +106,7 @@ public class PaintTools {
 		
 		if(openDoor) {
 			if(door_sprite_frame == 0) {
-				GameSounds.load("BladeDragged.wav", "blade");
+				GameSounds.load("sons/BladeDragged.wav", "blade");
 				GameSounds.play("blade");
 			}
 			if(door_sprite_frame >= door_animation.length-1) {
