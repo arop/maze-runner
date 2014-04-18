@@ -81,8 +81,8 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		});
 		panel_1.add(Play);
 
-		JButton Save = new JButton("Solve");
-		Save.addActionListener(new ActionListener() {
+		JButton Solve = new JButton("Solve");
+		Solve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				customBoard.resetVisited(customBoard.getCurrentState().length);
 				customBoard.createBoardFromString();
@@ -93,9 +93,9 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 								
 			}
 		});
-		Save.setForeground(Color.RED);
-		Save.setBackground(Color.BLACK);
-		panel_1.add(Save);
+		Solve.setForeground(Color.RED);
+		Solve.setBackground(Color.BLACK);
+		panel_1.add(Solve);
 
 		JButton btnNewButton_2 = new JButton("Cancel");
 		btnNewButton_2.addActionListener(new ActionListener() {
