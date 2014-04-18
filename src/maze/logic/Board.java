@@ -13,6 +13,7 @@ public class Board implements Serializable {
 	private static final long serialVersionUID = -5843035626760272684L;
 	private MazeBuilder builder ;
 	private String[][] currentState;
+	private boolean[][] visited;
 	private  Hero h;
 	private  Dragon[] dragons;
 	private  Sword s;
@@ -29,6 +30,7 @@ public class Board implements Serializable {
 		builder = new MazeBuilder(n);
 		dragons = new Dragon[nDragons] ;	
 		currentState = copy(builder.getField()); 
+		visited = new boolean[n-2][n-2];
 
 		if(n>1) {
 			h = new Hero(0,0) ;
@@ -227,6 +229,11 @@ public class Board implements Serializable {
 	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
 	}
+	
+	public void resetVisited(int realSize) {
+		visited = new boolean[realSize][realSize];
+
+	}
 
 	/**
 	 * Esta funcao cria um novo board, com todas as suas componentes, atraves duma string[][] (o currentState)
@@ -254,4 +261,29 @@ public class Board implements Serializable {
 
 		setDragons(dragons.toArray(new Dragon[dragons.size()]));
 	}
+	
+	public boolean solveMaze(int x, int y) {
+		
+		visited[x][y] = true;
+		
+		if(currentState[x][y].equals("s")) return true;
+
+		if(!currentState[x+1][y].equals("X") && (x+1 <= currentState.length-1) && !visited[x+1][y]){
+			if(solveMaze(x+1,y)) return true;
+		}
+		if(!currentState[x][y+1].equals("X") && (y+1 <= currentState.length-1) && !visited[x][y+1]){
+			if(solveMaze(x,y+1)) return true;
+		}
+		if(!currentState[x-1][y].equals("X") && (x-1 >= 0) && !visited[x-1][y]){
+			if(solveMaze(x-1,y)) return true;
+		}
+		if(!currentState[x][y-1].equals("X") && (y-1 >= 0) && !visited[x][y-1]){
+			if (solveMaze(x,y-1)) return true;
+		}
+
+		return false;
+
+	}
+	
+
 }
