@@ -27,6 +27,7 @@ import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Frame;
+import java.util.ArrayList;
 /**
  * OptionsMenu.java - Esta classe representa o menu de opções, sendo que é possivel alterar o tamanho do labirinto,
  * o numero de dragoes, a possibilidade dos dragoes adormecerem/moverem, e a mudança dos controlos do jogo
@@ -46,9 +47,15 @@ public class OptionsMenu extends JPanel {
 	private int size = 11;
 	private int numberDrags = 1;
 
+	private ArrayList<Integer> controls1;
+
+	@SuppressWarnings("unchecked")
 	public OptionsMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
+		
+		controls1 = (ArrayList<Integer>) window.getControls().clone();
+
 		g1 = currentGame;
 		frame = window;
 		setLayout(new BorderLayout(0, 0));
@@ -124,11 +131,11 @@ public class OptionsMenu extends JPanel {
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				frame.setControls(controls1);
 				frame.disableAll();
 				g1.setNumber_dragons(numberDrags);
 				g1.setSize(size+2);
 				frame.getMainMenu().setVisible(true);
-
 			}
 		});
 		panel_1.add(btnNewButton);
@@ -284,13 +291,6 @@ public class OptionsMenu extends JPanel {
 		lblNewLabel_9.setBackground(Color.BLACK);
 		lblNewLabel_9.setOpaque(true);
 
-		lblNewLabel_9.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				frame.getControls().set(4, arg0.getKeyCode());
-			}
-		});
 		panel_5.add(lblNewLabel_9);
 
 		JLabel lblNewLabel_10 = new JLabel("Eagle");
@@ -309,8 +309,8 @@ public class OptionsMenu extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				textField_1.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				frame.getControls().set(0, arg0.getKeyCode());
-
+				controls1.set(0, arg0.getKeyCode());
+				//frame.getControls().set(0, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_1);
@@ -324,8 +324,9 @@ public class OptionsMenu extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				frame.getControls().set(1, arg0.getKeyCode());
-				
+				controls1.set(1, arg0.getKeyCode());
+				//frame.getControls().set(1, arg0.getKeyCode());
+
 			}
 		});
 		panel_5.add(textField);
@@ -339,7 +340,8 @@ public class OptionsMenu extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				textField_2.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				frame.getControls().set(3, arg0.getKeyCode());
+				controls1.set(3, arg0.getKeyCode());
+				//frame.getControls().set(3, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_2);
@@ -353,7 +355,8 @@ public class OptionsMenu extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				textField_3.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				frame.getControls().set(2, arg0.getKeyCode());
+				controls1.set(2, arg0.getKeyCode());
+				//frame.getControls().set(2, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_3);
@@ -367,7 +370,8 @@ public class OptionsMenu extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				textField_4.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				frame.getControls().set(4, arg0.getKeyCode());
+				controls1.set(4, arg0.getKeyCode());
+				//frame.getControls().set(4, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_4);
