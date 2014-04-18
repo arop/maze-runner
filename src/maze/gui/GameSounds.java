@@ -1,8 +1,6 @@
 package maze.gui;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.InputStream;
 import java.util.HashMap;
 
 import javax.sound.sampled.*;

@@ -46,7 +46,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	private Board customBoard;
 	private Game g1;
 	private MazeGameGUI frame;
-	private String[] choose = {" ", "X", "S", "H", "D", "E"};
+	private String[] choose = {" ", "X", "s", "H", "D", "E"};
 	private int choice=0;
 
 	public MazeEditor(Game currentGame,MazeGameGUI window)  {

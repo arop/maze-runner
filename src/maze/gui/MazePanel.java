@@ -23,6 +23,7 @@ public class MazePanel extends JPanel implements ActionListener {
 	private MazeGameGUI frame;
 	private int realSize;
 	private PaintTools paintObj = new PaintTools();
+	
 	private Timer animation;
 	private int delay = 50;
 	
