@@ -72,6 +72,8 @@ public class OptionsMenu extends JPanel {
 		panel.add(lblNewLabel_13);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(null);
+		panel_1.setBackground(Color.BLACK);
 		add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new GridLayout(4, 2, 0, 0));
 
@@ -140,11 +142,9 @@ public class OptionsMenu extends JPanel {
 		lblNewLabel_3.setBackground(Color.BLACK);
 		panel_1.add(lblNewLabel_3);
 
-		JPanel panel_2 = new JPanel();
-		add(panel_2, BorderLayout.WEST);
-		panel_2.setLayout(new BorderLayout(0, 0));
-
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.BLACK);
+		panel_3.setBorder(null);
 		add(panel_3, BorderLayout.EAST);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
@@ -153,6 +153,8 @@ public class OptionsMenu extends JPanel {
 		panel_6.setLayout(new GridLayout(2, 0, 0, 0));
 
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.BLACK);
+		panel_4.setBorder(null);
 		add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -284,8 +286,9 @@ public class OptionsMenu extends JPanel {
 
 		lblNewLabel_9.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				frame.getControls().set(4, e.getKeyCode());
+			public void keyPressed(KeyEvent arg0) {
+				textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+				frame.getControls().set(4, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(lblNewLabel_9);
@@ -300,10 +303,12 @@ public class OptionsMenu extends JPanel {
 
 		// RIGHT
 		textField_1 = new JTextField();
-		textField_1.setBackground(Color.DARK_GRAY);
+		textField_1.setForeground(Color.RED);
+		textField_1.setBackground(Color.BLACK);
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
+				textField_1.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				frame.getControls().set(0, arg0.getKeyCode());
 
 			}
@@ -313,11 +318,14 @@ public class OptionsMenu extends JPanel {
 
 		// UP
 		textField = new JTextField();
-		textField.setBackground(Color.DARK_GRAY);
+		textField.setForeground(Color.RED);
+		textField.setBackground(Color.BLACK);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
+				textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				frame.getControls().set(1, arg0.getKeyCode());
+				
 			}
 		});
 		panel_5.add(textField);
@@ -325,10 +333,12 @@ public class OptionsMenu extends JPanel {
 
 		// LEFT
 		textField_2 = new JTextField();
-		textField_2.setBackground(Color.DARK_GRAY);
+		textField_2.setForeground(Color.RED);
+		textField_2.setBackground(Color.BLACK);
 		textField_2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
+				textField_2.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				frame.getControls().set(3, arg0.getKeyCode());
 			}
 		});
@@ -337,10 +347,12 @@ public class OptionsMenu extends JPanel {
 
 		// DOWN
 		textField_3 = new JTextField();
-		textField_3.setBackground(Color.DARK_GRAY);
+		textField_3.setForeground(Color.RED);
+		textField_3.setBackground(Color.BLACK);
 		textField_3.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
+				textField_3.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				frame.getControls().set(2, arg0.getKeyCode());
 			}
 		});
@@ -349,10 +361,12 @@ public class OptionsMenu extends JPanel {
 
 		// EAGLE
 		textField_4 = new JTextField();
-		textField_4.setBackground(Color.DARK_GRAY);
+		textField_4.setForeground(Color.RED);
+		textField_4.setBackground(Color.BLACK);
 		textField_4.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
+				textField_4.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				frame.getControls().set(4, arg0.getKeyCode());
 			}
 		});
