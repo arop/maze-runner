@@ -81,7 +81,18 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		});
 		panel_1.add(Play);
 
-		JButton Save = new JButton("Save");
+		JButton Save = new JButton("Solve");
+		Save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				customBoard.resetVisited(customBoard.getCurrentState().length);
+				customBoard.createBoardFromString();
+				if(customBoard.solveMaze(customBoard.getH().getX(), customBoard.getH().getY())) {
+					JOptionPane.showMessageDialog(frame, "Your maze is VALID!");
+				}
+				else JOptionPane.showMessageDialog(frame, "Your maze isn't solvable!");
+								
+			}
+		});
 		Save.setForeground(Color.RED);
 		Save.setBackground(Color.BLACK);
 		panel_1.add(Save);
