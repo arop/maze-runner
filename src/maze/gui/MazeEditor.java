@@ -142,11 +142,21 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		panel.add(choice);
 
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Sleeping Dragons");
+		chckbxNewCheckBox_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				g1.setSleepingDragons();
+			}
+		});
 		chckbxNewCheckBox_1.setForeground(Color.RED);
 		chckbxNewCheckBox_1.setBackground(Color.BLACK);
 		panel.add(chckbxNewCheckBox_1);
 
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Moving Dragons");
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				g1.setMovingDragons();
+			}
+		});
 		chckbxNewCheckBox.setForeground(Color.RED);
 		chckbxNewCheckBox.setBackground(Color.BLACK);
 		panel.add(chckbxNewCheckBox);
