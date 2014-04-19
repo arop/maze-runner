@@ -74,7 +74,10 @@ public class MazeGameGUI extends JFrame {
 		g1 = new Game() ;
 		
 		GameSounds.load("sons/musica.wav", "musiquinha");
+		GameSounds.load("sons/button.wav", "button");
+
 		GameSounds.play("musiquinha");
+		
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

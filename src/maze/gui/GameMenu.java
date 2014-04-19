@@ -11,6 +11,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 
 import maze.logic.Game;
@@ -39,7 +40,7 @@ public class GameMenu extends JLabel implements ActionListener {
 
 	@SuppressWarnings("unused")
 	private JPanel panel_5 = new JPanel();
-	
+
 	/**
 	 * Construtor da classe GameMenu
 	 * @param currentGame do tipo Game, representa o jogo que esta a ser jogado naquele momento
@@ -152,28 +153,31 @@ public class GameMenu extends JLabel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		switch(arg0.getActionCommand()){
 		case ("Resume"): 
-			setVisible(false);
+			GameSounds.play("button");
+		setVisible(false);
 		frame.getMazePanel().setVisible(true);
 		frame.getMazePanel().requestFocusInWindow();
 		break;
 
 		case("Save"): 
-			try {
-				File file = null;
-				int returnVal = fc.showSaveDialog(GameMenu.this);
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					file = fc.getSelectedFile();
-					sg.setFile(file);
-					sg.setGame(g1);
-					sg.saveGame();
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			GameSounds.play("button");
+		try {
+			File file = null;
+			int returnVal = fc.showSaveDialog(GameMenu.this);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				file = fc.getSelectedFile();
+				sg.setFile(file);
+				sg.setGame(g1);
+				sg.saveGame();
 			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		break;
 
 		case("Return"):
-			int resposta;
+			GameSounds.play("button");
+		int resposta;
 		resposta = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to main menu?");
 		if (resposta == JOptionPane.YES_OPTION) {
 			setVisible(false);
@@ -183,7 +187,8 @@ public class GameMenu extends JLabel implements ActionListener {
 		break;
 
 		case("Exit"):
-			int resposta1;
+			GameSounds.play("button");
+		int resposta1;
 		resposta1 = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?");
 		if (resposta1 == JOptionPane.YES_OPTION) {
 			System.exit(0);
