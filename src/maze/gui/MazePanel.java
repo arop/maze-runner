@@ -80,7 +80,7 @@ public class MazePanel extends JPanel implements ActionListener {
 			switch(output) {
 			case 1: //quit
 				frame.disableAll();
-				frame.getMainMenu().setVisible(true);
+				frame.enablePanel(frame.getMainMenu());
 				break;
 			case 2: //dead
 				GameSounds.load("sons/DragonRoaring.wav", "dragon");
@@ -92,7 +92,7 @@ public class MazePanel extends JPanel implements ActionListener {
 				//create new game with same components		
 				frame.getMainMenu().getGame().setBoard();
 
-				frame.getMainMenu().setVisible(true);
+				frame.enablePanel(frame.getMainMenu());
 				break;
 			case 3: //won
 				JOptionPane.showMessageDialog(frame, "You won!");
@@ -102,7 +102,7 @@ public class MazePanel extends JPanel implements ActionListener {
 				//create new game with same components	
 				frame.getMainMenu().getGame().setBoard();
 				
-				frame.getMainMenu().setVisible(true);
+				frame.enablePanel(frame.getMainMenu());
 				break;
 			}
 

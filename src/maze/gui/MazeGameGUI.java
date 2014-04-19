@@ -2,7 +2,9 @@ package maze.gui;
 
 import java.awt.EventQueue;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import maze.logic.Game;
 
@@ -73,10 +75,10 @@ public class MazeGameGUI extends JFrame {
 
 		g1 = new Game() ;
 		
-		GameSounds.load("sons/musica.wav", "musiquinha");
+		GameSounds.load("sons/musica.wav", "MainMenu");
 		GameSounds.load("sons/button.wav", "button");
 
-		GameSounds.play("musiquinha");
+		GameSounds.play("MainMenu");
 		
 
 
@@ -125,13 +127,24 @@ public class MazeGameGUI extends JFrame {
 	 * Muda a visibilidade dos menus para invisiveis
 	 */
 	public void disableAll() {
-		GameSounds.stop("musiquinha");
-		mainMenu.setVisible(false);
+//		mainMenu.setVisible(false);
+		disablePanel(mainMenu);
 		options.setVisible(false);
 		editor.setVisible(false);
 		paused.setVisible(false);
 	}
 
+	public void disablePanel(JComponent x) {
+		x.setVisible(false);
+		GameSounds.stop(x.getName());
+	}
+	
+	public void enablePanel(JComponent x) {
+		x.setVisible(true);
+		GameSounds.play(x.getName());
+
+	}
+	
 	/**
 	 * 
 	 * @return menu de opçoes

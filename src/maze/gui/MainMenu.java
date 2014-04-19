@@ -45,9 +45,7 @@ public class MainMenu extends JLabel implements ActionListener {
 		setForeground(Color.WHITE);
 		setBackground(Color.WHITE);
 	
-
-		
-		
+		this.setName("MainMenu");
 		fc = new JFileChooser();
 		sg = new SaveGame(null,null);
 
