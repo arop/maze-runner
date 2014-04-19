@@ -74,10 +74,10 @@ public class MazeGameGUI extends JFrame {
 
 		g1 = new Game() ;
 		
-		GameSounds.load("sons/musica.wav", "MainMenu");
-		GameSounds.load("sons/button.wav", "button");
+		GameSounds.loadSound("sons/musica.wav", "MainMenu");
+		GameSounds.loadSound("sons/button.wav", "button");
 
-		GameSounds.play("MainMenu");
+		GameSounds.playSound("MainMenu");
 		
 
 
@@ -140,7 +140,7 @@ public class MazeGameGUI extends JFrame {
 	
 	public void enablePanel(JComponent x) {
 		x.setVisible(true);
-		GameSounds.play(x.getName());
+		GameSounds.playSound(x.getName());
 
 	}
 	

@@ -7,7 +7,7 @@ import java.util.Stack;
  * podendo ser utilizado o labirinto pre-definido 
  * @author André Pires, Filipe Gama
  */
-public class MazeBuilder implements Serializable {
+public class MazeBuilder implements Serializable, Builder {
 	private static final long serialVersionUID = -8487919861009006442L;
 	private int Sx ;
 	private int Sy ;
@@ -32,6 +32,7 @@ public class MazeBuilder implements Serializable {
 	 * @param n Tamanho do labirinto
 	 */
 	public MazeBuilder(int n) {
+		n+=2;
 		if(n>=5) {
 			field = new String[n+2][n+2] ;
 			for( int i = 0 ; i < field.length ; i++){
@@ -49,7 +50,7 @@ public class MazeBuilder implements Serializable {
 			makePath(n);
 			removeBorders(n);
 		}
-		makeExit(n);
+		makeExit(n-2);
 	}
 	/**
 	 * 
@@ -127,7 +128,7 @@ public class MazeBuilder implements Serializable {
 	 * Cria a saida do labirinto num local aleatorio  
 	 * @param n Tamanho do labirinto
 	 */
-	void makeExit(int n) {
+	public void makeExit(int n) {
 		//"contrutor" do S(saida)
 		if(n>=5) {
 			n-=2;

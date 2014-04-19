@@ -119,7 +119,7 @@ public class MazeGameCLI {
 					validN= true; 
 					System.out.println("Your maze has been generated.");
 					System.out.println();
-					g1 = new Game(n1+2);
+					g1 = new Game(n1);
 					break;
 				}
 
