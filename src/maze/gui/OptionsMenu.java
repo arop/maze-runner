@@ -55,7 +55,7 @@ public class OptionsMenu extends JPanel {
 	public OptionsMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
-		
+
 		controls1 = (ArrayList<Integer>) window.getControls().clone();
 
 		g1 = currentGame;
@@ -100,7 +100,8 @@ public class OptionsMenu extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.disableAll();
-				frame.getMainMenu().setVisible(true);
+				frame.enablePanel(frame.getMainMenu());
+
 			}
 		});
 
@@ -113,7 +114,8 @@ public class OptionsMenu extends JPanel {
 				frame.disableAll();
 				g1.setNumber_dragons(1);
 				g1.setSize(1);
-				frame.getMainMenu().setVisible(true);
+				frame.enablePanel(frame.getMainMenu());
+
 			}
 		});
 
@@ -137,7 +139,8 @@ public class OptionsMenu extends JPanel {
 				frame.disableAll();
 				g1.setNumber_dragons(numberDrags);
 				g1.setSize(size+2);
-				frame.getMainMenu().setVisible(true);
+				frame.enablePanel(frame.getMainMenu());
+
 			}
 		});
 		panel_1.add(btnNewButton);
@@ -259,11 +262,11 @@ public class OptionsMenu extends JPanel {
 				g1.setSleepingDragons();
 			}
 		});
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.BLACK);
 		panel_4.add(panel_2);
-		
+
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("Sound ON/OFF");
 		tglbtnNewToggleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -274,135 +277,142 @@ public class OptionsMenu extends JPanel {
 		tglbtnNewToggleButton.setBackground(Color.BLACK);
 		tglbtnNewToggleButton.setSelected(true);
 		panel_2.add(tglbtnNewToggleButton);
-		
-		JSlider slider = new JSlider();
+
+		final JSlider slider = new JSlider();
+		slider.setMaximum(5);
+		slider.setMinimum(-50);
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				GameSounds.setVolume("MainMenu", slider.getValue());
+			}
+		});
 		slider.setForeground(Color.RED);
 		slider.setBackground(Color.BLACK);
 		panel_2.add(slider);
-		
+
 		JLabel lblNewLabel_14 = new JLabel("CONTROLS");
 		lblNewLabel_14.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_14.setForeground(Color.RED);
 		panel_4.add(lblNewLabel_14);
-		
-				JPanel panel_5 = new JPanel();
-				panel_5.setBackground(Color.BLACK);
-				panel_4.add(panel_5);
-				panel_5.setLayout(new GridLayout(2, 5, 0, 0));
-				
-						JLabel lblNewLabel_6 = new JLabel("RIGHT");
-						lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-						lblNewLabel_6.setForeground(Color.RED);
-						lblNewLabel_6.setBackground(Color.BLACK);
-						lblNewLabel_6.setOpaque(true);
-						panel_5.add(lblNewLabel_6);
-						
-								JLabel lblNewLabel_7 = new JLabel("UP");
-								lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-								lblNewLabel_7.setForeground(Color.RED);
-								lblNewLabel_7.setBackground(Color.BLACK);
-								lblNewLabel_7.setOpaque(true);
-								panel_5.add(lblNewLabel_7);
-								
-										JLabel lblNewLabel_8 = new JLabel("LEFT");
-										lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
-										lblNewLabel_8.setForeground(Color.RED);
-										lblNewLabel_8.setBackground(Color.BLACK);
-										lblNewLabel_8.setOpaque(true);
-										
-												panel_5.add(lblNewLabel_8);
-												
-														JLabel lblNewLabel_9 = new JLabel("DOWN");
-														lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
-														lblNewLabel_9.setForeground(Color.RED);
-														lblNewLabel_9.setBackground(Color.BLACK);
-														lblNewLabel_9.setOpaque(true);
-														
-																panel_5.add(lblNewLabel_9);
-																
-																		JLabel lblNewLabel_10 = new JLabel("Eagle");
-																		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
-																		lblNewLabel_10.setForeground(Color.RED);
-																		lblNewLabel_10.setBackground(Color.BLACK);
-																		lblNewLabel_10.setOpaque(true);
-																		
-																				panel_5.add(lblNewLabel_10);
-																				
-																						// RIGHT
-																						textField_1 = new JTextField();
-																						textField_1.setForeground(Color.RED);
-																						textField_1.setBackground(Color.BLACK);
-																						textField_1.addKeyListener(new KeyAdapter() {
-																							@Override
-																							public void keyPressed(KeyEvent arg0) {
-																								textField_1.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-																								controls1.set(0, arg0.getKeyCode());
-																								//frame.getControls().set(0, arg0.getKeyCode());
-																							}
-																						});
-																						panel_5.add(textField_1);
-																						textField_1.setColumns(10);
-																						
-																								// UP
-																								textField = new JTextField();
-																								textField.setForeground(Color.RED);
-																								textField.setBackground(Color.BLACK);
-																								textField.addKeyListener(new KeyAdapter() {
-																									@Override
-																									public void keyPressed(KeyEvent arg0) {
-																										textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-																										controls1.set(1, arg0.getKeyCode());
-																										//frame.getControls().set(1, arg0.getKeyCode());
 
-																									}
-																								});
-																								panel_5.add(textField);
-																								textField.setColumns(10);
-																								
-																										// LEFT
-																										textField_2 = new JTextField();
-																										textField_2.setForeground(Color.RED);
-																										textField_2.setBackground(Color.BLACK);
-																										textField_2.addKeyListener(new KeyAdapter() {
-																											@Override
-																											public void keyPressed(KeyEvent arg0) {
-																												textField_2.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-																												controls1.set(3, arg0.getKeyCode());
-																												//frame.getControls().set(3, arg0.getKeyCode());
-																											}
-																										});
-																										panel_5.add(textField_2);
-																										textField_2.setColumns(10);
-																										
-																												// DOWN
-																												textField_3 = new JTextField();
-																												textField_3.setForeground(Color.RED);
-																												textField_3.setBackground(Color.BLACK);
-																												textField_3.addKeyListener(new KeyAdapter() {
-																													@Override
-																													public void keyPressed(KeyEvent arg0) {
-																														textField_3.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-																														controls1.set(2, arg0.getKeyCode());
-																														//frame.getControls().set(2, arg0.getKeyCode());
-																													}
-																												});
-																												panel_5.add(textField_3);
-																												textField_3.setColumns(10);
-																												
-																														// EAGLE
-																														textField_4 = new JTextField();
-																														textField_4.setForeground(Color.RED);
-																														textField_4.setBackground(Color.BLACK);
-																														textField_4.addKeyListener(new KeyAdapter() {
-																															@Override
-																															public void keyPressed(KeyEvent arg0) {
-																																textField_4.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-																																controls1.set(4, arg0.getKeyCode());
-																																//frame.getControls().set(4, arg0.getKeyCode());
-																															}
-																														});
-																														panel_5.add(textField_4);
-																														textField_4.setColumns(10);
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.BLACK);
+		panel_4.add(panel_5);
+		panel_5.setLayout(new GridLayout(2, 5, 0, 0));
+
+		JLabel lblNewLabel_6 = new JLabel("RIGHT");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_6.setForeground(Color.RED);
+		lblNewLabel_6.setBackground(Color.BLACK);
+		lblNewLabel_6.setOpaque(true);
+		panel_5.add(lblNewLabel_6);
+
+		JLabel lblNewLabel_7 = new JLabel("UP");
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7.setForeground(Color.RED);
+		lblNewLabel_7.setBackground(Color.BLACK);
+		lblNewLabel_7.setOpaque(true);
+		panel_5.add(lblNewLabel_7);
+
+		JLabel lblNewLabel_8 = new JLabel("LEFT");
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8.setForeground(Color.RED);
+		lblNewLabel_8.setBackground(Color.BLACK);
+		lblNewLabel_8.setOpaque(true);
+
+		panel_5.add(lblNewLabel_8);
+
+		JLabel lblNewLabel_9 = new JLabel("DOWN");
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9.setForeground(Color.RED);
+		lblNewLabel_9.setBackground(Color.BLACK);
+		lblNewLabel_9.setOpaque(true);
+
+		panel_5.add(lblNewLabel_9);
+
+		JLabel lblNewLabel_10 = new JLabel("Eagle");
+		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10.setForeground(Color.RED);
+		lblNewLabel_10.setBackground(Color.BLACK);
+		lblNewLabel_10.setOpaque(true);
+
+		panel_5.add(lblNewLabel_10);
+
+		// RIGHT
+		textField_1 = new JTextField();
+		textField_1.setForeground(Color.RED);
+		textField_1.setBackground(Color.BLACK);
+		textField_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				textField_1.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+				controls1.set(0, arg0.getKeyCode());
+				//frame.getControls().set(0, arg0.getKeyCode());
+			}
+		});
+		panel_5.add(textField_1);
+		textField_1.setColumns(10);
+
+		// UP
+		textField = new JTextField();
+		textField.setForeground(Color.RED);
+		textField.setBackground(Color.BLACK);
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+				controls1.set(1, arg0.getKeyCode());
+				//frame.getControls().set(1, arg0.getKeyCode());
+
+			}
+		});
+		panel_5.add(textField);
+		textField.setColumns(10);
+
+		// LEFT
+		textField_2 = new JTextField();
+		textField_2.setForeground(Color.RED);
+		textField_2.setBackground(Color.BLACK);
+		textField_2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				textField_2.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+				controls1.set(3, arg0.getKeyCode());
+				//frame.getControls().set(3, arg0.getKeyCode());
+			}
+		});
+		panel_5.add(textField_2);
+		textField_2.setColumns(10);
+
+		// DOWN
+		textField_3 = new JTextField();
+		textField_3.setForeground(Color.RED);
+		textField_3.setBackground(Color.BLACK);
+		textField_3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				textField_3.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+				controls1.set(2, arg0.getKeyCode());
+				//frame.getControls().set(2, arg0.getKeyCode());
+			}
+		});
+		panel_5.add(textField_3);
+		textField_3.setColumns(10);
+
+		// EAGLE
+		textField_4 = new JTextField();
+		textField_4.setForeground(Color.RED);
+		textField_4.setBackground(Color.BLACK);
+		textField_4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				textField_4.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+				controls1.set(4, arg0.getKeyCode());
+				//frame.getControls().set(4, arg0.getKeyCode());
+			}
+		});
+		panel_5.add(textField_4);
+		textField_4.setColumns(10);
 	}
 
 }
