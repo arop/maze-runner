@@ -28,7 +28,12 @@ public class MazeBuilder implements Serializable, Builder {
 	private String[][] field;
 
 	/**
-	 * Cria um labirinto
+	 * Cria um tabuleiro da seguinte forma: 
+	 * - Matriz de (size+4)x(size+4)
+	 * - Dois rebordos a toda a volta com objectivo de reduzir o numero de if clauses na função MakePath 
+	 * - preenche todas as celulas pares com "B" (significa "não visitado") -> evitar a criação de um array auxiliar de bools
+	 * - preenche as restantes com parede, e os rebordos com espaço em branco que será posteriomente removido (removeBorders()
+	 * 
 	 * @param n Tamanho do labirinto
 	 */
 	public MazeBuilder(int n) {
@@ -61,7 +66,18 @@ public class MazeBuilder implements Serializable, Builder {
 	}
 
 	/**
-	 * Cria um labirinto aleatorio
+	 * Geração de um labirinto aleatorio (algoritmo Recursive backtracker)
+	 * 
+	 *- Escolhe a posição inicial 
+	 *- Enquanto houver celulas não visitadas (marcadas com "B"), escolhe uma de 4 direcções 
+	 *- Caso na direcção sorteada o vizinho não tenha sido visitado , então remove-se a parede entre a posição actual e a do vizinho
+	 *- Actualiza-se a posição do vizinho como posição atual e repete-se o processo
+	 *- Quando chegar a um beco sem saída, isto é não ha celulas vizinhas com "B", vai para o else if, que vê por sua vez se a stack não está vazia.
+	 *- Nao estando vazia faz pop e começa novamente daí
+	 *- Se estiver vazia pega numa posição aleatoria não visitada e começa a partir daí
+	 *- Tendo todas as celulas sido visitadas (Não haver "B" no tabuleiro), é ativada uma flag e termina a funçao makePath
+	 *
+	 * 
 	 * @param n Tamanho do labirinto
 	 */
 	public void makePath(int n) {
