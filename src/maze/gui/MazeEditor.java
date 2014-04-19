@@ -99,7 +99,6 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 					JOptionPane.showMessageDialog(frame, "Your maze is VALID!");
 				}
 				else JOptionPane.showMessageDialog(frame, "Your maze isn't solvable!");
-
 			}
 		});
 		Solve.setForeground(Color.RED);

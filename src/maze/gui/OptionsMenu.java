@@ -101,7 +101,6 @@ public class OptionsMenu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				frame.disableAll();
 				frame.enablePanel(frame.getMainMenu());
-
 			}
 		});
 
@@ -111,11 +110,11 @@ public class OptionsMenu extends JPanel {
 		panel_1.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setControls(controls1);
 				frame.disableAll();
 				g1.setNumber_dragons(1);
 				g1.setSize(1);
 				frame.enablePanel(frame.getMainMenu());
-
 			}
 		});
 
@@ -125,6 +124,7 @@ public class OptionsMenu extends JPanel {
 		panel_1.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				frame.setControls(controls1);
 				frame.disableAll();
 				frame.getEditor().setVisible(true);
 			}
@@ -347,7 +347,6 @@ public class OptionsMenu extends JPanel {
 			public void keyPressed(KeyEvent arg0) {
 				textField_1.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				controls1.set(0, arg0.getKeyCode());
-				//frame.getControls().set(0, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_1);
@@ -362,8 +361,6 @@ public class OptionsMenu extends JPanel {
 			public void keyPressed(KeyEvent arg0) {
 				textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				controls1.set(1, arg0.getKeyCode());
-				//frame.getControls().set(1, arg0.getKeyCode());
-
 			}
 		});
 		panel_5.add(textField);
@@ -378,7 +375,6 @@ public class OptionsMenu extends JPanel {
 			public void keyPressed(KeyEvent arg0) {
 				textField_2.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				controls1.set(3, arg0.getKeyCode());
-				//frame.getControls().set(3, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_2);
@@ -393,7 +389,6 @@ public class OptionsMenu extends JPanel {
 			public void keyPressed(KeyEvent arg0) {
 				textField_3.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				controls1.set(2, arg0.getKeyCode());
-				//frame.getControls().set(2, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_3);
@@ -408,7 +403,6 @@ public class OptionsMenu extends JPanel {
 			public void keyPressed(KeyEvent arg0) {
 				textField_4.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
 				controls1.set(4, arg0.getKeyCode());
-				//frame.getControls().set(4, arg0.getKeyCode());
 			}
 		});
 		panel_5.add(textField_4);
