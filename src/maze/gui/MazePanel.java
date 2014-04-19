@@ -32,6 +32,10 @@ public class MazePanel extends JPanel implements ActionListener {
 
 
 	public MazePanel(Game currentGame, MazeGameGUI window){
+		this.setName("ambient");
+		GameSounds.loadSound("sons/ambient.wav", "ambient");
+		GameSounds.adjustVolume("ambient", 5);
+		GameSounds.playSound("ambient");
 		g1 = currentGame;
 		frame = window;
 		
@@ -70,6 +74,7 @@ public class MazePanel extends JPanel implements ActionListener {
 			else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				frame.disableAll();
 				setVisible(false);
+				GameSounds.stop("ambient");
 				frame.getPaused().setVisible(true);
 			}
 
@@ -78,12 +83,15 @@ public class MazePanel extends JPanel implements ActionListener {
 			switch(output) {
 			case 1: //quit
 				frame.disableAll();
+				GameSounds.stop("ambient");
 				frame.enablePanel(frame.getMainMenu());
 				break;
 			case 2: //dead
 				GameSounds.loadSound("sons/DragonRoaring.wav", "dragon");
+				GameSounds.adjustVolume("dragon", 5);
 				GameSounds.playSound("dragon");
 				JOptionPane.showMessageDialog(frame, "You died!");
+				GameSounds.stop("ambient");
 				frame.disableAll();
 				setVisible(false);
 				
@@ -94,9 +102,11 @@ public class MazePanel extends JPanel implements ActionListener {
 				break;
 			case 3: //won
 				GameSounds.loadSound("sons/victory.wav", "win");
+				GameSounds.adjustVolume("win", -10);
 				GameSounds.playSound("win");
 				JOptionPane.showMessageDialog(frame, "You won!");
 				frame.disableAll();
+				GameSounds.stop("ambient");
 				setVisible(false);
 				
 				//create new game with same components	

@@ -35,7 +35,7 @@ public class MainMenu extends JLabel implements ActionListener {
 	private Game g1;
 	private MazeGameGUI frame;
 	private SaveGame sg;
-	
+
 	private PaintTools paintObj = new PaintTools();
 
 	private Timer animation;
@@ -44,7 +44,7 @@ public class MainMenu extends JLabel implements ActionListener {
 	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
 		setBackground(Color.WHITE);
-	
+
 		this.setName("MainMenu");
 		fc = new JFileChooser();
 		sg = new SaveGame(null,null);

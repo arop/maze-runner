@@ -231,7 +231,6 @@ public class Board implements Serializable {
 
 	public void resetVisited(int realSize) {
 		visited = new boolean[realSize][realSize];
-
 	}
 
 	/**

@@ -106,7 +106,6 @@ public class MazeGameCLI {
 		String b = scanner_input.nextLine();
 		int a = Integer.parseInt(b);
 
-
 		switch(a) {
 		case 1:
 			boolean validN=false;
