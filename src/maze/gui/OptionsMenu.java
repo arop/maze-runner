@@ -138,7 +138,7 @@ public class OptionsMenu extends JPanel {
 				frame.setControls(controls1);
 				frame.disableAll();
 				g1.setNumber_dragons(numberDrags);
-				g1.setSize(size+2);
+				g1.setSize(size);
 				frame.enablePanel(frame.getMainMenu());
 
 			}
@@ -283,7 +283,7 @@ public class OptionsMenu extends JPanel {
 		slider.setMinimum(-50);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				GameSounds.setVolume("MainMenu", slider.getValue());
+				GameSounds.adjustVolume("MainMenu", slider.getValue());
 			}
 		});
 		slider.setForeground(Color.RED);

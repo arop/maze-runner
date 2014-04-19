@@ -153,7 +153,7 @@ public class GameMenu extends JLabel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		switch(arg0.getActionCommand()){
 		case ("Resume"): 
-			GameSounds.play("button");
+			GameSounds.playSound("button");
 //		setVisible(false);
 //		frame.getMazePanel().setVisible(true);
 		frame.disableAll();
@@ -162,7 +162,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		break;
 
 		case("Save"): 
-			GameSounds.play("button");
+			GameSounds.playSound("button");
 		try {
 			File file = null;
 			int returnVal = fc.showSaveDialog(GameMenu.this);
@@ -178,7 +178,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		break;
 
 		case("Return"):
-			GameSounds.play("button");
+			GameSounds.playSound("button");
 		int resposta;
 		resposta = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to main menu?");
 		if (resposta == JOptionPane.YES_OPTION) {
@@ -190,7 +190,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		break;
 
 		case("Exit"):
-			GameSounds.play("button");
+			GameSounds.playSound("button");
 		int resposta1;
 		resposta1 = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?");
 		if (resposta1 == JOptionPane.YES_OPTION) {

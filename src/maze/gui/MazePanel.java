@@ -40,8 +40,8 @@ public class MazePanel extends JPanel implements ActionListener {
 		animation = new Timer(delay,this);
 		animation.start();
 
-		if(g1.getSize()-2 < 5) realSize = 10;
-		else realSize = g1.getSize()-2;
+		if(g1.getSize() < 5) realSize = 10;
+		else realSize = g1.getSize();
 
 		Play();
 		UpdateGraphicBoard();
@@ -81,8 +81,8 @@ public class MazePanel extends JPanel implements ActionListener {
 				frame.enablePanel(frame.getMainMenu());
 				break;
 			case 2: //dead
-				GameSounds.load("sons/DragonRoaring.wav", "dragon");
-				GameSounds.play("dragon");
+				GameSounds.loadSound("sons/DragonRoaring.wav", "dragon");
+				GameSounds.playSound("dragon");
 				JOptionPane.showMessageDialog(frame, "You died!");
 				frame.disableAll();
 				setVisible(false);
@@ -93,8 +93,8 @@ public class MazePanel extends JPanel implements ActionListener {
 				frame.enablePanel(frame.getMainMenu());
 				break;
 			case 3: //won
-				GameSounds.load("sons/victory.wav", "win");
-				GameSounds.play("win");
+				GameSounds.loadSound("sons/victory.wav", "win");
+				GameSounds.playSound("win");
 				JOptionPane.showMessageDialog(frame, "You won!");
 				frame.disableAll();
 				setVisible(false);
