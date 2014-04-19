@@ -44,6 +44,10 @@ public class MainMenu extends JLabel implements ActionListener {
 	public MainMenu(Game currentGame,MazeGameGUI window) {
 		setForeground(Color.WHITE);
 		setBackground(Color.WHITE);
+	
+
+		
+		
 		fc = new JFileChooser();
 		sg = new SaveGame(null,null);
 
@@ -83,6 +87,7 @@ public class MainMenu extends JLabel implements ActionListener {
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GameSounds.play("button");
 				if(g1.getBoard() == null) {
 					g1.setBoard();
 				}				
@@ -113,6 +118,7 @@ public class MainMenu extends JLabel implements ActionListener {
 		btnLoad.setBackground(Color.BLACK);
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GameSounds.play("button");
 				boolean x = false;
 				try {
 					int returnVal = fc.showOpenDialog(MainMenu.this);
@@ -154,6 +160,7 @@ public class MainMenu extends JLabel implements ActionListener {
 		button_6.setBackground(Color.BLACK);
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GameSounds.play("button");
 				frame.disableAll();
 				frame.getOptions().setVisible(true);
 			}
@@ -175,6 +182,7 @@ public class MainMenu extends JLabel implements ActionListener {
 		button_7.setBackground(Color.BLACK);
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GameSounds.play("button");
 				frame.disableAll();
 				frame.getEditor().setVisible(true);
 			}
@@ -197,6 +205,7 @@ public class MainMenu extends JLabel implements ActionListener {
 		button_8.setBackground(Color.BLACK);
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GameSounds.play("button");
 				setVisible(false);
 				System.exit(0);
 			}

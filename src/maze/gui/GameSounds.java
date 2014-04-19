@@ -9,6 +9,7 @@ import javax.sound.sampled.*;
 public class GameSounds {
 	private static int gap;
 	private static HashMap<String, Clip> clips= new HashMap<String, Clip>();
+	private static boolean silent = false;
 
 	public static void init() {
 		gap = 0;
@@ -21,6 +22,10 @@ public class GameSounds {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public static void toggleSound() {
+		silent = !silent;
 	}
 
 
@@ -43,11 +48,13 @@ public class GameSounds {
 	}
 
 	public static void play(String s, int i) {
-		Clip c = clips.get(s);
-		if(c == null) return;
-		if(c.isRunning()) c.stop();
-		c.setFramePosition(i);
-		while(!c.isRunning()) c.start();
+		if(!silent){
+			Clip c = clips.get(s);
+			if(c == null) return;
+			if(c.isRunning()) c.stop();
+			c.setFramePosition(i);
+			while(!c.isRunning()) c.start();
+		}
 	}
 
 	public static void setVolume(String s, float f) {
@@ -77,13 +84,6 @@ public class GameSounds {
 		loop(s, gap, gap, clips.get(s).getFrameLength() - 1);
 	}
 
-	public static void loop(String s, int frame) {
-		loop(s, frame, gap, clips.get(s).getFrameLength() - 1);
-	}
-
-	public static void loop(String s, int start, int end) {
-		loop(s, gap, start, end);
-	}
 
 	public static void loop(String s, int frame, int start, int end) {
 		Clip c = clips.get(s);
