@@ -70,8 +70,8 @@ public class Board implements Serializable {
 		int tempx,tempy;
 
 		do {
-			tempx = (int) (1 + (Math.random()*(builder.getField().length-2)));
-			tempy =  (int) (1 + (Math.random()*(builder.getField().length-2)));
+			tempx = (int) (1+Math.random()*(builder.getField().length-1));
+			tempy =  (int) (1+Math.random()*(builder.getField().length-1));
 		}while(!validPos(tempx,tempy));
 
 		object.setX(tempx);
