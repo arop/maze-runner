@@ -49,11 +49,20 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	private String[] choose = {" ", "X", "s", "H", "D", "E"};
 	private int choice=0;
 
+	private int hX,hY,eX,eY,sX,sY;
+
 	public MazeEditor(Game currentGame,MazeGameGUI window)  {
 		setBackground(Color.BLACK);
 		g1 = currentGame;
 		frame = window;
 		customBoard = new Board(7,0);
+
+		hX=customBoard.getH().getX();
+		hY=customBoard.getH().getY();
+		eX=customBoard.getS().getX();
+		eY=customBoard.getS().getY();
+		sX=customBoard.getSx();
+		sY=customBoard.getSy();
 
 		setLayout(new BorderLayout(0, 0));
 
@@ -90,7 +99,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 					JOptionPane.showMessageDialog(frame, "Your maze is VALID!");
 				}
 				else JOptionPane.showMessageDialog(frame, "Your maze isn't solvable!");
-								
+
 			}
 		});
 		Solve.setForeground(Color.RED);
@@ -132,6 +141,12 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				customBoard = new Board((int) spinner.getValue(),0);
+				hX=customBoard.getH().getX();
+				hY=customBoard.getH().getY();
+				eX=customBoard.getS().getX();
+				eY=customBoard.getS().getY();
+				sX=customBoard.getSx();
+				sY=customBoard.getSy();
 				repaint();
 			}
 		});
@@ -174,21 +189,58 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		super.paintComponent(g);
 		paintObj.drawGraphicBoard(g, customBoard.getCurrentState().length, board_label.getWidth(),board_label.getHeight(), customBoard,board_label);
 	}
+	/**
+	 * Esta funcao serve para eliminar o heroi, a espada ou a saida caso seja adicionado uma nova, para que haja so uma
+	 * @param x qual o objeto novo
+	 * @param m coord X
+	 * @param n coord Y
+	 */
+	private void changeCoordenates(int x,int m, int n){
+		switch(x) {
+		case 2: //saida
+			if(sX==0 || sY==0 || sX==customBoard.getCurrentState().length-1 
+			|| sY==customBoard.getCurrentState().length-1) {
+				customBoard.getCurrentState()[sX][sY]="X";
+				customBoard.getOriginalMaze()[sX][sY] = "X";
+			}
+			else {
+				customBoard.getCurrentState()[sX][sY]=" ";
+				customBoard.getOriginalMaze()[sX][sY] =" ";
+			}
+			sX=m;
+			sY=n;
+			break;
+		case 3: //heroi
+			customBoard.getCurrentState()[hX][hY]=" ";
+			customBoard.getOriginalMaze()[hX][hY] =" ";
+			hX=m;
+			hY=n;
+			break;
+		case 5: //espada
+			customBoard.getCurrentState()[eX][eY]=" ";
+			customBoard.getOriginalMaze()[eX][eY] =" ";
+			eX=m;
+			eY=n;
+			break;
+		}
+	}
 
+	//choose = {" ", "X", "s", "H", "D", "E"}
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		int n= (int) (customBoard.getCurrentState().length*arg0.getPoint().getX()/(board_label.getWidth()));
 		int m = (int) (customBoard.getCurrentState().length*arg0.getPoint().getY()/(board_label.getHeight()));
 
-		//System.out.println(m + " " + n);
-		//System.out.println(arg0.getPoint().getX() + " " + arg0.getPoint().getY());
-
 		//so pode desenhar parede ou saidas nas bordas
-		if(choice==1 || choice==2 || (m!=0 && m!=customBoard.getCurrentState().length-1 && n!=0 && n!=customBoard.getCurrentState().length-1))
+		if(choice==1 || choice==2 || (m!=0 && m!=customBoard.getCurrentState().length-1 
+				&& n!=0 && n!=customBoard.getCurrentState().length-1)) {
 			if(arg0.getButton() == MouseEvent.BUTTON1) {
-				if(choice < 3) customBoard.getOriginalMaze()[m][n] = choose[choice];
+				if(choice < 3)
+					customBoard.getOriginalMaze()[m][n] = choose[choice];
 				customBoard.getCurrentState()[m][n] = choose[choice];
-			}
+				changeCoordenates(choice,m,n);
+			}			
+		}
 
 		repaint();
 	}
