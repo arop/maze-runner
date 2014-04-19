@@ -264,14 +264,20 @@ public class OptionsMenu extends JPanel {
 		panel_2.setBackground(Color.BLACK);
 		panel_4.add(panel_2);
 		
-		JToggleButton tglbtnSound = new JToggleButton("Sound");
-		tglbtnSound.setBackground(Color.BLACK);
-		tglbtnSound.setForeground(Color.RED);
-		panel_2.add(tglbtnSound);
+		JToggleButton tglbtnNewToggleButton = new JToggleButton("Sound ON/OFF");
+		tglbtnNewToggleButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GameSounds.toggleSound();
+			}
+		});
+		tglbtnNewToggleButton.setForeground(Color.RED);
+		tglbtnNewToggleButton.setBackground(Color.BLACK);
+		tglbtnNewToggleButton.setSelected(true);
+		panel_2.add(tglbtnNewToggleButton);
 		
 		JSlider slider = new JSlider();
-		slider.setBackground(Color.BLACK);
 		slider.setForeground(Color.RED);
+		slider.setBackground(Color.BLACK);
 		panel_2.add(slider);
 		
 		JLabel lblNewLabel_14 = new JLabel("CONTROLS");
