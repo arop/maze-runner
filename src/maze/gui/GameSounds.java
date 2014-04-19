@@ -5,10 +5,14 @@ import java.util.HashMap;
 
 import javax.sound.sampled.*;
 
-
+/**
+ * Esta classe serve de base para a utilização dos diferentes sons do jogo
+ * @author André Pires, Filipe Gama
+ *
+ */
 public class GameSounds {
 	private static HashMap<String, Clip> sounds= new HashMap<String, Clip>();
-	
+
 	private static boolean silent = false;
 	private static int interval;
 
@@ -21,7 +25,7 @@ public class GameSounds {
 	public static void toggleSound() {
 		silent = !silent;
 	}
-	
+
 	public static void playSound(String soundName) {
 		play(soundName, interval);
 	}

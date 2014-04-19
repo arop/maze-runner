@@ -212,8 +212,6 @@ public class Game implements Serializable {
 	 * Modifica o board
 	 */
 	public void setBoard() {
-		//System.out.println("ENTROU NO SET BOARD");
-
 		board = new Board(size,number_dragons); 
 	}
 
@@ -221,7 +219,7 @@ public class Game implements Serializable {
 		this.board = board;
 	}
 	/**
-	 * Modifica o tamanho do board
+	 * Modifica o tamanho do board, alterando o board de acordo
 	 * @param size tamanho do board
 	 */
 	public void setSize(int size) {this.size=size; setBoard();}

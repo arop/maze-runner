@@ -154,10 +154,10 @@ public class GameMenu extends JLabel implements ActionListener {
 		switch(arg0.getActionCommand()){
 		case ("Resume"): 
 			GameSounds.playSound("button");
-//		setVisible(false);
-//		frame.getMazePanel().setVisible(true);
-		frame.disableAll();
-		frame.enablePanel(this);
+		
+		setVisible(false);
+		frame.enablePanel(frame.getMazePanel());
+		frame.getMazePanel().setVisible(true);
 		frame.getMazePanel().requestFocusInWindow();
 		break;
 
@@ -184,7 +184,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		if (resposta == JOptionPane.YES_OPTION) {
 			setVisible(false);
 			g1.setBoard();
-		//	frame.getMainMenu().setVisible(true);
+			//	frame.getMainMenu().setVisible(true);
 			frame.enablePanel(frame.getMainMenu());
 		}
 		break;
