@@ -28,6 +28,8 @@ import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Frame;
 import java.util.ArrayList;
+import javax.swing.JToggleButton;
+import javax.swing.JSlider;
 /**
  * OptionsMenu.java - Esta classe representa o menu de opções, sendo que é possivel alterar o tamanho do labirinto,
  * o numero de dragoes, a possibilidade dos dragoes adormecerem/moverem, e a mudança dos controlos do jogo
@@ -257,125 +259,144 @@ public class OptionsMenu extends JPanel {
 				g1.setSleepingDragons();
 			}
 		});
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.BLACK);
+		panel_4.add(panel_2);
+		
+		JToggleButton tglbtnSound = new JToggleButton("Sound");
+		tglbtnSound.setBackground(Color.BLACK);
+		tglbtnSound.setForeground(Color.RED);
+		panel_2.add(tglbtnSound);
+		
+		JSlider slider = new JSlider();
+		slider.setBackground(Color.BLACK);
+		slider.setForeground(Color.RED);
+		panel_2.add(slider);
+		
+		JLabel lblNewLabel_14 = new JLabel("CONTROLS");
+		lblNewLabel_14.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_14.setForeground(Color.RED);
+		panel_4.add(lblNewLabel_14);
+		
+				JPanel panel_5 = new JPanel();
+				panel_5.setBackground(Color.BLACK);
+				panel_4.add(panel_5);
+				panel_5.setLayout(new GridLayout(2, 5, 0, 0));
+				
+						JLabel lblNewLabel_6 = new JLabel("RIGHT");
+						lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+						lblNewLabel_6.setForeground(Color.RED);
+						lblNewLabel_6.setBackground(Color.BLACK);
+						lblNewLabel_6.setOpaque(true);
+						panel_5.add(lblNewLabel_6);
+						
+								JLabel lblNewLabel_7 = new JLabel("UP");
+								lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+								lblNewLabel_7.setForeground(Color.RED);
+								lblNewLabel_7.setBackground(Color.BLACK);
+								lblNewLabel_7.setOpaque(true);
+								panel_5.add(lblNewLabel_7);
+								
+										JLabel lblNewLabel_8 = new JLabel("LEFT");
+										lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+										lblNewLabel_8.setForeground(Color.RED);
+										lblNewLabel_8.setBackground(Color.BLACK);
+										lblNewLabel_8.setOpaque(true);
+										
+												panel_5.add(lblNewLabel_8);
+												
+														JLabel lblNewLabel_9 = new JLabel("DOWN");
+														lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+														lblNewLabel_9.setForeground(Color.RED);
+														lblNewLabel_9.setBackground(Color.BLACK);
+														lblNewLabel_9.setOpaque(true);
+														
+																panel_5.add(lblNewLabel_9);
+																
+																		JLabel lblNewLabel_10 = new JLabel("Eagle");
+																		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+																		lblNewLabel_10.setForeground(Color.RED);
+																		lblNewLabel_10.setBackground(Color.BLACK);
+																		lblNewLabel_10.setOpaque(true);
+																		
+																				panel_5.add(lblNewLabel_10);
+																				
+																						// RIGHT
+																						textField_1 = new JTextField();
+																						textField_1.setForeground(Color.RED);
+																						textField_1.setBackground(Color.BLACK);
+																						textField_1.addKeyListener(new KeyAdapter() {
+																							@Override
+																							public void keyPressed(KeyEvent arg0) {
+																								textField_1.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+																								controls1.set(0, arg0.getKeyCode());
+																								//frame.getControls().set(0, arg0.getKeyCode());
+																							}
+																						});
+																						panel_5.add(textField_1);
+																						textField_1.setColumns(10);
+																						
+																								// UP
+																								textField = new JTextField();
+																								textField.setForeground(Color.RED);
+																								textField.setBackground(Color.BLACK);
+																								textField.addKeyListener(new KeyAdapter() {
+																									@Override
+																									public void keyPressed(KeyEvent arg0) {
+																										textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+																										controls1.set(1, arg0.getKeyCode());
+																										//frame.getControls().set(1, arg0.getKeyCode());
 
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(Color.BLACK);
-		panel_4.add(panel_5);
-		panel_5.setLayout(new GridLayout(2, 5, 0, 0));
-
-		JLabel lblNewLabel_6 = new JLabel("RIGHT");
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setForeground(Color.RED);
-		lblNewLabel_6.setBackground(Color.BLACK);
-		lblNewLabel_6.setOpaque(true);
-		panel_5.add(lblNewLabel_6);
-
-		JLabel lblNewLabel_7 = new JLabel("UP");
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7.setForeground(Color.RED);
-		lblNewLabel_7.setBackground(Color.BLACK);
-		lblNewLabel_7.setOpaque(true);
-		panel_5.add(lblNewLabel_7);
-
-		JLabel lblNewLabel_8 = new JLabel("LEFT");
-		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_8.setForeground(Color.RED);
-		lblNewLabel_8.setBackground(Color.BLACK);
-		lblNewLabel_8.setOpaque(true);
-
-		panel_5.add(lblNewLabel_8);
-
-		JLabel lblNewLabel_9 = new JLabel("DOWN");
-		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9.setForeground(Color.RED);
-		lblNewLabel_9.setBackground(Color.BLACK);
-		lblNewLabel_9.setOpaque(true);
-
-		panel_5.add(lblNewLabel_9);
-
-		JLabel lblNewLabel_10 = new JLabel("Eagle");
-		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_10.setForeground(Color.RED);
-		lblNewLabel_10.setBackground(Color.BLACK);
-		lblNewLabel_10.setOpaque(true);
-
-		panel_5.add(lblNewLabel_10);
-
-		// RIGHT
-		textField_1 = new JTextField();
-		textField_1.setForeground(Color.RED);
-		textField_1.setBackground(Color.BLACK);
-		textField_1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				textField_1.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				controls1.set(0, arg0.getKeyCode());
-				//frame.getControls().set(0, arg0.getKeyCode());
-			}
-		});
-		panel_5.add(textField_1);
-		textField_1.setColumns(10);
-
-		// UP
-		textField = new JTextField();
-		textField.setForeground(Color.RED);
-		textField.setBackground(Color.BLACK);
-		textField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				textField.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				controls1.set(1, arg0.getKeyCode());
-				//frame.getControls().set(1, arg0.getKeyCode());
-
-			}
-		});
-		panel_5.add(textField);
-		textField.setColumns(10);
-
-		// LEFT
-		textField_2 = new JTextField();
-		textField_2.setForeground(Color.RED);
-		textField_2.setBackground(Color.BLACK);
-		textField_2.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				textField_2.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				controls1.set(3, arg0.getKeyCode());
-				//frame.getControls().set(3, arg0.getKeyCode());
-			}
-		});
-		panel_5.add(textField_2);
-		textField_2.setColumns(10);
-
-		// DOWN
-		textField_3 = new JTextField();
-		textField_3.setForeground(Color.RED);
-		textField_3.setBackground(Color.BLACK);
-		textField_3.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				textField_3.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				controls1.set(2, arg0.getKeyCode());
-				//frame.getControls().set(2, arg0.getKeyCode());
-			}
-		});
-		panel_5.add(textField_3);
-		textField_3.setColumns(10);
-
-		// EAGLE
-		textField_4 = new JTextField();
-		textField_4.setForeground(Color.RED);
-		textField_4.setBackground(Color.BLACK);
-		textField_4.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				textField_4.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
-				controls1.set(4, arg0.getKeyCode());
-				//frame.getControls().set(4, arg0.getKeyCode());
-			}
-		});
-		panel_5.add(textField_4);
-		textField_4.setColumns(10);
+																									}
+																								});
+																								panel_5.add(textField);
+																								textField.setColumns(10);
+																								
+																										// LEFT
+																										textField_2 = new JTextField();
+																										textField_2.setForeground(Color.RED);
+																										textField_2.setBackground(Color.BLACK);
+																										textField_2.addKeyListener(new KeyAdapter() {
+																											@Override
+																											public void keyPressed(KeyEvent arg0) {
+																												textField_2.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+																												controls1.set(3, arg0.getKeyCode());
+																												//frame.getControls().set(3, arg0.getKeyCode());
+																											}
+																										});
+																										panel_5.add(textField_2);
+																										textField_2.setColumns(10);
+																										
+																												// DOWN
+																												textField_3 = new JTextField();
+																												textField_3.setForeground(Color.RED);
+																												textField_3.setBackground(Color.BLACK);
+																												textField_3.addKeyListener(new KeyAdapter() {
+																													@Override
+																													public void keyPressed(KeyEvent arg0) {
+																														textField_3.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+																														controls1.set(2, arg0.getKeyCode());
+																														//frame.getControls().set(2, arg0.getKeyCode());
+																													}
+																												});
+																												panel_5.add(textField_3);
+																												textField_3.setColumns(10);
+																												
+																														// EAGLE
+																														textField_4 = new JTextField();
+																														textField_4.setForeground(Color.RED);
+																														textField_4.setBackground(Color.BLACK);
+																														textField_4.addKeyListener(new KeyAdapter() {
+																															@Override
+																															public void keyPressed(KeyEvent arg0) {
+																																textField_4.setText(KeyEvent.getKeyText(arg0.getKeyCode()));
+																																controls1.set(4, arg0.getKeyCode());
+																																//frame.getControls().set(4, arg0.getKeyCode());
+																															}
+																														});
+																														panel_5.add(textField_4);
+																														textField_4.setColumns(10);
 	}
 
 }
