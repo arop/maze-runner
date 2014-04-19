@@ -125,7 +125,7 @@ public class MazeGameGUI extends JFrame {
 	 * Muda a visibilidade dos menus para invisiveis
 	 */
 	public void disableAll() {
-		
+		GameSounds.stop("musiquinha");
 		mainMenu.setVisible(false);
 		options.setVisible(false);
 		editor.setVisible(false);
