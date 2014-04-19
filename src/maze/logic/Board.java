@@ -228,7 +228,7 @@ public class Board implements Serializable {
 	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
 	}
-	
+
 	public void resetVisited(int realSize) {
 		visited = new boolean[realSize][realSize];
 
@@ -239,7 +239,7 @@ public class Board implements Serializable {
 	 */
 	public void createBoardFromString() {
 		ArrayList<Dragon> dragons = new ArrayList<Dragon>();
-		
+
 		for(int i=0; i<currentState.length;i++)
 			for(int j=0; j<currentState.length;j++){
 				if(currentState[i][j].equals("H"))
@@ -256,11 +256,16 @@ public class Board implements Serializable {
 
 		setDragons(dragons.toArray(new Dragon[dragons.size()]));
 	}
-	
+	/**
+	 * Verifica, recursivamente, se o labirinto tem soluçao, isto é, se o heroi consegue chegar a saida
+	 * @param x coord X inicial do heroi
+	 * @param y coord Y inicial do heroi
+	 * @return true se é possivel, false se nao
+	 */
 	public boolean solveMaze(int x, int y) {
-		
+
 		visited[x][y] = true;
-		
+
 		if(currentState[x][y].equals("s")) return true;
 
 		if(!currentState[x+1][y].equals("X") && (x+1 <= currentState.length-1) && !visited[x+1][y]){
@@ -277,10 +282,5 @@ public class Board implements Serializable {
 		}
 
 		return false;
-
 	}
-
-
-	
-
 }

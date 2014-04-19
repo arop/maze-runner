@@ -43,10 +43,8 @@ public class MazePanel extends JPanel implements ActionListener {
 		if(g1.getSize()-2 < 5) realSize = 10;
 		else realSize = g1.getSize()-2;
 
-		//System.out.println(g1.getBoard());
 		Play();
 		UpdateGraphicBoard();
-
 	}
 
 	public class MyKeyListener implements KeyListener {
@@ -95,6 +93,8 @@ public class MazePanel extends JPanel implements ActionListener {
 				frame.enablePanel(frame.getMainMenu());
 				break;
 			case 3: //won
+				GameSounds.load("sons/victory.wav", "win");
+				GameSounds.play("win");
 				JOptionPane.showMessageDialog(frame, "You won!");
 				frame.disableAll();
 				setVisible(false);
