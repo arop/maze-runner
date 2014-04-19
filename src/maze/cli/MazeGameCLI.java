@@ -51,6 +51,8 @@ public class MazeGameCLI {
 			break;
 		case 3:
 			System.exit(0) ;
+		
+		default: mainMenu();
 		}
 
 		play();
@@ -111,7 +113,7 @@ public class MazeGameCLI {
 			scanner_input = new Scanner(System.in);
 
 			while(!validN) {
-				System.out.println("Please insert size of maze (5 or bigger): ");
+				System.out.println("Please insert size of maze (7 or bigger): ");
 				String n= scanner_input.nextLine();
 				int n1=Integer.parseInt(n);
 
