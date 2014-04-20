@@ -54,7 +54,7 @@ public class TestEagle {
 		for(int i=0; i<2;i++)
 			jogo.Play("");
 
-		assertFalse(jogo.getBoard().getEg().getStatus()); //dies
+		assertTrue(jogo.getBoard().getEg().getStatus()); //dies
 	}
 	/**
 	 * Testa se a aguia apanha a espada

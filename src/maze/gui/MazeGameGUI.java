@@ -46,7 +46,7 @@ public class MazeGameGUI extends JFrame {
 	 * Funcao main do package
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -131,11 +131,22 @@ public class MazeGameGUI extends JFrame {
 		editor.setVisible(false);
 		paused.setVisible(false);
 	}
+	
+	/**
+	 * Desactivar um painel: para além de tirar visibilidade pára a música associada a esse painel
+	 * @param component (JLabel, JPanel..)
+	 */
 
 	public void disablePanel(JComponent x) {
 		x.setVisible(false);
 		GameSounds.stop(x.getName());
 	}
+	
+	
+	/**
+	 * Activar um painel: para além de conferir visibilidade inicia a música associada a esse painel
+	 * @param component (JLabel, JPanel..)
+	 */
 	
 	public void enablePanel(JComponent x) {
 		x.setVisible(true);

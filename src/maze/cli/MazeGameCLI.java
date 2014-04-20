@@ -25,36 +25,45 @@ public class MazeGameCLI {
 	 * menu de opções) ou terminar o programa
 	 */
 	private static void mainMenu() {
-		System.out.println(">>> MAZE GAME <<<");
-		System.out.println();
-		System.out.println("1. Play Game");
-		System.out.println("2. Options");
-		System.out.println("3. Quit");
+		while(true) {
+			try {
+				System.out.println(">>> MAZE GAME <<<");
+				System.out.println();
+				System.out.println("1. Play Game");
+				System.out.println("2. Options");
+				System.out.println("3. Quit");
 
-		scanner_input = new Scanner(System.in);
-		String n = scanner_input.nextLine();
-		int a = Integer.parseInt(n);
-		switch(a) {
-		case 1:
-			if(g1 == null) {
-				System.out.println("Do you want to play with default map? (y/n)") ;
-				String opt2 = scanner_input.nextLine();
-				if(opt2.equals("y")) g1 = new Game();
-				else mainMenu(); }
-			break;
-		case 2: 
-			optionsMenu();
-			mainMenu();
-			break;
-		case 3:
-			System.exit(0) ;
-		
-		default: mainMenu();
+				scanner_input = new Scanner(System.in);
+				String n = scanner_input.nextLine();
+				int a = Integer.parseInt(n);
+				switch(a) {
+				case 1:
+					if(g1 == null) {
+						System.out.println("Do you want to play with default map? (y/n)") ;
+						String opt2 = scanner_input.nextLine();
+						if(opt2.equals("y")) g1 = new Game();
+						else mainMenu(); }
+					break;
+				case 2: 
+					optionsMenu();
+					mainMenu();
+					break;
+				case 3:
+					System.exit(0) ;
+					break;
+				}
+
+				play();
+				System.exit(0);
+				
+			}catch (Exception e) {
+				System.out.println("Error please enter a valid input");
+				scanner_input.nextLine(); // remove 'bad' input
+				continue; // the while() loop
+
+			}
 		}
 
-		play();
-
-		System.exit(0);
 	}
 	/**
 	 * Representa o jogo em si, fazendo as alterações necessárias consoante a interação com o utilizador

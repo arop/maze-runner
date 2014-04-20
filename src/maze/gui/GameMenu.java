@@ -51,6 +51,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		sg = new SaveGame(null, null);
 		fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		
 		frame = window;
 		g1 = currentGame;
 
