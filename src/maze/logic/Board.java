@@ -229,6 +229,15 @@ public class Board implements Serializable {
 	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
 	}
+	
+	
+	boolean dragonsDead() {
+		for(int i = 0; i < dragons.length; i++) {
+			if(dragons[i].getStatus())
+				return false;
+		}
+		return true;
+	}
 
 	public void resetVisited(int realSize) {
 		visited = new boolean[realSize][realSize];
