@@ -30,7 +30,7 @@ public class MazeGameGUI extends JFrame {
 	 * 
 	 * @return controlos escolhidos para o jogo
 	 */
-	public ArrayList<Integer> getControls() {
+	ArrayList<Integer> getControls() {
 		return controls;
 	}
 
@@ -39,7 +39,7 @@ public class MazeGameGUI extends JFrame {
 	 * @param controls novos controlos
 	 */
 	@SuppressWarnings("unchecked")
-	public void setControls(ArrayList<Integer> controls) {
+	void setControls(ArrayList<Integer> controls) {
 		this.controls = (ArrayList<Integer>) controls.clone();
 	}
 	/**
@@ -109,7 +109,7 @@ public class MazeGameGUI extends JFrame {
 	 * @return menu de pause
 	 */
 
-	public GameMenu getPaused() {
+	GameMenu getPaused() {
 		return paused;
 	}
 
@@ -117,14 +117,14 @@ public class MazeGameGUI extends JFrame {
 	 * Modifica o menu de pause
 	 * @param paused novo menu
 	 */
-	public void setPaused(GameMenu paused) {
+	void setPaused(GameMenu paused) {
 		this.paused = paused;
 	}
 
 	/**
 	 * Muda a visibilidade dos menus para invisiveis
 	 */
-	public void disableAll() {
+	void disableAll() {
 //		mainMenu.setVisible(false);
 		disablePanel(mainMenu);
 		options.setVisible(false);
@@ -137,7 +137,7 @@ public class MazeGameGUI extends JFrame {
 	 * @param component (JLabel, JPanel..)
 	 */
 
-	public void disablePanel(JComponent x) {
+	void disablePanel(JComponent x) {
 		x.setVisible(false);
 		GameSounds.stop(x.getName());
 	}
@@ -148,7 +148,7 @@ public class MazeGameGUI extends JFrame {
 	 * @param component (JLabel, JPanel..)
 	 */
 	
-	public void enablePanel(JComponent x) {
+	void enablePanel(JComponent x) {
 		x.setVisible(true);
 		GameSounds.playSound(x.getName());
 
@@ -158,56 +158,56 @@ public class MazeGameGUI extends JFrame {
 	 * 
 	 * @return menu de opçoes
 	 */
-	public OptionsMenu getOptions() {
+	OptionsMenu getOptions() {
 		return options;
 	}
 	/**
 	 * 
 	 * @return menu do jogo
 	 */
-	public MazePanel getMazePanel() {
+	MazePanel getMazePanel() {
 		return mazePanel;
 	}
 	/**
 	 * Modifica o menu do jogo
 	 * @param mazePanel novo menu
 	 */
-	public void setMazePanel(MazePanel mazePanel) {
+	void setMazePanel(MazePanel mazePanel) {
 		this.mazePanel = mazePanel;
 	}
 	/**
 	 * 
 	 * @return menu principal
 	 */
-	public MainMenu getMainMenu() {
+	MainMenu getMainMenu() {
 		return mainMenu;
 	}
 	/**
 	 * Modifica o menu principal
 	 * @param mainMenu novo menu
 	 */
-	public void setMainMenu(MainMenu mainMenu) {
+	void setMainMenu(MainMenu mainMenu) {
 		this.mainMenu = mainMenu;
 	}
 	/**
 	 * Modifica o menu de opçoes
 	 * @param options novo menu
 	 */
-	public void setOptions(OptionsMenu options) {
+	void setOptions(OptionsMenu options) {
 		this.options = options;
 	}
 	/**
 	 * 
 	 * @return menu de ediçao
 	 */
-	public MazeEditor getEditor() {
+	MazeEditor getEditor() {
 		return editor;
 	}
 	/**
 	 * Modifica o menu de ediçao
 	 * @param ed novo menu
 	 */
-	public void setMazeEditor(MazeEditor ed) {
+	void setMazeEditor(MazeEditor ed) {
 		this.editor=ed;
 	}
 }
