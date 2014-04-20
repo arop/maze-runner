@@ -21,7 +21,7 @@ public class SaveGame {
 	 * @param f ficheiro onde guardar
 	 */
 	public SaveGame(Game game, File f) {
-		g=game;
+		this.g=game;
 		this.f=f;
 	}
 	/**

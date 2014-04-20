@@ -51,6 +51,13 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 
 	private int hX,hY,eX,eY,sX,sY;
 
+	private boolean hasChanged=false;
+
+
+	public void setHasChanged(boolean x) {
+		hasChanged=x;
+	}
+
 	public MazeEditor(Game currentGame,MazeGameGUI window)  {
 		setBackground(Color.BLACK);
 		g1 = currentGame;
@@ -78,15 +85,20 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		Play.setForeground(Color.RED);
 		Play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PaintTools.resetFrames();
-				g1.setSize(customBoard.getCurrentState().length);
-				g1.setBoard(customBoard);
-				customBoard.createBoardFromString();
-				frame.disableAll();
-				frame.setMazePanel(new MazePanel(g1, frame));
-				frame.getContentPane().add(frame.getMazePanel());
-				frame.getMazePanel().setVisible(true);
-				frame.getMazePanel().requestFocusInWindow();	
+				if(hasChanged) {
+					PaintTools.resetFrames();
+					g1.setSize(customBoard.getCurrentState().length);
+					g1.setBoard(customBoard);
+					System.out.println("num D:"+g1.getNumber_dragons());
+					if(g1.getNumber_dragons() == 0) g1.setDragonsDead(false);
+					customBoard.createBoardFromString();
+					frame.disableAll();
+					frame.setMazePanel(new MazePanel(g1, frame));
+					frame.getContentPane().add(frame.getMazePanel());
+					frame.getMazePanel().setVisible(true);
+					frame.getMazePanel().requestFocusInWindow();
+				}
+				else JOptionPane.showMessageDialog(frame, "You haven't changed the maze yet!");
 			}
 		});
 		panel_1.add(Play);
@@ -140,7 +152,8 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		spinner.setBackground(Color.DARK_GRAY);
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				customBoard = new Board((int) spinner.getValue(),0);
+				hasChanged=true;
+				customBoard = new Board((int) spinner.getValue(),1);
 				hX=customBoard.getH().getX();
 				hY=customBoard.getH().getY();
 				eX=customBoard.getS().getX();
@@ -201,7 +214,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 			if(sX==0 || sY==0 || sX==customBoard.getCurrentState().length-1 
 			|| sY==customBoard.getCurrentState().length-1) {
 				customBoard.getCurrentState()[sX][sY]="X";
-				customBoard.getOriginalMaze()[sX][sY] = "X";
+				customBoard.getOriginalMaze()[sX][sY] ="X";
 			}
 			else {
 				customBoard.getCurrentState()[sX][sY]=" ";

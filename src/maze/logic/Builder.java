@@ -1,6 +1,8 @@
 package maze.logic;
 
-public interface Builder {
+import java.io.Serializable;
+
+public interface Builder extends Serializable {
 
 	public void makePath(int n);
 
