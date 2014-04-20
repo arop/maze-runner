@@ -39,6 +39,12 @@ public class Object implements Serializable {
 	 * 
 	 * @return Coordenada X
 	 */
+	
+	public boolean samePos(Object other) {
+		if(this.getX() == other.getX() && this.getY() == other.getY()) return true;
+		return false;
+	}
+	
 	public int getX() { return X; }
 	/**
 	 * 

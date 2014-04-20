@@ -56,8 +56,7 @@ public class Game implements Serializable {
 		board.getH().move(board,input);
 
 		//morrer aguia?
-		if((board.getEg().getX() == board.getEg().getiX() && board.getEg().getY() == board.getEg().getiY()) ||
-				(board.getEg().getX() == board.getS().getX() && board.getEg().getY() == board.getS().getY())) {
+		if((board.getEg().getX() == board.getEg().getiX() && board.getEg().getY() == board.getEg().getiY()) || (board.getEg().samePos(board.getS()))) {
 			if(board.getEg().getStatus()) characterDies(board.getEg());
 		}
 
@@ -68,7 +67,7 @@ public class Game implements Serializable {
 			board.getEg().setY(board.getH().getY());
 		}
 
-		if(board.getEg().getX() == board.getS().getX() && board.getEg().getY() == board.getS().getY()) {
+		if(board.getEg().samePos(board.getS())) {
 			board.getS().disable() ;
 			board.getEg().setSymb("V") ;
 			board.getEg().setdX(board.getEg().getiX());
@@ -76,7 +75,7 @@ public class Game implements Serializable {
 		}
 
 		//verificar se heroi apanhou a espada/aguia
-		if(board.getH().getX() == board.getS().getX() && board.getH().getY() == board.getS().getY() || board.getH().getX() == board.getEg().getX() && board.getH().getY() == board.getEg().getY() && board.getEg().getStatus() ) {
+		if(board.getH().samePos(board.getS()) || board.getH().samePos(board.getEg()) && board.getEg().getStatus() ) {
 			board.getH().setSymb("A");
 			board.getS().disable();
 			board.getEg().disable();
@@ -116,7 +115,7 @@ public class Game implements Serializable {
 		//dragon protecting sword
 		boolean sProtected = false;
 		for(int i = 0 ; i < board.getDragons().length ; i++) {
-			if(board.getDragons()[i].getX() == board.getS().getX() && board.getDragons()[i].getY() == board.getS().getY()){
+			if(board.getDragons()[i].samePos(board.getS())){
 				board.getS().setSymb("F");
 				sProtected = true;
 				break;
