@@ -211,6 +211,15 @@ public class MainMenu extends JLabel implements ActionListener {
 		JLabel label_7 = new JLabel();
 		panel_5.add(label_7);
 	}
+	
+	
+	/**
+	 * Override do paintComponent , desenha o background em todo o frame
+	 * Desenha o título, que é um array de imagens, na posição desejada, começando na primeira e incrementando sempre que o paintComponent é chamado
+	 * Quando chega à ultima imagem volta à primeira
+	 * paintComponent é chamado pelo repaint() accionado pelo timer animation
+	 * 
+	 */
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
