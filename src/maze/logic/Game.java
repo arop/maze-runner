@@ -78,7 +78,7 @@ public class Game implements Serializable {
 			board.getH().setSymb("A");
 			board.getS().disable();
 			board.getEg().disable();
-			board.getOriginalMaze()[board.getSx()][board.getSy()] = "S";
+			
 		}
 
 		//lancar aguia
@@ -122,7 +122,10 @@ public class Game implements Serializable {
 		}
 
 		if(!sProtected) board.getS().setSymb("E");
-
+		
+		if(board.dragonsDead()){
+			board.getOriginalMaze()[board.getSx()][board.getSy()] = "S";
+		}
 
 		// update
 		board.UpdateBoard();
@@ -167,12 +170,13 @@ public class Game implements Serializable {
 	 * @return true se ganhou, false se nao
 	 */
 	public boolean won() {
-		if(board.getH().getSymb().equals("A") && 
+		if(board.getH().getSymb().equals("A") &&  board.dragonsDead() &&
 				board.getH().getX() == board.getSx() 
 				&& board.getH().getY() == board.getSy())
 			return true;
 		return false;
 	}
+
 
 	//Getters and setters
 	/**

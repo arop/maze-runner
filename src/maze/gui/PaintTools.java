@@ -35,6 +35,7 @@ public class PaintTools {
 	private static BufferedImage title_animation[] = createSprite(5,"title");
 	private static BufferedImage door_animation[] = createSprite(4,"door");
 	
+	private static boolean sword_grab = true;
 	private static boolean openDoor = false;
 	private static int door_sprite_frame = 0;
 	private static int eagle_sprite_frame = 0;
@@ -65,6 +66,7 @@ public class PaintTools {
 	static void resetFrames() {
 		 door_sprite_frame = 0;
 		 eagle_sprite_frame = 0;
+		 sword_grab = true;
 	}
 
 	void drawGraphicBoard(Graphics arg0,int realSize,int width,int height, Board b, Component label) {
@@ -73,6 +75,12 @@ public class PaintTools {
 
 		for(int i = 0; i < realSize; i++) {
 			for(int j= 0; j < realSize; j++) {
+				
+				if(b.getH().getSymb().equals("A") && sword_grab) {
+					GameSounds.loadSound("sons/BladeDragged.wav", "blade");
+					GameSounds.playSound("blade");
+					sword_grab = false;
+				}
 
 				if(b.getCurrentState()[j][i].equals(" ")) paintGrid(arg0,path,w,h,i,j,label);
 				else if(b.getCurrentState()[j][i].equals("X")) paintGrid(arg0,wall,w,h,i,j,label);
@@ -111,10 +119,6 @@ public class PaintTools {
 		eagle_sprite_frame++;
 		
 		if(openDoor) {
-			if(door_sprite_frame == 0) {
-				GameSounds.loadSound("sons/BladeDragged.wav", "blade");
-				GameSounds.playSound("blade");
-			}
 			if(door_sprite_frame >= door_animation.length-1) {
 				openDoor = false;
 			}
