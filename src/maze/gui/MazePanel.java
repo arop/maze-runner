@@ -27,15 +27,15 @@ public class MazePanel extends JPanel implements ActionListener {
 	private Timer animation;
 	private int delay = 50;
 	
-
 	private static final long serialVersionUID = 7836117138272018391L;
-
 
 	public MazePanel(Game currentGame, MazeGameGUI window){
 		this.setName("ambient");
+		//load and play ambient sound
 		GameSounds.loadSound("sons/ambient.wav", "ambient");
 		GameSounds.adjustVolume("ambient", 5);
 		GameSounds.playSound("ambient");
+		
 		g1 = currentGame;
 		frame = window;
 		
@@ -112,6 +112,11 @@ public class MazePanel extends JPanel implements ActionListener {
 				frame.getMainMenu().getGame().setBoard();
 				
 				frame.enablePanel(frame.getMainMenu());
+				break;
+			case 4: //pode sair
+				GameSounds.loadSound("sons/door.wav", "door");
+				GameSounds.adjustVolume("door", 0);
+				GameSounds.playSound("door");
 				break;
 			}
 

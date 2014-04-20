@@ -36,7 +36,7 @@ public class GameMenu extends JLabel implements ActionListener {
 	private Game g1;
 	private MazeGameGUI frame;
 	private JFileChooser fc;
-	public SaveGame sg;
+	private SaveGame sg;
 
 	@SuppressWarnings("unused")
 	private JPanel panel_5 = new JPanel();
@@ -51,7 +51,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		sg = new SaveGame(null, null);
 		fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		
+
 		frame = window;
 		g1 = currentGame;
 
@@ -155,7 +155,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		switch(arg0.getActionCommand()){
 		case ("Resume"): 
 			GameSounds.playSound("button");
-		
+
 		setVisible(false);
 		frame.enablePanel(frame.getMazePanel());
 		frame.getMazePanel().setVisible(true);

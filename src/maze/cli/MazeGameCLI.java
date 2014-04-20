@@ -55,7 +55,7 @@ public class MazeGameCLI {
 
 				play();
 				System.exit(0);
-				
+
 			}catch (Exception e) {
 				System.out.println("Error please enter a valid input");
 				scanner_input.nextLine(); // remove 'bad' input
@@ -91,6 +91,8 @@ public class MazeGameCLI {
 			case 3:
 				System.out.println("You won!") ;
 				return;
+			case 4:
+				break;
 			}
 		}
 	}
