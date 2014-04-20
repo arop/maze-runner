@@ -44,8 +44,15 @@ public class Game implements Serializable {
 	/**
 	 * Funcao que simboliza a acao do jogo
 	 * @param input Movimento para o heroi
-	 * @param input2 Movimento para o dragao
+	 * @param input2 Movimento para o dragao (util para testes, em que se pode mover o dragão tal como se move o herói
 	 * @return 0- Continua o jogo, 1- Acaba o jogo por opcao do utilizador, 2- Heroi morreu, 3- Heroi venceu
+	 * 
+	 * NOTA IMPORTANTE: O método play é overloaded. O método com 2 parâmetros serve para caso se deseje mover o dragão
+	 * com um determinado input, tal como se move o herói. Utilizámos este método para realizar testes relativos ao dragão,
+	 * em vez de criar uma interface como sugerido.
+	 * 
+	 * O método Play com apenas um parametro chama este, sendo que o input2 é passado como null. 
+	 * Na função move do dragão (chamada no Play), caso o input2 seja null, o movimento é gerado aleatoriamente, caso contrário é efectuado o movimento desejado
 	 */
 	public int Play(String input, String input2) {
 

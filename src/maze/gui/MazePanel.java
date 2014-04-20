@@ -125,7 +125,7 @@ public class MazePanel extends JPanel implements ActionListener {
 	}
 
 
-	public void Play() {
+	private void Play() {
 		KeyListener listener = new MyKeyListener();
 		this.addKeyListener(listener);
 	}
