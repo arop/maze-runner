@@ -56,8 +56,10 @@ public class Game implements Serializable {
 		board.getH().move(board,input);
 
 		//morrer aguia?
-		if(board.getEg().getStatus()) characterDies(board.getEg());
-
+		if((board.getEg().getX() == board.getEg().getiX() && board.getEg().getY() == board.getEg().getiY()) ||
+				(board.getEg().getX() == board.getS().getX() && board.getEg().getY() == board.getS().getY())) {
+			if(board.getEg().getStatus()) characterDies(board.getEg());
+		}
 
 		//mover aguia
 		if(board.getEg().getStatus() ) board.getEg().move(board, input);
@@ -78,7 +80,7 @@ public class Game implements Serializable {
 			board.getH().setSymb("A");
 			board.getS().disable();
 			board.getEg().disable();
-			
+
 		}
 
 		//lancar aguia
@@ -122,7 +124,7 @@ public class Game implements Serializable {
 		}
 
 		if(!sProtected) board.getS().setSymb("E");
-		
+
 		if(board.dragonsDead()){
 			board.getOriginalMaze()[board.getSx()][board.getSy()] = "S";
 		}

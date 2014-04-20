@@ -78,6 +78,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 		Play.setForeground(Color.RED);
 		Play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				PaintTools.resetFrames();
 				g1.setSize(customBoard.getCurrentState().length);
 				g1.setBoard(customBoard);
 				customBoard.createBoardFromString();
