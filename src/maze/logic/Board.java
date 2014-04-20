@@ -61,12 +61,12 @@ public class Board implements Serializable {
 		eg = new Eagle (h.getX(),h.getY());
 	}
 
-	//SET POSITIONS FOR OBJECTS AND ADD THEM
+	//SET POSITIONS FOR OBJECTS AND ADDS THEM
 	/**
 	 * Gera os objetos do jogo numa posição válida
 	 * @param object objeto a ser gerado
 	 */
-	public void generateObject(Object object) {
+	private void generateObject(Object object) {
 		int tempx,tempy;
 
 		do {
@@ -82,7 +82,8 @@ public class Board implements Serializable {
 	 * Desenha o objeto no Board
 	 * @param object Objeto a ser desenhado
 	 */
-	public void drawObject(Object object) {
+	
+	private void drawObject(Object object) {
 		currentState[object.getX()][object.getY()] = object.getSymb();
 	}
 
@@ -90,7 +91,7 @@ public class Board implements Serializable {
 	/**
 	 * Atualiza do board e desenha-o 
 	 */
-	public void UpdateBoard() {
+	 void UpdateBoard() {
 		currentState = copy(builder.getField());
 		if(eg.getStatus())
 			drawObject(eg);
@@ -124,7 +125,7 @@ public class Board implements Serializable {
 	 * @param y	Coordenada y
 	 * @return	true se for válido, false se inválido
 	 */
-	public boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
+	private boolean validPos(int x, int y) { // CHECKS IF POSITION IS VALID
 		if(x <= 1 || x >= builder.getField().length-1 || y <=1 || y >= builder.getField().length-1) return false ;
 		if (currentState[x][y].equals(" ")) return true;
 		return false;
@@ -134,7 +135,7 @@ public class Board implements Serializable {
 	 * @param input board em questão
 	 * @return retorna a cópia
 	 */
-	public String[][] copy(String[][] input) { // DEEP COPY FUNCTION (double array of strings)
+	private String[][] copy(String[][] input) { // DEEP COPY FUNCTION (double array of strings)
 		String[][] target = new String[input.length][];
 		for (int i=0; i <input.length; i++) {
 			target[i] = Arrays.copyOf(input[i], input[i].length);

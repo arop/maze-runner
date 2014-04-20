@@ -39,7 +39,6 @@ public class MazePanel extends JPanel implements ActionListener {
 		g1 = currentGame;
 		frame = window;
 		
-		System.out.println(g1.getBoard().getSx() +" "+ g1.getBoard().getSy());
 
 		animation = new Timer(delay,this);
 		animation.start();
