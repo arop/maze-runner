@@ -23,6 +23,8 @@ public class Game implements Serializable {
 	private boolean movingDragons = false; //if true dragons can move
 	private boolean sleepingDragons = false; //if true dragons can sleep
 
+	private boolean dragonsDead = false;
+
 	/**
 	 * Construtor da classe Game, sendo o board = default
 	 */
@@ -45,7 +47,7 @@ public class Game implements Serializable {
 	 * Funcao que simboliza a acao do jogo
 	 * @param input Movimento para o heroi
 	 * @param input2 Movimento para o dragao (util para testes, em que se pode mover o dragão tal como se move o herói
-	 * @return 0- Continua o jogo, 1- Acaba o jogo por opcao do utilizador, 2- Heroi morreu, 3- Heroi venceu
+	 * @return 0- Continua o jogo, 1- Acaba o jogo por opcao do utilizador, 2- Heroi morreu, 3- Heroi venceu, 4-Porta abriu
 	 * 
 	 * NOTA IMPORTANTE: O método play é overloaded. O método com 2 parâmetros serve para caso se deseje mover o dragão
 	 * com um determinado input, tal como se move o herói. Utilizámos este método para realizar testes relativos ao dragão,
@@ -131,9 +133,14 @@ public class Game implements Serializable {
 
 		if(!sProtected) board.getS().setSymb("E");
 
-		if(board.dragonsDead()){
-			board.getOriginalMaze()[board.getSx()][board.getSy()] = "S";
-		}
+		// verifica se dragons morreram todos -> heroi pode ganhar
+		if(!dragonsDead)
+			if(board.dragonsDead()){
+				board.getOriginalMaze()[board.getSx()][board.getSy()] = "S";
+				dragonsDead=true;
+				board.UpdateBoard();
+				return 4;
+			}
 
 		// update
 		board.UpdateBoard();

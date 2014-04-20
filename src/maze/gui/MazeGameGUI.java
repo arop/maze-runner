@@ -142,7 +142,6 @@ public class MazeGameGUI extends JFrame {
 		GameSounds.stop(x.getName());
 	}
 	
-	
 	/**
 	 * Activar um painel: para além de conferir visibilidade inicia a música associada a esse painel
 	 * @param component (JLabel, JPanel..)

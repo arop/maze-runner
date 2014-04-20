@@ -16,11 +16,9 @@ public class GameSounds {
 	private static boolean silent = false;
 	private static int interval;
 
-
 	public static void init() {
 		interval = 0;
 	}
-
 
 	public static void toggleSound() {
 		silent = !silent;
