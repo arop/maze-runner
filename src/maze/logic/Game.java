@@ -135,7 +135,7 @@ public class Game implements Serializable {
 
 		// verifica se dragons morreram todos -> heroi pode ganhar
 		if(!dragonsDead)
-			if(board.dragonsDead()){
+			if(board.dragonsDead() && board.getH().getSymb().equals("A")){
 				board.getOriginalMaze()[board.getSx()][board.getSy()] = "S";
 				dragonsDead=true;
 				board.UpdateBoard();
@@ -232,14 +232,20 @@ public class Game implements Serializable {
 	 */
 	public void setBoard() {
 		board = new Board(size,number_dragons); 
+		dragonsDead = board.dragonsDead();
 	}
 
 	public void setBoard(Board board) {
 		this.board = board;
+		dragonsDead = this.board.dragonsDead();
 	}
 	/**
 	 * Modifica o tamanho do board, alterando o board de acordo
 	 * @param size tamanho do board
 	 */
 	public void setSize(int size) {this.size=size; setBoard();}
+	
+	public void setDragonsDead(boolean x) {
+		dragonsDead=x;
+	}
 }

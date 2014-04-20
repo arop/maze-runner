@@ -165,6 +165,8 @@ public class GameMenu extends JLabel implements ActionListener {
 		case("Save"): 
 			GameSounds.playSound("button");
 		try {
+			System.out.println("sx " + g1.getBoard().getSx());
+			System.out.println(" sy " + g1.getBoard().getSy());
 			File file = null;
 			int returnVal = fc.showSaveDialog(GameMenu.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {

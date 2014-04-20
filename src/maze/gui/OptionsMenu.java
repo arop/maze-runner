@@ -126,6 +126,7 @@ public class OptionsMenu extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setControls(controls1);
 				frame.disableAll();
+				frame.getEditor().setHasChanged(false);
 				frame.getEditor().setVisible(true);
 			}
 		});

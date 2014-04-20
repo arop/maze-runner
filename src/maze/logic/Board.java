@@ -28,7 +28,7 @@ public class Board implements Serializable {
 	 */
 	public Board(int n, int nDragons) {
 		builder = new MazeBuilder(n);
-		dragons = new Dragon[nDragons] ;	
+		dragons = new Dragon[nDragons];	
 		currentState = copy(builder.getField()); 
 
 		if(n>1) {
@@ -230,7 +230,11 @@ public class Board implements Serializable {
 		this.dragons = dragons;
 	}
 	
-	
+
+	/**
+	 * Verifica se todos os dragoes estao mortos
+	 * @return true se sim, false se nao
+	 */
 	boolean dragonsDead() {
 		for(int i = 0; i < dragons.length; i++) {
 			if(dragons[i].getStatus())

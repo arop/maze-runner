@@ -74,6 +74,7 @@ public class MazePanel extends JPanel implements ActionListener {
 				frame.disableAll();
 				setVisible(false);
 				GameSounds.stop("ambient");
+				GameSounds.stop("door");
 				frame.getPaused().setVisible(true);
 			}
 

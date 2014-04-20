@@ -86,7 +86,7 @@ public class MainMenu extends JLabel implements ActionListener {
 				PaintTools.resetFrames();
 				if(g1.getBoard() == null) {
 					g1.setBoard();
-				}				
+				}
 				frame.disableAll();
 				frame.setMazePanel(new MazePanel(g1, frame));
 				frame.getContentPane().add(frame.getMazePanel());
@@ -123,6 +123,8 @@ public class MainMenu extends JLabel implements ActionListener {
 						sg.setFile(file);
 						sg.loadGame();
 						g1=(Game) sg.getGame();
+						System.out.println("sx " + g1.getBoard().getSx());
+						System.out.println(" sy " + g1.getBoard().getSy());
 						x=true;
 					}
 				} catch (ClassNotFoundException e1) {
@@ -180,6 +182,7 @@ public class MainMenu extends JLabel implements ActionListener {
 			public void actionPerformed(ActionEvent arg0) {
 				GameSounds.playSound("button");
 				frame.disableAll();
+				frame.getEditor().setHasChanged(false);
 				frame.getEditor().setVisible(true);
 			}
 		});
