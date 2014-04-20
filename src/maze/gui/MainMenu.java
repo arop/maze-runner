@@ -123,8 +123,6 @@ public class MainMenu extends JLabel implements ActionListener {
 						sg.setFile(file);
 						sg.loadGame();
 						g1=(Game) sg.getGame();
-						System.out.println("sx " + g1.getBoard().getSx());
-						System.out.println(" sy " + g1.getBoard().getSy());
 						x=true;
 					}
 				} catch (ClassNotFoundException e1) {

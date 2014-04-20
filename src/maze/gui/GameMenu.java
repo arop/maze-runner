@@ -165,8 +165,6 @@ public class GameMenu extends JLabel implements ActionListener {
 		case("Save"): 
 			GameSounds.playSound("button");
 		try {
-			System.out.println("sx " + g1.getBoard().getSx());
-			System.out.println(" sy " + g1.getBoard().getSy());
 			File file = null;
 			int returnVal = fc.showSaveDialog(GameMenu.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -186,8 +184,7 @@ public class GameMenu extends JLabel implements ActionListener {
 		resposta = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to main menu?");
 		if (resposta == JOptionPane.YES_OPTION) {
 			setVisible(false);
-			g1.setBoard();
-			//	frame.getMainMenu().setVisible(true);
+			frame.getMainMenu().getGame().setBoard();
 			frame.enablePanel(frame.getMainMenu());
 		}
 		break;

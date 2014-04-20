@@ -18,8 +18,8 @@ public class Board implements Serializable {
 	private  Dragon[] dragons;
 	private  Sword s;
 	private  Eagle eg;
-	private static int Sx;
-	private static int Sy;
+	private int Sx;
+	private int Sy;
 
 	/** Construtor da classe Board;
 	 * 
@@ -82,7 +82,7 @@ public class Board implements Serializable {
 	 * Desenha o objeto no Board
 	 * @param object Objeto a ser desenhado
 	 */
-	
+
 	private void drawObject(Object object) {
 		currentState[object.getX()][object.getY()] = object.getSymb();
 	}
@@ -91,7 +91,7 @@ public class Board implements Serializable {
 	/**
 	 * Atualiza do board e desenha-o 
 	 */
-	 void UpdateBoard() {
+	void UpdateBoard() {
 		currentState = copy(builder.getField());
 		if(eg.getStatus())
 			drawObject(eg);
@@ -209,6 +209,21 @@ public class Board implements Serializable {
 		return Sx ;
 	}
 	/**
+	 * Muda as coordenadas da saida
+	 * @param x coord X
+	 */
+	public void setSx(int x) {
+		Sx=x;
+	}
+	/**
+	 * Muda as coordenadas da saida
+	 * @param y coord Y
+	 */
+	public void setSy(int y) {
+		Sy=y;
+	}
+
+	/**
 	 * 
 	 * @return coordenada y da saida
 	 */
@@ -229,7 +244,6 @@ public class Board implements Serializable {
 	public void setDragons(Dragon[] dragons) {
 		this.dragons = dragons;
 	}
-	
 
 	/**
 	 * Verifica se todos os dragoes estao mortos
