@@ -35,9 +35,6 @@ public class MainMenu extends JLabel implements ActionListener {
 	private Game g1;
 	private MazeGameGUI frame;
 	private SaveGame sg;
-
-	private PaintTools paintObj = new PaintTools();
-
 	private Timer animation;
 	private int delay = 50, currentFrame = 0;
 
@@ -86,6 +83,7 @@ public class MainMenu extends JLabel implements ActionListener {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GameSounds.playSound("button");
+				PaintTools.resetFrames();
 				if(g1.getBoard() == null) {
 					g1.setBoard();
 				}				
@@ -217,12 +215,12 @@ public class MainMenu extends JLabel implements ActionListener {
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
-		arg0.drawImage(paintObj.getBackground(),0,0,this.getWidth(),this.getHeight(), 0, 0, paintObj.getBackground().getWidth(),paintObj.getBackground().getHeight(), null);
-		if(currentFrame >= paintObj.getTitle().length-1) {
+		arg0.drawImage(PaintTools.getBackground(),0,0,this.getWidth(),this.getHeight(), 0, 0, PaintTools.getBackground().getWidth(),PaintTools.getBackground().getHeight(), null);
+		if(currentFrame >= PaintTools.getTitle_animation().length-1) {
 			currentFrame = 0;
 		}
 		currentFrame++;
-		arg0.drawImage(paintObj.getTitle()[currentFrame],this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, paintObj.getTitle()[currentFrame].getWidth(),paintObj.getTitle()[currentFrame].getHeight(), null);
+		arg0.drawImage(PaintTools.getTitle_animation()[currentFrame],this.getWidth()/4,this.getHeight()/12,this.getWidth()-this.getWidth()/4,panel_6.getY()+panel_6.getHeight(), 0, 0, PaintTools.getTitle_animation()[currentFrame].getWidth(),PaintTools.getTitle_animation()[currentFrame].getHeight(), null);
 
 	}
 

@@ -30,7 +30,7 @@ public class GameSounds {
 		play(soundName, interval);
 	}
 
-	public static void play(String soundName, int i) {
+	private static void play(String soundName, int i) {
 		if(!silent){
 			Clip x = sounds.get(soundName);
 			if(x == null) return;

@@ -149,7 +149,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 				repaint();
 			}
 		});
-		spinner.setModel(new SpinnerNumberModel(7, 5, 51, 2));
+		spinner.setModel(new SpinnerNumberModel(7, 7, 51, 2));
 		panel.add(spinner);
 
 		Choice choice = new Choice();

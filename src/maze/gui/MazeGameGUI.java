@@ -64,6 +64,7 @@ public class MazeGameGUI extends JFrame {
 	 */
 	public MazeGameGUI() {
 		this.setFocusable(true);
+		this.setTitle("MAZE GAME");
 
 		controls = new ArrayList<Integer>() ;
 		controls.add(KeyEvent.VK_RIGHT);

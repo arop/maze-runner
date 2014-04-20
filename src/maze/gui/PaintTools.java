@@ -12,33 +12,34 @@ import maze.logic.Board;
 /**
  * PaintTools.java - Esta classe serve de "container" para todas as imagens usadas no GUI, sejam elas das paredes
  * do labirinto, do heroi ou outras. Cria as imagens e desenha-as no local correto
+ * Esta classe foi feita estática pois serve unicamente como ferramenta não tendo logica ser instanciada
  * @author André Pires, Filipe Gama
  * @see MazePanel
  */
 public class PaintTools {
 
-	private BufferedImage sword = createImage("imagens/sword.png");
-	private BufferedImage wall = createImage("imagens/lava.png");
-	private BufferedImage path = createImage("imagens/metal.jpg");
-	private BufferedImage hero = createImage("imagens/darkknight2.png");
-	private BufferedImage hero_sword = createImage("imagens/HeroSword.png");
-	private BufferedImage dragon_awake = createImage("imagens/dragonAwake.png");
-	private BufferedImage dragon_sleeping = createImage("imagens/DragonSleeping.png");
-	private BufferedImage dragon_sword = createImage("imagens/dragonSword.png");
-	private BufferedImage eagle = createImage("imagens/eagle_fly.gif");
-	private BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
-	private BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
-	private BufferedImage doorClosed = createImage("imagens/door2.png");
+	private static BufferedImage sword = createImage("imagens/sword.png");
+	private static BufferedImage wall = createImage("imagens/lava.png");
+	private static BufferedImage path = createImage("imagens/metal.jpg");
+	private static BufferedImage hero = createImage("imagens/darkknight2.png");
+	private static BufferedImage hero_sword = createImage("imagens/HeroSword.png");
+	private static BufferedImage dragon_awake = createImage("imagens/dragonAwake.png");
+	private static BufferedImage dragon_sleeping = createImage("imagens/DragonSleeping.png");
+	private static BufferedImage dragon_sword = createImage("imagens/dragonSword.png");
+	private static BufferedImage eagle = createImage("imagens/eagle_fly.gif");
+	private static BufferedImage background = createImage("imagens/mainMenuBackground.jpg");
+	private static BufferedImage dragonMainMenu = createImage("imagens/DragonMain.png");
+	private static BufferedImage doorClosed = createImage("imagens/door2.png");
 	
-	private BufferedImage eagle_animation[] = createSprite(10,"eagle");
-	private BufferedImage title_animation[] = createSprite(5,"title");
-	private BufferedImage door_animation[] = createSprite(4,"door");
+	private static BufferedImage eagle_animation[] = createSprite(10,"eagle");
+	private static BufferedImage title_animation[] = createSprite(5,"title");
+	private static BufferedImage door_animation[] = createSprite(4,"door");
 	
-	private boolean openDoor = false;
-	int door_sprite_frame = 0;
-	int eagle_sprite_frame = 0;
+	private static boolean openDoor = false;
+	private static int door_sprite_frame = 0;
+	private static int eagle_sprite_frame = 0;
 
-	BufferedImage createImage(String path) {
+	private static BufferedImage createImage(String path) {
 		BufferedImage image = null;
 		try {                
 			image = ImageIO.read(new File(path));
@@ -47,8 +48,8 @@ public class PaintTools {
 		}
 		return image;
 	}
-
-	private BufferedImage[] createSprite(int size, String string) {
+	
+	private static BufferedImage[] createSprite(int size, String string) {
 		BufferedImage arrayOfImages[] = new BufferedImage[size];
 		for(int i = 0; i < size; i++) {
 			arrayOfImages[i] = createImage("imagens/" + string + i +".png");
@@ -59,6 +60,11 @@ public class PaintTools {
 
 	private void paintGrid(Graphics arg0, BufferedImage image, float w, float h, int i,int j,Component label) {
 		arg0.drawImage(image, (int) (label.getX()+w*i), (int)(label.getY()+h*j), (int)(label.getX()+w+w*i),(int) (label.getY()+h+h*j), 0, 0, 50, 50, null);
+	}
+	
+	static void resetFrames() {
+		 door_sprite_frame = 0;
+		 eagle_sprite_frame = 0;
 	}
 
 	void drawGraphicBoard(Graphics arg0,int realSize,int width,int height, Board b, Component label) {
@@ -117,108 +123,152 @@ public class PaintTools {
 
 	}
 
-
-	public BufferedImage[] getDoor_sprite() {
-		return door_animation;
-	}
-
-
-	public BufferedImage[] getEagle_sprite() {
-		return eagle_animation;
-	}
-
-	public BufferedImage[] getTitle() {
-		return title_animation;
-	}
-
-
-	public BufferedImage getSword() {
+	static BufferedImage getSword() {
 		return sword;
 	}
 
-	public void setSword(BufferedImage sword) {
-		this.sword = sword;
+	static void setSword(BufferedImage sword) {
+		PaintTools.sword = sword;
 	}
 
-	public BufferedImage getWall() {
+	static BufferedImage getWall() {
 		return wall;
 	}
 
-	public void setWall(BufferedImage wall) {
-		this.wall = wall;
+	static void setWall(BufferedImage wall) {
+		PaintTools.wall = wall;
 	}
 
-	public BufferedImage getWater() {
+	static BufferedImage getPath() {
 		return path;
 	}
 
-	public void setWater(BufferedImage water) {
-		this.path = water;
+	static void setPath(BufferedImage path) {
+		PaintTools.path = path;
 	}
 
-	public BufferedImage getHero() {
+	static BufferedImage getHero() {
 		return hero;
 	}
 
-	public void setHero(BufferedImage hero) {
-		this.hero = hero;
+	static void setHero(BufferedImage hero) {
+		PaintTools.hero = hero;
 	}
 
-	public BufferedImage getHero_sword() {
+	static BufferedImage getHero_sword() {
 		return hero_sword;
 	}
 
-	public void setHero_sword(BufferedImage hero_sword) {
-		this.hero_sword = hero_sword;
+	static void setHero_sword(BufferedImage hero_sword) {
+		PaintTools.hero_sword = hero_sword;
 	}
 
-	public BufferedImage getDragon_awake() {
+	static BufferedImage getDragon_awake() {
 		return dragon_awake;
 	}
 
-	public void setDragon_awake(BufferedImage dragon_awake) {
-		this.dragon_awake = dragon_awake;
+	static void setDragon_awake(BufferedImage dragon_awake) {
+		PaintTools.dragon_awake = dragon_awake;
 	}
 
-	public BufferedImage getDragon_sleeping() {
+	static BufferedImage getDragon_sleeping() {
 		return dragon_sleeping;
 	}
 
-	public void setDragon_sleeping(BufferedImage dragon_sleeping) {
-		this.dragon_sleeping = dragon_sleeping;
+	static void setDragon_sleeping(BufferedImage dragon_sleeping) {
+		PaintTools.dragon_sleeping = dragon_sleeping;
 	}
 
-	public BufferedImage getEagle() {
+	static BufferedImage getDragon_sword() {
+		return dragon_sword;
+	}
+
+	static void setDragon_sword(BufferedImage dragon_sword) {
+		PaintTools.dragon_sword = dragon_sword;
+	}
+
+	static BufferedImage getEagle() {
 		return eagle;
 	}
 
-	public void setEagle(BufferedImage eagle) {
-		this.eagle = eagle;
+	static void setEagle(BufferedImage eagle) {
+		PaintTools.eagle = eagle;
 	}
 
-	public BufferedImage getDoor() {
-		return doorClosed;
-	}
-
-	public void setDoor(BufferedImage door) {
-		this.doorClosed = door;
-	}
-
-	public BufferedImage getBackground() {
+	static BufferedImage getBackground() {
 		return background;
 	}
 
-	public void setBackground(BufferedImage background) {
-		this.background = background;
+	static void setBackground(BufferedImage background) {
+		PaintTools.background = background;
 	}
 
-	public BufferedImage getDragonMainMenu() {
+	static BufferedImage getDragonMainMenu() {
 		return dragonMainMenu;
 	}
 
-	public void setDragonMainMenu(BufferedImage dragonMainMenu) {
-		this.dragonMainMenu = dragonMainMenu;
+	static void setDragonMainMenu(BufferedImage dragonMainMenu) {
+		PaintTools.dragonMainMenu = dragonMainMenu;
 	}
+
+	static BufferedImage getDoorClosed() {
+		return doorClosed;
+	}
+
+	static void setDoorClosed(BufferedImage doorClosed) {
+		PaintTools.doorClosed = doorClosed;
+	}
+
+	static BufferedImage[] getEagle_animation() {
+		return eagle_animation;
+	}
+
+	static void setEagle_animation(BufferedImage[] eagle_animation) {
+		PaintTools.eagle_animation = eagle_animation;
+	}
+
+	static BufferedImage[] getTitle_animation() {
+		return title_animation;
+	}
+
+	static void setTitle_animation(BufferedImage[] title_animation) {
+		PaintTools.title_animation = title_animation;
+	}
+
+	static BufferedImage[] getDoor_animation() {
+		return door_animation;
+	}
+
+	static void setDoor_animation(BufferedImage[] door_animation) {
+		PaintTools.door_animation = door_animation;
+	}
+
+	static boolean isOpenDoor() {
+		return openDoor;
+	}
+
+	static void setOpenDoor(boolean openDoor) {
+		PaintTools.openDoor = openDoor;
+	}
+
+	static int getDoor_sprite_frame() {
+		return door_sprite_frame;
+	}
+
+	static void setDoor_sprite_frame(int door_sprite_frame) {
+		PaintTools.door_sprite_frame = door_sprite_frame;
+	}
+
+	static int getEagle_sprite_frame() {
+		return eagle_sprite_frame;
+	}
+
+	static void setEagle_sprite_frame(int eagle_sprite_frame) {
+		PaintTools.eagle_sprite_frame = eagle_sprite_frame;
+	}
+
+	
+	
 }
 
 

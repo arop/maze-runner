@@ -11,23 +11,20 @@ import maze.logic.Game;
  */
 public class MazeGameCLI { 
 
-	private Game g1;
-	private Scanner scanner_input;
+	private static Game g1;
+	private static Scanner scanner_input;
 
 
 	public static void main (String[] args) {
-		new MazeGameCLI();
-	}
-
-	MazeGameCLI() {
 		mainMenu();
 	}
+
 
 	/**
 	 * Representa o menu principal do jogo, tendo a possibilidade de iniciar um novo jogo, de mudar de menu (para o
 	 * menu de opções) ou terminar o programa
 	 */
-	public void mainMenu() {
+	private static void mainMenu() {
 		System.out.println(">>> MAZE GAME <<<");
 		System.out.println();
 		System.out.println("1. Play Game");
@@ -62,7 +59,7 @@ public class MazeGameCLI {
 	/**
 	 * Representa o jogo em si, fazendo as alterações necessárias consoante a interação com o utilizador
 	 */
-	private void play() {
+	private static void play() {
 		g1.setBoard();
 		scanner_input = new Scanner(System.in);
 		while(true) {
@@ -93,7 +90,7 @@ public class MazeGameCLI {
 	 * a possibilidade destes se mexerem ou adormecerem
 	 * @return 
 	 */
-	private int optionsMenu() {
+	private static int optionsMenu() {
 		System.out.println("> OPTIONS <");
 		System.out.println();
 		System.out.println("1. Random maze, choose size");
