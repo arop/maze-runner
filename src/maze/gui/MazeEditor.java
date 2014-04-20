@@ -222,6 +222,8 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 			}
 			sX=m;
 			sY=n;
+			customBoard.setSx(sX);
+			customBoard.setSy(sY);
 			break;
 		case 3: //heroi
 			customBoard.getCurrentState()[hX][hY]=" ";
