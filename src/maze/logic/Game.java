@@ -66,7 +66,14 @@ public class Game implements Serializable {
 
 		//morrer aguia?
 		if((board.getEg().getX() == board.getEg().getiX() && board.getEg().getY() == board.getEg().getiY()) || (board.getEg().samePos(board.getS()))) {
-			if(board.getEg().getStatus()) characterDies(board.getEg());
+			if(board.getEg().getStatus()){
+				if(characterDies(board.getEg())){
+					board.getS().setX(board.getEg().getX());
+					board.getS().setY(board.getEg().getY());
+					board.getS().reenable();
+				};
+				
+			}
 		}
 
 		//mover aguia
@@ -167,6 +174,9 @@ public class Game implements Serializable {
 	 * Verifica se a personagem morre
 	 * @param p Personagem em questão
 	 * @return true se a personagem morre, false se nao
+	 * 
+	 * NOTA: Para verificar se um dragão se encontra nas vizinhanças de um objecto,
+	 * verificamos se a distancia (modulo do vector) é menor que sqrt(2)
 	 */
 	public boolean characterDies(Character p) {
 		for(int i = 0 ; i < board.getDragons().length ; i++){
