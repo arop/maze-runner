@@ -155,12 +155,10 @@ public class GameMenu extends JLabel implements ActionListener {
 		switch(arg0.getActionCommand()){
 		case ("Resume"): 
 			GameSounds.playSound("button");
-
-		setVisible(false);
-		frame.enablePanel(frame.getMazePanel());
-		frame.getMazePanel().setVisible(true);
-		frame.getMazePanel().requestFocusInWindow();
-		break;
+			setVisible(false);
+			frame.enablePanel(frame.getMazePanel());
+			frame.getMazePanel().requestFocusInWindow();
+			break;
 
 		case("Save"): 
 			GameSounds.playSound("button");
