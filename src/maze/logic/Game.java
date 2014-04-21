@@ -99,7 +99,8 @@ public class Game implements Serializable {
 		}
 
 		//lancar aguia
-		if(input.equals("f") && board.getS().getStatus()  && !board.getEg().getStatus()) {
+		if(input.equals("f") && board.getS().getStatus()  && !board.getEg().getStatus() && !board.getEg().isReleased()) {
+			board.getEg().setReleased(true);
 			board.getEg().reenable();
 
 			board.getEg().setiX(board.getH().getX());
