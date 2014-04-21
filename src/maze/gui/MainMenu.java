@@ -88,9 +88,7 @@ public class MainMenu extends JLabel implements ActionListener {
 					g1.setBoard();
 				}
 				frame.disableAll();
-				frame.setMazePanel(new MazePanel(g1, frame));
-				frame.getContentPane().add(frame.getMazePanel());
-				frame.getMazePanel().setVisible(true);
+				frame.enablePanel(frame.getMazePanel());
 				frame.getMazePanel().requestFocusInWindow();	
 			}
 		});

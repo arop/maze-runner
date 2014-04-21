@@ -77,6 +77,8 @@ public class MazeGameGUI extends JFrame {
 		
 		GameSounds.loadSound("sons/musica.wav", "MainMenu");
 		GameSounds.loadSound("sons/button.wav", "button");
+		GameSounds.loadSound("sons/ambient.wav", "mazePanel");
+		GameSounds.adjustVolume("mazePanel", 5);
 
 		GameSounds.playSound("MainMenu");
 		
@@ -103,6 +105,13 @@ public class MazeGameGUI extends JFrame {
 		editor = new MazeEditor(g1,this);
 		this.add(editor);
 		editor.setVisible(false);
+		
+		mazePanel = new MazePanel(g1, this);
+		this.add(mazePanel);
+		mazePanel.setVisible(false);
+
+
+		
 	}
 	/**
 	 * 
@@ -125,7 +134,7 @@ public class MazeGameGUI extends JFrame {
 	 * Muda a visibilidade dos menus para invisiveis
 	 */
 	void disableAll() {
-//		mainMenu.setVisible(false);
+		disablePanel(mazePanel);
 		disablePanel(mainMenu);
 		options.setVisible(false);
 		editor.setVisible(false);
