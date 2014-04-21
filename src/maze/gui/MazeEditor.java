@@ -211,31 +211,37 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	private void changeCoordenates(int x,int m, int n){
 		switch(x) {
 		case 2: //saida
-			if(sX==0 || sY==0 || sX==customBoard.getCurrentState().length-1 
-			|| sY==customBoard.getCurrentState().length-1) {
-				customBoard.getCurrentState()[sX][sY]="X";
-				customBoard.getOriginalMaze()[sX][sY] ="X";
+			if(sX!=m && sY!=n) {
+				if(sX==0 || sY==0 || sX==customBoard.getCurrentState().length-1 
+						|| sY==customBoard.getCurrentState().length-1) {
+					customBoard.getCurrentState()[sX][sY]="X";
+					customBoard.getOriginalMaze()[sX][sY] ="X";
+				}
+				else {
+					customBoard.getCurrentState()[sX][sY]=" ";
+					customBoard.getOriginalMaze()[sX][sY] =" ";
+				}
+				sX=m;
+				sY=n;
+				customBoard.setSx(sX);
+				customBoard.setSy(sY);
 			}
-			else {
-				customBoard.getCurrentState()[sX][sY]=" ";
-				customBoard.getOriginalMaze()[sX][sY] =" ";
-			}
-			sX=m;
-			sY=n;
-			customBoard.setSx(sX);
-			customBoard.setSy(sY);
 			break;
 		case 3: //heroi
-			customBoard.getCurrentState()[hX][hY]=" ";
-			customBoard.getOriginalMaze()[hX][hY] =" ";
-			hX=m;
-			hY=n;
+			if(hX!=m && hY!=n) {
+				customBoard.getCurrentState()[hX][hY]=" ";
+				customBoard.getOriginalMaze()[hX][hY] =" ";
+				hX=m;
+				hY=n;
+			}
 			break;
 		case 5: //espada
-			customBoard.getCurrentState()[eX][eY]=" ";
-			customBoard.getOriginalMaze()[eX][eY] =" ";
-			eX=m;
-			eY=n;
+			if(eX!=m && eY!=n) {
+				customBoard.getCurrentState()[eX][eY]=" ";
+				customBoard.getOriginalMaze()[eX][eY] =" ";
+				eX=m;
+				eY=n;
+			}
 			break;
 		}
 	}
