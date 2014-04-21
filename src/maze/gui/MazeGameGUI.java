@@ -158,7 +158,7 @@ public class MazeGameGUI extends JFrame {
 	
 	void enablePanel(JComponent x) {
 		x.setVisible(true);
-		GameSounds.playSound(x.getName());
+		GameSounds.loop(x.getName());
 
 	}
 	
