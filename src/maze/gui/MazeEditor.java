@@ -211,7 +211,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 	private void changeCoordenates(int x,int m, int n){
 		switch(x) {
 		case 2: //saida
-			if(sX!=m && sY!=n) {
+			if(sX!=m || sY!=n) {
 				if(sX==0 || sY==0 || sX==customBoard.getCurrentState().length-1 
 						|| sY==customBoard.getCurrentState().length-1) {
 					customBoard.getCurrentState()[sX][sY]="X";
@@ -228,7 +228,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 			}
 			break;
 		case 3: //heroi
-			if(hX!=m && hY!=n) {
+			if(hX!=m || hY!=n) {
 				customBoard.getCurrentState()[hX][hY]=" ";
 				customBoard.getOriginalMaze()[hX][hY] =" ";
 				hX=m;
@@ -236,7 +236,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 			}
 			break;
 		case 5: //espada
-			if(eX!=m && eY!=n) {
+			if(eX!=m || eY!=n) {
 				customBoard.getCurrentState()[eX][eY]=" ";
 				customBoard.getOriginalMaze()[eX][eY] =" ";
 				eX=m;
