@@ -15,6 +15,7 @@ public class Eagle extends Character {
 	private int dY = 0 ;
 	private int iX = 0 ;
 	private int iY = 0 ;
+	private boolean released = false;
 	/**
 	 * Construtor da classe Eagle com coordenadas definidas
 	 * @param x Coordenada X
@@ -26,6 +27,7 @@ public class Eagle extends Character {
 		iY = y ;
 		symbol = "v";
 		active = false ;
+		setReleased(false);
 	}
 
 	public int getdX() { return dX;}
@@ -69,5 +71,13 @@ public class Eagle extends Character {
 			error+=deltax;
 			Y+=sy;
 		}
+	}
+
+	public boolean isReleased() {
+		return released;
+	}
+
+	public void setReleased(boolean released) {
+		this.released = released;
 	}
 }
