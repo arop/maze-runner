@@ -95,7 +95,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 					frame.disableAll();
 					frame.setMazePanel(new MazePanel(g1, frame));
 					frame.getContentPane().add(frame.getMazePanel());
-					frame.getMazePanel().setVisible(true);
+					frame.enablePanel(frame.getMazePanel());
 					frame.getMazePanel().requestFocusInWindow();
 				}
 				else JOptionPane.showMessageDialog(frame, "You haven't changed the maze yet!");
@@ -125,7 +125,7 @@ public class MazeEditor extends JPanel implements MouseListener, ItemListener {
 				resposta = JOptionPane.showConfirmDialog(null, "Are you sure you want to return to main menu?");
 				if (resposta == JOptionPane.YES_OPTION) {
 					setVisible(false);
-					frame.getMainMenu().setVisible(true);
+					frame.enablePanel(frame.getMainMenu());
 				}
 			}
 		});
