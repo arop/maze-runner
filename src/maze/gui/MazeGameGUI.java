@@ -65,6 +65,11 @@ public class MazeGameGUI extends JFrame {
 	public MazeGameGUI() {
 		this.setFocusable(true);
 		this.setTitle("MAZE GAME");
+				
+		GameSounds.loadSound("sons/musica.wav", "MainMenu");
+		GameSounds.loadSound("sons/button.wav", "button");
+		GameSounds.loadSound("sons/ambient.wav", "mazePanel");
+		GameSounds.adjustVolume("mazePanel", 5);
 
 		controls = new ArrayList<Integer>() ;
 		controls.add(KeyEvent.VK_RIGHT);
@@ -74,12 +79,7 @@ public class MazeGameGUI extends JFrame {
 		controls.add(KeyEvent.VK_SPACE);
 
 		g1 = new Game() ;
-		
-		GameSounds.loadSound("sons/musica.wav", "MainMenu");
-		GameSounds.loadSound("sons/button.wav", "button");
-		GameSounds.loadSound("sons/ambient.wav", "mazePanel");
-		GameSounds.adjustVolume("mazePanel", 5);
-
+	
 		GameSounds.playSound("MainMenu");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
