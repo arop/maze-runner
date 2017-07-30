@@ -5,3 +5,5 @@ Maze game developed in Java, including:
 * Maze generation
 * CLI interaction
 * GUI with Java Swing
+
+<img src="imagens/Title.gif"/>
